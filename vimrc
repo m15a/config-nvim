@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/17 14:23:54.
+""" Last change: 2011/01/17 14:25:10.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -127,6 +127,10 @@ nmap <Leader>sgP <Plug>ScreenpasteGPutBefore
 
 "" Align
 let g:DrChipTopLvlMenu="Plugin."
+
+"" NERD Commenter
+let NERDShutUp=1
+"let NERD_haskell_alt_style=1
 
 "" unite.vim
 map <silent> <C-E> :Unite buffer<CR>
