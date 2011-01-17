@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 17-Jan-2011.
+""" Last change: 2011/01/17 17:03:57.
   
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
@@ -34,4 +34,7 @@ set gfw=Osaka-Mono:h16
 hi Pmenu ctermbg=8
 hi PmenuSel ctermbg=12
 hi PmenuSbar ctermbg=0
+
+"" vimspell
+hi SpellErrors guifg=Red2 gui=underline
 
