@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 17-Jan-2011.
+""" Last change: 2011/01/17 14:10:01.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -97,6 +97,11 @@ so $VIMRUNTIME/macros/matchit.vim
 
 "" unite.vim
 map <silent> <C-E> :Unite buffer<CR>
+
+"" autodate.vim
+let autodate_format='%Y/%m/%d %H:%M:%S'
+let autodate_keyword_pre='Last change:'
+let autodate_keyword_post='\.'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
