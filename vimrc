@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/17 14:18:36.
+""" Last change: 2011/01/17 14:21:08.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -124,6 +124,9 @@ map! <Leader>sp  <Plug>ScreenpastePut
 map  <Leader>sgp <Plug>ScreenpasteGPut
 nmap <Leader>sP  <Plug>ScreenpastePutBefore
 nmap <Leader>sgP <Plug>ScreenpasteGPutBefore
+
+"" Align
+let g:DrChipTopLvlMenu="Plugin."
 
 "" unite.vim
 map <silent> <C-E> :Unite buffer<CR>
