@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/17 14:10:01.
+""" Last change: 2011/01/17 14:12:01.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -94,6 +94,20 @@ inoremap ' ''<LEFT>
 
 "" matchit.vim
 so $VIMRUNTIME/macros/matchit.vim
+
+"" camelcasemotion
+" Replace the default 'w',  'b' and 'e' mappings instead of defining
+" additional mappings ',w', ',b' and ',e':
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+" Replace default 'iw' text-object and define 'ib' and 'ie' motions:
+omap <silent> iw <Plug>CamelCaseMotion_iw
+vmap <silent> iw <Plug>CamelCaseMotion_iw
+omap <silent> ib <Plug>CamelCaseMotion_ib
+vmap <silent> ib <Plug>CamelCaseMotion_ib
+omap <silent> ie <Plug>CamelCaseMotion_ie
+vmap <silent> ie <Plug>CamelCaseMotion_ie
 
 "" unite.vim
 map <silent> <C-E> :Unite buffer<CR>
