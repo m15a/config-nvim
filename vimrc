@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/17 14:21:08.
+""" Last change: 2011/01/17 14:23:54.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -130,6 +130,10 @@ let g:DrChipTopLvlMenu="Plugin."
 
 "" unite.vim
 map <silent> <C-E> :Unite buffer<CR>
+
+""" cmigemo
+nnoremap g/ :set incsearch<CR>g/
+nnoremap g? :set incsearch<CR>g?
 
 "" autodate.vim
 let autodate_format='%Y/%m/%d %H:%M:%S'
