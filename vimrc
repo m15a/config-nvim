@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/17 14:12:01.
+""" Last change: 2011/01/17 14:15:29.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -108,6 +108,10 @@ omap <silent> ib <Plug>CamelCaseMotion_ib
 vmap <silent> ib <Plug>CamelCaseMotion_ib
 omap <silent> ie <Plug>CamelCaseMotion_ie
 vmap <silent> ie <Plug>CamelCaseMotion_ie
+
+"" YankRing.vim
+let g:yankring_window_auto_close=1
+let g:yankring_history_dir='$HOME/tmp'
 
 "" unite.vim
 map <silent> <C-E> :Unite buffer<CR>
