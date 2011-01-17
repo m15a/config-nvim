@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/17 14:16:40.
+""" Last change: 2011/01/17 14:18:36.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -117,6 +117,13 @@ let g:yankring_history_dir='$HOME/tmp'
 map <silent> sy :call YanktmpYank()<CR> 
 map <silent> sp :call YanktmpPaste_p()<CR> 
 map <silent> sP :call YanktmpPaste_P()<CR>
+
+"" screenpaste
+map  <Leader>sp  <Plug>ScreenpastePut
+map! <Leader>sp  <Plug>ScreenpastePut
+map  <Leader>sgp <Plug>ScreenpasteGPut
+nmap <Leader>sP  <Plug>ScreenpastePutBefore
+nmap <Leader>sgP <Plug>ScreenpasteGPutBefore
 
 "" unite.vim
 map <silent> <C-E> :Unite buffer<CR>
