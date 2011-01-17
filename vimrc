@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/17 14:25:10.
+""" Last change: 2011/01/17 14:27:25.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -131,6 +131,14 @@ let g:DrChipTopLvlMenu="Plugin."
 "" NERD Commenter
 let NERDShutUp=1
 "let NERD_haskell_alt_style=1
+
+"" surround.vim
+let g:surround_33 = "<!-- \r -->"
+let g:surround_35 = "#{\r}"
+let g:surround_36 = "${\r}"
+let g:surround_37 = "<% \r %>"
+let g:surround_45 = "<!-- \r -->"
+let g:surround_64 = "@{\r}"
 
 "" unite.vim
 map <silent> <C-E> :Unite buffer<CR>
