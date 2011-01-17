@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/17 14:15:29.
+""" Last change: 2011/01/17 14:16:40.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -112,6 +112,11 @@ vmap <silent> ie <Plug>CamelCaseMotion_ie
 "" YankRing.vim
 let g:yankring_window_auto_close=1
 let g:yankring_history_dir='$HOME/tmp'
+
+"" yanktmp.vim
+map <silent> sy :call YanktmpYank()<CR> 
+map <silent> sp :call YanktmpPaste_p()<CR> 
+map <silent> sP :call YanktmpPaste_P()<CR>
 
 "" unite.vim
 map <silent> <C-E> :Unite buffer<CR>
