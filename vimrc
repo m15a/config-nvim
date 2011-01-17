@@ -92,6 +92,9 @@ inoremap ' ''<LEFT>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Plugins
 
+"" matchit.vim
+so $VIMRUNTIME/macros/matchit.vim
+
 "" unite.vim
 map <silent> <C-E> :Unite buffer<CR>
 
