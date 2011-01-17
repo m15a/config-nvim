@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/17 14:27:25.
+""" Last change: 2011/01/17 16:43:40.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -151,6 +151,34 @@ nnoremap g? :set incsearch<CR>g?
 let autodate_format='%Y/%m/%d %H:%M:%S'
 let autodate_keyword_pre='Last change:'
 let autodate_keyword_post='\.'
+
+"" neocomplcache
+let g:neocomplcache_enable_at_startup=1 
+let g:neocomplcache_max_list=10
+let g:neocomplcache_enable_ignore_case=1
+let g:neocomplcache_enable_smart_case=1
+let g:neocomplcache_enable_quick_match=1
+let g:neocomplcache_enable_auto_select=1
+let g:neocomplcache_enable_auto_delimiter=1
+"let g:neocomplcache_snippets_dir=
+let g:neocomplcache_ctags_program="/opt/local/bin/jexctags"
+" Key maps
+"inoremap <expr><C-g> neocomplcache#undo_completion()
+" TAB completion
+function InsertTabWrapper()
+  if pumvisible()
+    return "\<c-n>"
+  endif
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k\|<\|/'
+    return "\<tab>"
+  elseif exists('&omnifunc') && &omnifunc == ''
+    return "\<c-n>"
+  else
+    return "\<c-x>\<c-o>"
+  endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
