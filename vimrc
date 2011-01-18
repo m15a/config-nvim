@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/17 17:03:39.
+""" Last change: 2011/01/18 20:16:32.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -78,8 +78,8 @@ nnoremap k gk
 nnoremap <C-j> 3+
 nnoremap <C-k> 3-
 nnoremap t :tabnew 
-nnoremap <C-n> :tabNext<CR>
-nnoremap <C-p> :tabprevious<CR>
+"nnoremap <C-n> :tabNext<CR>
+"nnoremap <C-p> :tabprevious<CR>
 inoremap , ,<SPACE>
 "inoremap ; ;<SPACE>
 inoremap { {}<LEFT>
@@ -144,8 +144,8 @@ let g:surround_64 = "@{\r}"
 map <silent> <C-E> :Unite buffer<CR>
 
 """ cmigemo
-nnoremap g/ :set incsearch<CR>g/
-nnoremap g? :set incsearch<CR>g?
+nnoremap <silent> g/ :set incsearch<CR>g/
+nnoremap <silent> g? :set incsearch<CR>g?
 
 "" autodate.vim
 let autodate_format='%Y/%m/%d %H:%M:%S'
