@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/18 20:16:32.
+""" Last change: 2011/01/18 23:47:41.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -142,6 +142,10 @@ let g:surround_64 = "@{\r}"
 
 "" unite.vim
 map <silent> <C-E> :Unite buffer<CR>
+
+"" occur.vim
+nnoremap <silent> <Leader>oo :Occur<CR>
+nnoremap <silent> <Leader>om :Moccur<CR>
 
 """ cmigemo
 nnoremap <silent> g/ :set incsearch<CR>g/
