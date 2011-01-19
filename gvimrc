@@ -1,13 +1,13 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/17 17:03:57.
+""" Last change: 2011/01/20 00:19:14.
   
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
 
-winpos 566 764
+winpos 576 770
 set columns=86
-set lines=40
-set linespace=1
+set lines=42
+set linespace=4
 set vb t_vb=
 set mousehide
 set ch=1 " make command line two lines high
@@ -27,8 +27,8 @@ colorscheme moria
 
 "" Fonts
 set termencoding=japan
-set gfn=Osaka-Mono:h16
-set gfw=Osaka-Mono:h16
+set gfn=Inconsolata:h16
+set gfw=Hiragino_Maru_Gothic_Pro:h16
 
 "" Colorized completion (VIM7)
 hi Pmenu ctermbg=8
