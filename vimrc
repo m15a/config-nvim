@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/18 23:47:41.
+""" Last change: 2011/01/20 00:50:07.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -29,7 +29,7 @@ filetype plugin on
 set nocompatible
 set nobackup
 set number
-set history=50
+set history=1000
 set backspace=indent,eol,start
 set tabstop=2
 set shiftwidth=2
@@ -42,7 +42,8 @@ set ignorecase
 set smartcase
 set visualbell
 "set textwidth=0
-"set wildmenu
+set wildmenu
+set wildmode=list:full
 set hlsearch
 set incsearch
 set wrapscan
@@ -54,7 +55,6 @@ set mouse=a
 set ruler
 set nowrap
 set grepprg=internal
-set wildmode=list:longest
 set hidden
 set autoread
 set laststatus=2
