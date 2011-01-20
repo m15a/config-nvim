@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/21 00:56:37.
+""" Last change: 2011/01/21 01:32:20.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -128,8 +128,11 @@ map  <Leader>sgp <Plug>ScreenpasteGPut
 nmap <Leader>sP  <Plug>ScreenpastePutBefore
 nmap <Leader>sgP <Plug>ScreenpasteGPutBefore
 
-"" Align
-let g:DrChipTopLvlMenu="Plugin."
+"" Tabular.vim
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
 
 "" NERD Commenter
 let NERDShutUp=1
