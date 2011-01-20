@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: unite.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 14 Jan 2011.
+" Last Modified: 19 Jan 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -24,6 +24,10 @@
 " }}}
 " Version: 1.1, for Vim 7.0
 "=============================================================================
+
+function! unite#version()"{{{
+  return str2nr(printf('%02d%02d%03d', 1, 1, 0))
+endfunction"}}}
 
 " User functions."{{{
 function! unite#get_substitute_pattern(buffer_name)"{{{
@@ -51,30 +55,30 @@ function! unite#set_substitute_pattern(buffer_name, pattern, subst, ...)"{{{
 endfunction"}}}
 function! unite#custom_alias(kind, name, action)"{{{
   for key in split(a:kind, ',')
-    if !has_key(s:custom_aliases, key)
-      let s:custom_aliases[key] = {}
+    if !has_key(s:custom.aliases, key)
+      let s:custom.aliases[key] = {}
     endif
 
-    let s:custom_aliases[key][a:name] = a:action
+    let s:custom.aliases[key][a:name] = a:action
   endfor
 endfunction"}}}
 function! unite#custom_default_action(kind, default_action)"{{{
   for key in split(a:kind, ',')
-    let s:custom_default_actions[key] = a:default_action
+    let s:custom.default_actions[key] = a:default_action
   endfor
 endfunction"}}}
 function! unite#custom_action(kind, name, action)"{{{
   for key in split(a:kind, ',')
-    if !has_key(s:custom_actions, key)
-      let s:custom_actions[key] = {}
+    if !has_key(s:custom.actions, key)
+      let s:custom.actions[key] = {}
     endif
-    let s:custom_actions[key][a:name] = a:action
+    let s:custom.actions[key][a:name] = a:action
   endfor
 endfunction"}}}
 function! unite#undef_custom_action(kind, name)"{{{
   for key in split(a:kind, ',')
-    if has_key(s:custom_actions, key)
-      call remove(s:custom_actions, key)
+    if has_key(s:custom.actions, key)
+      call remove(s:custom.actions, key)
     endif
   endfor
 endfunction"}}}
@@ -82,29 +86,29 @@ endfunction"}}}
 function! unite#define_source(source)"{{{
   if type(a:source) == type([])
     for l:source in a:source
-      let s:custom_sources[l:source.name] = l:source
+      let s:custom.sources[l:source.name] = l:source
     endfor
   else
-    let s:custom_sources[a:source.name] = a:source
+    let s:custom.sources[a:source.name] = a:source
   endif
 endfunction"}}}
 function! unite#define_kind(kind)"{{{
   if type(a:kind) == type([])
     for l:kind in a:kind
-      let s:custom_kinds[l:kind.name] = l:kind
+      let s:custom.kinds[l:kind.name] = l:kind
     endfor
   else
-    let s:custom_kinds[a:kind.name] = a:kind
+    let s:custom.kinds[a:kind.name] = a:kind
   endif
 endfunction"}}}
 function! unite#undef_source(name)"{{{
-  if has_key(s:custom_sources, a:name)
-    call remove(s:custom_sources, a:name)
+  if has_key(s:custom.sources, a:name)
+    call remove(s:custom.sources, a:name)
   endif
 endfunction"}}}
 function! unite#undef_kind(name)"{{{
-  if has_key(s:custom_kind, a:name)
-    call remove(s:custom_kind, a:name)
+  if has_key(s:custom.kind, a:name)
+    call remove(s:custom.kind, a:name)
   endif
 endfunction"}}}
 
@@ -136,15 +140,16 @@ let s:LNUM_STATUS = 1
 let s:last_unite_bufnr = -1
 let s:unite = {}
 
-let s:default_sources = {}
-let s:default_kinds = {}
+let s:default = {}
+let s:default.sources = {}
+let s:default.kinds = {}
 
-let s:custom_sources = {}
-let s:custom_kinds = {}
-
-let s:custom_actions = {}
-let s:custom_default_actions = {}
-let s:custom_aliases = {}
+let s:custom = {}
+let s:custom.sources = {}
+let s:custom.kinds = {}
+let s:custom.actions = {}
+let s:custom.default_actions = {}
+let s:custom.aliases = {}
 
 let s:substitute_pattern = {}
 call unite#set_substitute_pattern('files', '^\~', substitute(substitute($HOME, '\\', '/', 'g'), ' ', '\\\\ ', 'g'), -100)
@@ -173,10 +178,13 @@ function! unite#is_win()"{{{
   return unite#util#is_win()
 endfunction"}}}
 function! unite#loaded_source_names()"{{{
-  return map(unite#loaded_sources_list(), 'v:val.name')
+  return map(copy(unite#loaded_sources_list()), 'v:val.name')
+endfunction"}}}
+function! unite#loaded_source_names_with_args()"{{{
+  return map(copy(unite#loaded_sources_list()), 'join(insert(copy(v:val.args), v:val.name), ":")')
 endfunction"}}}
 function! unite#loaded_sources_list()"{{{
-  return sort(values(s:get_loaded_sources()), 's:compare_sources')
+  return s:get_loaded_sources()
 endfunction"}}}
 function! unite#get_unite_candidates()"{{{
   return s:get_unite().candidates
@@ -197,9 +205,9 @@ function! unite#get_action_table(source_name, kind_name, self_func, ...)"{{{
 
   if !l:is_parents_action
     " Source/kind custom actions.
-    if has_key(s:custom_actions, l:source_kind)
+    if has_key(s:custom.actions, l:source_kind)
       let l:action_table = s:extend_actions(a:self_func, l:action_table,
-            \ s:custom_actions[l:source_kind])
+            \ s:custom.actions[l:source_kind])
     endif
 
     " Source/kind actions.
@@ -209,9 +217,9 @@ function! unite#get_action_table(source_name, kind_name, self_func, ...)"{{{
     endif
 
     " Source/* custom actions.
-    if has_key(s:custom_actions, l:source_kind_wild)
+    if has_key(s:custom.actions, l:source_kind_wild)
       let l:action_table = s:extend_actions(a:self_func, l:action_table,
-            \ s:custom_actions[l:source_kind_wild])
+            \ s:custom.actions[l:source_kind_wild])
     endif
 
     " Source/* actions.
@@ -221,9 +229,9 @@ function! unite#get_action_table(source_name, kind_name, self_func, ...)"{{{
     endif
 
     " Kind custom actions.
-    if has_key(s:custom_actions, a:kind_name)
+    if has_key(s:custom.actions, a:kind_name)
       let l:action_table = s:extend_actions(a:self_func, l:action_table,
-            \ s:custom_actions[a:kind_name])
+            \ s:custom.actions[a:kind_name])
     endif
 
     " Kind actions.
@@ -242,8 +250,8 @@ function! unite#get_action_table(source_name, kind_name, self_func, ...)"{{{
     call s:filter_alias_action(l:action_table, l:kind.alias_table)
 
     " Kind custom aliases.
-    if has_key(s:custom_aliases, a:kind_name)
-      call s:filter_alias_action(l:action_table, s:custom_aliases[a:kind_name])
+    if has_key(s:custom.aliases, a:kind_name)
+      call s:filter_alias_action(l:action_table, s:custom.aliases[a:kind_name])
     endif
 
     " Source/* aliases.
@@ -252,13 +260,13 @@ function! unite#get_action_table(source_name, kind_name, self_func, ...)"{{{
     endif
 
     " Source/* custom aliases.
-    if has_key(s:custom_aliases, l:source_kind_wild)
-      call s:filter_alias_action(l:action_table, s:custom_aliases[l:source_kind_wild])
+    if has_key(s:custom.aliases, l:source_kind_wild)
+      call s:filter_alias_action(l:action_table, s:custom.aliases[l:source_kind_wild])
     endif
 
     " Source/kind aliases.
-    if has_key(s:custom_aliases, l:source_kind)
-      call s:filter_alias_action(l:action_table, s:custom_aliases[l:source_kind])
+    if has_key(s:custom.aliases, l:source_kind)
+      call s:filter_alias_action(l:action_table, s:custom.aliases[l:source_kind])
     endif
 
     " Source/kind custom aliases.
@@ -293,8 +301,8 @@ function! unite#get_default_action(source_name, kind_name)"{{{
   let l:source_kind_wild = 'source/'.a:source_name.'/*'
 
   " Source/kind custom default actions.
-  if has_key(s:custom_default_actions, l:source_kind)
-    return s:custom_default_actions[l:source_kind]
+  if has_key(s:custom.default_actions, l:source_kind)
+    return s:custom.default_actions[l:source_kind]
   endif
 
   " Source custom default actions.
@@ -303,8 +311,8 @@ function! unite#get_default_action(source_name, kind_name)"{{{
   endif
 
   " Source/* custom default actions.
-  if has_key(s:custom_default_actions, l:source_kind_wild)
-    return s:custom_default_actions[l:source_kind_wild]
+  if has_key(s:custom.default_actions, l:source_kind_wild)
+    return s:custom.default_actions[l:source_kind_wild]
   endif
 
   " Source/* default actions.
@@ -313,8 +321,8 @@ function! unite#get_default_action(source_name, kind_name)"{{{
   endif
 
   " Kind custom default actions.
-  if has_key(s:custom_default_actions, a:kind_name)
-    return s:custom_default_actions[a:kind_name]
+  if has_key(s:custom.default_actions, a:kind_name)
+    return s:custom.default_actions[a:kind_name]
   endif
 
   " Kind default actions.
@@ -324,12 +332,12 @@ function! unite#escape_match(str)"{{{
   return substitute(substitute(escape(a:str, '~"\.^$[]'), '\*\@<!\*', '[^/]*', 'g'), '\*\*\+', '.*', 'g')
 endfunction"}}}
 function! unite#complete_source(arglead, cmdline, cursorpos)"{{{
-  if empty(s:default_sources)
+  if empty(s:default.sources)
     " Initialize load.
     call s:load_default_sources_and_kinds()
   endif
 
-  let l:sources = extend(copy(s:default_sources), s:custom_sources)
+  let l:sources = extend(copy(s:default.sources), s:custom.sources)
   return filter(keys(l:sources)+s:unite_options, 'stridx(v:val, a:arglead) == 0')
 endfunction"}}}
 function! unite#complete_buffer(arglead, cmdline, cursorpos)"{{{
@@ -338,11 +346,11 @@ function! unite#complete_buffer(arglead, cmdline, cursorpos)"{{{
   return filter(l:buffer_list, printf('stridx(v:val, %s) == 0', string(a:arglead)))
 endfunction"}}}
 function! unite#invalidate_cache(source_name)  "{{{
-  let l:unite = s:get_unite()
-
-  if has_key(l:unite.sources, a:source_name)
-    let l:unite.sources[a:source_name].unite__is_invalidate = 1
-  endif
+  for l:source in s:get_unite().sources
+    if l:source.name ==# a:source_name
+      let l:source.unite__is_invalidate = 1
+    endif
+  endfor
 endfunction"}}}
 function! unite#force_redraw() "{{{
   call s:redraw(1)
@@ -378,7 +386,7 @@ function! unite#redraw_status() "{{{
   let l:modifiable_save = &l:modifiable
   setlocal modifiable
 
-  call setline(s:LNUM_STATUS, 'Sources: ' . join(map(copy(unite#loaded_sources_list()), 'v:val.name'), ', '))
+  call setline(s:LNUM_STATUS, 'Sources: ' . join(unite#loaded_source_names_with_args(), ', '))
 
   let &l:modifiable = l:modifiable_save
 endfunction"}}}
@@ -451,7 +459,7 @@ endfunction"}}}
 function! unite#gather_candidates()"{{{
   let l:candidates = []
   for l:source in unite#loaded_sources_list()
-    let l:candidates += b:unite.sources_candidates[l:source.name]
+    let l:candidates += l:source.unite__candidates
   endfor
 
   return l:candidates
@@ -471,7 +479,7 @@ endfunction"}}}
 
 " Command functions.
 function! unite#start(sources, ...)"{{{
-  if empty(s:default_sources)
+  if empty(s:default.sources)
     " Initialize load.
     call s:load_default_sources_and_kinds()
   endif
@@ -615,7 +623,7 @@ function! s:quit_session(is_force)  "{{{
   " Call finalize functions.
   for l:source in unite#loaded_sources_list()
     if has_key(l:source.hooks, 'on_close')
-      call l:source.hooks.on_close(l:source.args, s:unite.context)
+      call l:source.hooks.on_close(l:source.args, l:source.unite__context)
     endif
   endfor
 
@@ -642,48 +650,26 @@ endfunction"}}}
 
 function! s:load_default_sources_and_kinds()"{{{
   " Gathering all sources and kind name.
-  let s:default_sources = {}
-  let s:default_kinds = {}
+  let s:default.sources = {}
+  let s:default.kinds = {}
 
-  for l:name in map(split(globpath(&runtimepath, 'autoload/unite/sources/*.vim'), '\n'),
-        \ 'fnamemodify(v:val, ":t:r")')
+  for l:key in ['sources', 'kinds']
+    for l:name in map(split(globpath(&runtimepath, 'autoload/unite/' . l:key . '/*.vim'), '\n'),
+          \ 'fnamemodify(v:val, ":t:r")')
 
-    if type({'unite#sources#' . l:name . '#define'}()) == type([])
-      for l:source in {'unite#sources#' . l:name . '#define'}()
-        if !has_key(s:default_sources, l:source.name)
-          let s:default_sources[l:source.name] = l:source
+      let l:define = {'unite#' . l:key . '#' . l:name . '#define'}()
+      for l:dict in (type(l:define) == type([]) ? l:define : [l:define])
+        if !empty(l:dict) && !has_key(s:default[l:key], l:dict.name)
+          let s:default[l:key][l:dict.name] = l:dict
         endif
       endfor
-    else
-      let l:source = {'unite#sources#' . l:name . '#define'}()
-
-      if !has_key(s:default_sources, l:source.name)
-        let s:default_sources[l:source.name] = l:source
-      endif
-    endif
-  endfor
-
-  for l:name in map(split(globpath(&runtimepath, 'autoload/unite/kinds/*.vim'), '\n'),
-        \ 'fnamemodify(v:val, ":t:r")')
-
-    if type({'unite#kinds#' . l:name . '#define'}()) == type([])
-      for l:kind in {'unite#kinds#' . l:name . '#define'}()
-        if !has_key(s:default_kinds, l:kind.name)
-          let s:default_kinds[l:kind.name] = l:kind
-        endif
-      endfor
-    else
-      let l:kind = {'unite#kinds#' . l:name . '#define'}()
-
-      if !has_key(s:default_kinds, l:kind.name)
-        let s:default_kinds[l:kind.name] = l:kind
-      endif
-    endif
+      unlet l:define
+    endfor
   endfor
 endfunction"}}}
-function! s:initialize_loaded_sources(sources)"{{{
+function! s:initialize_loaded_sources(sources, context)"{{{
   let l:all_sources = s:initialize_sources()
-  let l:sources = {}
+  let l:sources = []
 
   let l:number = 0
   for [l:source_name, l:args] in map(a:sources, 'type(v:val) == type([]) ? [v:val[0], v:val[1:]] : [v:val, []]')
@@ -692,20 +678,23 @@ function! s:initialize_loaded_sources(sources)"{{{
       throw 'Invalid source'
     endif
 
-    let l:source = l:all_sources[l:source_name]
+    let l:source = deepcopy(l:all_sources[l:source_name])
     let l:source.args = l:args
     let l:source.unite__is_invalidate = 1
 
+    let l:source.unite__context = deepcopy(a:context)
+    let l:source.unite__candidates = []
+    let l:source.unite__cached_candidates = []
     let l:source.unite__number = l:number
     let l:number += 1
 
-    let l:sources[l:source_name] = l:source
+    call add(l:sources, l:source)
   endfor
 
   return l:sources
 endfunction"}}}
 function! s:initialize_sources()"{{{
-  let l:all_sources = extend(copy(s:default_sources), s:custom_sources)
+  let l:all_sources = extend(copy(s:default.sources), s:custom.sources)
 
   for l:source in values(l:all_sources)
     if !has_key(l:source, 'is_volatile')
@@ -737,7 +726,7 @@ function! s:initialize_sources()"{{{
   return l:all_sources
 endfunction"}}}
 function! s:initialize_kinds()"{{{
-  let l:kinds = extend(copy(s:default_kinds), s:custom_kinds)
+  let l:kinds = extend(copy(s:default.kinds), s:custom.kinds)
   for l:kind in values(l:kinds)
     if !has_key(l:kind, 'alias_table')
       let l:kind.alias_table = {}
@@ -749,30 +738,32 @@ function! s:initialize_kinds()"{{{
 
   return l:kinds
 endfunction"}}}
-function! s:recache_candidates(input, context)"{{{
-  let l:context = a:context
+function! s:recache_candidates(input, is_force)"{{{
   let l:input_list = filter(split(a:input, '\\\@<! ', 1), 'v:val !~ "!"')
-  let l:context.input = empty(l:input_list) ? '' : l:input_list[0]
-  let l:input_len = unite#util#strchars(l:context.input)
+  let l:input = empty(l:input_list) ? '' : l:input_list[0]
+  let l:input_len = unite#util#strchars(l:input)
 
   for l:source in unite#loaded_sources_list()
     " Check required pattern length.
     if l:input_len < l:source.required_pattern_length
-      let b:unite.sources_candidates[l:source.name] = []
+      let l:source.unite__candidates = []
       continue
     endif
 
-    if l:source.is_volatile || l:context.is_force || l:source.unite__is_invalidate
-      let l:context.source = l:source
-      let l:source_candidates = copy(l:source.gather_candidates(l:source.args, l:context))
+    if l:source.is_volatile || a:is_force || l:source.unite__is_invalidate
+      let l:source.unite__context.source = l:source
+      let l:source.unite__context.is_force = a:is_force
+      let l:source.unite__context.input = l:input
+
+      let l:source_candidates = copy(l:source.gather_candidates(l:source.args, l:source.unite__context))
       let l:source.unite__is_invalidate = 0
 
       if !l:source.is_volatile
         " Recaching.
-        let b:unite.cached_candidates[l:source.name] = l:source_candidates
+        let l:source.unite__cached_candidates = l:source_candidates
       endif
     else
-      let l:source_candidates = copy(b:unite.cached_candidates[l:source.name])
+      let l:source_candidates = copy(l:source.unite__cached_candidates)
     endif
 
     if a:input != ''
@@ -796,7 +787,7 @@ function! s:recache_candidates(input, context)"{{{
       let l:candidate.unite__is_marked = 0
     endfor
 
-    let b:unite.sources_candidates[l:source.name] = l:source_candidates
+    let l:source.unite__candidates = l:source_candidates
   endfor
 endfunction"}}}
 function! s:convert_quick_match_lines(candidates)"{{{
@@ -838,9 +829,6 @@ function! s:convert_line(candidate)"{{{
 endfunction"}}}
 
 function! s:initialize_unite_buffer(sources, context)"{{{
-  " Check sources.
-  let l:sources = s:initialize_loaded_sources(a:sources)
-
   let l:context = a:context
 
   if getbufvar(bufnr('%'), '&filetype') ==# 'unite'
@@ -863,10 +851,13 @@ function! s:initialize_unite_buffer(sources, context)"{{{
   let l:winnr = winnr()
   let l:win_rest_cmd = winrestcmd()
 
+  " Check sources.
+  let l:sources = s:initialize_loaded_sources(a:sources, a:context)
+
   " Call initialize functions.
-  for l:source in values(l:sources)
+  for l:source in l:sources
     if has_key(l:source.hooks, 'on_init')
-      call l:source.hooks.on_init(l:source.args, l:context)
+      call l:source.hooks.on_init(l:source.args, l:source.unite__context)
     endif
   endfor
 
@@ -889,8 +880,6 @@ function! s:initialize_unite_buffer(sources, context)"{{{
   let b:unite.search_pattern_save = @/
   let b:unite.prompt_linenr = 2
   let b:unite.max_source_name = max(map(copy(a:sources), 'len(v:val[0])')) + 2
-  let b:unite.cached_candidates = {}
-  let b:unite.sources_candidates = {}
 
   let s:unite = b:unite
 
@@ -925,7 +914,9 @@ function! s:initialize_unite_buffer(sources, context)"{{{
   if exists(':NeoComplCacheLock')
     " Lock neocomplcache.
     NeoComplCacheLock
-    NeoComplCacheCachingBuffer
+    if exists(':NeoComplCacheCachingBuffer')
+      NeoComplCacheCachingBuffer
+    endif
   endif
 
   if exists('&redrawtime')
@@ -1024,18 +1015,15 @@ function! s:redraw(is_force) "{{{
     let l:input .= l:subst
   endif
 
-  let l:context = b:unite.context
-  let l:context.is_force = a:is_force
-
   " Recaching.
-  call s:recache_candidates(l:input, l:context)
+  call s:recache_candidates(l:input, a:is_force)
 
   let &ignorecase = l:ignorecase_save
 
   " Redraw.
   call unite#redraw_candidates()
 
-  if exists(':NeoComplCacheLock')
+  if exists(':NeoComplCacheLock') && exists(':NeoComplCacheCachingBuffer')
     " Caching unite buffer.
     NeoComplCacheCachingBuffer
   endif
@@ -1096,9 +1084,6 @@ function! s:adjustments(currentwinwidth, the_max_source_name, size)"{{{
 endfunction"}}}
 function! s:get_unite() "{{{
   return exists('b:unite') ? b:unite : s:unite
-endfunction"}}}
-function! s:compare_sources(source_a, source_b) "{{{
-  return a:source_a.unite__number - a:source_b.unite__number
 endfunction"}}}
 function! s:compare_substitute_patterns(pattern_a, pattern_b)"{{{
   return a:pattern_b.priority - a:pattern_a.priority
