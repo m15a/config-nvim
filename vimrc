@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/20 00:50:07.
+""" Last change: 2011/01/21 00:56:37.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -43,7 +43,7 @@ set smartcase
 set visualbell
 "set textwidth=0
 set wildmenu
-set wildmode=list:full
+set wildmode=list:longest
 set hlsearch
 set incsearch
 set wrapscan
@@ -54,6 +54,9 @@ set mouse=a
 "set modelines=0
 set ruler
 set nowrap
+set virtualedit=all
+set list
+set listchars=eol:$,tab:>_,trail:_,extends:>,precedes:<
 set grepprg=internal
 set hidden
 set autoread
@@ -141,7 +144,7 @@ let g:surround_45 = "<!-- \r -->"
 let g:surround_64 = "@{\r}"
 
 "" unite.vim
-map <silent> <C-E> :Unite buffer<CR>
+map <silent> <C-E> :Unite buffer file_mru file<CR>
 
 "" occur.vim
 nnoremap <silent> <Leader>oo :Occur<CR>
