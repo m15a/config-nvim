@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: include_complete.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 17 Jan 2011.
+" Last Modified: 30 Sep 2010
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -131,7 +131,7 @@ function! s:doc_dict.search(cur_text)"{{{
   if &filetype ==# 'vim' || !has_key(s:include_info, bufnr('%'))
     return []
   endif
-
+  
   " Collect words.
   let l:words = []
   let i = 0
@@ -140,13 +140,13 @@ function! s:doc_dict.search(cur_text)"{{{
     if len(l:word) >= s:completion_length
       call add(l:words, l:word)
     endif
-
+    
     let i = matchend(a:cur_text, '\k\+', i)
   endwhile
 
   for l:word in reverse(l:words)
     let l:key = tolower(l:word[: s:completion_length-1])
-
+    
     for l:include in s:include_info[bufnr('%')].include_files
       if has_key(s:include_cache[l:include], l:key)
         let l:cache = filter(copy(s:include_cache[l:include][l:key]), 'stridx(v:val.word, ' . string(l:word) . ') == 0')
@@ -158,7 +158,7 @@ function! s:doc_dict.search(cur_text)"{{{
             if l:match > 0
               call add(l:ret, { 'text' : l:cache[0].abbr[ : l:match-1] })
             endif
-
+            
             call add(l:ret, { 'text' : l:word, 'highlight' : 'Identifier' })
             call add(l:ret, { 'text' : l:cache[0].abbr[l:match+len(l:word) :] })
 
@@ -170,7 +170,7 @@ function! s:doc_dict.search(cur_text)"{{{
       endif
     endfor
   endfor
-
+  
   return []
 endfunction"}}}
 "}}}
@@ -299,10 +299,10 @@ function! s:load_from_tags(filename, filetype)"{{{
   endif
 
   let l:args = has_key(g:neocomplcache_ctags_arguments_list, a:filetype) ? 
-        \ g:neocomplcache_ctags_arguments_list[a:filetype] : g:neocomplcache_ctags_arguments_list['default']
+        \g:neocomplcache_ctags_arguments_list[a:filetype] : g:neocomplcache_ctags_arguments_list['default']
   let l:command = has('win32') || has('win64') ? 
-        \ printf('%s -f - %s %s', g:neocomplcache_ctags_program, l:args, fnamemodify(a:filename, ':p:.')) :
-        \ printf('%s -f /dev/stdout 2>/dev/null %s %s', g:neocomplcache_ctags_program, l:args, fnamemodify(a:filename, ':p:.'))
+        \printf('%s -f - %s %s', g:neocomplcache_ctags_program, l:args, fnamemodify(a:filename, ':p:.')) : 
+        \printf('%s -f /dev/stdout 2>/dev/null %s %s', g:neocomplcache_ctags_program, l:args, fnamemodify(a:filename, ':p:.'))
   let l:lines = split(neocomplcache#system(l:command), '\n')
 
   if !empty(l:lines)

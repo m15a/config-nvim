@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: filename_complete.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 17 Jan 2011.
+" Last Modified: 29 Sep 2010
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -32,9 +32,8 @@ let s:source = {
 function! s:source.initialize()"{{{
   " Initialize.
   let s:skip_dir = {}
-
-  call neocomplcache#set_completion_length('filename_complete', g:neocomplcache_auto_completion_start_length)
-
+  let s:completion_length = neocomplcache#get_auto_completion_length('filename_complete')
+  
   " Set rank.
   call neocomplcache#set_dictionary_helper(g:neocomplcache_plugin_rank, 'filename_complete', 2)
 endfunction"}}}
@@ -42,8 +41,7 @@ function! s:source.finalize()"{{{
 endfunction"}}}
 
 function! s:source.get_keyword_pos(cur_text)"{{{
-  let l:filetype = neocomplcache#get_context_filetype()
-  if l:filetype ==# 'vimshell' || l:filetype ==# 'unite' || neocomplcache#within_comment()
+  if &filetype ==# 'vimshell' || neocomplcache#within_comment()
     return -1
   endif
 
@@ -58,9 +56,12 @@ function! s:source.get_keyword_pos(cur_text)"{{{
   " Filename pattern.
   let l:pattern = neocomplcache#get_keyword_pattern_end('filename')
   let [l:cur_keyword_pos, l:cur_keyword_str] = neocomplcache#match_word(a:cur_text, l:pattern)
+  if neocomplcache#is_auto_complete() && len(l:cur_keyword_str) < s:completion_length
+    return -1
+  endif
 
   " Not Filename pattern.
-  if l:is_win && l:filetype == 'tex' && l:cur_keyword_str =~ '\\'
+  if l:is_win && &filetype == 'tex' && l:cur_keyword_str =~ '\\'
     return -1
   endif
 
@@ -89,12 +90,12 @@ function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str)"{{
     let l:len_env = len(l:env_ev)
   else
     let l:len_env = 0
-
+    
     if a:cur_keyword_str =~ '^\~\h\w*'
       let l:cur_keyword_str = simplify($HOME . '/../' . l:cur_keyword_str[1:])
     endif
   endif
-
+  
   let l:cur_keyword_str = substitute(l:cur_keyword_str, '\\ ', ' ', 'g')
 
   " Glob by directory name.
@@ -108,12 +109,12 @@ function! s:source.get_complete_words(cur_keyword_pos, cur_keyword_str)"{{
   catch
     return []
   endtry
-
+  
   if empty(l:files)
     " Add '*' to a delimiter.
     let l:cur_keyword_str = substitute(l:cur_keyword_str, '\w\+\ze[/._-]', '\0*', 'g')
     let l:glob = (l:cur_keyword_str !~ '\*$')?  l:cur_keyword_str . '*' : l:cur_keyword_str
-
+    
     try
       let l:files = split(substitute(globpath(l:path, l:glob), '\\', '/', 'g'), '\n')
     catch
