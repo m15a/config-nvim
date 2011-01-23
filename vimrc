@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/23 20:23:50.
+""" Last change: 2011/01/23 20:33:38.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -196,6 +196,10 @@ function InsertTabWrapper()
   endif
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+
+"" Conque
+let g:ConqueTerm_TERM = 'dtterm'
+let g:ConqueTerm_SendVisKey = '<c-x>e'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
