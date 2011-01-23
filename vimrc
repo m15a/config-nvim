@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/23 20:47:19.
+""" Last change: 2011/01/23 22:00:44.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -206,6 +206,19 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 "" Conque
 let g:ConqueTerm_TERM = 'dtterm'
 let g:ConqueTerm_SendVisKey = '<c-x>e'
+
+""" taglist.vim
+nnoremap <Leader>l :TlistToggle<CR>
+set tags=tags
+let Tlist_Auto_Highlight_Tag=1
+let Tlist_Auto_Update=1
+let Tlist_Compact_Format=1
+let Tlist_Ctags_Cmd='/opt/local/bin/jexctags'
+let Tlist_Exit_OnlyWindow=1
+let Tlist_File_Fold_Auto_Close=1
+let Tlist_Use_Right_Window=1
+let Tlist_Use_SingleClick=1
+let Tlist_WinWidth=28
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
