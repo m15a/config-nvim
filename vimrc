@@ -137,7 +137,6 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 
 "" NERD Commenter
 let NERDShutUp=1
-"let NERD_haskell_alt_style=1
 
 "" surround.vim
 let g:surround_33 = "<!-- \r -->"
@@ -230,6 +229,7 @@ let is_gauche=1
 
 "" Haskell
 au FileType haskell inoremap <buffer> ' '
+" syntax/haskell.vim
 let hs_highlight_delimiters=1
 let hs_highlight_boolean=1
 let hs_highlight_types=1
@@ -237,6 +237,9 @@ let hs_highlight_more_types=1
 let hs_highlight_debug=1
 let hs_allow_hash_operator=1
 let lhs_markup='tex'
+" indent/haskell.vim
+"let g:haskell_indent_if = 3
+"let g:haskell_indent_case = 5
 " Haskell mode for vim
 au FileType haskell compiler ghc
 let g:haddock_browser='open'
