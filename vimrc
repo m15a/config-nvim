@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/23 20:17:49.
+""" Last change: 2011/01/23 20:23:50.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -41,7 +41,7 @@ set smartindent
 set ignorecase
 set smartcase
 set visualbell
-"set textwidth=0
+set textwidth=76
 set wildmenu
 set wildmode=list:longest
 set hlsearch
@@ -83,6 +83,7 @@ nnoremap <C-k> 3-
 nnoremap t :tabnew 
 "nnoremap <C-n> :tabNext<CR>
 "nnoremap <C-p> :tabprevious<CR>
+nmap Q gqap
 inoremap , ,<SPACE>
 "inoremap ; ;<SPACE>
 inoremap { {}<LEFT>
@@ -114,7 +115,7 @@ vmap <silent> ie <Plug>CamelCaseMotion_ie
 
 "" YankRing.vim
 let g:yankring_window_auto_close=1
-let g:yankring_history_dir='$HOME/tmp'
+let g:yankring_history_dir='$HOME/.vim/tmp/'
 
 "" yanktmp.vim
 map <silent> sy :call YanktmpYank()<CR> 
