@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/21 01:32:20.
+""" Last change: 2011/01/23 20:17:49.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -195,6 +195,26 @@ function InsertTabWrapper()
   endif
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Languages
+
+"" Haskell
+au FileType haskell inoremap <buffer> ' '
+let hs_highlight_delimiters=1
+let hs_highlight_boolean=1
+let hs_highlight_types=1
+let hs_highlight_more_types=1
+let hs_highlight_debug=1
+let hs_allow_hash_operator=1
+let lhs_markup='tex'
+" Haskell mode for vim
+au FileType haskell compiler ghc
+let g:haddock_browser='open'
+let g:haddock_browser_callformat='%s %s'
+let g:haddock_docdir='/Users/mits/Sites/refs/haskell/ghc/'
+let g:haddock_indexfiledir='/Users/mits/.vim/tmp/'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
