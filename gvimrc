@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/21 07:53:10.
+""" Last change: 2011/01/25 23:51:47.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
@@ -45,11 +45,4 @@ hi PmenuSbar ctermbg=0
 
 "" vimspell
 hi SpellErrors guifg=Red2 gui=underline
-
-"" Conque
-" Conque を呼び出したあと透明化がおかしくなるためリフレッシュする
-command! -nargs=+ -complete=shellcmd ConqueTerm call conque_term#open(<q-args>) | call DefaultTransparency()
-command! -nargs=+ -complete=shellcmd ConqueTermSplit call conque_term#open(<q-args>, ['belowright split']) | call DefaultTransparency()
-command! -nargs=+ -complete=shellcmd ConqueTermVSplit call conque_term#open(<q-args>, ['belowright vsplit']) | call DefaultTransparency()
-command! -nargs=+ -complete=shellcmd ConqueTermTab call conque_term#open(<q-args>, ['tabnew']) | call DefaultTransparency()
 

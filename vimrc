@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/24 22:32:46.
+""" Last change: 2011/01/25 23:51:35.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -201,10 +201,6 @@ function InsertTabWrapper()
   endif
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-
-"" Conque
-let g:ConqueTerm_TERM = 'dtterm'
-let g:ConqueTerm_SendVisKey = '<c-x>e'
 
 "" easytags.vim
 let g:easytags_cmd = '/opt/local/bin/jexctags'
