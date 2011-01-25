@@ -31,11 +31,11 @@ set nobackup
 set number
 set history=1000
 set backspace=indent,eol,start
-set tabstop=2
+set tabstop=4
 set shiftwidth=2
 set scrolloff=4
 set expandtab
-set softtabstop=2
+set softtabstop=4
 set smarttab
 set smartindent
 set ignorecase
