@@ -42,6 +42,17 @@ let s:scriptname = "haskell_doc.vim"
 "   g:haddock_docdir             [optional] where to find html docs
 "   g:ghc                        [optional] which ghc to call
 "   g:ghc_pkg                    [optional] which ghc_pkg to call
+"
+if !exists("g:haddock_haspopup")
+  let g:haddock_haspopup = 0
+endif
+
+let s:thisbuffname = substitute(bufname("%"), '\.', '', "g")
+let s:thisbuffname = substitute(s:thisbuffname, ' ', '', "g")
+exe "augroup " . s:thisbuffname
+  au BufLeave <buffer> call Haddock_DeletePopup()
+"exe "augroup END"
+unlet s:thisbuffname
 
 " been here before?
 if exists("g:haddock_index")
@@ -603,6 +614,15 @@ function! Haddock()
       call DocBrowser(dict[key])
     endif
   endif
+  let g:haddock_haspopup = 1
+endfunction
+
+function! Haddock_DeletePopup()
+  if g:haddock_haspopup == 0
+    return
+  endif
+  aunmenu ]Popup
+  let g:haddock_haspopup = 0
 endfunction
 
 if !exists("g:haskell_search_engines")

@@ -9,9 +9,23 @@
 " ------------------------------ paths & quickfix settings first
 "
 
+if !exists("g:ghc_hasmenu")
+  let g:ghc_hasmenu = 0
+endif
+
+let s:thisbuffname = substitute(bufname("%"), '\.', '', "g")
+let s:thisbuffname = substitute(s:thisbuffname, ' ', '', "g")
+exe "augroup " . s:thisbuffname
+  au FileType <buffer> call GHC_ShowMenu()
+  au BufEnter <buffer> call GHC_ShowMenu()
+  au BufLeave <buffer> call GHC_HideMenu()
+"exe "augroup END"
+unlet s:thisbuffname
+
 if exists("current_compiler") && current_compiler == "ghc"
   finish
 endif
+
 let current_compiler = "ghc"
 
 let s:scriptname = "ghc.vim"
@@ -503,32 +517,56 @@ else
 endif
 let s:opts = sort(s:opts)
 
-amenu ]OPTIONS_GHC.- :echo '-'<cr>
-aunmenu ]OPTIONS_GHC
-for o in s:opts
-  exe 'amenu ]OPTIONS_GHC.'.o.' :call append(0,"{-# OPTIONS_GHC '.o.' #-}")<cr>'
-endfor
-if has("gui_running")
-  map <LocalLeader>opt :popup ]OPTIONS_GHC<cr>
-else
-  map <LocalLeader>opt :emenu ]OPTIONS_GHC.
-endif
-
-amenu ]LANGUAGES_GHC.- :echo '-'<cr>
-aunmenu ]LANGUAGES_GHC
-if haskellmode#GHC_VersionGE([6,8])
-  if !s:GHC_CachedConfig
-    let s:ghc_supported_languages = sort(split(system(g:ghc . ' --supported-languages'),'\n'))
+function! GHC_ShowMenu()
+  if g:ghc_hasmenu == 1
+    return
   endif
-  for l in s:ghc_supported_languages
-    exe 'amenu ]LANGUAGES_GHC.'.l.' :call append(0,"{-# LANGUAGE '.l.' #-}")<cr>'
+
+  amenu ]OPTIONS_GHC.- :echo '-'<cr>
+  aunmenu ]OPTIONS_GHC
+  for o in s:opts
+    exe 'amenu ]OPTIONS_GHC.'.o.' :call append(0,"{-# OPTIONS_GHC '.o.' #-}")<cr>'
   endfor
   if has("gui_running")
-    map <LocalLeader>lang :popup ]LANGUAGES_GHC<cr>
+    map <LocalLeader>opt :popup ]OPTIONS_GHC<cr>
   else
-    map <LocalLeader>lang :emenu ]LANGUAGES_GHC.
+    map <LocalLeader>opt :emenu ]OPTIONS_GHC.
   endif
-endif
+
+  amenu ]LANGUAGES_GHC.- :echo '-'<cr>
+  aunmenu ]LANGUAGES_GHC
+  if haskellmode#GHC_VersionGE([6,8])
+    if !s:GHC_CachedConfig
+      let s:ghc_supported_languages = sort(split(system(g:ghc . ' --supported-languages'),'\n'))
+    endif
+    for l in s:ghc_supported_languages
+      exe 'amenu ]LANGUAGES_GHC.'.l.' :call append(0,"{-# LANGUAGE '.l.' #-}")<cr>'
+    endfor
+    if has("gui_running")
+      map <LocalLeader>lang :popup ]LANGUAGES_GHC<cr>
+    else
+      map <LocalLeader>lang :emenu ]LANGUAGES_GHC.
+    endif
+  endif
+
+  let g:ghc_hasmenu = 1
+endfunction
+
+function! GHC_HideMenu()
+  if g:ghc_hasmenu == 0
+    return
+  endif
+
+  unmap <LocalLeader>opt
+  aunmenu ]OPTIONS_GHC
+
+  if haskellmode#GHC_VersionGE([6,8])
+    unmap <LocalLeader>lang
+  endif
+  aunmenu ]LANGUAGES_GHC
+
+  let g:ghc_hasmenu = 0
+endfunction
 
 if !s:GHC_CachedConfig
   call GHC_SaveConfig()
