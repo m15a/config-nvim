@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/26 01:38:40.
+""" Last change: 2011/01/26 14:44:32.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -49,7 +49,7 @@ set incsearch
 set wrapscan
 set showmatch
 set showcmd
-"set diffopt=vertical 
+"set diffopt=vertical
 set mouse=a
 "set modelines=0
 set ruler
@@ -83,7 +83,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <C-j> 3+
 nnoremap <C-k> 3-
-nnoremap t :tabnew 
+nnoremap t :tabnew
 "nnoremap <C-n> :tabNext<CR>
 "nnoremap <C-p> :tabprevious<CR>
 nmap Q gqap
@@ -121,8 +121,8 @@ let g:yankring_window_auto_close=1
 let g:yankring_history_dir='$HOME/.vim/tmp/'
 
 "" yanktmp.vim
-map <silent> sy :call YanktmpYank()<CR> 
-map <silent> sp :call YanktmpPaste_p()<CR> 
+map <silent> sy :call YanktmpYank()<CR>
+map <silent> sp :call YanktmpPaste_p()<CR>
 map <silent> sP :call YanktmpPaste_P()<CR>
 
 "" screenpaste
@@ -172,7 +172,7 @@ let spell_auto_type="" " \"tex,mail,text,html,sgml,otl,cvs\"
 hi SpellErrors ctermfg=Red cterm=underline term=reverse
 
 "" neocomplcache
-let g:neocomplcache_enable_at_startup=1 
+let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_max_list=10
 let g:neocomplcache_enable_ignore_case=1
 let g:neocomplcache_enable_smart_case=1
@@ -247,8 +247,8 @@ let lhs_markup='tex'
 au FileType haskell compiler ghc
 let g:haddock_browser='open'
 let g:haddock_browser_callformat='%s %s'
-let g:haddock_docdir='/Users/mits/Sites/refs/haskell/ghc/'
-let g:haddock_indexfiledir='/Users/mits/.vim/tmp/'
+let g:haddock_docdir=$HOME.'/Sites/refs/haskell/ghc/'
+let g:haddock_indexfiledir=$HOME.'/.vim/tmp/'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
