@@ -222,6 +222,10 @@ let Tlist_Use_Right_Window=1
 let Tlist_Use_SingleClick=1
 let Tlist_WinWidth=28
 
+"" Vim-R-plugin
+let vimrplugin_term=""
+let vimrplugin_term_cmd = ""
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Languages
