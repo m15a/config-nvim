@@ -1,2 +1,2 @@
-au BufRead,BufNewFile hyperspec,.gaucherc,*.scm set filetype=scheme
+au BufRead,BufNewFile .gaucherc set filetype=scheme
 

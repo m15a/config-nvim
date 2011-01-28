@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/26 14:44:32.
+""" Last change: 2011/01/28 14:46:29.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -182,9 +182,9 @@ let g:neocomplcache_enable_auto_delimiter=1
 "let g:neocomplcache_snippets_dir=
 let g:neocomplcache_ctags_program="/opt/local/bin/jexctags"
 let g:neocomplcache_dictionary_filetype_lists={
-      \ 'default' : '', 
-      \ 'scheme'  : $HOME . '/.gosh_completions', 
-      \ 'ocaml'  : $HOME . '/.ocaml_completions'
+      \ 'default' : '',
+      \ 'scheme'  : $HOME.'/.gosh_completions',
+      \ 'lisp'    : $HOME.'/.sbcl_completions',
       \ }
 " Key maps
 "inoremap <expr><C-g> neocomplcache#undo_completion()
@@ -231,8 +231,15 @@ let vimrplugin_term_cmd = ""
 """ Languages
 
 "" Scheme (Gauche)
+au FileType scheme inoremap <buffer> ' '
 au FileType scheme inoremap <buffer> , ,
+"au FileType scheme inoremap <buffer> ` `()<LEFT>
 let is_gauche=1
+
+"" Lisp
+au FileType lisp inoremap <buffer> ' '
+au FileType lisp inoremap <buffer> , ,
+"au FileType lisp inoremap <buffer> ` `()<LEFT>
 
 "" Haskell
 au FileType haskell inoremap <buffer> ' '
