@@ -428,6 +428,9 @@ let s:tlist_def_lua_settings = 'lua;f:function'
 " makefiles
 let s:tlist_def_make_settings = 'make;m:macro'
 
+" ocaml language
+let s:tlist_def_ocaml_settings = 'ocaml;v:variable;M:module'
+
 " pascal language
 let s:tlist_def_pascal_settings = 'pascal;f:function;p:procedure'
 
