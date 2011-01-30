@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/28 14:46:29.
+""" Last change: 2011/01/29 18:28:18.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -41,7 +41,7 @@ set smartindent
 set ignorecase
 set smartcase
 set visualbell
-set textwidth=76
+"set textwidth=76
 set wildmenu
 set wildmode=list:longest
 set hlsearch
@@ -230,6 +230,15 @@ let vimrplugin_term_cmd = ""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Languages
 
+"" Enable omni completion
+autocmd FileType c          setlocal omnifunc=ccomplete#Complete
+autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType sql,mysql  setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType html,xhtml setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
+
 "" Scheme (Gauche)
 au FileType scheme inoremap <buffer> ' '
 au FileType scheme inoremap <buffer> , ,
@@ -240,6 +249,9 @@ let is_gauche=1
 au FileType lisp inoremap <buffer> ' '
 au FileType lisp inoremap <buffer> , ,
 "au FileType lisp inoremap <buffer> ` `()<LEFT>
+
+"" OCaml
+au FileType lisp inoremap <buffer> ' '
 
 "" Haskell
 au FileType haskell inoremap <buffer> ' '
