@@ -222,10 +222,6 @@ let Tlist_Use_Right_Window=1
 let Tlist_Use_SingleClick=1
 let Tlist_WinWidth=28
 
-"" Vim-R-plugin
-let vimrplugin_term=""
-let vimrplugin_term_cmd = ""
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Languages
@@ -279,6 +275,11 @@ let g:haddock_browser='open'
 let g:haddock_browser_callformat='%s %s'
 let g:haddock_docdir=$HOME.'/Sites/refs/haskell/ghc/'
 let g:haddock_indexfiledir=$HOME.'/.vim/tmp/'
+
+"" R
+" Vim-R-plugin
+let vimrplugin_term=""
+let vimrplugin_term_cmd = ""
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
