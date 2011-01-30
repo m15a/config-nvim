@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/29 18:28:18.
+""" Last change: 2011/01/30 23:58:15.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -252,6 +252,13 @@ au FileType lisp inoremap <buffer> , ,
 
 "" OCaml
 au FileType lisp inoremap <buffer> ' '
+" omlet.vim
+let g:omlet_indent=2
+let g:omlet_indent_struct=2
+let g:omlet_indent_let=2
+let g:omlet_indent_match=0
+let g:omlet_indent_function=0
+let g:omlet_middle_comment=1
 
 "" Haskell
 au FileType haskell inoremap <buffer> ' '
