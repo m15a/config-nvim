@@ -1,7 +1,7 @@
 "=============================================================================
-" FILE: word.vim
+" FILE: default.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 03 Feb 2011.
+" Last Modified: 11 Feb 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -24,17 +24,17 @@
 " }}}
 "=============================================================================
 
-function! unite#kinds#word#define()"{{{
-  return s:kind
+function! unite#sorters#default#define()"{{{
+  " Dummy.
+  return []
 endfunction"}}}
 
-let s:kind = {
-      \ 'name' : 'word',
-      \ 'default_action' : 'insert',
-      \ 'action_table': {},
-      \}
-
-" Actions"{{{
-"}}}
+let s:default = ['nothing']
+function! unite#sorters#default#get()"{{{
+  return s:default
+endfunction"}}}
+function! unite#sorters#default#use(sorters)"{{{
+  let s:default = a:sorters
+endfunction"}}}
 
 " vim: foldmethod=marker

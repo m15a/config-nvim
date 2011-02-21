@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: file.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 06 Dec 2010
+" Last Modified: 21 Feb 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -40,6 +40,9 @@ let s:source = {
       \}
 
 function! s:source.gather_candidates(args, context)"{{{
+  let l:input_list = filter(split(a:context.input,
+        \                     '\\\@<! ', 1), 'v:val !~ "!"')
+  let l:input = empty(l:input_list) ? '' : l:input_list[0]
   let l:input = substitute(substitute(a:context.input, '\\ ', ' ', 'g'), '^\a\+:\zs\*/', '/', '')
 
   " Substitute *. -> .* .
@@ -52,7 +55,7 @@ function! s:source.gather_candidates(args, context)"{{{
 
   " Glob by directory name.
   let l:input = substitute(l:input, '[^/.]*$', '', '')
-  let l:candidates = split(unite#substitute_path_separator(glob(l:input . (l:input =~ '\*$' ? '' : '*'))), '\n')
+  let l:candidates = split(unite#util#substitute_path_separator(glob(l:input . (l:input =~ '\*$' ? '' : '*'))), '\n')
 
   if a:context.input != ''
     let l:dummy = substitute(a:context.input, '[*\\]', '', 'g')
@@ -71,8 +74,10 @@ function! s:source.gather_candidates(args, context)"{{{
   let l:candidates_file = []
   for l:file in l:candidates
     let l:dict = {
-          \ 'word' : l:file, 'abbr' : l:file, 'source' : 'file', 'action__path' : l:file,
-          \ 'action__directory' : unite#path2directory(l:file),
+          \ 'word' : unite#util#substitute_path_separator(fnamemodify(l:file, ':p')),
+          \ 'abbr' : l:file, 'source' : 'file',
+          \ 'action__path' : unite#util#substitute_path_separator(fnamemodify(l:file, ':p')),
+          \ 'action__directory' : unite#util#path2directory(fnamemodify(l:file, ':p')),
           \}
 
     if isdirectory(l:file)

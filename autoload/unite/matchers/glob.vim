@@ -1,7 +1,7 @@
 "=============================================================================
-" FILE: word.vim
+" FILE: glob.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 03 Feb 2011.
+" Last Modified: 11 Feb 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -24,17 +24,46 @@
 " }}}
 "=============================================================================
 
-function! unite#kinds#word#define()"{{{
-  return s:kind
+function! unite#matchers#glob#define()"{{{
+  return s:matcher
 endfunction"}}}
 
-let s:kind = {
-      \ 'name' : 'word',
-      \ 'default_action' : 'insert',
-      \ 'action_table': {},
+let s:matcher = {
+      \ 'name' : 'glob',
+      \ 'description' : 'glob matcher',
+      \ 'hooks' : {},
       \}
 
-" Actions"{{{
-"}}}
+function! s:matcher.hooks.on_init(context)"{{{
+endfunction"}}}
+
+function! s:matcher.match(candidates, context)"{{{
+  let l:candidates = copy(a:candidates)
+
+  for l:input in split(a:context.input, '\\\@<! ')
+    let l:input = substitute(l:input, '\\ ', ' ', 'g')
+
+    if l:input =~ '^!'
+      " Exclusion.
+      let l:input = unite#escape_match(l:input)
+      call filter(l:candidates, 'v:val.word !~ ' . string(l:input[1:]))
+    elseif l:input =~ '\\\@<!\*'
+      " Wildcard.
+      let l:input = unite#escape_match(l:input)
+      call filter(l:candidates, 'v:val.word =~ ' . string(l:input))
+    else
+      let l:input = substitute(l:input, '\\\(.\)', '\1', 'g')
+      if &ignorecase
+        let l:expr = printf('stridx(tolower(v:val.word), %s) != -1', string(tolower(l:input)))
+      else
+        let l:expr = printf('stridx(v:val.word, %s) != -1', string(l:input))
+      endif
+
+      let l:candidates = filter(l:candidates, l:expr)
+    endif
+  endfor
+
+  return l:candidates
+endfunction"}}}
 
 " vim: foldmethod=marker

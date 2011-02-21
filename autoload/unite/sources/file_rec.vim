@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: file_rec.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 24 Nov 2010
+" Last Modified: 21 Feb 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -25,9 +25,8 @@
 "=============================================================================
 
 " Variables  "{{{
-if !exists('g:unite_source_file_rec_max_depth')
-  let g:unite_source_file_rec_max_depth = 10
-endif
+call unite#util#set_default('g:unite_source_file_rec_ignore_pattern', 
+      \'\%(^\|/\)\.$\|\~$\|\.\%(o|exe|dll|bak|sw[po]\)$\|\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)')
 "}}}
 
 function! unite#sources#file_rec#define()"{{{
@@ -37,38 +36,47 @@ endfunction"}}}
 let s:source = {
       \ 'name' : 'file_rec',
       \ 'description' : 'candidates from directory by recursive',
-      \ 'max_candidates' : 30,
+      \ 'max_candidates' : 50,
       \ }
 
 function! s:source.gather_candidates(args, context)"{{{
   if !empty(a:args)
-    let l:directory = unite#substitute_path_separator(a:args[0])
+    let l:directory = a:args[0]
   elseif isdirectory(a:context.input)
     let l:directory = a:context.input
   else
-    let l:directory = unite#substitute_path_separator(getcwd())
+    let l:directory = getcwd()
+  endif
+  let l:directory = unite#util#substitute_path_separator(
+        \ substitute(l:directory, '^\~', unite#util#substitute_path_separator($HOME), ''))
+
+  " Initialize continuation.
+  let a:context.source__continuation = {
+        \ 'files' : [l:directory],
+        \ }
+
+  return []
+endfunction"}}}
+
+function! s:source.async_gather_candidates(args, context)"{{{
+  if empty(a:context.source__continuation.files)
+    return []
   endif
 
-  if l:directory =~ '/$'
-    let l:directory = l:directory[: -2]
+  let [a:context.source__continuation.files, l:candidates] =
+        \ s:get_files(a:context.source__continuation.files)
+
+  if empty(a:context.source__continuation.files)
+    call unite#print_message('file_rec: Directory traverse was completed.')
   endif
-
-  let s:start_time = has('reltime') ? reltime() : 0
-  let l:candidates = s:get_files(1, l:directory, [])
-
-  if g:unite_source_file_ignore_pattern != ''
-    call filter(l:candidates, 'v:val !~ ' . string(g:unite_source_file_ignore_pattern))
-  endif
-
-  " Convert to relative path.
-  call map(l:candidates, 'fnamemodify(v:val, ":.")')
 
   return map(l:candidates, '{
         \ "word" : v:val,
+        \ "abbr" : unite#util#substitute_path_separator(fnamemodify(v:val, ":.")),
         \ "source" : "file_rec",
         \ "kind" : "file",
-        \ "action__path" : unite#util#substitute_path_separator(fnamemodify(v:val, ":p")),
-        \ "action__directory" : unite#util#path2directory(fnamemodify(v:val, ":p")),
+        \ "action__path" : v:val,
+        \ "action__directory" : v:val,
         \ }')
 endfunction"}}}
 
@@ -85,24 +93,59 @@ call unite#custom_action('cdable', 'rec', s:cdable_action_rec)
 unlet! s:cdable_action_rec
 "}}}
 
-function! s:get_files(depth, directory, files)"{{{
-  if a:depth > g:unite_source_file_rec_max_depth
-        \ || (has('reltime') && str2nr(split(reltimestr(reltime(s:start_time)))[0]) >= 2)
-    return []
-  endif
+function! s:get_files(files)"{{{
+  let l:continuation_files = []
+  let l:ret_files = []
+  let l:max_len = 20
+  let l:files_index = 0
+  let l:ret_files_len = 0
+  for l:file in a:files
+    let l:files_index += 1
 
-  let l:directory_files = split(unite#substitute_path_separator(glob(a:directory . '/*')), '\n')
-  let l:files = a:files
-  for l:file in l:directory_files
+    if g:unite_source_file_rec_ignore_pattern != '' &&
+          \ l:file =~ g:unite_source_file_rec_ignore_pattern
+      continue
+    endif
+
     if isdirectory(l:file)
-      " Get files in a directory.
-      let l:files += s:get_files(a:depth + 1, l:file, [])
+      if l:file != '/' && l:file =~ '/$'
+        let l:file = l:file[: -2]
+      endif
+
+      let l:child_index = 0
+      let l:childs = split(unite#util#substitute_path_separator(glob(l:file . '/*')), '\n')
+            \ + split(unite#util#substitute_path_separator(glob(l:file . '/.*')), '\n')
+      for l:child in l:childs
+        let l:child_index += 1
+
+        if l:child =~ '/\.\%(\.\|$\)'
+              \ ||(g:unite_source_file_rec_ignore_pattern != '' &&
+              \     l:child =~ g:unite_source_file_rec_ignore_pattern)
+          continue
+        endif
+
+        call add(isdirectory(l:child) ? l:continuation_files : l:ret_files,
+              \ unite#util#substitute_path_separator(fnamemodify(l:child, ':p')))
+        let l:ret_files_len += 1
+
+        if l:ret_files_len > l:max_len
+          let l:continuation_files += l:childs[l:child_index :]
+          break
+        endif
+      endfor
     else
-      call add(l:files, l:file)
+      call add(l:ret_files,
+            \ unite#util#substitute_path_separator(fnamemodify(l:file, ':p')))
+      let l:ret_files_len += 1
+    endif
+
+    if l:ret_files_len > l:max_len
+      break
     endif
   endfor
 
-  return l:files
+  let l:continuation_files += a:files[l:files_index :]
+  return [l:continuation_files, l:ret_files]
 endfunction"}}}
 
 " vim: foldmethod=marker

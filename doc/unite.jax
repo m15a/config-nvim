@@ -37,9 +37,13 @@ License: MIT license  {{{
   source		  |unite-sources|
   kind			  |unite-kinds|
   アクション		  |unite-actions|
+  matcher		  |unite-matchers|
+  sorter		  |unite-sorters|
 設定例			|unite-examples|
 sourceの作成		|unite-create-source|
 kindの作成		|unite-create-kind|
+matcherの作成		|unite-create-matcher|
+sorterの作成		|unite-create-sorter|
 ユーザーのsource	|unite-user-sources|
 ToDo			|unite-todo|
 既知のバグ			|unite-bugs|
@@ -178,10 +182,10 @@ http://www.ustream.tv/recorded/11240673
 						*unite-options-no-start-insert*
 		-start-insert
 		初期状態が絞り込みモードになる。
-		
+
 		-no-start-insert
 		初期状態がNormal modeになる。
-		
+
 		両方のオプションを指定しないと、初期状態は
 		|g:unite_enable_start_insert|に依存する。
 		両方のオプションが指定されたときの動作は未定義である。
@@ -200,6 +204,41 @@ http://www.ustream.tv/recorded/11240673
 		-winheight={window-height}
 		uniteバッファの高さを指定する。指定しないと、
 		|g:unite_winheight|が使われる。
+
+						*unite-options-immediately*
+		-immediately
+		候補が一つしかないとき、即座にアクションを実行する。候補がな
+		いときにはuniteバッファを開かない。
+
+						*unite-options-auto-preview*
+		-auto-preview
+		候補を選択した際、自動的に"preview"アクションを実行する。
+
+						*unite-options-completion*
+		-completion
+		uniteの補完インタフェースを使用する。|unite-options-col|を同
+		時に設定しなければならない。
+
+						*unite-options-col*
+		-col={column-number}
+		uniteを開始した位置を指定する。
+
+						*unite-options-vertical*
+		-vertical
+		uniteバッファを垂直分割する。
+
+						*unite-options-horizontal*
+		-horizontal
+		uniteバッファを水平分割する。
+		
+		両方のオプションを指定しないと、初期状態は
+		|g:unite_enable_split_vertically|に依存する。両方のオプションが
+		指定されたときの動作は未定義である。
+
+						*unite-options-direction*
+		-direction={direction}
+		Defines split position rule. The default value is same to
+		|g:unite_split_rule|.
 
 :UniteWithCurrentDir [{options}] {sources}	*:UniteWithCurrentDir*
 		初期の絞込みテキストが現在のディレクトリである他は|:Unite|と同
@@ -382,11 +421,14 @@ g:unite_source_bookmark_file			*g:unite_source_bookmark_file*
 		
 		初期値は |g:unite_data_directory| . '/.bookmark' である。
 
-g:unite_source_file_rec_max_depth		*g:unite_source_file_rec_max_depth*
-		|unite-source-file_rec|が検索するディレクトリ深さの最大値を
-		指定する。
+g:unite_source_file_rec_ignore_pattern		*g:unite_source_file_rec_ignore_pattern*
+		|unite-source-file_rec|の候補に表示しないファイルの正規表現
+		パターンを指定する。マッチングはファイルのフルパスに対して行
+		われる。この変数が空文字列以外であれば、指定した正規表現で結
+		果をフィルタリングする。正規表現の大文字・小文字は
+		'ignorecase'の設定に関わらず、明確に区別される。
 		
-		初期値は10である。
+		初期値は autoload/unite/sources/file_rec.vim を参照。
 
 kindの変数					*unite-kinds-variables*
 
@@ -410,6 +452,9 @@ g:unite_kind_jump_list_after_jump_scroll	*g:unite_kind_jump_list_after_jump_scro
 
 <Plug>(unite_exit)				*<Plug>(unite_exit)*
 		uniteを終了する。
+
+<Plug>(unite_restart)				*<Plug>(unite_restart)*
+		unitを再起動する。
 
 <Plug>(unite_do_default_action)			*<Plug>(unite_do_default_action)*
 		選択している候補に対してデフォルトのアクションを実行する。アク
@@ -476,6 +521,10 @@ g:unite_kind_jump_list_after_jump_scroll	*g:unite_kind_jump_list_after_jump_scro
 
 <Plug>(unite_input_directory)			*<Plug>(unite_input_directory)*
 		ディレクトリ名を入力して絞り込みを行う。
+
+<Plug>(unite_delete_backward_path)		*<Plug>(unite_delete_backward_path)*
+		一つ上のパスまで削除する。
+		|i_<Plug>(unite_delete_backward_path)|を参照せよ。
 
 インサートモードマッピング
 
@@ -551,12 +600,14 @@ I		|<Plug>(unite_insert_head)|
 a		|<Plug>(unite_append_enter)|
 A		|<Plug>(unite_append_end)|
 q		|<Plug>(unite_exit)|
+<C-r>		|<Plug>(unite_restart)|
 <Space>		|<Plug>(unite_toggle_mark_current_candidate)|
 <Tab>		|<Plug>(unite_choose_action)|
 <C-n>		|<Plug>(unite_rotate_next_source)|
 <C-p>		|<Plug>(unite_rotate_previous_source)|
 <C-g>		|<Plug>(unite_print_candidate)|
 <C-l>		|<Plug>(unite_redraw)|
+<C-h>		|<Plug>(unite_delete_backward_path)|
 gg		|<Plug>(unite_cursor_top)|
 j		|<Plug>(unite_loop_cursor_down)|
 <Down>		|<Plug>(unite_loop_cursor_down)|
@@ -744,6 +795,16 @@ unite#custom_alias({kind}, {name}, {action})
 >
 		call unite#custom_alias('file', 'h', 'left')
 <
+unite#custom_matcher({source-name}, {matchers})	*unite#custom_matcher()*
+		{source-name}のmatcherを{matchers}に変更する。
+		{source-name}は","区切りで複数指定ができる。
+		{matchers}は使用するmatcherの名前、もしくは名前のリストである。
+
+unite#custom_sorter({source-name}, {sorters})	*unite#custom_sorter()*
+		{source-name}のsorterを{sorters}に変更する。
+		{source-name}は","区切りで複数指定ができる。
+		{sorters}は使用するsorterの名前、もしくは名前のリストである。
+
 unite#take_action({action-name}, {candidate})
 						*unite#take_action()*
 		{candidate}に対し、{action-name}という名前のアクションを実行する。
@@ -767,12 +828,33 @@ unite#define_kind({kind})			*unite#define_kind()*
 		|unite-create-kind|を参照せよ。
 		すでにその名前のkindが存在する場合は上書きされる。
 
+unite#define_matcher({matcher})			*unite#define_matcher()*
+		{matcher}を動的に追加する。matcherの仕様については、
+		|unite-create-matcher|を参照せよ。
+		すでにその名前のmatcherが存在する場合は上書きされる。
+
+unite#define_sorter({sorter})			*unite#define_sorter()*
+		{sorter}を動的に追加する。sorterの仕様については、
+		|unite-create-sorter|を参照せよ。
+		すでにその名前のsorterが存在する場合は上書きされる。
+
 unite#undef_source({name})			*unite#undef_source()*
-		|unite#define_source()|で追加した{name}というsourceを削除する。
+		|unite#define_source()|で追加した{name}というsourceを削除
+		する。
 		存在しないときは無視される。
 
 unite#undef_kind({name})			*unite#undef_kind()*
 		|unite#define_kind()|で追加した{name}というkindを削除する。
+		存在しないときは無視される。
+
+unite#undef_matcher({name})			*unite#undef_matcher()*
+		|unite#define_matcher()|で追加した{name}というmatcherを
+		削除する。
+		存在しないときは無視される。
+
+unite#undef_sorter({name})			*unite#undef_sorter()*
+		|unite#define_sorter()|で追加した{name}というsorterを
+		削除する。
 		存在しないときは無視される。
 
 ==============================================================================
@@ -816,6 +898,9 @@ tab		開いているタブを候補とする。t:cwdをカレントディレク�
 		使用される。)存在していなかったら、代わりにタブの中での現在の
 		バッファ名が使われる。
 
+		source引数：
+		1. no-currentを指定すると、カレントタブを除外する。
+
 						*unite-source-register*
 register	レジスタに保存されている文字列を候補とする。
 
@@ -831,6 +916,9 @@ source		uniteのsource名そのものを候補とする。
 						*unite-source-window*
 window		開いているウィンドウを候補とする。ウィンドウは移動した順番に
 		整列される。
+
+		source引数：
+		1. no-currentを指定すると、カレントウインドウを除外する。
 
 						*unite-source-output*
 output		実行したVimコマンドの出力を候補とする。
@@ -955,6 +1043,28 @@ window		ウィンドウ
 			action__window_nr	(文字列)		(必須)
 				対象となるウィンドウの番号
 
+						*unite-kind-completion*
+completion	補完
+
+			action__complete_word	(String)	(必須)
+				補完する文字列
+
+			action__complete_pos	(Number)	(必須)
+				補完する位置
+
+			action__complete_info	(String)	(任意)
+				補完候補の追加情報
+
+==============================================================================
+matcher						*unite-matchers*
+
+TODO
+
+==============================================================================
+sorter						*unite-sorters*
+
+TODO
+
 ==============================================================================
 アクション					*unite-actions*
 
@@ -1047,6 +1157,10 @@ window						*unite-action-window*
 	delete		ウィンドウを閉じる
 	only		そのウィンドウ以外すべて閉じる
 
+completion					*unite-action-completion*
+	insert		候補の挿入
+	preview		候補の情報を表示
+
 source別アクション
 
 file_mru					*unite-action-file_mru*
@@ -1074,7 +1188,7 @@ jump_list	open
 ==============================================================================
 sourceの作成					*unite-create-source*
 
-autoload/unite/sources//に*.vimのファイルを置いておくと、自動的に読み込まれる。
+autoload/unite/sources/に*.vimのファイルを置いておくと、自動的に読み込まれる。
 その際、unite#sources#{source_name}#define()が呼ばれ、戻り値がsourceと解釈される。
 戻り値はリストでもよく、その場合はsourceのリストと解釈される。
 sourceを追加したくない場合は、空リストを返せば良い。
@@ -1099,7 +1213,9 @@ name			文字列		(必須)
 
 						*unite-source-attribute-gather_candidates*
 gather_candidates	関数		(必須)
-			uniteが候補を収集する際に呼ばれる。
+			uniteが候補を収集する際に一度だけ呼ばれる。
+			sourceが|unite-source-attribute-is_volatile|の場合は、
+			入力文字列が変化すると呼ばれる。
 			この関数は{args}と{context}を引数に取り、{candidate}の
 			リストを返す。
 			{args}は|:Unite|コマンドを実行された際にsourceに渡され
@@ -1108,6 +1224,16 @@ gather_candidates	関数		(必須)
 			{context}については|unite-notation-{context}|、
 			{candidate}については|unite-notation-{candidate}|を参照
 			せよ。
+
+						*unite-source-attribute-async-gather_candidates*
+async_gather_candidates	関数		(任意)
+			uniteが候補を収集する際に、非同期に呼ばれる。
+			デフォルトのタイミングは、|g:unite_update_time|である。
+			この関数は{args}と{context}を引数に取り、{candidate}の
+			リストを返す。
+			引数や戻り値の仕様は
+			|unite-source-attribute-gather_candidates|と同一であ
+			る。
 
 						*unite-source-attribute-hooks*
 hooks			辞書		(任意)
@@ -1368,6 +1494,16 @@ actionの解決順序				*unite-action-resolution-order*
 (10) Default action table for kind "cdable".
 (11) Custom action table for kind "common".
 (12) Default action table for kind "common".
+
+==============================================================================
+matcherの作成					*unite-create-matcher*
+
+ToDo
+
+==============================================================================
+sorterの作成					*unite-create-sorter*
+
+TODO
 
 ==============================================================================
 設定例						*unite-examples*

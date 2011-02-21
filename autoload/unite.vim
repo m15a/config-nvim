@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: unite.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 24 Jan 2011.
+" Last Modified: 16 Feb 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -30,27 +30,65 @@ function! unite#version()"{{{
 endfunction"}}}
 
 " User functions."{{{
+function! s:initialize_buffer_name_settings(buffer_name)"{{{
+  if !has_key(s:buffer_name_settings, a:buffer_name)
+    let s:buffer_name_settings[a:buffer_name] = {}
+  endif
+  let l:setting = s:buffer_name_settings[a:buffer_name]
+  if !has_key(l:setting, 'substitute_patterns')
+    let l:setting.substitute_patterns = {}
+  endif
+endfunction"}}}
 function! unite#get_substitute_pattern(buffer_name)"{{{
-  return s:substitute_pattern[a:buffer_name]
+  return has_key(s:buffer_name_settings, a:buffer_name) ?
+        \ s:buffer_name_settings[a:buffer_name].substitute_patterns : ''
 endfunction"}}}
 function! unite#set_substitute_pattern(buffer_name, pattern, subst, ...)"{{{
   let l:priority = a:0 > 0 ? a:1 : 0
   let l:buffer_name = (a:buffer_name == '' ? 'default' : a:buffer_name)
 
   for key in split(l:buffer_name, ',')
-    if !has_key(s:substitute_pattern, key)
-      let s:substitute_pattern[key] = {}
+    if !has_key(s:buffer_name_settings, key)
+      let s:buffer_name_settings[key] = {}
     endif
 
-    if has_key(s:substitute_pattern[key], a:pattern)
+    if !has_key(s:buffer_name_settings[key], 'substitute_patterns')
+      let s:buffer_name_settings[key].substitute_patterns = {}
+    endif
+
+    let l:substitute_patterns = s:buffer_name_settings[key].substitute_patterns
+
+    if has_key(l:substitute_patterns, a:pattern)
           \ && a:pattern == ''
-      call remove(s:substitute_pattern[key], a:pattern)
+      call remove(l:substitute_patterns, a:pattern)
     else
-      let s:substitute_pattern[key][a:pattern] = {
+      let l:substitute_patterns[a:pattern] = {
             \ 'pattern' : a:pattern,
             \ 'subst' : a:subst, 'priority' : l:priority
             \ }
     endif
+  endfor
+endfunction"}}}
+function! unite#custom_matcher(source_name, matchers)"{{{
+  let l:matchers = type(a:matchers) == type([]) ?
+        \ a:matchers : [a:matchers]
+  for key in split(a:source_name, ',')
+    if !has_key(s:dynamic.sources, key)
+      let s:dynamic.source[key] = {}
+    endif
+
+    let s:dynamic.source[key].matchers = l:matchers
+  endfor
+endfunction"}}}
+function! unite#custom_sorter(source_name, sorters)"{{{
+  let l:sorters = type(a:sorters) == type([]) ?
+        \ a:sorters : [a:sorters]
+  for key in split(a:source_name, ',')
+    if !has_key(s:dynamic.sources, key)
+      let s:dynamic.source[key] = {}
+    endif
+
+    let s:dynamic.source.[key].sorters = l:sorters
   endfor
 endfunction"}}}
 function! unite#custom_alias(kind, name, action)"{{{
@@ -86,29 +124,57 @@ endfunction"}}}
 function! unite#define_source(source)"{{{
   if type(a:source) == type([])
     for l:source in a:source
-      let s:custom.sources[l:source.name] = l:source
+      let s:dynamic.sources[l:source.name] = l:source
     endfor
   else
-    let s:custom.sources[a:source.name] = a:source
+    let s:dynamic.sources[a:source.name] = a:source
   endif
 endfunction"}}}
 function! unite#define_kind(kind)"{{{
   if type(a:kind) == type([])
     for l:kind in a:kind
-      let s:custom.kinds[l:kind.name] = l:kind
+      let s:dynamic.kinds[l:kind.name] = l:kind
     endfor
   else
-    let s:custom.kinds[a:kind.name] = a:kind
+    let s:dynamic.kinds[a:kind.name] = a:kind
+  endif
+endfunction"}}}
+function! unite#define_matcher(matcher)"{{{
+  if type(a:matcher) == type([])
+    for l:matcher in a:matcher
+      let s:dynamic.matchers[l:matcher.name] = l:matcher
+    endfor
+  else
+    let s:dynamic.matchers[a:matcher.name] = a:matcher
+  endif
+endfunction"}}}
+function! unite#define_sorter(sorter)"{{{
+  if type(a:sorter) == type([])
+    for l:sorter in a:sorter
+      let s:dynamic.sorters[l:sorter.name] = l:sorter
+    endfor
+  else
+    let s:dynamic.sorters[a:sorter.name] = a:sorter
   endif
 endfunction"}}}
 function! unite#undef_source(name)"{{{
-  if has_key(s:custom.sources, a:name)
-    call remove(s:custom.sources, a:name)
+  if has_key(s:dynamic.sources, a:name)
+    call remove(s:dynamic.sources, a:name)
   endif
 endfunction"}}}
 function! unite#undef_kind(name)"{{{
-  if has_key(s:custom.kind, a:name)
-    call remove(s:custom.kind, a:name)
+  if has_key(s:dynamic.kinds, a:name)
+    call remove(s:dynamic.kinds, a:name)
+  endif
+endfunction"}}}
+function! unite#undef_matcher(name)"{{{
+  if has_key(s:dynamic.matchers, a:name)
+    call remove(s:dynamic.matchers, a:name)
+  endif
+endfunction"}}}
+function! unite#undef_sorter(name)"{{{
+  if has_key(s:dynamic.sorters, a:name)
+    call remove(s:dynamic.sorters, a:name)
   endif
 endfunction"}}}
 
@@ -117,7 +183,7 @@ function! unite#do_action(action)
         \             (mode() ==# 'i' ? "\<ESC>" : ''), string(a:action))
 endfunction
 function! unite#smart_map(narrow_map, select_map)"{{{
-  return (line('.') <= b:unite.prompt_linenr && empty(unite#get_marked_candidates())) ? a:narrow_map : a:select_map
+  return (line('.') <= unite#get_current_unite().prompt_linenr && empty(unite#get_marked_candidates())) ? a:narrow_map : a:select_map
 endfunction"}}}
 
 function! unite#take_action(action_name, candidate)"{{{
@@ -138,20 +204,23 @@ let s:LNUM_STATUS = 1
 " Variables  "{{{
 " buffer number of the unite buffer
 let s:last_unite_bufnr = -1
-let s:unite = {}
+let s:current_unite = {}
 
-let s:default = {}
-let s:default.sources = {}
-let s:default.kinds = {}
+let s:static = {}
+
+let s:dynamic = {}
+let s:dynamic.sources = {}
+let s:dynamic.kinds = {}
+let s:dynamic.matchers = {}
+let s:dynamic.sorters = {}
 
 let s:custom = {}
-let s:custom.sources = {}
-let s:custom.kinds = {}
 let s:custom.actions = {}
 let s:custom.default_actions = {}
 let s:custom.aliases = {}
+let s:custom.source = {}
 
-let s:substitute_pattern = {}
+let s:buffer_name_settings = {}
 call unite#set_substitute_pattern('files', '^\~', substitute(substitute($HOME, '\\', '/', 'g'), ' ', '\\\\ ', 'g'), -100)
 call unite#set_substitute_pattern('files', '[^~.*]\zs/', '*/*', 100)
 
@@ -159,12 +228,14 @@ let s:unite_options = [
       \ '-buffer-name=', '-input=', '-prompt=',
       \ '-default-action=', '-start-insert','-no-start-insert', '-no-quit',
       \ '-winwidth=', '-winheight=',
+      \ '-immediately', '-auto-preview', '-complete',
+      \ '-vertical', '-horizontal', '-direction=',
       \]
 "}}}
 
 " Core functions."{{{
 function! unite#available_kinds(...)"{{{
-  let l:unite = s:get_unite()
+  let l:unite = unite#get_current_unite()
   return a:0 == 0 ? l:unite.kinds : get(l:unite.kinds, a:1, {})
 endfunction"}}}
 function! unite#available_sources(...)"{{{
@@ -187,10 +258,10 @@ function! unite#loaded_sources_list()"{{{
   return s:get_loaded_sources()
 endfunction"}}}
 function! unite#get_unite_candidates()"{{{
-  return s:get_unite().candidates
+  return unite#get_current_unite().candidates
 endfunction"}}}
 function! unite#get_context()"{{{
-  return s:get_unite().context
+  return unite#get_current_unite().context
 endfunction"}}}
 " function! unite#get_action_table(source_name, kind_name, self_func, [is_parent_action])
 function! unite#get_action_table(source_name, kind_name, self_func, ...)"{{{
@@ -207,36 +278,36 @@ function! unite#get_action_table(source_name, kind_name, self_func, ...)"{{{
     " Source/kind custom actions.
     if has_key(s:custom.actions, l:source_kind)
       let l:action_table = s:extend_actions(a:self_func, l:action_table,
-            \ s:custom.actions[l:source_kind])
+            \ s:custom.actions[l:source_kind], 'custom/'.l:source.name.'/'.l:kind.name)
     endif
 
     " Source/kind actions.
     if has_key(l:source.action_table, a:kind_name)
       let l:action_table = s:extend_actions(a:self_func, l:action_table,
-            \ l:source.action_table[a:kind_name])
+            \ l:source.action_table[a:kind_name], l:source.name.'/'.l:kind.name)
     endif
 
     " Source/* custom actions.
     if has_key(s:custom.actions, l:source_kind_wild)
       let l:action_table = s:extend_actions(a:self_func, l:action_table,
-            \ s:custom.actions[l:source_kind_wild])
+            \ s:custom.actions[l:source_kind_wild], 'custom/source/'.l:source.name)
     endif
 
     " Source/* actions.
     if has_key(l:source.action_table, '*')
       let l:action_table = s:extend_actions(a:self_func, l:action_table,
-            \ l:source.action_table['*'])
+            \ l:source.action_table['*'], 'source/'.l:source.name)
     endif
 
     " Kind custom actions.
     if has_key(s:custom.actions, a:kind_name)
       let l:action_table = s:extend_actions(a:self_func, l:action_table,
-            \ s:custom.actions[a:kind_name])
+            \ s:custom.actions[a:kind_name], 'custom/'.l:kind.name)
     endif
 
     " Kind actions.
     let l:action_table = s:extend_actions(a:self_func, l:action_table,
-          \ l:kind.action_table)
+          \ l:kind.action_table, l:kind.name)
   endif
 
   " Parents actions.
@@ -247,31 +318,37 @@ function! unite#get_action_table(source_name, kind_name, self_func, ...)"{{{
 
   if !l:is_parents_action
     " Kind aliases.
-    call s:filter_alias_action(l:action_table, l:kind.alias_table)
+    call s:filter_alias_action(l:action_table, l:kind.alias_table,
+          \ l:kind.name)
 
     " Kind custom aliases.
     if has_key(s:custom.aliases, a:kind_name)
-      call s:filter_alias_action(l:action_table, s:custom.aliases[a:kind_name])
+      call s:filter_alias_action(l:action_table, s:custom.aliases[a:kind_name],
+            \ 'custom/'.l:kind.name)
     endif
 
     " Source/* aliases.
     if has_key(l:source.alias_table, '*')
-      call s:filter_alias_action(l:action_table, l:source.alias_table['*'])
+      call s:filter_alias_action(l:action_table, l:source.alias_table['*'],
+            \ 'source/'.l:source.name)
     endif
 
     " Source/* custom aliases.
     if has_key(s:custom.aliases, l:source_kind_wild)
-      call s:filter_alias_action(l:action_table, s:custom.aliases[l:source_kind_wild])
+      call s:filter_alias_action(l:action_table, s:custom.aliases[l:source_kind_wild],
+            \ 'custom/source/'.l:source.name)
     endif
 
     " Source/kind aliases.
     if has_key(s:custom.aliases, l:source_kind)
-      call s:filter_alias_action(l:action_table, s:custom.aliases[l:source_kind])
+      call s:filter_alias_action(l:action_table, s:custom.aliases[l:source_kind],
+            \ 'source/'.l:source.name.'/'.l:kind.name)
     endif
 
     " Source/kind custom aliases.
     if has_key(l:source.alias_table, a:kind_name)
-      call s:filter_alias_action(l:action_table, l:source.alias_table[a:kind_name])
+      call s:filter_alias_action(l:action_table, l:source.alias_table[a:kind_name],
+            \ 'custom/source/'.l:source.name.'/'.l:kind.name)
     endif
   endif
 
@@ -332,12 +409,12 @@ function! unite#escape_match(str)"{{{
   return substitute(substitute(escape(a:str, '~"\.^$[]'), '\*\@<!\*', '[^/]*', 'g'), '\*\*\+', '.*', 'g')
 endfunction"}}}
 function! unite#complete_source(arglead, cmdline, cursorpos)"{{{
-  if empty(s:default.sources)
+  if empty(s:static)
     " Initialize load.
-    call s:load_default_sources_and_kinds()
+    call s:load_default_scripts()
   endif
 
-  let l:sources = extend(copy(s:default.sources), s:custom.sources)
+  let l:sources = extend(copy(s:static.sources), s:dynamic.sources)
   return filter(keys(l:sources)+s:unite_options, 'stridx(v:val, a:arglead) == 0')
 endfunction"}}}
 function! unite#complete_buffer(arglead, cmdline, cursorpos)"{{{
@@ -346,7 +423,7 @@ function! unite#complete_buffer(arglead, cmdline, cursorpos)"{{{
   return filter(l:buffer_list, printf('stridx(v:val, %s) == 0', string(a:arglead)))
 endfunction"}}}
 function! unite#invalidate_cache(source_name)  "{{{
-  for l:source in s:get_unite().sources
+  for l:source in unite#get_current_unite().sources
     if l:source.name ==# a:source_name
       let l:source.unite__is_invalidate = 1
     endif
@@ -360,7 +437,7 @@ function! unite#redraw() "{{{
 endfunction"}}}
 function! unite#redraw_line(...) "{{{
   let l:linenr = a:0 > 0 ? a:1 : line('.')
-  if l:linenr <= b:unite.prompt_linenr || &filetype !=# 'unite'
+  if l:linenr <= unite#get_current_unite().prompt_linenr || &filetype !=# 'unite'
     " Ignore.
     return
   endif
@@ -368,7 +445,7 @@ function! unite#redraw_line(...) "{{{
   let l:modifiable_save = &l:modifiable
   setlocal modifiable
 
-  let l:candidate = unite#get_unite_candidates()[l:linenr - (b:unite.prompt_linenr+1)]
+  let l:candidate = unite#get_unite_candidates()[l:linenr - (unite#get_current_unite().prompt_linenr+1)]
   call setline(l:linenr, s:convert_line(l:candidate))
 
   let &l:modifiable = l:modifiable_save
@@ -377,7 +454,7 @@ function! unite#quick_match_redraw() "{{{
   let l:modifiable_save = &l:modifiable
   setlocal modifiable
 
-  call setline(b:unite.prompt_linenr+1, s:convert_quick_match_lines(b:unite.candidates))
+  call setline(unite#get_current_unite().prompt_linenr+1, s:convert_quick_match_lines(unite#get_current_unite().candidates))
   redraw
 
   let &l:modifiable = l:modifiable_save
@@ -397,58 +474,41 @@ function! unite#redraw_candidates() "{{{
   setlocal modifiable
 
   let l:lines = s:convert_lines(l:candidates)
-  if len(l:lines) < len(b:unite.candidates)
-    if mode() !=# 'i' && line('.') == b:unite.prompt_linenr
-      silent! execute (b:unite.prompt_linenr+1).',$delete _'
+  if len(l:lines) < len(unite#get_current_unite().candidates)
+    if mode() !=# 'i' && line('.') == unite#get_current_unite().prompt_linenr
+      silent! execute (unite#get_current_unite().prompt_linenr+1).',$delete _'
       startinsert!
     else
       let l:pos = getpos('.')
-      silent! execute (b:unite.prompt_linenr+1).',$delete _'
+      silent! execute (unite#get_current_unite().prompt_linenr+1).',$delete _'
       call setpos('.', l:pos)
     endif
   endif
-  call setline(b:unite.prompt_linenr+1, l:lines)
+  call setline(unite#get_current_unite().prompt_linenr+1, l:lines)
 
   let &l:modifiable = l:modifiable_save
-  let b:unite.candidates = l:candidates
+
+  let l:unite = unite#get_current_unite()
+  let l:unite.candidates = l:candidates
 endfunction"}}}
 function! unite#get_marked_candidates() "{{{
   return sort(filter(copy(unite#get_unite_candidates()), 'v:val.unite__is_marked'), 's:compare_marked_candidates')
 endfunction"}}}
-function! unite#keyword_filter(list, input)"{{{
-  for l:input in split(a:input, '\\\@<! ')
-    let l:input = substitute(l:input, '\\ ', ' ', 'g')
-
-    if l:input =~ '^!'
-      " Exclusion.
-      let l:input = unite#escape_match(l:input)
-      call filter(a:list, 'v:val.word !~ ' . string(l:input[1:]))
-    elseif l:input =~ '\\\@<!\*'
-      " Wildcard.
-      let l:input = unite#escape_match(l:input)
-      call filter(a:list, 'v:val.word =~ ' . string(l:input))
-    else
-      let l:input = substitute(l:input, '\\\(.\)', '\1', 'g')
-      if &ignorecase
-        let l:expr = printf('stridx(tolower(v:val.word), %s) != -1', string(tolower(l:input)))
-      else
-        let l:expr = printf('stridx(v:val.word, %s) != -1', string(l:input))
-      endif
-
-      call filter(a:list, l:expr)
-    endif
-  endfor
-
-  return a:list
-endfunction"}}}
 function! unite#get_input()"{{{
+  let l:unite = unite#get_current_unite()
   " Prompt check.
-  if stridx(getline(b:unite.prompt_linenr), b:unite.prompt) != 0
+  if stridx(getline(l:unite.prompt_linenr), l:unite.prompt) != 0
+    let l:modifiable_save = &l:modifiable
+    setlocal modifiable
+
     " Restore prompt.
-    call setline(b:unite.prompt_linenr, b:unite.prompt . getline(b:unite.prompt_linenr))
+    call setline(l:unite.prompt_linenr, l:unite.prompt
+          \ . getline(l:unite.prompt_linenr))
+
+    let &l:modifiable = l:modifiable_save
   endif
 
-  return getline(b:unite.prompt_linenr)[len(b:unite.prompt):]
+  return getline(l:unite.prompt_linenr)[len(l:unite.prompt):]
 endfunction"}}}
 function! unite#get_options()"{{{
   return s:unite_options
@@ -464,10 +524,27 @@ function! unite#gather_candidates()"{{{
 
   return l:candidates
 endfunction"}}}
+function! unite#get_current_unite() "{{{
+  return exists('b:unite') ? b:unite : s:current_unite
+endfunction"}}}
 
 " Utils.
 function! unite#print_error(message)"{{{
   echohl WarningMsg | echomsg a:message | echohl None
+endfunction"}}}
+function! unite#print_message(message)"{{{
+  let l:modifiable_save = &l:modifiable
+  setlocal modifiable
+  let l:unite = unite#get_current_unite()
+  call append(l:unite.prompt_linenr-1, a:message)
+  let l:unite.prompt_linenr += 1
+  let &l:modifiable = l:modifiable_save
+  call s:on_cursor_moved()
+
+  syntax clear uniteInputLine
+  execute 'syntax match uniteInputLine'
+        \ '/\%'.l:unite.prompt_linenr.'l.*/'
+        \ 'contains=uniteInputPrompt,uniteInputPromptError,uniteInputSpecial'
 endfunction"}}}
 function! unite#substitute_path_separator(path)"{{{
   return unite#util#substitute_path_separator(a:path)
@@ -479,9 +556,9 @@ endfunction"}}}
 
 " Command functions.
 function! unite#start(sources, ...)"{{{
-  if empty(s:default.sources)
+  if empty(s:static)
     " Initialize load.
-    call s:load_default_sources_and_kinds()
+    call s:load_default_scripts()
   endif
 
   " Save context.
@@ -497,8 +574,11 @@ function! unite#start(sources, ...)"{{{
     " Disable start insert.
     let l:context.start_insert = 0
   endif
-  if !has_key(l:context, 'is_insert')
-    let l:context.is_insert = 0
+  if !has_key(l:context, 'complete')
+    let l:context.complete = 0
+  endif
+  if !has_key(l:context, 'col')
+    let l:context.col = col('.')
   endif
   if !has_key(l:context, 'no_quit')
     let l:context.no_quit = 0
@@ -518,28 +598,68 @@ function! unite#start(sources, ...)"{{{
   if !has_key(l:context, 'winheight')
     let l:context.winheight = g:unite_winheight
   endif
+  if !has_key(l:context, 'immediately')
+    let l:context.immediately = 0
+  endif
+  if !has_key(l:context, 'auto_preview')
+    let l:context.auto_preview = 0
+  endif
+  if !has_key(l:context, 'vertical')
+    let l:context.vertical = g:unite_enable_split_vertically
+  endif
+  if has_key(l:context, 'horizontal')
+    " Disable vertically.
+    let l:context.vertical = 0
+  endif
+  if !has_key(l:context, 'direction')
+    let l:context.direction = g:unite_split_rule
+  endif
   let l:context.is_redraw = 0
 
   try
-    call s:initialize_unite_buffer(a:sources, l:context)
+    call s:initialize_current_unite(a:sources, l:context)
   catch /^Invalid source/
     return
   endtry
 
+  " Force caching.
+  let s:current_unite.last_input = l:context.input
+  let s:current_unite.input = l:context.input
+  call s:recache_candidates(l:context.input, 1)
+
+  if l:context.immediately
+    let l:candidates = unite#gather_candidates()
+
+    " Immediately action.
+    if empty(l:candidates)
+      " Ignore.
+      return
+    elseif len(l:candidates) == 1
+      " Default action.
+      call unite#mappings#do_action(l:context.default_action, l:candidates[0])
+      return
+    endif
+  endif
+
+  call s:initialize_unite_buffer()
+
   setlocal modifiable
+
+  let l:unite = unite#get_current_unite()
 
   silent % delete _
   call unite#redraw_status()
-  call setline(b:unite.prompt_linenr, b:unite.prompt . b:unite.context.input)
+  call setline(l:unite.prompt_linenr, l:unite.prompt . l:unite.context.input)
+  call unite#redraw_candidates()
 
-  call unite#force_redraw()
-
-  if b:unite.context.start_insert || b:unite.context.is_insert
-    execute b:unite.prompt_linenr
+  if l:unite.context.start_insert || l:unite.context.complete
+    let l:unite.is_insert = 1
+    execute l:unite.prompt_linenr
     normal! 0z.
     startinsert!
   else
-    execute (b:unite.prompt_linenr+1)
+    let l:unite.is_insert = 0
+    execute (l:unite.prompt_linenr+1)
     normal! 0z.
   endif
 
@@ -573,23 +693,26 @@ function! unite#resume(buffer_name)"{{{
   call s:switch_unite_buffer(bufname(l:bufnr), getbufvar(l:bufnr, 'unite').context)
 
   " Set parameters.
-  let b:unite.winnr = l:winnr
-  let b:unite.win_rest_cmd = l:win_rest_cmd
-  let b:unite.redrawtime_save = &redrawtime
-  let b:unite.hlsearch_save = &hlsearch
-  let b:unite.search_pattern_save = @/
+  let l:unite = unite#get_current_unite()
+  let l:unite.winnr = l:winnr
+  let l:unite.win_rest_cmd = l:win_rest_cmd
+  let l:unite.redrawtime_save = &redrawtime
+  let l:unite.hlsearch_save = &hlsearch
+  let l:unite.search_pattern_save = @/
 
-  let s:unite = b:unite
+  let s:current_unite = b:unite
 
   setlocal modifiable
 
   if g:unite_enable_start_insert
-        \ || b:unite.context.start_insert || b:unite.context.is_insert
-    execute b:unite.prompt_linenr
+        \ || l:unite.context.start_insert || l:unite.context.complete
+    let l:unite.is_insert = 1
+    execute l:unite.prompt_linenr
     normal! 0z.
     startinsert!
   else
-    execute (b:unite.prompt_linenr+1)
+    let l:unite.is_insert = 0
+    execute (l:unite.prompt_linenr+1)
     normal! 0z.
   endif
 
@@ -608,21 +731,25 @@ function! s:quit_session(is_force)  "{{{
   endif
 
   " Save unite value.
-  let s:unite = b:unite
+  let s:current_unite = b:unite
+  let l:unite = s:current_unite
 
   " Highlight off.
-  let @/ = s:unite.search_pattern_save
+  let @/ = l:unite.search_pattern_save
 
   " Restore options.
   if exists('&redrawtime')
-    let &redrawtime = s:unite.redrawtime_save
+    let &redrawtime = l:unite.redrawtime_save
   endif
-  let &hlsearch = s:unite.hlsearch_save
+  let &hlsearch = l:unite.hlsearch_save
 
   nohlsearch
+  match
 
-  " Close preview window.
-  pclose
+  if !l:unite.has_preview_window
+    " Close preview window.
+    pclose!
+  endif
 
   " Call finalize functions.
   for l:source in unite#loaded_sources_list()
@@ -632,39 +759,47 @@ function! s:quit_session(is_force)  "{{{
   endfor
 
   if winnr('$') != 1
-    if !a:is_force && s:unite.context.no_quit
+    if !a:is_force && l:unite.context.no_quit
       if winnr('#') > 0
         wincmd p
       endif
     else
-      close
-      execute s:unite.winnr . 'wincmd w'
+      close!
+      execute l:unite.winnr . 'wincmd w'
 
       if winnr('$') != 1
-        execute s:unite.win_rest_cmd
+        execute l:unite.win_rest_cmd
       endif
     endif
   endif
 
-  if !s:unite.context.is_insert
+  if l:unite.context.complete
+    if l:unite.context.col < col('$')
+      startinsert
+    else
+      startinsert!
+    endif
+  else
     stopinsert
     redraw!
   endif
 endfunction"}}}
 
-function! s:load_default_sources_and_kinds()"{{{
+function! s:load_default_scripts()"{{{
   " Gathering all sources and kind name.
-  let s:default.sources = {}
-  let s:default.kinds = {}
+  let s:static.sources = {}
+  let s:static.kinds = {}
+  let s:static.matchers = {}
+  let s:static.sorters = {}
 
-  for l:key in ['sources', 'kinds']
+  for l:key in ['sources', 'kinds', 'matchers', 'sorters']
     for l:name in map(split(globpath(&runtimepath, 'autoload/unite/' . l:key . '/*.vim'), '\n'),
           \ 'fnamemodify(v:val, ":t:r")')
 
       let l:define = {'unite#' . l:key . '#' . l:name . '#define'}()
       for l:dict in (type(l:define) == type([]) ? l:define : [l:define])
-        if !empty(l:dict) && !has_key(s:default[l:key], l:dict.name)
-          let s:default[l:key][l:dict.name] = l:dict
+        if !empty(l:dict) && !has_key(s:static[l:key], l:dict.name)
+          let s:static[l:key][l:dict.name] = l:dict
         endif
       endfor
       unlet l:define
@@ -698,9 +833,9 @@ function! s:initialize_loaded_sources(sources, context)"{{{
   return l:sources
 endfunction"}}}
 function! s:initialize_sources()"{{{
-  let l:all_sources = extend(copy(s:default.sources), s:custom.sources)
+  let l:sources = extend(deepcopy(s:static.sources), deepcopy(s:dynamic.sources))
 
-  for l:source in values(l:all_sources)
+  for l:source in values(l:sources)
     if !has_key(l:source, 'is_volatile')
       let l:source.is_volatile = 0
     endif
@@ -725,12 +860,24 @@ function! s:initialize_sources()"{{{
     if !has_key(l:source, 'description')
       let l:source.description = ''
     endif
+    if !has_key(l:source, 'matcher')
+      let l:source.matcher = unite#matchers#default#get()
+    endif
+    if type(l:source.matcher) != type([])
+      let l:source.matcher = [l:source.matcher]
+    endif
+    if !has_key(l:source, 'sorter')
+      let l:source.sorter = unite#sorters#default#get()
+    endif
+    if type(l:source.sorter) != type([])
+      let l:source.sorter = [l:source.sorter]
+    endif
   endfor
 
-  return l:all_sources
+  return l:sources
 endfunction"}}}
 function! s:initialize_kinds()"{{{
-  let l:kinds = extend(copy(s:default.kinds), s:custom.kinds)
+  let l:kinds = extend(copy(s:static.kinds), s:dynamic.kinds)
   for l:kind in values(l:kinds)
     if !has_key(l:kind, 'alias_table')
       let l:kind.alias_table = {}
@@ -742,10 +889,36 @@ function! s:initialize_kinds()"{{{
 
   return l:kinds
 endfunction"}}}
+function! s:initialize_matchers()"{{{
+  let l:matchers = extend(copy(s:static.matchers), s:dynamic.matchers)
+  for l:matcher in values(l:matchers)
+    if !has_key(l:matcher, 'hooks')
+      let l:matcher.hooks = {}
+    endif
+  endfor
+
+  return l:matchers
+endfunction"}}}
+function! s:initialize_sorters()"{{{
+  let l:sorters = extend(copy(s:static.sorters), s:dynamic.sorters)
+  for l:sorter in values(l:sorters)
+  endfor
+
+  return l:sorters
+endfunction"}}}
 function! s:recache_candidates(input, is_force)"{{{
-  let l:input_list = filter(split(a:input, '\\\@<! ', 1), 'v:val !~ "!"')
-  let l:input = empty(l:input_list) ? '' : l:input_list[0]
+  " Save options.
+  let l:ignorecase_save = &ignorecase
+
+  if g:unite_enable_smart_case && a:input =~ '\u'
+    let &ignorecase = 0
+  else
+    let &ignorecase = g:unite_enable_ignore_case
+  endif
+
+  let l:input = s:get_substitute_input(a:input)
   let l:input_len = unite#util#strchars(l:input)
+  let l:unite = unite#get_current_unite()
 
   for l:source in unite#loaded_sources_list()
     " Check required pattern length.
@@ -754,26 +927,46 @@ function! s:recache_candidates(input, is_force)"{{{
       continue
     endif
 
+    let l:source.unite__context.input = l:input
+
     if l:source.is_volatile || a:is_force || l:source.unite__is_invalidate
+      " Recaching.
       let l:source.unite__context.source = l:source
       let l:source.unite__context.is_force = a:is_force
-      let l:source.unite__context.input = l:input
-      let l:source.unite__context.is_redraw = s:get_unite().context.is_redraw
+      let l:source.unite__context.is_redraw = l:unite.context.is_redraw
 
-      let l:source_candidates = copy(l:source.gather_candidates(l:source.args, l:source.unite__context))
+      let l:source.unite__cached_candidates = copy(l:source.gather_candidates(l:source.args, l:source.unite__context))
       let l:source.unite__is_invalidate = 0
+    endif
 
-      if !l:source.is_volatile
-        " Recaching.
-        let l:source.unite__cached_candidates = l:source_candidates
+    if has_key(l:source, 'async_gather_candidates')
+      let l:source.unite__cached_candidates += l:source.async_gather_candidates(l:source.args, l:source.unite__context)
+    endif
+
+    let l:source_candidates = copy(l:source.unite__cached_candidates)
+
+    let l:custom_source = has_key(s:custom.source, l:source.name) ?
+          \ s:custom.source[l:source.name] : {}
+    if l:input != ''
+      let l:matcher_names = has_key(l:custom_source, 'matchers') ?
+            \ l:custom_source.matchers : l:source.matcher
+      for l:matcher_name in l:matcher_names
+        if has_key(l:unite.matchers, l:matcher_name)
+          let l:source_candidates =
+                \ l:unite.matchers[l:matcher_name].match(l:source_candidates, l:source.unite__context)
+        endif
+      endfor
+    endif
+
+    " Sort.
+    let l:sorter_names = has_key(l:custom_source, 'sorters') ?
+          \ l:custom_source.sorters : l:source.sorter
+    for l:sorter_name in l:sorter_names
+      if has_key(l:unite.sorters, l:sorter_name)
+        let l:source_candidates =
+              \ l:unite.sorters[l:sorter_name].sort(l:source_candidates, l:source.unite__context)
       endif
-    else
-      let l:source_candidates = copy(l:source.unite__cached_candidates)
-    endif
-
-    if a:input != ''
-      call unite#keyword_filter(l:source_candidates, a:input)
-    endif
+    endfor
 
     if l:source.max_candidates != 0
       " Filtering too many candidates.
@@ -794,9 +987,11 @@ function! s:recache_candidates(input, is_force)"{{{
 
     let l:source.unite__candidates = l:source_candidates
   endfor
+
+  let &ignorecase = l:ignorecase_save
 endfunction"}}}
 function! s:convert_quick_match_lines(candidates)"{{{
-  let [l:max_width, l:max_source_name] = s:adjustments(winwidth(0), b:unite.max_source_name, 5)
+  let [l:max_width, l:max_source_name] = s:adjustments(winwidth(0), unite#get_current_unite().max_source_name, 5)
   let l:candidates = []
 
   " Create key table.
@@ -818,7 +1013,7 @@ function! s:convert_quick_match_lines(candidates)"{{{
   return l:candidates
 endfunction"}}}
 function! s:convert_lines(candidates)"{{{
-  let [l:max_width, l:max_source_name] = s:adjustments(winwidth(0), b:unite.max_source_name, 2)
+  let [l:max_width, l:max_source_name] = s:adjustments(winwidth(0), unite#get_current_unite().max_source_name, 2)
 
   return map(copy(a:candidates),
         \ '(v:val.unite__is_marked ? "* " : "- ")
@@ -826,19 +1021,19 @@ function! s:convert_lines(candidates)"{{{
         \ . unite#util#truncate_smart(v:val.abbr, ' . l:max_width .  ', l:max_width/3, "..")')
 endfunction"}}}
 function! s:convert_line(candidate)"{{{
-  let [l:max_width, l:max_source_name] = s:adjustments(winwidth(0), b:unite.max_source_name, 2)
+  let [l:max_width, l:max_source_name] = s:adjustments(winwidth(0), unite#get_current_unite().max_source_name, 2)
 
   return (a:candidate.unite__is_marked ? '* ' : '- ')
         \ . unite#util#truncate(a:candidate.source, l:max_source_name)
         \ . unite#util#truncate_smart(a:candidate.abbr, l:max_width, l:max_width/3, '..')
 endfunction"}}}
 
-function! s:initialize_unite_buffer(sources, context)"{{{
+function! s:initialize_current_unite(sources, context)"{{{
   let l:context = a:context
 
   if getbufvar(bufnr('%'), '&filetype') ==# 'unite'
     if l:context.input == ''
-          \ && b:unite.buffer_name ==# l:context.buffer_name
+          \ && unite#get_current_unite().buffer_name ==# l:context.buffer_name
       " Get input text.
       let l:context.input = unite#get_input()
     endif
@@ -866,27 +1061,43 @@ function! s:initialize_unite_buffer(sources, context)"{{{
     endif
   endfor
 
-  call s:switch_unite_buffer(l:buffer_name, a:context)
-
   " Set parameters.
-  let b:unite = {}
-  let b:unite.winnr = l:winnr
-  let b:unite.win_rest_cmd = l:win_rest_cmd
-  let b:unite.context = l:context
-  let b:unite.candidates = []
-  let b:unite.sources = l:sources
-  let b:unite.kinds = s:initialize_kinds()
-  let b:unite.buffer_name = (l:context.buffer_name == '') ? 'default' : l:context.buffer_name
-  let b:unite.prompt = l:context.prompt
-  let b:unite.input = l:context.input
-  let b:unite.last_input = l:context.input
-  let b:unite.bufnr = bufnr('%')
-  let b:unite.hlsearch_save = &hlsearch
-  let b:unite.search_pattern_save = @/
-  let b:unite.prompt_linenr = 2
-  let b:unite.max_source_name = max(map(copy(a:sources), 'len(v:val[0])')) + 2
+  let l:unite = {}
+  let l:unite.winnr = l:winnr
+  let l:unite.win_rest_cmd = l:win_rest_cmd
+  let l:unite.context = l:context
+  let l:unite.candidates = []
+  let l:unite.sources = l:sources
+  let l:unite.kinds = s:initialize_kinds()
+  let l:unite.matchers = s:initialize_matchers()
+  let l:unite.sorters = s:initialize_sorters()
+  let l:unite.buffer_name = (l:context.buffer_name == '') ? 'default' : l:context.buffer_name
+  let l:unite.buffer_settings =
+        \ s:initialize_buffer_name_settings(l:unite.buffer_name)
+  let l:unite.real_buffer_name = l:buffer_name
+  let l:unite.prompt = l:context.prompt
+  let l:unite.input = l:context.input
+  let l:unite.last_input = l:context.input
+  let l:unite.bufnr = bufnr('%')
+  let l:unite.hlsearch_save = &hlsearch
+  let l:unite.search_pattern_save = @/
+  let l:unite.prompt_linenr = 2
+  let l:unite.max_source_name = len(a:sources) > 1 ?
+        \ max(map(copy(a:sources), 'len(v:val[0])')) + 2 : 0
+  let l:unite.is_async =
+        \ len(filter(copy(l:sources), 'has_key(v:val, "async_gather_candidates")')) > 0
 
-  let s:unite = b:unite
+  " Preview windows check.
+  let l:unite.has_preview_window =
+   \ len(filter(range(1, winnr('$')), 'getwinvar(v:val, "&previewwindow")')) > 0
+
+  let s:current_unite = l:unite
+endfunction"}}}
+function! s:initialize_unite_buffer()"{{{
+  call s:switch_unite_buffer(s:current_unite.real_buffer_name, s:current_unite.context)
+
+  let b:unite = s:current_unite
+  let l:unite = unite#get_current_unite()
 
   let s:last_unite_bufnr = bufnr('%')
 
@@ -919,14 +1130,11 @@ function! s:initialize_unite_buffer(sources, context)"{{{
   if exists(':NeoComplCacheLock')
     " Lock neocomplcache.
     NeoComplCacheLock
-    if exists(':NeoComplCacheCachingBuffer')
-      NeoComplCacheCachingBuffer
-    endif
   endif
 
   if exists('&redrawtime')
     " Save redrawtime
-    let b:unite.redrawtime_save = &redrawtime
+    let l:unite.redrawtime_save = &redrawtime
     let &redrawtime = 100
   endif
 
@@ -936,11 +1144,21 @@ function! s:initialize_unite_buffer(sources, context)"{{{
 
   if exists('b:current_syntax') && b:current_syntax == 'unite'
     " Set highlight.
-    let l:match_prompt = escape(b:unite.prompt, '\/*~.^$[]')
+    let l:match_prompt = escape(l:unite.prompt, '\/*~.^$[]')
     syntax clear uniteInputPrompt
     execute 'syntax match uniteInputPrompt' '/^'.l:match_prompt.'/ contained'
 
-    execute 'syntax match uniteCandidateAbbr' '/\%'.(b:unite.max_source_name+2).'c.*/ contained'
+    syntax clear uniteCandidateSourceName
+    if l:unite.max_source_name > 0
+      syntax match uniteCandidateSourceName /^- \zs[[:alnum:]_\/-]\+/ contained
+      let l:source_padding = 2
+    else
+      syntax match uniteCandidateSourceName /^-/ contained
+      let l:source_padding = 3
+    endif
+    execute 'syntax match uniteCandidateAbbr' '/\%'.(l:unite.max_source_name+l:source_padding).'c.*/ contained'
+
+    execute 'highlight default link uniteCandidateAbbr'  g:unite_abbr_highlight
   endif
 endfunction"}}}
 function! s:switch_unite_buffer(buffer_name, context)"{{{
@@ -950,8 +1168,8 @@ function! s:switch_unite_buffer(buffer_name, context)"{{{
     silent execute bufwinnr(unite#util#escape_file_searching(a:buffer_name)) 'wincmd w'
   else
     " Split window.
-    execute g:unite_split_rule
-          \ g:unite_enable_split_vertically ?
+    execute a:context.direction
+          \ a:context.vertical ?
           \        (bufexists(a:buffer_name) ? 'vsplit' : 'vnew')
           \      : (bufexists(a:buffer_name) ? 'split' : 'new')
     if bufexists(a:buffer_name)
@@ -970,7 +1188,7 @@ function! s:switch_unite_buffer(buffer_name, context)"{{{
     endif
   endif
 
-  if g:unite_enable_split_vertically
+  if a:context.vertical
     execute 'vertical resize' a:context.winwidth
   else
     execute 'resize' a:context.winheight
@@ -982,100 +1200,93 @@ function! s:redraw(is_force) "{{{
     return
   endif
 
+  let l:unite = unite#get_current_unite()
   let l:input = unite#get_input()
-  if !a:is_force && l:input ==# b:unite.last_input
+  if !a:is_force && l:input ==# l:unite.last_input
+        \ && !l:unite.is_async
     return
   endif
 
   " Highlight off.
   let @/ = ''
 
-  let b:unite.last_input = l:input
-
-  " Save options.
-  let l:ignorecase_save = &ignorecase
-
-  if g:unite_enable_smart_case && l:input =~ '\u'
-    let &ignorecase = 0
-  else
-    let &ignorecase = g:unite_enable_ignore_case
-  endif
-
-  if has_key(s:substitute_pattern, b:unite.buffer_name)
-    if b:unite.input != '' && stridx(l:input, b:unite.input) == 0
-      " Substitute after input.
-      let l:input_save = l:input
-      let l:subst = l:input_save[len(b:unite.input) :]
-      let l:input = l:input_save[: len(b:unite.input)-1]
-    else
-      " Substitute all input.
-      let l:subst = l:input
-      let l:input = ''
-    endif
-
-    for l:pattern in sort(values(s:substitute_pattern[b:unite.buffer_name]), 's:compare_substitute_patterns')
-      let l:subst = substitute(l:subst, l:pattern.pattern, l:pattern.subst, 'g')
-    endfor
-
-    let l:input .= l:subst
-  endif
+  let l:unite.last_input = l:input
+  let l:unite.context.is_redraw = 1
 
   " Recaching.
   call s:recache_candidates(l:input, a:is_force)
 
-  let &ignorecase = l:ignorecase_save
-
   " Redraw.
   call unite#redraw_candidates()
-
-  if exists(':NeoComplCacheLock') && exists(':NeoComplCacheCachingBuffer')
-    " Caching unite buffer.
-    NeoComplCacheCachingBuffer
-  endif
+  let l:unite.context.is_redraw = 0
 endfunction"}}}
 
 " Autocmd events.
 function! s:on_insert_enter()  "{{{
   if &updatetime > g:unite_update_time
-    let b:unite.update_time_save = &updatetime
+    let l:unite = unite#get_current_unite()
+    let l:unite.update_time_save = &updatetime
     let &updatetime = g:unite_update_time
   endif
 
   setlocal modifiable
 endfunction"}}}
 function! s:on_insert_leave()  "{{{
-  if line('.') == b:unite.prompt_linenr
+  if line('.') == unite#get_current_unite().prompt_linenr
     " Redraw.
     call unite#redraw()
   endif
 
-  if has_key(b:unite, 'update_time_save') && &updatetime < b:unite.update_time_save
-    let &updatetime = b:unite.update_time_save
+  if has_key(unite#get_current_unite(), 'update_time_save') && &updatetime < unite#get_current_unite().update_time_save
+    let &updatetime = unite#get_current_unite().update_time_save
   endif
 
   setlocal nomodifiable
 endfunction"}}}
 function! s:on_cursor_hold_i()  "{{{
-  if line('.') == b:unite.prompt_linenr
+  if line('.') == unite#get_current_unite().prompt_linenr
     " Redraw.
     call unite#redraw()
 
     " Prompt check.
-    if col('.') <= len(b:unite.prompt)
+    if col('.') <= len(unite#get_current_unite().prompt)
       startinsert!
     endif
   endif
+
+  if unite#get_current_unite().is_async
+    " Ignore key sequences.
+    call feedkeys("\<C-r>\<ESC>", 'n')
+  endif
 endfunction"}}}
 function! s:on_cursor_hold()  "{{{
-  if line('.') == b:unite.prompt_linenr
-    " Redraw.
-    call unite#redraw()
+  " Redraw.
+  call unite#redraw()
+
+  if unite#get_current_unite().is_async
+    " Ignore key sequences.
+    call feedkeys("g\<ESC>", 'n')
   endif
 endfunction"}}}
 function! s:on_cursor_moved()  "{{{
-  execute 'setlocal' line('.') == b:unite.prompt_linenr ? 'modifiable' : 'nomodifiable'
-  execute 'match' (line('.') <= b:unite.prompt_linenr ? line('$') <= b:unite.prompt_linenr ?
-        \ 'Error /\%'.b:unite.prompt_linenr.'l/' : g:unite_cursor_line_highlight.' /\%'.(b:unite.prompt_linenr+1).'l/' : g:unite_cursor_line_highlight.' /\%'.line('.').'l/')
+  let l:prompt_linenr = unite#get_current_unite().prompt_linenr
+  execute 'setlocal' line('.') == l:prompt_linenr ? 'modifiable' : 'nomodifiable'
+  execute 'match' (line('.') <= l:prompt_linenr ?
+        \ line('$') <= l:prompt_linenr ?
+        \ 'Error /\%'.l:prompt_linenr.'l/' :
+        \ g:unite_cursor_line_highlight.' /\%'.(l:prompt_linenr+1).'l/' :
+        \ g:unite_cursor_line_highlight.' /\%'.line('.').'l/')
+
+  if unite#get_current_unite().context.auto_preview
+    if !unite#get_current_unite().has_preview_window
+      pclose!
+    endif
+
+    call unite#mappings#do_action('preview')
+    if line('.') != l:prompt_linenr
+      normal! 0z.
+    endif
+  endif
 endfunction"}}}
 
 " Internal helper functions."{{{
@@ -1087,19 +1298,24 @@ function! s:adjustments(currentwinwidth, the_max_source_name, size)"{{{
     return [l:max_width, a:the_max_source_name]
   endif
 endfunction"}}}
-function! s:get_unite() "{{{
-  return exists('b:unite') ? b:unite : s:unite
-endfunction"}}}
 function! s:compare_substitute_patterns(pattern_a, pattern_b)"{{{
   return a:pattern_b.priority - a:pattern_a.priority
 endfunction"}}}
 function! s:compare_marked_candidates(candidate_a, candidate_b)"{{{
   return a:candidate_a.unite__marked_time - a:candidate_b.unite__marked_time
 endfunction"}}}
-function! s:extend_actions(self_func, action_table1, action_table2)"{{{
-  return extend(a:action_table1, s:filter_self_func(a:action_table2, a:self_func), 'keep')
+function! s:extend_actions(self_func, action_table1, action_table2, ...)"{{{
+  let l:filterd_table = s:filter_self_func(a:action_table2, a:self_func)
+
+  if a:0 > 0
+    for l:action in values(l:filterd_table)
+      let l:action.from = a:1
+    endfor
+  endif
+
+  return extend(a:action_table1, l:filterd_table, 'keep')
 endfunction"}}}
-function! s:filter_alias_action(action_table, alias_table)"{{{
+function! s:filter_alias_action(action_table, alias_table, from)"{{{
   for [l:alias_name, l:alias_action] in items(a:alias_table)
     if l:alias_action ==# 'nop'
       if has_key(a:action_table, l:alias_name)
@@ -1108,6 +1324,7 @@ function! s:filter_alias_action(action_table, alias_table)"{{{
       endif
     else
       let a:action_table[l:alias_name] = a:action_table[l:alias_action]
+      let a:action_table[l:alias_name].from = a:from
     endif
   endfor
 endfunction"}}}
@@ -1138,8 +1355,36 @@ function! s:take_action(action_name, candidate, is_parent_action)"{{{
         \ [a:candidate] : a:candidate)
 endfunction"}}}
 function! s:get_loaded_sources(...)"{{{
-  let l:unite = s:get_unite()
+  let l:unite = unite#get_current_unite()
   return a:0 == 0 ? l:unite.sources : get(l:unite.sources, a:1, {})
+endfunction"}}}
+function! s:get_substitute_input(input)"{{{
+  let l:input = a:input
+
+  let l:unite = unite#get_current_unite()
+  if has_key(s:buffer_name_settings, l:unite.buffer_name)
+    let l:substitute_patterns =
+          \ s:buffer_name_settings[l:unite.buffer_name].substitute_patterns
+    if l:unite.input != '' && stridx(l:input, l:unite.input) == 0
+      " Substitute after input.
+      let l:input_save = l:input
+      let l:subst = l:input_save[len(l:unite.input) :]
+      let l:input = l:input_save[: len(l:unite.input)-1]
+    else
+      " Substitute all input.
+      let l:subst = l:input
+      let l:input = ''
+    endif
+
+    for l:pattern in sort(values(l:substitute_patterns),
+          \ 's:compare_substitute_patterns')
+      let l:subst = substitute(l:subst, l:pattern.pattern, l:pattern.subst, 'g')
+    endfor
+
+    let l:input .= l:subst
+  endif
+
+  return l:input
 endfunction"}}}
 "}}}
 
