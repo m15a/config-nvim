@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/30 23:58:15.
+""" Last change: 2011/02/26 23:52:33.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -234,6 +234,13 @@ au FileType scheme inoremap <buffer> ' '
 au FileType scheme inoremap <buffer> , ,
 "au FileType scheme inoremap <buffer> ` `()<LEFT>
 let is_gauche=1
+
+"" Clojure
+" VimClojure
+au FileType clojure let maplocalleader='\'
+au FileType clojure inoremap <buffer> ' '
+let vimclojure#HighlightBuiltins=1
+let vimclojure#ParenRainbow=1
 
 "" Lisp
 au FileType lisp inoremap <buffer> ' '
