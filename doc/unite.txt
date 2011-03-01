@@ -663,7 +663,7 @@ FUNCTIONS					*unite-functions*
 
 CORE						*unite-functions-core*
 
-unite#available_kinds([{kind-name}])		*unite#available_kinds()*
+unite#get_kinds([{kind-name}])			*unite#get_kinds()*
 			Gets the kinds of {kind-name}.  Unless they exist this
 			returns an empty dictionary.  This returns a
 			dictionary which keys are kind names and values are
@@ -671,7 +671,7 @@ unite#available_kinds([{kind-name}])		*unite#available_kinds()*
 
 			Changing the return value is not allowed.
 
-unite#available_sources([{source-name}])	*unite#available_sources()*
+unite#get_sources([{source-name}])		*unite#get_sources()*
 			Gets the source of {source-name}. Unless they exist
 			this returns an empty dictionary.  This returns a
 			dictionary which keys are source names and values are
@@ -805,10 +805,16 @@ unite#custom_alias({kind}, {name}, {action})
 		call unite#custom_alias('file', 'h', 'left')
 <
 unite#custom_matcher({source-name}, {matchers})	*unite#custom_matcher()*
-		TODO
+		Changes the matchers of {source-name} into {matchers}.  You
+		may specify multiple souces with separating "," in
+		{source-name}.  {matchers} is a name of matcher or a list of
+		the names.
 
 unite#custom_sorter({source-name}, {sorters})	*unite#custom_sorter()*
-		TODO
+		Changes the sourters of {source-name} into {sorters}.  You
+		may specify multiple souces with separating "," in
+		{source-name}.  {sorters} is a name of sorter or a list of
+		the names.
 
 unite#take_action({action-name}, {candidate})
 						*unite#take_action()*
@@ -1167,6 +1173,29 @@ BUGS						*unite-bugs*
 
 ==============================================================================
 CHANGELOG					*unite-changelog*
+
+2011-02-25
+- Fixed context bug.
+- Fixed narrowing.
+- Added unite-source-attribute-source__ description.
+- Changed available_xxx API names to get_xxx.
+
+2011-02-24
+- Improved unite#print_error() and unite#print_message().
+- Implemented input_gather_candidates().
+- Fixed narrowing bug.
+- Changed input_gather_candidates() to change_candidates().
+- gather_candidates attribute is optional.
+- Changed file_rec message format.
+- Improved syntax.
+
+2011-02-23
+- Fixed auto_preview.
+- Fixed set search pattern.
+- Deleted highlight off.
+
+2011-02-22
+- Fixed narrowing bugs.
 
 2011-02-21
 - Fixed fnamemodify().

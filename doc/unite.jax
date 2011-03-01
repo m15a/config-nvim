@@ -654,7 +654,7 @@ x		候補を選択している場合は|i_<Plug>(unite_quick_match_default_actio
 
 CORE						*unite-functions-core*
 
-unite#available_kinds([{kind-name}])		*unite#available_kinds()*
+unite#get_kinds([{kind-name}])			*unite#get_kinds()*
 			{kind-name}に指定されたkindを取得する。kindが存在しな
 			い場合は空のディクショナリを返す。{kind-name}を省略し
 			た場合、キーがkind名、値がそれぞれのkindとしたディク
@@ -662,7 +662,7 @@ unite#available_kinds([{kind-name}])		*unite#available_kinds()*
 
 			この戻り値を変更してはいけない。
 
-unite#available_sources([{source-name}])	*unite#available_sources()*
+unite#get_sources([{source-name}])		*unite#get_sources()*
 			{source-name}に指定されたsourceを取得する。sourceが存
 			在しない場合は空のディクショナリを返す。{source-name}
 			を省略した場合、キーがsource名、値がそれぞれのsourceと
@@ -1212,7 +1212,7 @@ name			文字列		(必須)
 			  sourceの名前としては使えない。
 
 						*unite-source-attribute-gather_candidates*
-gather_candidates	関数		(必須)
+gather_candidates	関数		(ほぼ必須)
 			uniteが候補を収集する際に一度だけ呼ばれる。
 			sourceが|unite-source-attribute-is_volatile|の場合は、
 			入力文字列が変化すると呼ばれる。
@@ -1224,10 +1224,23 @@ gather_candidates	関数		(必須)
 			{context}については|unite-notation-{context}|、
 			{candidate}については|unite-notation-{candidate}|を参照
 			せよ。
+			この属性は基本的に必須だが、他の属性を用いて候補を取得
+			できる場合には省略することができる。
 
-						*unite-source-attribute-async-gather_candidates*
+						*unite-source-attribute-change_candidates*
+change_candidates	関数		(任意)
+			uniteが候補を収集する際に、入力文字列が変化すると呼ばれ
+			る。入力文字列から候補を生成するときに便利である。
+			この関数は{args}と{context}を引数に取り、{candidate}の
+			リストを返す。
+			引数や戻り値の仕様は
+			|unite-source-attribute-gather_candidates|と同一であ
+			る。
+
+						*unite-source-attribute-async_gather_candidates*
 async_gather_candidates	関数		(任意)
-			uniteが候補を収集する際に、非同期に呼ばれる。
+			uniteが候補を収集する際に、非同期に呼ばれる。時間のかか
+			る処理を細切れで行う際に便利である。
 			デフォルトのタイミングは、|g:unite_update_time|である。
 			この関数は{args}と{context}を引数に取り、{candidate}の
 			リストを返す。
@@ -1307,9 +1320,15 @@ is_volatile		数値		(任意)
 			閉じられるまで有効である。もっと長い時間キャッシュした
 			い場合はsourceが自前でキャッシュするほかない。
 
+						*unite-source-attribute-description*
 description		文字列		(任意)
 			sourceを説明する文字列。省略すると""になる。
 			|unite-source-source|において表示に使われる。
+
+						*unite-source-attribute-source__*
+source__		不定		(任意)
+			source毎の独自属性。unite側の属性と被らないように、
+			source__プレフィクスを追加しなければならない。
 
 NOTATION					*unite-notation*
 
