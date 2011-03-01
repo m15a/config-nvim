@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/01/25 23:51:47.
+""" Last change: 2011/02/26 23:52:22.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
@@ -19,11 +19,7 @@ set guioptions-=b " hide bottom scrollbar
 set guioptions-=r " hide right scrollbar
 set guioptions-=L " hide left scrollbar
 hi IMLine guifg=Gray14 " color on Japanese input method
-"" Transparency
-function DefaultTransparency()
-  set transparency=10
-endfunction
-call DefaultTransparency()
+set transparency=10
 
 "" Color scheme
 let moria_style='dark'
@@ -31,8 +27,8 @@ colorscheme moria
 
 "" Fonts
 set termencoding=japan
-set gfn=Inconsolata:h16
-set gfw=Hiragino_Maru_Gothic_Pro:h16
+set gfn=Inconsolata:h18
+set gfw=Hiragino_Maru_Gothic_Pro:h18
 
 "" Colorized completion (VIM7)
 hi Pmenu ctermbg=8
