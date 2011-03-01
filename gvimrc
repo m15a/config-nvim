@@ -43,6 +43,3 @@ hi PmenuSbar ctermbg=0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Plugins
 
-"" vimspell
-hi SpellErrors guifg=Red2 gui=underline
-

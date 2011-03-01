@@ -165,12 +165,6 @@ let autodate_format='%Y/%m/%d %H:%M:%S'
 let autodate_keyword_pre='Last change:'
 let autodate_keyword_post='\.'
 
-"" vimspell
-let spell_executable="aspell"
-let vimspell_default_language="english"
-let spell_auto_type="" " \"tex,mail,text,html,sgml,otl,cvs\"
-hi SpellErrors ctermfg=Red cterm=underline term=reverse
-
 "" neocomplcache
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_max_list=10
