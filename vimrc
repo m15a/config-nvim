@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/02/26 23:52:33.
+""" Last change: 2011/03/13 15:15:25.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -180,6 +180,16 @@ let g:neocomplcache_dictionary_filetype_lists={
       \ 'scheme'  : $HOME.'/.gosh_completions',
       \ 'lisp'    : $HOME.'/.sbcl_completions',
       \ }
+let g:neocomplcache_include_paths ={
+      \ 'cpp' : "/opt/local/include/gcc45/c++,/opt/local/include/boost",
+      \ }
+function NeoComplCacheUpdateTags()
+  NeoComplCacheCachingInclude
+  for file in neocomplcache#sources#include_complete#get_include_files(bufnr('%'))
+    execute "setlocal tags+=".neocomplcache#cache#encode_name('include_tags', file)
+  endfor
+endfunction
+command NeoComplCacheUpdateTags call NeoComplCacheUpdateTags()
 " Key maps
 "inoremap <expr><C-g> neocomplcache#undo_completion()
 "inoremap <expr><C-e> neocomplcache#cancel_popup()
@@ -228,6 +238,21 @@ autocmd FileType sql,mysql  setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType html,xhtml setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
+
+"" C++
+" OmniCppComplete
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+" automatically open and close the popup menu / preview window
+"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+"set completeopt=menuone,menu,longest,preview
+au FileType cpp setl path=~/.vim/tags/gcc45-cpp,/opt/local/include/boost
 
 "" Scheme (Gauche)
 au FileType scheme inoremap <buffer> ' '
