@@ -1,7 +1,8 @@
 "=============================================================================
-" FILE: snippets.vim
+" FILE: neocomplcache.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 02 Jan 2011.
+"          manga_osyo (Original)
+" Last Modified: 16 Feb 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -24,32 +25,43 @@
 " }}}
 "=============================================================================
 
-" Only load this indent file when no other was loaded.
-if exists('b:did_indent')
-  finish
-endif
-let b:did_indent = 1
+function! unite#sources#file_include#define()
+  return s:source
+endfunction
 
-if !exists('b:undo_indent')
-    let b:undo_indent = ''
-endif
-
-setlocal indentexpr=SnippetsIndent()
-
-function! SnippetsIndent()"{{{
-    let l:line = getline('.')
-    let l:prev_line = (line('.') == 1)? '' : getline(line('.')-1)
-
-    if l:prev_line =~ '^\s*$'
-        return 0
-    elseif l:prev_line =~ '^\%(include\|snippet\|abbr\|prev_word\|rank\|delete\|alias\|condition\)'
-                \&& l:line !~ '^\s*\%(include\|snippet\|abbr\|prev_word\|rank\|delete\|alias\|condition\)'
-        return &shiftwidth
-    else
-        return match(l:line, '\S')
-    endif
+let s:source = {
+      \ 'name' : 'file_include',
+      \ 'description' : 'candidates from include files',
+      \ 'hooks' : {},
+      \}
+function! s:source.hooks.on_init(args, context)"{{{
+  " From neocomplcache include files.
+  let a:context.source__include_files =
+        \ neocomplcache#sources#include_complete#get_include_files(bufnr('%'))
+  let a:context.source__path = &path
 endfunction"}}}
 
-let b:undo_indent .= '
-    \ | setlocal indentexpr<
-    \'
+function! s:source.gather_candidates(args, context)"{{{
+  let l:files = map(a:context.source__include_files, '{
+        \ "word" : unite#util#substitute_path_separator(v:val),
+        \ "abbr" : unite#util#substitute_path_separator(v:val),
+        \ "source" : "file_include",
+        \ "kind" : "file",
+        \ "action__path" : v:val
+        \ }')
+
+  for word in l:files
+    " Path search.
+    for path in map(split(a:context.source__path, ','),
+          \ 'unite#util#substitute_path_separator(v:val)')
+      if path != '' && neocomplcache#head_match(word.word, path . '/')
+        let l:word.abbr = l:word.abbr[len(path)+1 : ]
+        break
+      endif
+    endfor
+  endfor
+
+  return l:files
+endfunction"}}}
+
+" vim: foldmethod=marker
