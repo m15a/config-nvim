@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/03/13 15:15:25.
+""" Last change: 2011/03/21 15:34:46.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -88,12 +88,6 @@ nnoremap t :tabnew
 "nnoremap <C-p> :tabprevious<CR>
 nmap Q gqap
 inoremap , ,<SPACE>
-"inoremap ; ;<SPACE>
-inoremap { {}<LEFT>
-inoremap [ []<LEFT>
-inoremap ( ()<LEFT>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
