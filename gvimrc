@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/02/26 23:52:22.
+""" Last change: 2011/03/21 16:19:08.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
@@ -21,7 +21,7 @@ set guioptions-=L " hide left scrollbar
 hi IMLine guifg=Gray14 " color on Japanese input method
 set transparency=10
 
-"" Color scheme
+"" Color scheme for use in GVIM
 let moria_style='dark'
 colorscheme moria
 

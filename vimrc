@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/03/21 15:34:46.
+""" Last change: 2011/03/21 16:19:38.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -63,6 +63,9 @@ set autoread
 set laststatus=2
 "set foldmethod=syntax
 set iminsert=0 imsearch=0
+
+"" Color scheme for use in terminal
+colorscheme wombat
 
 "" Status line
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
