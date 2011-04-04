@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/03/21 16:19:38.
+""" Last change: 2011/04/04 12:19:21.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -41,11 +41,12 @@ set smartindent
 set ignorecase
 set smartcase
 set visualbell
-"set textwidth=76
+set textwidth=80
 set wildmenu
 set wildmode=list:longest
 set hlsearch
 set incsearch
+set cursorline
 set wrapscan
 set showmatch
 set showcmd

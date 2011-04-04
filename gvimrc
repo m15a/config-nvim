@@ -1,10 +1,10 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/03/30 07:39:27.
+""" Last change: 2011/03/31 18:22:37.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
 
-winpos 560 868
+winpos 560 30
 set columns=86
 set lines=36
 set linespace=0
