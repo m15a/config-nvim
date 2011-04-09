@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/04/05 14:44:05.
+""" Last change: 2011/04/10 03:15:25.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -68,11 +68,13 @@ set iminsert=0 imsearch=0
 "" Color scheme for use in terminal
 let moria_style='dark'
 colorscheme moria
+hi StatusLine ctermbg=Black ctermfg=LightGray
+hi StatusLineNC ctermbg=Black ctermfg=Gray
 hi CursorLine term=none cterm=none
-hi DiffAdd ctermbg=Blue ctermfg=black
-hi DiffChange ctermbg=Green ctermfg=black
-hi DiffText ctermbg=DarkGreen ctermfg=black
-hi DiffDelete ctermbg=Red ctermfg=black
+hi DiffAdd ctermbg=Blue ctermfg=Black
+hi DiffChange ctermbg=Green ctermfg=Black
+hi DiffText ctermbg=DarkGreen ctermfg=Black
+hi DiffDelete ctermbg=Red ctermfg=Black
 
 "" Status line
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P

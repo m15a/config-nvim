@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/04/05 14:40:37.
+""" Last change: 2011/04/10 03:21:00.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
@@ -24,10 +24,12 @@ set transparency=10
 "" Color scheme for use in GVIM
 let moria_style='dark'
 colorscheme moria
-hi DiffAdd guibg=LightBlue guifg=black
-hi DiffChange guibg=LightGreen guifg=black
-hi DiffText guibg=Green guifg=black
-hi DiffDelete guibg=LightRed guifg=black
+hi StatusLine guifg=#303030 guibg=#F2F2F2
+hi StatusLineNC guifg=#303030 guibg=#A3A3A3
+hi DiffAdd guibg=#BCE3FF guifg=#303030
+hi DiffChange guibg=#CAFFB9 guifg=#303030
+hi DiffText guibg=#99FF6F guifg=#303030
+hi DiffDelete guibg=#FFBFBB guifg=#303030
 
 "" Fonts
 set termencoding=japan
