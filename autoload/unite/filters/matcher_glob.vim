@@ -1,7 +1,7 @@
 "=============================================================================
-" FILE: output.vim
+" FILE: matcher_glob.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 22 Mar 2011.
+" Last Modified: 10 Mar 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -24,33 +24,46 @@
 " }}}
 "=============================================================================
 
-" Variables  "{{{
-"}}}
-
-function! unite#sources#output#define()"{{{
-  return s:source
+function! unite#filters#matcher_glob#define()"{{{
+  return s:matcher
 endfunction"}}}
 
-let s:source = {
-      \ 'name' : 'output',
-      \ 'description' : 'candidates from Vim command output',
-      \ 'default_action' : { '*' : 'yank' },
-      \ }
+let s:matcher = {
+      \ 'name' : 'matcher_glob',
+      \ 'description' : 'glob matcher',
+      \}
 
-function! s:source.gather_candidates(args, context)"{{{
-  let l:command = get(a:args, 0)
-  if l:command == ''
-    let l:command = input('Please input Vim command: ', '', 'command')
+function! s:matcher.filter(candidates, context)"{{{
+  if a:context.input == ''
+    return a:candidates
   endif
 
-  redir => l:result
-  silent execute l:command
-  redir END
+  let l:candidates = copy(a:candidates)
 
-  return map(split(l:result, '\r\n\|\n'), '{
-        \ "word" : v:val,
-        \ "kind" : "word",
-        \ }')
+  for l:input in split(a:context.input, '\\\@<! ')
+    let l:input = substitute(l:input, '\\ ', ' ', 'g')
+
+    if l:input =~ '^!'
+      " Exclusion.
+      let l:input = unite#escape_match(l:input)
+      call filter(l:candidates, 'v:val.word !~ ' . string(l:input[1:]))
+    elseif l:input =~ '\\\@<!\*'
+      " Wildcard.
+      let l:input = unite#escape_match(l:input)
+      call filter(l:candidates, 'v:val.word =~ ' . string(l:input))
+    else
+      let l:input = substitute(l:input, '\\\(.\)', '\1', 'g')
+      if &ignorecase
+        let l:expr = printf('stridx(tolower(v:val.word), %s) != -1', string(tolower(l:input)))
+      else
+        let l:expr = printf('stridx(v:val.word, %s) != -1', string(l:input))
+      endif
+
+      let l:candidates = filter(l:candidates, l:expr)
+    endif
+  endfor
+
+  return l:candidates
 endfunction"}}}
 
 " vim: foldmethod=marker

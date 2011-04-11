@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: file_mru.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 01 Feb 2011.
+" Last Modified: 31 Mar 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -33,7 +33,7 @@ let s:mru_files = []
 
 let s:mru_file_mtime = 0  " the last modified time of the mru file.
 
-call unite#util#set_default('g:unite_source_file_mru_time_format', '(%c)')
+call unite#util#set_default('g:unite_source_file_mru_time_format', '(%c) ')
 call unite#util#set_default('g:unite_source_file_mru_filename_format', ':~:.')
 call unite#util#set_default('g:unite_source_file_mru_file',  g:unite_data_directory . '/.file_mru')
 call unite#util#set_default('g:unite_source_file_mru_limit', 100)
@@ -69,22 +69,27 @@ let s:source = {
       \ 'name' : 'file_mru',
       \ 'description' : 'candidates from file MRU list',
       \ 'max_candidates' : 30,
+      \ 'hooks' : {},
       \ 'action_table' : {},
+      \ 'syntax' : 'uniteSource__FileMru',
       \}
+
+function! s:source.hooks.on_syntax(args, context)"{{{
+  syntax match uniteSource__FileMru_Time /(.*)/ contained containedin=uniteSource__FileMru
+  highlight default link uniteSource__FileMru_Time Statement
+endfunction"}}}
+function! s:source.hooks.on_post_filter(args, context)"{{{
+  for l:mru in a:context.candidates
+    let l:path = (g:unite_source_file_mru_filename_format == '') ? '' :
+          \ unite#util#substitute_path_separator(fnamemodify(l:mru.action__path, g:unite_source_file_mru_filename_format))
+    let l:mru.abbr = (g:unite_source_file_mru_filename_format == '' ? '' :
+          \ strftime(g:unite_source_file_mru_time_format, l:mru.source__time)) .
+          \ (l:path == '' ? l:mru.action__path : l:path)
+  endfor
+endfunction"}}}
 
 function! s:source.gather_candidates(args, context)"{{{
   call s:load()
-
-  " Create abbr.
-  for l:mru in s:mru_files
-    let l:path = (g:unite_source_file_mru_filename_format == '') ? '' :
-          \ unite#util#substitute_path_separator(fnamemodify(l:mru.action__path, g:unite_source_file_mru_filename_format))
-    if l:path == ''
-      let l:path = l:mru.action__path
-    endif
-
-    let l:mru.abbr = strftime(g:unite_source_file_mru_time_format, l:mru.source__time) . l:path
-  endfor
 
   return s:mru_files
 endfunction"}}}
@@ -141,7 +146,6 @@ function! s:convert2dictionary(list)  "{{{
   let l:path = unite#util#substitute_path_separator(a:list[0])
   return {
         \ 'word' : l:path,
-        \ 'source' : 'file_mru',
         \ 'kind' : (isdirectory(l:path) ? 'directory' : 'file'),
         \ 'source__time' : a:list[1],
         \ 'action__path' : l:path,

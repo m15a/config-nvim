@@ -1,7 +1,7 @@
 "=============================================================================
-" FILE: output.vim
+" FILE: sorter_default.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 22 Mar 2011.
+" Last Modified: 16 Mar 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -24,33 +24,34 @@
 " }}}
 "=============================================================================
 
-" Variables  "{{{
-"}}}
-
-function! unite#sources#output#define()"{{{
-  return s:source
+function! unite#filters#sorter_default#define()"{{{
+  return s:sorter
 endfunction"}}}
 
-let s:source = {
-      \ 'name' : 'output',
-      \ 'description' : 'candidates from Vim command output',
-      \ 'default_action' : { '*' : 'yank' },
-      \ }
+let s:sorter = {
+      \ 'name' : 'sorter_default',
+      \ 'description' : 'default sorter',
+      \}
 
-function! s:source.gather_candidates(args, context)"{{{
-  let l:command = get(a:args, 0)
-  if l:command == ''
-    let l:command = input('Please input Vim command: ', '', 'command')
-  endif
+function! s:sorter.filter(candidates, context)"{{{
+  let l:candidates = a:candidates
+  for l:default in s:default_sorters
+    let l:filter = unite#get_filters(l:default)
+    if !empty(l:filter)
+      let l:candidates = l:filter.filter(l:candidates, a:context)
+    endif
+  endfor
 
-  redir => l:result
-  silent execute l:command
-  redir END
+  return l:candidates
+endfunction"}}}
 
-  return map(split(l:result, '\r\n\|\n'), '{
-        \ "word" : v:val,
-        \ "kind" : "word",
-        \ }')
+
+let s:default_sorters = ['sorter_nothing']
+function! unite#filters#sorter_default#get()"{{{
+  return s:default_sorters
+endfunction"}}}
+function! unite#filters#sorter_default#use(sorters)"{{{
+  let s:default_sorters = a:sorters
 endfunction"}}}
 
 " vim: foldmethod=marker

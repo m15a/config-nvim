@@ -1,7 +1,7 @@
 "=============================================================================
-" FILE: output.vim
+" FILE: sorter_word.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 22 Mar 2011.
+" Last Modified: 31 Mar 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -24,33 +24,17 @@
 " }}}
 "=============================================================================
 
-" Variables  "{{{
-"}}}
-
-function! unite#sources#output#define()"{{{
-  return s:source
+function! unite#filters#sorter_word#define()"{{{
+  return s:sorter
 endfunction"}}}
 
-let s:source = {
-      \ 'name' : 'output',
-      \ 'description' : 'candidates from Vim command output',
-      \ 'default_action' : { '*' : 'yank' },
-      \ }
+let s:sorter = {
+      \ 'name' : 'sorter_word',
+      \ 'description' : 'sort by word order',
+      \}
 
-function! s:source.gather_candidates(args, context)"{{{
-  let l:command = get(a:args, 0)
-  if l:command == ''
-    let l:command = input('Please input Vim command: ', '', 'command')
-  endif
-
-  redir => l:result
-  silent execute l:command
-  redir END
-
-  return map(split(l:result, '\r\n\|\n'), '{
-        \ "word" : v:val,
-        \ "kind" : "word",
-        \ }')
+function! s:sorter.filter(candidates, context)"{{{
+  return unite#util#sort_by(a:candidates, 'v:val.word')
 endfunction"}}}
 
 " vim: foldmethod=marker

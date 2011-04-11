@@ -1,6 +1,6 @@
 *unite.txt*	Unite all sources
 
-Version: 1.1
+Version: 1.5
 Author : Shougo <Shougo.Matsu@gmail.com>
 Documentation Author: ujihisa <ujihisa at gmail com>
 License: MIT license  {{{
@@ -33,17 +33,15 @@ Interface		|unite-interface|
   Variables		  |unite-variables|
     Sources variables	    |unite-sources-variables|
   Key mappings		  |unite-key-mappings|
-  Functions		  |unite-functins|
+  Functions		  |unite-functions|
   Sources		  |unite-sources|
   Kinds			  |unite-kinds|
   Actions		  |unite-actions|
-  Matchers		  |unite-matchers|
-  Sorters		  |unite-sorters|
+  Filters		  |unite-filters|
 Configulation Examples	|unite-examples|
 Create source		|unite-create-source|
 Create kind		|unite-create-kind|
-Create matcher		|unite-create-matcher|
-Create sorter		|unite-create-sorter|
+Create filter		|unite-create-filter|
 User defined source	|unite-user-sources|
 ToDo			|unite-todo|
 Bugs			|unite-bugs|
@@ -345,7 +343,7 @@ g:unite_abbr_highlight				*g:unite_abbr_highlight*
 		The default value is "Pmenu".
 
 g:unite_quick_match_table			*g:unite_quick_match_table*
-		The table of completion candidates of quick mtch list,
+		The table of completion candidates of quick match list,
 		corresponding the narrowing text.
 
 		The default value is complex; so see plugin/unite.vim.
@@ -360,7 +358,7 @@ g:unite_data_directory				*g:unite_data_directory*
 		Default value is expand('~/.unite'); the absolute path of it.
 
 g:unite_no_default_keymappings			*g:unite_no_default_keymappings*
-		If it's 1, unite doesn't map any defauilt key mappings.  You
+		If it's 1, unite doesn't map any default key mappings.  You
 		shouldn't enable this option without any strong reasons.
 
 		This variable doesn't exist unless you define explicitly.
@@ -380,7 +378,7 @@ g:unite_source_file_mru_time_format		*g:unite_source_file_mru_time_format*
 		Specifies the output format of the last access time of
 		|unite-source-file_mru|.  The format is same to |strftime()|.
 
-		Default value is "(%c)".
+		Default value is "(%c) ".
 
 g:unite_source_file_mru_filename_format		*g:unite_source_file_mru_filename_format*
 		Specifies the output format of the filename of
@@ -509,7 +507,7 @@ Normal mode mappings.
 		Changes the order of source reversely.
 
 <Plug>(unite_print_candidate)			*<Plug>(unite_print_candidate)*
-		Shows the target of the action of the selected candiate.  For
+		Shows the target of the action of the selected candidate.  For
 		example this shows the content of the candidate when the
 		kind of the candidate you selected is |word|.
 
@@ -754,8 +752,10 @@ unite#set_substitute_pattern({buffer-name}, {pattern}, {subst} [, {priority}])
 		which buffer_name is files, it adds a wildcard in order to
 		match ~ as $HOME and to match partially /.
 >
-		call unite#set_substitute_pattern('files', '^\~', substitute(substitute($HOME, '\\', '/', 'g'), ' ', '\\\\ ', 'g'), -100)
-		call unite#set_substitute_pattern('files', '[^~.*]\zs/', '*/*', 100)
+		call unite#set_substitute_pattern('files', '^\~',
+		\ substitute(unite#util#substitute_path_separator($HOME), ' ', '\\\\ ', 'g'), -100)
+		call unite#set_substitute_pattern('files', '[^~.*]\ze/', '\0*', 100)
+		call unite#set_substitute_pattern('files', '/\ze[^~.*]', '/*', 100)
 <
 unite#get_substitute_pattern({buffer-name})
 						*unite#get_substitute_pattern()*
@@ -804,16 +804,10 @@ unite#custom_alias({kind}, {name}, {action})
 >
 		call unite#custom_alias('file', 'h', 'left')
 <
-unite#custom_matcher({source-name}, {matchers})	*unite#custom_matcher()*
-		Changes the matchers of {source-name} into {matchers}.  You
-		may specify multiple souces with separating "," in
-		{source-name}.  {matchers} is a name of matcher or a list of
-		the names.
-
-unite#custom_sorter({source-name}, {sorters})	*unite#custom_sorter()*
-		Changes the sourters of {source-name} into {sorters}.  You
-		may specify multiple souces with separating "," in
-		{source-name}.  {sorters} is a name of sorter or a list of
+unite#custom_filters({source-name}, {filters})	*unite#custom_filters()*
+		Changes the filters of {source-name} into {filters}.  You
+		may specify multiple sources with separating "," in
+		{source-name}.  {filters} is a name of filter or a list of
 		the names.
 
 unite#take_action({action-name}, {candidate})
@@ -826,7 +820,7 @@ unite#take_action({action-name}, {candidate})
 unite#take_parents_action({action-name}, {candidate}, {extend-candidate})
 						*unite#take_parents_action()*
 		Same to |unite#take_action()| but searches the parents' action
-		table with combining {extend-candiate} on {candidate}.  This
+		table with combining {extend-candidate} on {candidate}.  This
 		is handy for reusing parents' actions.
 
 unite#define_source({source})			*unite#define_source()*
@@ -839,14 +833,9 @@ unite#define_kind({kind})			*unite#define_kind()*
 		about the detail of kind.  If a kind which name is same
 		exists, that will be overwritten.
 
-unite#define_matcher({matcher})			*unite#define_matcher()*
-		Adds {matcher} dynamically.  See also |unite-create-matcher|
-		about the detail of matcher.  If a matcher which name is same
-		exists, that will be overwritten.
-
-unite#define_sorter({sorter})			*unite#define_sorter()*
-		Adds {sorter} dynamically.  See also |unite-create-sorter|
-		about the detail of sorter.  If a sorter which name is same
+unite#define_filter({filter})			*unite#define_filter()*
+		Adds {filter} dynamically.  See also |unite-create-filter|
+		about the detail of filter.  If a filter which name is same
 		exists, that will be overwritten.
 
 unite#undef_source({name})			*unite#undef_source()*
@@ -859,14 +848,9 @@ unite#undef_kind({name})			*unite#undef_kind()*
 		|unite#define_kind()|.  If such a kind doesn't exist, this
 		function doesn't do anything.
 
-unite#undef_matcher({name})			*unite#undef_matcher()*
-		Removes the matcher which name is {name} that was added by
-		|unite#define_matcher()|.  If such a matcher doesn't exist,
-		this function doesn't do anything.
-
-unite#undef_sorter({name})			*unite#undef_sorter()*
-		Removes the sorter which name is {name} that was added by
-		|unite#define_sorter()|.  If such a sorter doesn't exist,
+unite#undef_filter({name})			*unite#undef_filter()*
+		Removes the filter which name is {name} that was added by
+		|unite#define_filter()|.  If such a filter doesn't exist,
 		this function doesn't do anything.
 
 ==============================================================================
@@ -886,7 +870,9 @@ directory_mru	Nominates directories you used recently as candidates,
 						*unite-source-file_rec*
 file_rec	Nominates all directory or file names of input narrowing text
 		under the current directly as candidates.  This may get Vim
-		frozen when there are too many candidates.
+		frozen when there are too many candidates. The candidates is
+		cached by file_rec source. If you clear cache, use
+		|<Plug>(unite_redraw)| keymapping.
 
 		Source arguments:
 		1. the narrowing text.
@@ -923,7 +909,7 @@ source		Nominates Unite source names themselves as candidates.
 		current Unite buffer context.
 
 						*unite-source-window*
-window		Nominates opend windows as candidates, ordering by time
+window		Nominates opened windows as candidates, ordering by time
 		series.
 
 		Source arguments:
@@ -956,8 +942,8 @@ cdable		An interface that can cd.
 				The target directory
 
 						*unite-kind-file*
-file		An inteface for files.  This kind is inheriting cdable and
-		openable, so this requries kinds that they require.
+file		An interface for files.  This kind is inheriting cdable and
+		openable, so this requires kinds that they require.
 
 			action__path		(String)	(Required)
 				The path of the target directory
@@ -979,7 +965,7 @@ tab		An interface for tabs.  If you can use |gettabvar()|, since this
 
 						*unite-kind-directory*
 directory	An interface for directories.  This kind is inheriting file,
-		this requires keys it requries.
+		this requires keys it requires.
 
 						*unite-kind-word*
 word		A String that you can insert
@@ -1055,15 +1041,125 @@ completion	An interface for completion
 ==============================================================================
 ACTIONS						*unite-actions*
 
-TODO
+Actions of each kinds
+
+common					*unite-action-common*
+Defines the common interface for all kinds.  This uses condidate.word
+internally.
+	nop		Do nothing
+	yank		Yank the candidate text
+	yank_escape	Yank the escaped candidate text
+	ex		Input the escaped candidate text into command line
+	insert		Input the candidate text into the current buffer
+
+openable					*unite-action-openable*
+Defines an interface for files you can open.  This requires an inheriting kind
+to define open action.
+	tabopen		Open the file in a new tab
+	split		Open the file, splitting horizontally
+	vsplit		Open the file, splitting vertically
+	left		Open the file in the left, splitting vertically
+	right		Open the file in the right, splitting vertically
+	above		Open the file in the top, splitting horizontally
+	below		Open the file in the bottom, splitting horizontally
+
+cdable					*unite-action-cdable*
+Defines an interface for files you can move to with cd command.
+	cd		Change the current directory.
+	lcd		Change the current directory of the current window.
+	project_cd	Look for the project directory, and changes the
+			current directory there.
+	narrow		Narrow down candidates by the directory name
+	vimshell	Run |vimshell| on the directory.  This is available
+			only when you already installed |vimshell|.
+	tabvimshell	Run |:VimShellTab| on the directory.  This is
+			available only when you already installed |vimshell|.
+	vimfiler	Run |vimfiler| on the directory.  This is available
+			only when you already installed |vimfiler|.
+	tabvimfiler	Run |:VimFilerTab| on the directory.  This is
+			available only when you already installed |vimfiler|.
+	rec		Run |unite-source-file_rec| on the directory.
+
+file						*unite-action-file*
+Opens a file into a new buffer.  This kind extends |unite-action-openable| and
+|unite-action-cdable|.
+	open		Open the file
+	preview		Open the file into preview window
+	bookmark	Add the file into your bookmark
+	mkdir		Make directory. If exists file, this action is invalid.
+
+buffer						*unite-action-buffer*
+This kind extends |unite-action-file|.
+	delete		|:bdelete| the buffer
+	fdelete		|:bdelete!| the buffer
+	wipeout		|:bwipeout| the buffer
+	unload		|:bunload| the buffer
+	bookmark	Add the candidate into your bookmark
+
+tab						*unite-action-tab*
+This kind extends actions of |unite-action-cdable| only when |gettabvar()|
+exists.
+	open		Show the tab
+	delete		Close the tab
+	
+	The following action requires |gettabvar()| and t:cwd.
+	rename		Change the title of the tab
+
+directory					*unite-action-directory*
+This kind extends actions of |unite-action-file|.  This doesn't have any
+additional actions.  You may want to use this to change the default_action
+when the target is a directory.
+
+word						*unite-action-word*
+This kind doesn't have any additional actions.  You may want to use this to
+change the default_action when the target is a word.
+
+jump_list					*unite-action-jump_list*
+This kind extends actions of |unite-action-openable|.  Let me explain about
+the additional actions defined in this.
+	open		Jump to the location of the candidate
+	preview		Preview around the location of the candidate
+
+command						*unite-action-command*
+	execute		Execute the command
+	edit		Input the command into command line
+
+window						*unite-action-window*
+This kind extends ctions of |unite-action-cdable|.
+	open		Move to the window
+	delete		Close the window
+	only		Close all windows besides the window
+
+completion					*unite-action-completion*
+	insert		Insert the candidate
+	preview		Show the information of the candidate
+
+Actions of each sources
+
+file_mru					*unite-action-file_mru*
+	delete		Delete from most recent used file candidates
+
+directory_mru					*unite-action-directory_mru*
+	delete		Delete from most recent used directory candidates
+
+bookmark					*unite-action-bookmark*
+	delete		Delete from bookmark file candidates
+
+						*unite-default-action*
+Default actions
+
+kind		action
+{kind}		{action}
+----------	----------
+file		open
+buffer		open
+tab		open
+directory	narrow
+word		insert
+jump_list	open
 
 ==============================================================================
-MATCHERS					*unite-matchers*
-
-TODO
-
-==============================================================================
-SORTERS						*unite-sorters*
+FILTERS						*unite-filters*
 
 TODO
 
@@ -1078,7 +1174,7 @@ SOURCE ATTRIBUTES				*unite-source-attributes*
 TODO
 
 						*unite-source-attribute-name*
-name			string		(requried)
+name			string		(required)
 			The name of a source. It must consist of the following
 			characters:
 			- a-z
@@ -1113,12 +1209,7 @@ CREATE KIND					*unite-create-kind*
 TODO
 
 ==============================================================================
-CREATE SORTER					*unite-create-sorter*
-
-TODO
-
-==============================================================================
-CREATE MATCHER					*unite-create-matcher*
+CREATE FILTER					*unite-create-filter*
 
 TODO
 
@@ -1173,6 +1264,92 @@ BUGS						*unite-bugs*
 
 ==============================================================================
 CHANGELOG					*unite-changelog*
+
+2011-04-09
+- Improved file_rec source.
+- Caching file_rec source.
+- Fixed narrowing action.
+
+2011-04-07
+- Fixed hlsearch bug.
+- Fixed sidescrolloff problem.
+- Added is_async context flag.
+
+2011-04-04
+- Fixed quick match error.
+- Improved default substitute pattern.
+
+2011-04-03
+- Improved unite action.
+
+2011-04-02
+- Fixed :UniteResume bug.
+- Improved unite action.
+- Fixed choose action.
+
+2011-04-01
+- Fixed get action table bug.
+- Fixed priority sort bug.
+- Fixed narrowing.
+- Improved file source.
+- Implemented auto mkdir().
+- Implemented mkdir action.
+
+2011-03-31
+- Improved sort.
+- Optimized initialization.
+- Improved truncate.
+- Added post_filter hook.
+- Improved file_mru source.
+- Improved directory_mru source.
+- Fixed choose_action documentation.
+- Add '..' directory in unite source.
+
+2011-03-29
+- Implemented unite action source.
+- Changed unite#loaded_source_names_with_args().
+- Added sorter_word.
+- Improved redraw.
+- Fixed highlight settings.
+
+2011-03-25
+- Implemented vimfiler and tabvimfiler actions.
+- Improved documentation.
+- Fixed highlight.
+- Changed on_close timing.
+
+2011-03-23
+- Fixed kind completion bug.
+
+2011-03-22
+- Fixed unite#custom_filters() bug.
+- Ommitable candidates source name.
+
+2011-03-17
+- Implemented unite#clear_message().
+- Added README.
+- Implemented source highlight.
+
+2011-03-16
+- Added matcher_default, sorter_default, converter_default.
+
+2011-03-13
+- Improved delete buffer action.
+- Fixed unite#custom_filters() error.
+- Fixed help typo.
+- Renamed unite#custom_filter() to unite#custom_filters().
+- Added filter help.
+- Added unite#set_buffer_name_option() help.
+
+2011-03-10
+- Implemented filters.
+- Refactored buffer name options.
+- Implemented buffer name filters.
+- Fixed version number.
+
+2011-03-02
+- Improved file_rec path.
+- Improved buffer abbr.
 
 2011-02-25
 - Fixed context bug.

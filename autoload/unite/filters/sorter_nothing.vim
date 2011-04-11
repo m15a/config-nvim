@@ -1,7 +1,7 @@
 "=============================================================================
-" FILE: output.vim
+" FILE: sorter_nothing.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 22 Mar 2011.
+" Last Modified: 10 Mar 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -24,33 +24,18 @@
 " }}}
 "=============================================================================
 
-" Variables  "{{{
-"}}}
-
-function! unite#sources#output#define()"{{{
-  return s:source
+function! unite#filters#sorter_nothing#define()"{{{
+  return s:sorter
 endfunction"}}}
 
-let s:source = {
-      \ 'name' : 'output',
-      \ 'description' : 'candidates from Vim command output',
-      \ 'default_action' : { '*' : 'yank' },
-      \ }
+let s:sorter = {
+      \ 'name' : 'sorter_nothing',
+      \ 'description' : 'nothing sorter',
+      \}
 
-function! s:source.gather_candidates(args, context)"{{{
-  let l:command = get(a:args, 0)
-  if l:command == ''
-    let l:command = input('Please input Vim command: ', '', 'command')
-  endif
-
-  redir => l:result
-  silent execute l:command
-  redir END
-
-  return map(split(l:result, '\r\n\|\n'), '{
-        \ "word" : v:val,
-        \ "kind" : "word",
-        \ }')
+function! s:sorter.filter(candidates, context)"{{{
+  " Nothing.
+  return a:candidates
 endfunction"}}}
 
 " vim: foldmethod=marker

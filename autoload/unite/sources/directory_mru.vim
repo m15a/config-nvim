@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: directory_mru.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 19 Dec 2010.
+" Last Modified: 31 Mar 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -33,7 +33,7 @@ let s:mru_dirs = []
 
 let s:mru_file_mtime = 0  " the last modified time of the mru file.
 
-call unite#util#set_default('g:unite_source_directory_mru_time_format', '(%c)')
+call unite#util#set_default('g:unite_source_directory_mru_time_format', '(%c) ')
 call unite#util#set_default('g:unite_source_directory_mru_file',  g:unite_data_directory . '/.directory_mru')
 call unite#util#set_default('g:unite_source_directory_mru_limit', 100)
 call unite#util#set_default('g:unite_source_directory_mru_ignore_pattern',
@@ -79,13 +79,17 @@ let s:source = {
       \ 'name' : 'directory_mru',
       \ 'description' : 'candidates from directory MRU list',
       \ 'max_candidates' : 30,
+      \ 'hooks' : {},
       \ 'action_table' : {},
+      \ 'syntax' : 'uniteSource__DirectoryMru',
       \}
 
-function! s:source.gather_candidates(args, context)"{{{
-  call s:load()
-
-  for l:mru in s:mru_dirs
+function! s:source.hooks.on_syntax(args, context)"{{{
+  syntax match uniteSource__DirectoryMru_Time /(.*)/ contained containedin=uniteSource__DirectoryMru
+  highlight default link uniteSource__DirectoryMru_Time Statement
+endfunction"}}}
+function! s:source.hooks.on_post_filter(args, context)"{{{
+  for l:mru in a:context.candidates
     let l:relative_path = unite#util#substitute_path_separator(fnamemodify(l:mru.action__path, ':~:.'))
     if l:relative_path == ''
       let l:relative_path = l:mru.action__path
@@ -97,7 +101,10 @@ function! s:source.gather_candidates(args, context)"{{{
     let l:mru.abbr = strftime(g:unite_source_directory_mru_time_format, l:mru.source__time)
           \ . l:relative_path
   endfor
+endfunction"}}}
 
+function! s:source.gather_candidates(args, context)"{{{
+  call s:load()
   return s:mru_dirs
 endfunction"}}}
 
@@ -149,7 +156,6 @@ endfunction"}}}
 function! s:convert2dictionary(list)  "{{{
   return {
         \ 'word' : unite#util#substitute_path_separator(a:list[0]),
-        \ 'source' : 'directory_mru',
         \ 'kind' : 'directory',
         \ 'source__time' : a:list[1],
         \ 'action__path' : unite#util#substitute_path_separator(a:list[0]),
