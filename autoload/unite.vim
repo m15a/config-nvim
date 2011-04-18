@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: unite.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 07 Apr 2011.
+" Last Modified: 17 Apr 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -952,22 +952,28 @@ function! s:initialize_buffer_name_options(buffer_name)"{{{
   if !has_key(l:setting, 'filters')
     let l:setting.filters = []
   endif
+  if !has_key(l:setting, 'ignorecase')
+    let l:setting.ignorecase = &ignorecase
+  endif
+  if !has_key(l:setting, 'smartcase')
+    let l:setting.smartcase = &smartcase
+  endif
 endfunction"}}}
 
 function! s:recache_candidates(input, is_force)"{{{
+  let l:unite = unite#get_current_unite()
+
   " Save options.
   let l:ignorecase_save = &ignorecase
 
-  if g:unite_enable_smart_case && a:input =~ '\u'
+  if unite#get_buffer_name_option(l:unite.buffer_name, 'smartcase') && a:input =~ '\u'
     let &ignorecase = 0
   else
-    let &ignorecase = g:unite_enable_ignore_case
+    let &ignorecase = unite#get_buffer_name_option(l:unite.buffer_name, 'ignorecase')
   endif
 
   let l:input = s:get_substitute_input(a:input)
   let l:input_len = unite#util#strchars(l:input)
-  let l:unite = unite#get_current_unite()
-
 
   let l:unite.context.input = l:input
   let l:unite.context.is_force = a:is_force
@@ -1036,6 +1042,9 @@ function! s:recache_candidates(input, is_force)"{{{
       endif
       if !has_key(l:candidate, 'source')
         let l:candidate.source = l:source.name
+      endif
+      if !has_key(l:candidate, 'is_dummy')
+        let l:candidate.is_dummy = 0
       endif
 
       " Initialize.
@@ -1289,6 +1298,10 @@ function! s:redraw(is_force) "{{{
     return
   endif
 
+  if a:is_force
+    call unite#clear_message()
+  endif
+
   let l:unite = unite#get_current_unite()
   let l:input = unite#get_input()
   if !a:is_force && l:input ==# l:unite.last_input
@@ -1369,9 +1382,6 @@ function! s:on_cursor_moved()  "{{{
     endif
 
     call unite#mappings#do_action('preview')
-    if line('.') != l:prompt_linenr
-      normal! zz
-    endif
   endif
 endfunction"}}}
 
@@ -1425,7 +1435,8 @@ function! s:take_action(action_name, candidate, is_parent_action)"{{{
         \ : a:action_name
 
   if !has_key(l:action_table, a:action_name)
-    throw 'no such action ' . a:action_name
+    " throw 'no such action ' . a:action_name
+    return
   endif
 
   let l:action = l:action_table[a:action_name]
