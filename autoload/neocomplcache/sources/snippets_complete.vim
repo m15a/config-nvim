@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: snippets_complete.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 29 Mar 2011.
+" Last Modified: 17 Apr 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -258,9 +258,9 @@ function! s:set_snippet_pattern(dict)"{{{
         \ printf(l:abbr_pattern, l:abbr, l:abbr[-8:]) : l:abbr
 
   let l:dict = {
-        \'word' : a:dict.name, 'snip' : l:word, 'abbr' : a:dict.name, 
-        \'info' : l:word,
-        \'menu' : l:menu_pattern . l:abbr, 'dup' : 1
+        \ 'word' : a:dict.name, 'snip' : l:word, 'abbr' : a:dict.name,
+        \ 'description' : l:word,
+        \ 'menu' : l:menu_pattern . l:abbr, 'dup' : 1
         \}
   if has_key(a:dict, 'prev_word')
     let l:dict.prev_word = a:dict.prev_word
@@ -405,10 +405,6 @@ function! s:get_cursor_snippet(snippets, cur_text)"{{{
 endfunction"}}}
 function! s:snippets_force_expand(cur_text, col)"{{{
   let l:cur_word = s:get_cursor_snippet(neocomplcache#sources#snippets_complete#get_snippets(), a:cur_text)
-  if l:cur_word == ''
-    " Not found.
-    return
-  endif
 
   call neocomplcache#sources#snippets_complete#expand(a:cur_text, a:col, l:cur_word)
 endfunction"}}}
@@ -431,6 +427,10 @@ function! s:snippets_jump_or_expand(cur_text, col)"{{{
   endif
 endfunction"}}}
 function! neocomplcache#sources#snippets_complete#expand(cur_text, col, trigger_name)"{{{
+  if a:trigger_name == ''
+    return
+  endif
+
   let l:snippets = neocomplcache#sources#snippets_complete#get_snippets()
   let l:snippet = l:snippets[a:trigger_name]
   let l:cur_text = a:cur_text[: -1-len(a:trigger_name)]

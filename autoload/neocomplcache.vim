@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: neocomplcache.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 04 Apr 2011.
+" Last Modified: 16 Apr 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -399,7 +399,7 @@ function! neocomplcache#enable() "{{{
   let &l:completefunc = 'neocomplcache#manual_complete'
 
   " Set options.
-  set completeopt-=menu,preview
+  set completeopt-=menu
   set completeopt+=menuone
 
   " For auto complete keymappings.
@@ -544,7 +544,7 @@ function! neocomplcache#do_auto_complete(is_moved)"{{{
   endif
 
   " Set options.
-  set completeopt-=menu,preview,longest
+  set completeopt-=menu,longest
   set completeopt+=menuone
 
   " Get cursor word.
@@ -839,10 +839,7 @@ endfunction"}}}
 function! neocomplcache#compare_rank(i1, i2)
   let l:diff = a:i2.rank - a:i1.rank
   if !l:diff
-    let l:diff = len(a:i1.word) - len(a:i2.word)
-    if !l:diff
-      let l:diff = (a:i1.word ># a:i2.word) ? 1 : -1
-    endif
+    let l:diff = (a:i1.word ># a:i2.word) ? 1 : -1
   endif
   return l:diff
 endfunction"}}}

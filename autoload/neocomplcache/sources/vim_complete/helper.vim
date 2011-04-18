@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: helper.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 04 Feb 2011.
+" Last Modified: 17 Apr 2011.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -184,7 +184,7 @@ function! neocomplcache#sources#vim_complete#helper#command(cur_text, cur_keywor
     let s:internal_candidates_list.command_prototypes = s:caching_prototype_from_dict('command_prototypes')
     for l:command in s:internal_candidates_list.commands
       if has_key(s:internal_candidates_list.command_prototypes, l:command.word)
-        let l:command.info = l:command.word . s:internal_candidates_list.command_prototypes[l:command.word]
+        let l:command.description = l:command.word . s:internal_candidates_list.command_prototypes[l:command.word]
       endif
     endfor
   endif
@@ -300,7 +300,7 @@ function! neocomplcache#sources#vim_complete#helper#function(cur_text, cur_keywo
 
     for l:function in values(s:internal_candidates_list.functions)
       if has_key(s:internal_candidates_list.function_prototypes, l:function.word)
-        let l:function.info = l:function.word . s:internal_candidates_list.function_prototypes[l:function.word]
+        let l:function.description = l:function.word . s:internal_candidates_list.function_prototypes[l:function.word]
       endif
     endfor
   endif
@@ -691,7 +691,7 @@ function! s:get_cmdlist()"{{{
 
     call add(l:keyword_list, {
           \ 'word' : l:word, 'abbr' : l:word . l:prototype,
-          \ 'info' : l:word . l:prototype, 'menu' : l:menu_pattern, 'kind' : 'c'
+          \ 'description' : l:word . l:prototype, 'menu' : l:menu_pattern, 'kind' : 'c'
           \})
   endfor
   let s:global_candidates_list.command_prototypes = l:command_prototypes
@@ -742,7 +742,7 @@ function! s:get_functionlist()"{{{
     if l:word != ''
       let l:keyword_dict[l:word] = {
             \ 'word' : l:word, 'abbr' : l:line,
-            \ 'info' : l:line, 'menu' : l:menu_pattern,
+            \ 'description' : l:line, 'menu' : l:menu_pattern,
             \}
 
       let l:function_prototypes[l:word] = l:orig_line[len(l:word):]
