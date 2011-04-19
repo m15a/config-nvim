@@ -13,6 +13,10 @@ function! vimclojure#WarnDeprecated(old, new)
 endfunction
 
 " Configuration
+if !exists("g:vimclojure#FuzzyIndent")
+	let vimclojure#FuzzyIndent = 0
+endif
+
 if !exists("g:vimclojure#HighlightBuiltins")
 	if exists("g:clj_highlight_builtins")
 		call vimclojure#WarnDeprecated("g:clj_highlight_builtins",
@@ -57,6 +61,14 @@ if !exists("g:vimclojure#WantNailgun")
 	else
 		let vimclojure#WantNailgun = 0
 	endif
+endif
+
+if !exists("g:vimclojure#NailgunServer")
+	let vimclojure#NailgunServer = "127.0.0.1"
+endif
+
+if !exists("g:vimclojure#NailgunPort")
+	let vimclojure#NailgunPort = "2113"
 endif
 
 if !exists("g:vimclojure#UseErrorBuffer")
@@ -148,14 +160,30 @@ endfunction
 
 " Nailgun part:
 function! vimclojure#ExtractSexpr(toplevel)
-	let closure = { "flag" : (a:toplevel ? "r" : "") }
+	let closure = {
+				\ "flag"  : (a:toplevel ? "r" : ""),
+				\ "level" : (a:toplevel ? "0" : '\d')
+				\ }
 
 	function closure.f() dict
-		if searchpairpos('(', '', ')', 'bW' . self.flag,
-					\ 'vimclojure#SynIdName() !~ "clojureParen\\d"') != [0, 0]
-			return vimclojure#Yank('l', 'normal! "ly%')
-		end
-		return ""
+		let pos = [0, 0]
+		let start = getpos(".")
+
+		if getline(start[1])[start[2] - 1] == "("
+					\ && vimclojure#SynIdName() =~ 'clojureParen' . self.level
+			let pos = [start[1], start[2]]
+		endif
+
+		if pos == [0, 0]
+			let pos = searchpairpos('(', '', ')', 'bW' . self.flag,
+						\ 'vimclojure#SynIdName() !~ "clojureParen\\d"')
+		endif
+
+		if pos == [0, 0]
+			throw "Error: Not in a s-expression!"
+		endif
+
+		return [pos, vimclojure#Yank('l', 'normal! "ly%')]
 	endfunction
 
 	return vimclojure#WithSavedPosition(closure)
@@ -181,6 +209,13 @@ function! vimclojure#MakeProtectedPlug(mode, plug, f, args)
 				\ . a:f . "\"), [ " . a:args . " ])<CR>"
 endfunction
 
+function! vimclojure#MakeCommandPlug(mode, plug, f, args)
+	execute a:mode . "noremap <Plug>Clojure" . a:plug
+				\ . " :call vimclojure#ProtectedPlug("
+				\ . " function(\"vimclojure#CommandPlug\"),"
+				\ . " [ function(\"" . a:f . "\"), [ " . a:args . " ]])<CR>"
+endfunction
+
 function! vimclojure#MapPlug(mode, keys, plug)
 	if !hasmapto("<Plug>Clojure" . a:plug)
 		execute a:mode . "map <buffer> <unique> <silent> <LocalLeader>" . a:keys
@@ -188,21 +223,29 @@ function! vimclojure#MapPlug(mode, keys, plug)
 	endif
 endfunction
 
-function! vimclojure#MapCommandPlug(mode, keys, plug)
-	if exists("b:vimclojure_namespace")
-		call vimclojure#MapPlug(a:mode, a:keys, a:plug)
-	elseif g:vimclojure#WantNailgun == 1
-		let msg = ':call vimclojure#ReportError("VimClojure could not initialise the server connection.\n'
-					\ . 'That means you will not be able to use the interactive features.\n'
-					\ . 'Reasons might be that the server is not running or that there is\n'
-					\ . 'some trouble with the classpath.\n\n'
-					\ . 'VimClojure will *not* start the server for you or handle the classpath.\n'
-					\ . 'There is a plethora of tools like ivy, maven, gradle and leiningen,\n'
-					\ . 'which do this better than VimClojure could ever do it.")'
-		execute a:mode . "map <buffer> <silent> <LocalLeader>" . a:keys
-					\ . " " . msg . "<CR>"
-	endif
-endfunction
+if !exists("*vimclojure#CommandPlug")
+	function vimclojure#CommandPlug(f, args)
+		if exists("b:vimclojure_loaded")
+					\ && !exists("b:vimclojure_namespace")
+					\ && g:vimclojure#WantNailgun == 1
+			unlet b:vimclojure_loaded
+			call vimclojure#InitBuffer("silent")
+		endif
+
+		if exists("b:vimclojure_namespace")
+			call call(a:f, a:args)
+		elseif g:vimclojure#WantNailgun == 1
+			let msg = "VimClojure could not initialise the server connection.\n"
+						\ . "That means you will not be able to use the interactive features.\n"
+						\ . "Reasons might be that the server is not running or that there is\n"
+						\ . "some trouble with the classpath.\n\n"
+						\ . "VimClojure will *not* start the server for you or handle the classpath.\n"
+						\ . "There is a plethora of tools like ivy, maven, gradle and leiningen,\n"
+						\ . "which do this better than VimClojure could ever do it."
+			throw msg
+		endif
+	endfunction
+endif
 
 if !exists("*vimclojure#ProtectedPlug")
 	function vimclojure#ProtectedPlug(f, args)
@@ -422,7 +465,10 @@ function! vimclojure#ExecuteNailWithInput(nail, input, ...)
 		call writefile(input, inputfile)
 
 		let cmdline = vimclojure#ShellEscapeArguments(
-					\ [g:vimclojure#NailgunClient, "vimclojure.Nail", a:nail]
+					\ [g:vimclojure#NailgunClient,
+					\   '--nailgun-server', g:vimclojure#NailgunServer,
+					\   '--nailgun-port', g:vimclojure#NailgunPort,
+					\   'vimclojure.Nail', a:nail]
 					\ + a:000)
 		let cmd = join(cmdline, " ") . " <" . inputfile
 		" Add hardcore quoting for Windows
@@ -445,15 +491,6 @@ endfunction
 
 function! vimclojure#ExecuteNail(nail, ...)
 	return call(function("vimclojure#ExecuteNailWithInput"), [a:nail, ""] + a:000)
-endfunction
-
-function! vimclojure#FilterNail(nail, rngStart, rngEnd, ...)
-	let cmdline = [g:vimclojure#NailgunClient,
-				\ "vimclojure.Nail", a:nail]
-				\ + vimclojure#ShellEscapeArguments(a:000)
-	let cmd = a:rngStart . "," . a:rngEnd . "!" . join(cmdline, " ")
-
-	silent execute cmd
 endfunction
 
 function! vimclojure#DocLookup(word)
@@ -578,7 +615,7 @@ endfunction
 
 " Evaluators
 function! vimclojure#MacroExpand(firstOnly)
-	let sexp = vimclojure#ExtractSexpr(0)
+	let [unused, sexp] = vimclojure#ExtractSexpr(0)
 	let ns = b:vimclojure_namespace
 
 	let cmd = ["MacroExpand", sexp, "-n", ns]
@@ -642,13 +679,13 @@ function! vimclojure#EvalLine()
 	wincmd p
 endfunction
 
-function! vimclojure#EvalBlock() range
+function! vimclojure#EvalBlock()
 	let file = vimclojure#BufferName()
 	let ns = b:vimclojure_namespace
 
-	let content = getbufline(bufnr("%"), a:firstline, a:lastline)
+	let content = getbufline(bufnr("%"), line("'<"), line("'>"))
 	let result = vimclojure#ExecuteNailWithInput("Repl", content,
-				\ "-r", "-n", ns, "-f", file, "-l", a:firstline - 1)
+				\ "-r", "-n", ns, "-f", file, "-l", line("'<") - 1)
 
 	let resultBuffer = g:vimclojure#ClojureResultBuffer.New()
 	call resultBuffer.showOutput(result)
@@ -658,15 +695,8 @@ endfunction
 function! vimclojure#EvalToplevel()
 	let file = vimclojure#BufferName()
 	let ns = b:vimclojure_namespace
+	let [pos, expr] = vimclojure#ExtractSexpr(1)
 
-	let pos = searchpairpos('(', '', ')', 'bWnr',
-					\ 'vimclojure#SynIdName() !~ "clojureParen\\d"')
-
-	if pos == [0, 0]
-		throw "Error: Not in toplevel expression!"
-	endif
-
-	let expr = vimclojure#ExtractSexpr(1)
 	let result = vimclojure#ExecuteNailWithInput("Repl", expr,
 				\ "-r", "-n", ns, "-f", file, "-l", pos[0] - 1)
 
@@ -741,9 +771,16 @@ function! vimclojure#Repl.Init(instance, namespace) dict
 	let b:vimclojure_repl = a:instance
 
 	set filetype=clojure
+	let b:vimclojure_namespace = a:namespace
 
 	if !hasmapto("<Plug>ClojureReplEnterHook")
 		imap <buffer> <silent> <CR> <Plug>ClojureReplEnterHook
+	endif
+	if !hasmapto("<Plug>ClojureReplEvaluate")
+		imap <buffer> <silent> <C-CR> <Plug>ClojureReplEvaluate
+	endif
+	if !hasmapto("<Plug>ClojureReplHatHook")
+		nmap <buffer> <silent> ^ <Plug>ClojureReplHatHook
 	endif
 	if !hasmapto("<Plug>ClojureReplUpHistory")
 		imap <buffer> <silent> <C-Up> <Plug>ClojureReplUpHistory
@@ -817,11 +854,35 @@ function! vimclojure#Repl.getCommand() dict
 	return cmd
 endfunction
 
+function! vimclojure#ReplDoEnter()
+	execute "normal! a\<CR>x"
+	normal! ==x
+	if getline(".") =~ '^\s*$'
+		startinsert!
+	else
+		startinsert
+	endif
+endfunction
+
 function! vimclojure#Repl.enterHook() dict
+	let lastCol = {}
+
+	function lastCol.f() dict
+		normal! g_
+		return col(".")
+	endfunction
+
+	if line(".") < line("$") || col(".") < vimclojure#WithSavedPosition(lastCol)
+		call vimclojure#ReplDoEnter()
+		return
+	endif
+
 	let cmd = self.getCommand()
 
 	" Special Case: Showed prompt (or user just hit enter).
-	if cmd == ""
+	if cmd =~ '^\(\s\|\n\)*$'
+		execute "normal! a\<CR>"
+		startinsert!
 		return
 	endif
 
@@ -833,9 +894,7 @@ function! vimclojure#Repl.enterHook() dict
 	let result = vimclojure#ExecuteNailWithInput("CheckSyntax", cmd,
 				\ "-n", b:vimclojure_namespace)
 	if result.value == 0 && result.stderr == ""
-		execute "normal! GA\<CR>x"
-		normal! ==x
-		startinsert!
+		call vimclojure#ReplDoEnter()
 	elseif result.stderr != ""
 		let buf = g:vimclojure#ResultBuffer.New()
 		call buf.showOutput(result)
@@ -853,6 +912,17 @@ function! vimclojure#Repl.enterHook() dict
 		let self._prompt = namespace.value . "=>"
 
 		call self.showPrompt()
+	endif
+endfunction
+
+function! vimclojure#Repl.hatHook() dict
+	let l = getline(".")
+
+	if l =~ "^" . self._prompt
+		let [buf, line, col, off] = getpos(".")
+		call setpos(".", [buf, line, len(self._prompt) + 2, off])
+	else
+		normal! ^
 	endif
 endfunction
 
@@ -942,7 +1012,7 @@ function! vimclojure#OmniCompletion(findstart, base)
 	endif
 endfunction
 
-function! vimclojure#InitBuffer()
+function! vimclojure#InitBuffer(...)
 	if exists("b:vimclojure_loaded")
 		return
 	endif
@@ -964,12 +1034,14 @@ function! vimclojure#InitBuffer()
 					endif
 					let b:vimclojure_namespace = namespace.value
 				catch /.*/
-					call vimclojure#ReportError(
-								\ "Could not determine the Namespace of the file.\n\n"
-								\ . "This might have different reasons. Please check, that the ng server\n"
-								\ . "is running with the correct classpath and that the file does not contain\n"
-								\ . "syntax errors. The interactive features will not be enabled, ie. the\n"
-								\ . "keybindings will not be mapped.\n\nReason:\n" . v:exception)
+					if a:000 == []
+						call vimclojure#ReportError(
+									\ "Could not determine the Namespace of the file.\n\n"
+									\ . "This might have different reasons. Please check, that the ng server\n"
+									\ . "is running with the correct classpath and that the file does not contain\n"
+									\ . "syntax errors. The interactive features will not be enabled, ie. the\n"
+									\ . "keybindings will not be mapped.\n\nReason:\n" . v:exception)
+					endif
 				endtry
 			endif
 		endif
@@ -978,6 +1050,54 @@ endfunction
 
 function! vimclojure#AddToLispWords(word)
 	execute "setlocal lw+=" . a:word
+endfunction
+
+function! vimclojure#ToggleParenRainbow()
+	highlight clear clojureParen1
+	highlight clear clojureParen2
+	highlight clear clojureParen3
+	highlight clear clojureParen4
+	highlight clear clojureParen5
+	highlight clear clojureParen6
+	highlight clear clojureParen7
+	highlight clear clojureParen8
+	highlight clear clojureParen9
+
+	let g:vimclojure#ParenRainbow = !g:vimclojure#ParenRainbow
+
+	if g:vimclojure#ParenRainbow != 0
+		if &background == "dark"
+			highlight clojureParen1 ctermfg=yellow      guifg=orange1
+			highlight clojureParen2 ctermfg=green       guifg=yellow1
+			highlight clojureParen3 ctermfg=cyan        guifg=greenyellow
+			highlight clojureParen4 ctermfg=magenta     guifg=green1
+			highlight clojureParen5 ctermfg=red         guifg=springgreen1
+			highlight clojureParen6 ctermfg=yellow      guifg=cyan1
+			highlight clojureParen7 ctermfg=green       guifg=slateblue1
+			highlight clojureParen8 ctermfg=cyan        guifg=magenta1
+			highlight clojureParen9 ctermfg=magenta     guifg=purple1
+		else
+			highlight clojureParen1 ctermfg=darkyellow  guifg=orangered3
+			highlight clojureParen2 ctermfg=darkgreen   guifg=orange2
+			highlight clojureParen3 ctermfg=blue        guifg=yellow3
+			highlight clojureParen4 ctermfg=darkmagenta guifg=olivedrab4
+			highlight clojureParen5 ctermfg=red         guifg=green4
+			highlight clojureParen6 ctermfg=darkyellow  guifg=paleturquoise3
+			highlight clojureParen7 ctermfg=darkgreen   guifg=deepskyblue4
+			highlight clojureParen8 ctermfg=blue        guifg=darkslateblue
+			highlight clojureParen9 ctermfg=darkmagenta guifg=darkviolet
+		endif
+	else
+		highlight link clojureParen1 clojureParen0
+		highlight link clojureParen2 clojureParen0
+		highlight link clojureParen3 clojureParen0
+		highlight link clojureParen4 clojureParen0
+		highlight link clojureParen5 clojureParen0
+		highlight link clojureParen6 clojureParen0
+		highlight link clojureParen7 clojureParen0
+		highlight link clojureParen8 clojureParen0
+		highlight link clojureParen9 clojureParen0
+	endif
 endfunction
 
 " Epilog
