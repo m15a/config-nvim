@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/10/16 01:10:57.
+""" Last change: 2011/10/16 04:23:59.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -190,18 +190,20 @@ let g:neocomplcache_enable_camel_case_completion=1
 let g:neocomplcache_enable_underbar_completion=1
 let g:neocomplcache_enable_auto_select=1
 let g:neocomplcache_enable_auto_delimiter=1
-" let g:neocomplcache_snippets_dir=
-"" Tag completions
+"" Include completions
 let g:neocomplcache_ctags_program="/opt/local/bin/jexctags"
-" let g:neocomplcache_include_paths.cpp="/opt/local/include/gcc45/c++,/opt/local/include/boost",
+let g:neocomplcache_include_paths={
+      \'cpp' : "/opt/local/include/gcc45/c++,/opt/local/lib/R/include,/opt/local/lib/R/include/R_ext",
+      \}
 "" Dictionary completions
 " let g:neocomplcache_dictionary_filetype_lists.scheme=$HOME.'/.gosh_completions'
 " let g:neocomplcache_dictionary_filetype_lists.lisp=$HOME.'/.sbcl_completions'
 "" Omni completions
-" let g:neocomplcache_omni_patterns.c='\%(\.\|->\)\h\w*'
-" autocmd FileType c setlocal omnifunc=ccomplete#Complete
-" let g:neocomplcache_omni_patterns.cpp='\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-" For C++, use OmniCppComplete
+let g:neocomplcache_omni_patterns={
+      \'c' : '\%(\.\|->\)\h\w*',
+      \'cpp' : '\h\w*\%(\.\|->\)\h\w*\|\h\w*::',
+      \}
+autocmd FileType c setlocal omnifunc=ccomplete#Complete
 " autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 " autocmd FileType sql,mysql  setlocal omnifunc=xmlcomplete#CompleteTags
@@ -239,6 +241,20 @@ function NeoComplCacheUpdateTags()
   endfor
 endfunction
 command NeoComplCacheUpdateTags call NeoComplCacheUpdateTags()
+
+""" OmniCppComplete
+let OmniCpp_NamespaceSearch=1
+let OmniCpp_GlobalScopeSearch=1
+let OmniCpp_ShowAccess=1
+let OmniCpp_ShowPrototypeInAbbr=1 " show function parameters
+let OmniCpp_MayCompleteDot=1 " autocomplete after .
+let OmniCpp_MayCompleteArrow=1 " autocomplete after ->
+let OmniCpp_MayCompleteScope=1 " autocomplete after ::
+let OmniCpp_DefaultNamespaces=["std", "_GLIBCXX_STD"]
+"" automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest,preview
+au FileType cpp setlocal tags+=~/.vim/tags/cpp
 
 """ easytags.vim
 let g:easytags_cmd = '/opt/local/bin/jexctags'
