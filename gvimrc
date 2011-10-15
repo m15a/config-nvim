@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/04/10 03:21:00.
+""" Last change: 2011/10/16 01:10:18.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
@@ -10,6 +10,7 @@ set lines=36
 set linespace=0
 set vb t_vb=
 set mousehide
+set imdisable
 set ch=1 " make command line two lines high
 set guicursor=a:blinkon0 " cursor blinking off
 set guioptions+=a " enable mouse paste

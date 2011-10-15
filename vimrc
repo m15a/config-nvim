@@ -1,5 +1,11 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/04/10 03:15:25.
+""" Last change: 2011/10/16 01:10:57.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" pathogen.vim
+
+call pathogen#infect()
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Language environment
@@ -50,9 +56,9 @@ set cursorline
 set wrapscan
 set showmatch
 set showcmd
-"set diffopt=vertical
+" set diffopt=vertical
 set mouse=a
-"set modelines=0
+" set modelines=0
 set ruler
 set nowrap
 set virtualedit=all
@@ -62,7 +68,7 @@ set grepprg=internal
 set hidden
 set autoread
 set laststatus=2
-"set foldmethod=syntax
+" set foldmethod=syntax
 set iminsert=0 imsearch=0
 
 "" Color scheme for use in terminal
@@ -83,7 +89,7 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V
 "" These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
-" 保存時に行末の空白を除去する
+"" 保存時に行末の空白を除去する
 autocmd BufWritePre * :%s/\s\+$//ge
 
 
@@ -96,8 +102,8 @@ nnoremap k gk
 nnoremap <C-j> 3+
 nnoremap <C-k> 3-
 nnoremap t :tabnew
-"nnoremap <C-n> :tabNext<CR>
-"nnoremap <C-p> :tabprevious<CR>
+" nnoremap <C-n> :tabNext<CR>
+" nnoremap <C-p> :tabprevious<CR>
 nmap Q gqap
 inoremap , ,<SPACE>
 
@@ -108,13 +114,13 @@ inoremap , ,<SPACE>
 "" matchit.vim
 so $VIMRUNTIME/macros/matchit.vim
 
-"" camelcasemotion
-" Replace the default 'w',  'b' and 'e' mappings instead of defining
-" additional mappings ',w', ',b' and ',e':
+""" camelcasemotion
+"" Replace the default 'w',  'b' and 'e' mappings instead of defining
+"" additional mappings ',w', ',b' and ',e':
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
 map <silent> e <Plug>CamelCaseMotion_e
-" Replace default 'iw' text-object and define 'ib' and 'ie' motions:
+"" Replace default 'iw' text-object and define 'ib' and 'ie' motions:
 omap <silent> iw <Plug>CamelCaseMotion_iw
 vmap <silent> iw <Plug>CamelCaseMotion_iw
 omap <silent> ib <Plug>CamelCaseMotion_ib
@@ -122,43 +128,47 @@ vmap <silent> ib <Plug>CamelCaseMotion_ib
 omap <silent> ie <Plug>CamelCaseMotion_ie
 vmap <silent> ie <Plug>CamelCaseMotion_ie
 
-"" YankRing.vim
+""" YankRing.vim
 let g:yankring_window_auto_close=1
-let g:yankring_history_dir='$HOME/.vim/tmp/'
+let g:yankring_history_dir='/tmp/'
 
-"" yanktmp.vim
+""" yanktmp.vim
 map <silent> sy :call YanktmpYank()<CR>
 map <silent> sp :call YanktmpPaste_p()<CR>
 map <silent> sP :call YanktmpPaste_P()<CR>
 
-"" screenpaste
-map  <Leader>sp  <Plug>ScreenpastePut
-map! <Leader>sp  <Plug>ScreenpastePut
-map  <Leader>sgp <Plug>ScreenpasteGPut
-nmap <Leader>sP  <Plug>ScreenpastePutBefore
-nmap <Leader>sgP <Plug>ScreenpasteGPutBefore
-
-"" Tabular.vim
+""" Tabular.vim
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
 
-"" NERD Commenter
-let NERDShutUp=1
+""" NERD Commenter
+let NERDSpaceDelims=1
+" let NERDRemoveExtraSpaces=1
 
-"" surround.vim
-let g:surround_33 = "<!-- \r -->"
-let g:surround_35 = "#{\r}"
-let g:surround_36 = "${\r}"
-let g:surround_37 = "<% \r %>"
-let g:surround_45 = "<!-- \r -->"
-let g:surround_64 = "@{\r}"
+""" surround.vim
+"let g:surround_33="<!-- \r -->"
+"let g:surround_35="#{\r}"
+"let g:surround_36="${\r}"
+"let g:surround_37="<% \r %>"
+"let g:surround_45="<!-- \r -->"
+"let g:surround_64="@{\r}"
+"
+""" unite.vim
+nmap <silent> <Leader>e :UniteWithCurrentDir
+      \ -auto-resize buffer file file_mru directory_mru<CR>
+nmap <silent> <Leader>xe :UniteWithBufferDir
+      \ -auto-resize buffer file file_mru directory_mru<CR>
 
-"" unite.vim
-map <silent> <C-E> :Unite buffer file_mru file<CR>
+" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-S> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-S> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-V> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-V> unite#do_action('vsplit')
 
-"" occur.vim
+""" occur.vim
 nnoremap <silent> <Leader>oo :Occur<CR>
 nnoremap <silent> <Leader>om :Moccur<CR>
 
@@ -166,40 +176,47 @@ nnoremap <silent> <Leader>om :Moccur<CR>
 nnoremap <silent> g/ :set incsearch<CR>g/
 nnoremap <silent> g? :set incsearch<CR>g?
 
-"" autodate.vim
+""" autodate.vim
 let autodate_format='%Y/%m/%d %H:%M:%S'
 let autodate_keyword_pre='Last change:'
 let autodate_keyword_post='\.'
 
-"" neocomplcache
+""" neocomplcache
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_max_list=10
 let g:neocomplcache_enable_ignore_case=1
 let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_enable_quick_match=1
+let g:neocomplcache_enable_camel_case_completion=1
+let g:neocomplcache_enable_underbar_completion=1
 let g:neocomplcache_enable_auto_select=1
 let g:neocomplcache_enable_auto_delimiter=1
-"let g:neocomplcache_snippets_dir=
+" let g:neocomplcache_snippets_dir=
+"" Tag completions
 let g:neocomplcache_ctags_program="/opt/local/bin/jexctags"
-let g:neocomplcache_dictionary_filetype_lists={
-      \ 'default' : '',
-      \ 'scheme'  : $HOME.'/.gosh_completions',
-      \ 'lisp'    : $HOME.'/.sbcl_completions',
-      \ }
-let g:neocomplcache_include_paths ={
-      \ 'cpp' : "/opt/local/include/gcc45/c++,/opt/local/include/boost",
-      \ }
-function NeoComplCacheUpdateTags()
-  NeoComplCacheCachingInclude
-  for file in neocomplcache#sources#include_complete#get_include_files(bufnr('%'))
-    execute "setlocal tags+=".neocomplcache#cache#encode_name('include_tags', file)
-  endfor
-endfunction
-command NeoComplCacheUpdateTags call NeoComplCacheUpdateTags()
-" Key maps
-"inoremap <expr><C-g> neocomplcache#undo_completion()
-"inoremap <expr><C-e> neocomplcache#cancel_popup()
-" TAB completion
+" let g:neocomplcache_include_paths.cpp="/opt/local/include/gcc45/c++,/opt/local/include/boost",
+"" Dictionary completions
+" let g:neocomplcache_dictionary_filetype_lists.scheme=$HOME.'/.gosh_completions'
+" let g:neocomplcache_dictionary_filetype_lists.lisp=$HOME.'/.sbcl_completions'
+"" Omni completions
+" let g:neocomplcache_omni_patterns.c='\%(\.\|->\)\h\w*'
+" autocmd FileType c setlocal omnifunc=ccomplete#Complete
+" let g:neocomplcache_omni_patterns.cpp='\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+" For C++, use OmniCppComplete
+" autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType sql,mysql  setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType html,xhtml setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
+"" Key maps
+inoremap <expr><C-g> neocomplcache#undo_completion()
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplcache#close_popup()
+inoremap <expr><C-e> neocomplcache#cancel_popup()
+"" TAB completion
 function InsertTabWrapper()
   if pumvisible()
     return "\<c-n>"
@@ -214,104 +231,36 @@ function InsertTabWrapper()
   endif
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+"" Utilities
+function NeoComplCacheUpdateTags()
+  NeoComplCacheCachingInclude
+  for file in neocomplcache#sources#include_complete#get_include_files(bufnr('%'))
+    execute "setlocal tags+=".neocomplcache#cache#encode_name('include_tags', file)
+  endfor
+endfunction
+command NeoComplCacheUpdateTags call NeoComplCacheUpdateTags()
 
-"" easytags.vim
+""" easytags.vim
 let g:easytags_cmd = '/opt/local/bin/jexctags'
+" let g:easytags_on_cursorhold = 0
 set tags=./.tags;,~/.vimtags
 
 """ taglist.vim
 nnoremap <Leader>l :TlistToggle<CR>
-"set tags=tags
+" set tags=tags
 let Tlist_Auto_Highlight_Tag=1
 let Tlist_Auto_Update=1
 let Tlist_Compact_Format=1
 let Tlist_Ctags_Cmd='/opt/local/bin/jexctags'
+" let Tlist_GHC_Cmd='/usr/local/bin/ghc'
 let Tlist_Exit_OnlyWindow=1
 let Tlist_File_Fold_Auto_Close=1
 let Tlist_Use_Right_Window=1
 let Tlist_Use_SingleClick=1
 let Tlist_WinWidth=28
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" Languages
-
-"" Enable omni completion
-autocmd FileType c          setlocal omnifunc=ccomplete#Complete
-autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType sql,mysql  setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType html,xhtml setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
-
-"" C++
-" OmniCppComplete
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-" automatically open and close the popup menu / preview window
-"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-"set completeopt=menuone,menu,longest,preview
-au FileType cpp setl path=~/.vim/tags/gcc45-cpp,/opt/local/include/boost
-
-"" Scheme (Gauche)
-au FileType scheme inoremap <buffer> ' '
-au FileType scheme inoremap <buffer> , ,
-"au FileType scheme inoremap <buffer> ` `()<LEFT>
-let is_gauche=1
-
-"" Clojure
-" VimClojure
-au FileType clojure let maplocalleader='\'
-au FileType clojure inoremap <buffer> ' '
-let vimclojure#HighlightBuiltins=1
-let vimclojure#ParenRainbow=1
-
-"" Lisp
-au FileType lisp inoremap <buffer> ' '
-au FileType lisp inoremap <buffer> , ,
-"au FileType lisp inoremap <buffer> ` `()<LEFT>
-
-"" OCaml
-au FileType lisp inoremap <buffer> ' '
-" omlet.vim
-let g:omlet_indent=2
-let g:omlet_indent_struct=2
-let g:omlet_indent_let=2
-let g:omlet_indent_match=0
-let g:omlet_indent_function=0
-let g:omlet_middle_comment=1
-
-"" Haskell
-au FileType haskell inoremap <buffer> ' '
-" syntax/haskell.vim
-let hs_highlight_delimiters=1
-let hs_highlight_boolean=1
-let hs_highlight_types=1
-let hs_highlight_more_types=1
-let hs_highlight_debug=1
-let hs_allow_hash_operator=1
-let lhs_markup='tex'
-" indent/haskell.vim
-"let g:haskell_indent_if = 3
-"let g:haskell_indent_case = 5
-" Haskell mode for vim
-au FileType haskell compiler ghc
-let g:haddock_browser='open'
-let g:haddock_browser_callformat='%s %s'
-let g:haddock_docdir=$HOME.'/Sites/refs/haskell/ghc/'
-let g:haddock_indexfiledir=$HOME.'/.vim/tmp/'
-
-"" R
-" Vim-R-plugin
-let vimrplugin_term=""
-let vimrplugin_term_cmd = ""
+""" VimFiler
+let g:vimfiler_as_default_explorer=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
