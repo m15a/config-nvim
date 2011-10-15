@@ -218,9 +218,13 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y> neocomplcache#close_popup()
 inoremap <expr><C-e> neocomplcache#cancel_popup()
+imap <C-k> <Plug>(neocomplcache_snippets_expand)
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
 "" TAB completion
 function InsertTabWrapper()
-  if pumvisible()
+  if neocomplcache#sources#snippets_complete#expandable()
+    return "\<Plug>(neocomplcache_snippets_expand)"
+  elseif pumvisible()
     return "\<c-n>"
   endif
   let col = col('.') - 1
@@ -232,7 +236,7 @@ function InsertTabWrapper()
     return "\<c-x>\<c-o>"
   endif
 endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+imap <expr><tab> InsertTabWrapper()
 "" Utilities
 function NeoComplCacheUpdateTags()
   NeoComplCacheCachingInclude
