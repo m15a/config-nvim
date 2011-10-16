@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/10/16 19:11:10.
+""" Last change: 2011/10/16 20:12:03.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -53,6 +53,12 @@ set wildmode=list:longest
 set hlsearch
 set incsearch
 set cursorline
+"" highlight current cursor line only
+augroup cch
+  autocmd! cch
+  autocmd WinLeave * set nocursorline
+  autocmd WinEnter,BufRead * set cursorline
+augroup END
 set wrapscan
 set showmatch
 set showcmd
@@ -70,6 +76,7 @@ set autoread
 set laststatus=2
 " set foldmethod=syntax
 set iminsert=0 imsearch=0
+set complete+=k
 
 "" Color scheme for use in terminal
 let moria_style='dark'
@@ -106,6 +113,13 @@ nnoremap t :tabnew
 " nnoremap <C-p> :tabprevious<CR>
 nmap Q gqap
 inoremap , ,<SPACE>
+"" Escの 2 回押しでハイライト消去
+nmap <silent> <C-c><C-c> :nohlsearch<CR>
+"" フレームサイズを怠惰に変更する
+map + <C-W>+
+map - <C-W>-
+map > <C-W>>
+map < <C-W><
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
