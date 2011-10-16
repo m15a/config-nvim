@@ -199,7 +199,7 @@ let autodate_keyword_post='\.'
 
 """ neocomplcache
 let g:neocomplcache_enable_at_startup=1
-let g:neocomplcache_max_list=10
+let g:neocomplcache_max_list=20
 let g:neocomplcache_enable_ignore_case=1
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_enable_camel_case_completion=1
@@ -207,19 +207,22 @@ let g:neocomplcache_enable_underbar_completion=1
 let g:neocomplcache_enable_auto_select=1
 let g:neocomplcache_enable_auto_delimiter=1
 "" Include completions
-let g:neocomplcache_ctags_program="/opt/local/bin/jexctags"
-let g:neocomplcache_include_paths={
-      \'cpp' : "/opt/local/include/gcc45/c++,/opt/local/lib/R/include,/opt/local/lib/R/include/R_ext",
-      \}
+let g:neocomplcache_ctags_program='/opt/local/bin/jexctags'
+if !exists('g:neocomplcache_include_paths')
+  let g:neocomplcache_include_paths={}
+endif
+let g:neocomplcache_include_paths.cpp="/opt/local/include/gcc45/c++,/opt/local/lib/R/include,/opt/local/lib/R/include/R_ext"
 "" Dictionary completions
-let g:neocomplcache_dictionary_filetype_lists={
-      \'scheme' : $HOME.'/.gosh_completions',
-      \}
+if !exists('g:neocomplcache_dictionary_filetype_lists')
+  let g:neocomplcache_dictionary_filetype_lists={}
+endif
+let g:neocomplcache_dictionary_filetype_lists.scheme=$HOME.'/.gosh_completions'
 "" Omni completions
-let g:neocomplcache_omni_patterns={
-      \'c' : '\%(\.\|->\)\h\w*',
-      \'cpp' : '\h\w*\%(\.\|->\)\h\w*\|\h\w*::',
-      \}
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns={}
+endif
+let g:neocomplcache_omni_patterns.c='\%(\.\|->\)\h\w*'
+let g:neocomplcache_omni_patterns.cpp='\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
 " autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
