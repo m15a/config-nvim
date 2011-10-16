@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/10/16 18:59:10.
+""" Last change: 2011/10/16 19:11:10.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -198,8 +198,9 @@ let g:neocomplcache_include_paths={
       \'cpp' : "/opt/local/include/gcc45/c++,/opt/local/lib/R/include,/opt/local/lib/R/include/R_ext",
       \}
 "" Dictionary completions
-" let g:neocomplcache_dictionary_filetype_lists.scheme=$HOME.'/.gosh_completions'
-" let g:neocomplcache_dictionary_filetype_lists.lisp=$HOME.'/.sbcl_completions'
+let g:neocomplcache_dictionary_filetype_lists={
+      \'scheme' : $HOME.'/.gosh_completions',
+      \}
 "" Omni completions
 let g:neocomplcache_omni_patterns={
       \'c' : '\%(\.\|->\)\h\w*',
@@ -265,6 +266,12 @@ au FileType cpp setlocal tags+=~/.vim/tags/cpp
 """ Vim-R-plugin2
 let vimrplugin_term=""
 let vimrplugin_term_cmd = ""
+
+""" Gauche (necoie)
+let is_gauche=1
+au FileType scheme inoremap <buffer> ' '
+au FileType scheme inoremap <buffer> , ,
+"au FileType scheme inoremap <buffer> ` `()<LEFT>
 
 """ easytags.vim
 let g:easytags_cmd = '/opt/local/bin/jexctags'
