@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/10/16 04:23:59.
+""" Last change: 2011/10/16 18:44:30.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -133,15 +133,18 @@ let g:yankring_window_auto_close=1
 let g:yankring_history_dir='/tmp/'
 
 """ yanktmp.vim
-map <silent> sy :call YanktmpYank()<CR>
-map <silent> sp :call YanktmpPaste_p()<CR>
-map <silent> sP :call YanktmpPaste_P()<CR>
+nnoremap <silent> sy :call YanktmpYank()<CR>
+vnoremap <silent> sy :call YanktmpYank()<CR>
+nnoremap <silent> sp :call YanktmpPaste_p()<CR>
+vnoremap <silent> sp :call YanktmpPaste_p()<CR>
+nnoremap <silent> sP :call YanktmpPaste_P()<CR>
+vnoremap <silent> sP :call YanktmpPaste_P()<CR>
 
 """ Tabular.vim
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
+nnoremap <Leader>a= :Tabularize /=<CR>
+vnoremap <Leader>a= :Tabularize /=<CR>
+nnoremap <Leader>a: :Tabularize /:\zs<CR>
+vnoremap <Leader>a: :Tabularize /:\zs<CR>
 
 """ NERD Commenter
 let NERDSpaceDelims=1
@@ -156,17 +159,16 @@ let NERDSpaceDelims=1
 "let g:surround_64="@{\r}"
 "
 """ unite.vim
-nmap <silent> <Leader>e :UniteWithCurrentDir
-      \ -auto-resize buffer file file_mru directory_mru<CR>
-nmap <silent> <Leader>xe :UniteWithBufferDir
-      \ -auto-resize buffer file file_mru directory_mru<CR>
-
-" ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-S> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-S> unite#do_action('split')
-" ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-V> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-V> unite#do_action('vsplit')
+nnoremap <silent> <Leader>e :Unite
+      \ -auto-resize buffer<CR>
+nnoremap <silent> <Leader>E :UniteWithCurrentDir
+      \ -auto-resize file file_mru directory_mru<CR>
+"" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <c-w>s unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <c-w>s unite#do_action('split')
+"" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
 
 """ occur.vim
 nnoremap <silent> <Leader>oo :Occur<CR>
