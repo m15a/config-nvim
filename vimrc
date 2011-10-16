@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/10/16 20:12:03.
+""" Last change: 2011/10/17 00:59:06.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -286,6 +286,18 @@ let is_gauche=1
 au FileType scheme inoremap <buffer> ' '
 au FileType scheme inoremap <buffer> , ,
 "au FileType scheme inoremap <buffer> ` `()<LEFT>
+
+""" Slimv on Clojure
+let g:slimv_cljapi_root='http://localhost/~mnacamura/refs/clojure/clojure/'
+let g:slimv_javadoc_root='http://localhost/~mnacamura/refs/java/docs/ja/api/'
+let g:slimv_ctags='/opt/local/bin/jexctags -a --language-force=lisp *.lisp *.clj'
+let g:slimv_leader=','
+let g:slimv_lisp='cake repl'
+let g:slimv_repl_split=2
+let g:slimv_repl_syntax=1
+let g:slimv_repl_wrap=1
+au FileType clojure inoremap <buffer> ' '
+" au FileType clojure inoremap <buffer> ` `()<LEFT>
 
 """ easytags.vim
 let g:easytags_cmd = '/opt/local/bin/jexctags'
