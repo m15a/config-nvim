@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/10/16 18:44:30.
+""" Last change: 2011/10/16 18:59:10.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -261,6 +261,10 @@ let OmniCpp_DefaultNamespaces=["std", "_GLIBCXX_STD"]
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 au FileType cpp setlocal tags+=~/.vim/tags/cpp
+
+""" Vim-R-plugin2
+let vimrplugin_term=""
+let vimrplugin_term_cmd = ""
 
 """ easytags.vim
 let g:easytags_cmd = '/opt/local/bin/jexctags'
