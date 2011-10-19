@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/10/17 00:59:06.
+""" Last change: 2011-10-19 18:14:57.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -193,7 +193,7 @@ nnoremap <silent> g/ :set incsearch<CR>g/
 nnoremap <silent> g? :set incsearch<CR>g?
 
 """ autodate.vim
-let autodate_format='%Y/%m/%d %H:%M:%S'
+let autodate_format='%Y-%m-%d %H:%M:%S'
 let autodate_keyword_pre='Last change:'
 let autodate_keyword_post='\.'
 
