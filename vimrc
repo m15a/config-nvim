@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011-10-19 18:14:57.
+""" Last change: 2011-10-23 02:13:48.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -103,23 +103,30 @@ autocmd BufWritePre * :%s/\s\+$//ge
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Key maps
 
+"" map leader を ';' に変更（そのため元の ';' を ';;' に避難）
+nnoremap ;; ;
 let mapleader=';'
+
+"" 移動系のキー
 nnoremap j gj
 nnoremap k gk
-nnoremap <C-j> 3+
-nnoremap <C-k> 3-
-nnoremap t :tabnew
-" nnoremap <C-n> :tabNext<CR>
-" nnoremap <C-p> :tabprevious<CR>
+nnoremap <C-j> +
+nnoremap <C-k> -
+
+"" 段落整形
 nmap Q gqap
-inoremap , ,<SPACE>
-"" Escの 2 回押しでハイライト消去
+
+"" <C-c> の 2 回押しでハイライト消去
 nmap <silent> <C-c><C-c> :nohlsearch<CR>
+
 "" フレームサイズを怠惰に変更する
 map + <C-W>+
 map - <C-W>-
 map > <C-W>>
 map < <C-W><
+
+"" Misc.
+inoremap , ,<SPACE>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
