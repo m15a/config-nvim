@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011-10-24 00:03:36.
+""" Last change: 2011-10-24 07:38:11.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -82,15 +82,19 @@ set complete+=k
 " let moria_style='dark'
 " colorscheme moria
 colorscheme Sunburst
-hi Normal ctermbg=Black
-hi Visual ctermbg=DarkGray
-hi StatusLine ctermbg=DarkGray ctermfg=LightGray
-hi StatusLineNC ctermbg=DarkGray ctermfg=Black
-" hi CursorLine term=none cterm=none
-hi DiffAdd ctermbg=Blue ctermfg=Black
-hi DiffChange ctermbg=Green ctermfg=Black
-hi DiffText ctermbg=DarkGreen ctermfg=Black
-hi DiffDelete ctermbg=Red ctermfg=Black
+"" For color names, see
+"" http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+au BufRead,BufNewFile,FileType * hi Normal                   ctermbg=0
+au BufRead,BufNewFile,FileType * hi Visual       ctermfg=236 ctermbg=186
+au BufRead,BufNewFile,FileType * hi StatusLine   ctermfg=236 ctermbg=255
+au BufRead,BufNewFile,FileType * hi StatusLineNC ctermfg=236 ctermbg=247
+au BufRead,BufNewFile,FileType * hi CursorLine               ctermbg=236
+au BufRead,BufNewFile,FileType * hi DiffAdd      ctermfg=236 ctermbg=61
+au BufRead,BufNewFile,FileType * hi DiffChange   ctermfg=236 ctermbg=65
+au BufRead,BufNewFile,FileType * hi DiffText     ctermfg=236 ctermbg=66
+au BufRead,BufNewFile,FileType * hi DiffDelete   ctermfg=202 ctermbg=95
+au BufRead,BufNewFile,FileType * hi IncSearch    ctermfg=88  ctermbg=218
+au BufRead,BufNewFile,FileType * hi Search       ctermfg=88  ctermbg=218
 
 "" Status line
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P

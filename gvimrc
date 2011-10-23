@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011-10-24 00:08:31.
+""" Last change: 2011-10-24 07:39:45.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
@@ -19,31 +19,31 @@ set guioptions-=T " hide tool bar
 set guioptions-=b " hide bottom scrollbar
 set guioptions-=r " hide right scrollbar
 set guioptions-=L " hide left scrollbar
-hi IMLine guifg=Gray14 " color on Japanese input method
+"" color on Japanese input method
+au BufRead,BufNewFile,FileType * hi IMLine guifg=#303030
 set transparency=10
 
 "" Color scheme for use in GVIM
 " let moria_style='dark'
 " colorscheme moria
 colorscheme Sunburst
-hi Normal guibg=#202020
-hi Visual guibg=#404040
-hi StatusLine guifg=#303030 guibg=#F2F2F2
-hi StatusLineNC guifg=#303030 guibg=#A3A3A3
-hi DiffAdd guibg=#303060
-hi DiffChange guibg=#306030
-hi DiffText guibg=#284A28
-hi DiffDelete guibg=#603030 guifg=#C0C0C0
+au BufRead,BufNewFile,FileType * hi Normal                     guibg=#262626
+au BufRead,BufNewFile,FileType * hi Visual       guifg=#303030 guibg=#D7D787
+au BufRead,BufNewFile,FileType * hi StatusLine   guifg=#303030 guibg=#EEEEEE
+au BufRead,BufNewFile,FileType * hi StatusLineNC guifg=#303030 guibg=#9E9E9E
+au BufRead,BufNewFile,FileType * hi Cursor                     guibg=#EEB422
+au BufRead,BufNewFile,FileType * hi CursorLine                 guibg=#303030
+au BufRead,BufNewFile,FileType * hi DiffAdd      guifg=#303030 guibg=#5F5FAF
+au BufRead,BufNewFile,FileType * hi DiffChange   guifg=#303030 guibg=#5F875F
+au BufRead,BufNewFile,FileType * hi DiffText     guifg=#303030 guibg=#5F8787
+au BufRead,BufNewFile,FileType * hi DiffDelete   guifg=#FF5F00 guibg=#875F5F
+au BufRead,BufNewFile,FileType * hi IncSearch    guifg=#870000 guibg=#FFAFD7
+au BufRead,BufNewFile,FileType * hi Search       guifg=#870000 guibg=#FFAFD7
 
 "" Fonts
 set termencoding=japan
 set gfn=Inconsolata:h20
 set gfw=Hiragino_Maru_Gothic_Pro:h20
-
-"" Colorized completion (VIM7)
-hi Pmenu ctermbg=8
-hi PmenuSel ctermbg=12
-hi PmenuSbar ctermbg=0
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
