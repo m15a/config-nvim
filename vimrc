@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011-10-23 02:13:48.
+""" Last change: 2011-10-24 00:03:36.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -79,11 +79,14 @@ set iminsert=0 imsearch=0
 set complete+=k
 
 "" Color scheme for use in terminal
-let moria_style='dark'
-colorscheme moria
-hi StatusLine ctermbg=Black ctermfg=LightGray
-hi StatusLineNC ctermbg=Black ctermfg=Gray
-hi CursorLine term=none cterm=none
+" let moria_style='dark'
+" colorscheme moria
+colorscheme Sunburst
+hi Normal ctermbg=Black
+hi Visual ctermbg=DarkGray
+hi StatusLine ctermbg=DarkGray ctermfg=LightGray
+hi StatusLineNC ctermbg=DarkGray ctermfg=Black
+" hi CursorLine term=none cterm=none
 hi DiffAdd ctermbg=Blue ctermfg=Black
 hi DiffChange ctermbg=Green ctermfg=Black
 hi DiffText ctermbg=DarkGreen ctermfg=Black

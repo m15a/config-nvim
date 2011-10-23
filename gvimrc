@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011/10/16 20:43:27.
+""" Last change: 2011-10-24 00:08:31.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
@@ -23,14 +23,17 @@ hi IMLine guifg=Gray14 " color on Japanese input method
 set transparency=10
 
 "" Color scheme for use in GVIM
-let moria_style='dark'
-colorscheme moria
+" let moria_style='dark'
+" colorscheme moria
+colorscheme Sunburst
+hi Normal guibg=#202020
+hi Visual guibg=#404040
 hi StatusLine guifg=#303030 guibg=#F2F2F2
 hi StatusLineNC guifg=#303030 guibg=#A3A3A3
-hi DiffAdd guibg=#BCE3FF guifg=#303030
-hi DiffChange guibg=#CAFFB9 guifg=#303030
-hi DiffText guibg=#99FF6F guifg=#303030
-hi DiffDelete guibg=#FFBFBB guifg=#303030
+hi DiffAdd guibg=#303060
+hi DiffChange guibg=#306030
+hi DiffText guibg=#284A28
+hi DiffDelete guibg=#603030 guifg=#C0C0C0
 
 "" Fonts
 set termencoding=japan
