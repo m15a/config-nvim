@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011-10-25 16:07:31.
+""" Last change: 2011-10-25 16:03:53.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
@@ -40,6 +40,20 @@ au BufRead,BufNewFile,FileType * hi DiffDelete   guifg=#C0C0C0 guibg=#603030
 au BufRead,BufNewFile,FileType * hi IncSearch    guifg=#870000 guibg=#FFAFD7
 au BufRead,BufNewFile,FileType * hi Search       guifg=#870000 guibg=#FFAFD7
 au BufRead,BufNewFile,FileType * hi MatchParen   guifg=#303030 guibg=#AFD7FF
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Key maps
+
+"" Toggle fullscreen
+function! ToggleFullScreen()
+  if &g:fullscreen
+    set nofullscreen
+  else
+    set fullscreen
+  endif
+endfunction
+nnoremap <silent> <Leader>m :call ToggleFullScreen()<CR>
 
 "" Fonts
 set termencoding=japan
