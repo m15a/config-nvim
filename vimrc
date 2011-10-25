@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011-10-24 07:38:11.
+""" Last change: 2011-10-25 16:01:59.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -197,10 +197,6 @@ au FileType unite inoremap <silent> <buffer> <expr> <c-w>s unite#do_action('spli
 "" ウィンドウを縦に分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
 au FileType unite inoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
-
-""" occur.vim
-nnoremap <silent> <Leader>oo :Occur<CR>
-nnoremap <silent> <Leader>om :Moccur<CR>
 
 """ cmigemo
 nnoremap <silent> g/ :set incsearch<CR>g/
