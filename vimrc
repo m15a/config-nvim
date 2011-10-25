@@ -95,6 +95,7 @@ au BufRead,BufNewFile,FileType * hi DiffText     ctermfg=236 ctermbg=66
 au BufRead,BufNewFile,FileType * hi DiffDelete   ctermfg=202 ctermbg=95
 au BufRead,BufNewFile,FileType * hi IncSearch    ctermfg=88  ctermbg=218
 au BufRead,BufNewFile,FileType * hi Search       ctermfg=88  ctermbg=218
+au BufRead,BufNewFile,FileType * hi MatchParen   ctermfg=236 ctermbg=153
 
 "" Status line
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P

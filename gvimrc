@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011-10-24 07:39:45.
+""" Last change: 2011-10-25 16:07:31.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
@@ -33,12 +33,13 @@ au BufRead,BufNewFile,FileType * hi StatusLine   guifg=#303030 guibg=#EEEEEE
 au BufRead,BufNewFile,FileType * hi StatusLineNC guifg=#303030 guibg=#9E9E9E
 au BufRead,BufNewFile,FileType * hi Cursor                     guibg=#EEB422
 au BufRead,BufNewFile,FileType * hi CursorLine                 guibg=#303030
-au BufRead,BufNewFile,FileType * hi DiffAdd      guifg=#303030 guibg=#5F5FAF
-au BufRead,BufNewFile,FileType * hi DiffChange   guifg=#303030 guibg=#5F875F
-au BufRead,BufNewFile,FileType * hi DiffText     guifg=#303030 guibg=#5F8787
-au BufRead,BufNewFile,FileType * hi DiffDelete   guifg=#FF5F00 guibg=#875F5F
+au BufRead,BufNewFile,FileType * hi DiffAdd                    guibg=#303060
+au BufRead,BufNewFile,FileType * hi DiffChange                 guibg=#306030
+au BufRead,BufNewFile,FileType * hi DiffText                   guibg=#284A28
+au BufRead,BufNewFile,FileType * hi DiffDelete   guifg=#C0C0C0 guibg=#603030
 au BufRead,BufNewFile,FileType * hi IncSearch    guifg=#870000 guibg=#FFAFD7
 au BufRead,BufNewFile,FileType * hi Search       guifg=#870000 guibg=#FFAFD7
+au BufRead,BufNewFile,FileType * hi MatchParen   guifg=#303030 guibg=#AFD7FF
 
 "" Fonts
 set termencoding=japan
