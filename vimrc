@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011-10-25 16:01:59.
+""" Last change: 2011-10-26 12:44:04.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -84,7 +84,7 @@ set complete+=k
 colorscheme Sunburst
 "" For color names, see
 "" http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-au BufRead,BufNewFile,FileType * hi Normal                   ctermbg=0
+au BufRead,BufNewFile,FileType * hi Normal                   ctermbg=234
 au BufRead,BufNewFile,FileType * hi Visual       ctermfg=236 ctermbg=186
 au BufRead,BufNewFile,FileType * hi StatusLine   ctermfg=236 ctermbg=255
 au BufRead,BufNewFile,FileType * hi StatusLineNC ctermfg=236 ctermbg=247
@@ -96,6 +96,7 @@ au BufRead,BufNewFile,FileType * hi DiffDelete   ctermfg=202 ctermbg=95
 au BufRead,BufNewFile,FileType * hi IncSearch    ctermfg=88  ctermbg=218
 au BufRead,BufNewFile,FileType * hi Search       ctermfg=88  ctermbg=218
 au BufRead,BufNewFile,FileType * hi MatchParen   ctermfg=236 ctermbg=153
+au BufRead,BufNewFile,FileType * hi Comment      ctermfg=249
 
 "" Status line
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P

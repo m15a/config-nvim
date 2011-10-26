@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011-10-25 16:03:53.
+""" Last change: 2011-10-26 12:44:26.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
@@ -27,7 +27,7 @@ set transparency=10
 " let moria_style='dark'
 " colorscheme moria
 colorscheme Sunburst
-au BufRead,BufNewFile,FileType * hi Normal                     guibg=#262626
+au BufRead,BufNewFile,FileType * hi Normal                     guibg=#1C1C1C
 au BufRead,BufNewFile,FileType * hi Visual       guifg=#303030 guibg=#D7D787
 au BufRead,BufNewFile,FileType * hi StatusLine   guifg=#303030 guibg=#EEEEEE
 au BufRead,BufNewFile,FileType * hi StatusLineNC guifg=#303030 guibg=#9E9E9E
@@ -40,6 +40,7 @@ au BufRead,BufNewFile,FileType * hi DiffDelete   guifg=#C0C0C0 guibg=#603030
 au BufRead,BufNewFile,FileType * hi IncSearch    guifg=#870000 guibg=#FFAFD7
 au BufRead,BufNewFile,FileType * hi Search       guifg=#870000 guibg=#FFAFD7
 au BufRead,BufNewFile,FileType * hi MatchParen   guifg=#303030 guibg=#AFD7FF
+au BufRead,BufNewFile,FileType * hi MatchParen   guifg=#AEAEAE
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
