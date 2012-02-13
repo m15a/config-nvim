@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2012-02-13 17:56:08.
+""" Last change: 2012-02-13 19:40:36.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -82,8 +82,8 @@ set complete+=k
 " let moria_style='dark'
 " colorscheme moria
 " colorscheme Sunburst
-set background=dark
 colorscheme hemisu
+set background=dark
 "" For color names, see
 "" http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 au BufRead,BufNewFile,FileType * hi Normal                   ctermbg=234
