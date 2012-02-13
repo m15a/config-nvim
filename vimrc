@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2011-10-26 12:44:04.
+""" Last change: 2012-02-13 17:56:08.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -81,7 +81,9 @@ set complete+=k
 "" Color scheme for use in terminal
 " let moria_style='dark'
 " colorscheme moria
-colorscheme Sunburst
+" colorscheme Sunburst
+set background=dark
+colorscheme hemisu
 "" For color names, see
 "" http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 au BufRead,BufNewFile,FileType * hi Normal                   ctermbg=234
@@ -97,6 +99,7 @@ au BufRead,BufNewFile,FileType * hi IncSearch    ctermfg=88  ctermbg=218
 au BufRead,BufNewFile,FileType * hi Search       ctermfg=88  ctermbg=218
 au BufRead,BufNewFile,FileType * hi MatchParen   ctermfg=236 ctermbg=153
 au BufRead,BufNewFile,FileType * hi Comment      ctermfg=249
+au BufRead,BufNewFile,FileType * hi LineNr       ctermfg=238
 
 "" Status line
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
