@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2012-02-13 19:40:36.
+""" Last change: 2012-11-03 23:44:48.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -28,6 +28,8 @@ autocmd BufReadPost * call AU_ReCheck_FENC()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Miscellaneous
 
+set nocompatible
+set clipboard=unnamed
 syntax on
 filetype on
 filetype indent on
@@ -40,6 +42,7 @@ set backspace=indent,eol,start
 set tabstop=4
 set shiftwidth=2
 set scrolloff=4
+set scroll=5
 set expandtab
 set softtabstop=4
 set smarttab
@@ -102,7 +105,7 @@ au BufRead,BufNewFile,FileType * hi Comment      ctermfg=249
 au BufRead,BufNewFile,FileType * hi LineNr       ctermfg=238
 
 "" Status line
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+" set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 
 "" Suffixes that get lower priority when doing tab completion for filenames.
 "" These are files we are not likely to want to edit or read.
@@ -163,7 +166,7 @@ vmap <silent> ie <Plug>CamelCaseMotion_ie
 
 """ YankRing.vim
 let g:yankring_window_auto_close=1
-let g:yankring_history_dir='/tmp/'
+let g:yankring_history_dir='/tmp'
 
 """ yanktmp.vim
 nnoremap <silent> sy :call YanktmpYank()<CR>
