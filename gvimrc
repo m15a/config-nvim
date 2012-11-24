@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2012-02-13 19:41:23.
+""" Last change: 2012-11-21 13:41:11.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Look and feel
@@ -62,6 +62,7 @@ nnoremap <silent> <Leader>m :call ToggleFullScreen()<CR>
 "" Fonts
 set termencoding=japan
 set gfn=Inconsolata:h20
+" set gfn=Inconsolata\ for\ Powerline:h20
 set gfw=Hiragino_Maru_Gothic_Pro:h20
 
 
