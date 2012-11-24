@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2012-11-03 23:44:48.
+""" Last change: 2012-11-21 13:40:47.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -147,6 +147,11 @@ inoremap , ,<SPACE>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Plugins
 
+""" powerline
+" let g:Powerline_symbols = 'fancy'
+let g:Powerline_cache_dir = $HOME.'/.vim/cache'
+" let g:Powerline_colorscheme = 'solarized256'
+
 "" matchit.vim
 so $VIMRUNTIME/macros/matchit.vim
 
@@ -165,8 +170,8 @@ omap <silent> ie <Plug>CamelCaseMotion_ie
 vmap <silent> ie <Plug>CamelCaseMotion_ie
 
 """ YankRing.vim
-let g:yankring_window_auto_close=1
-let g:yankring_history_dir='/tmp'
+let g:yankring_window_auto_close = 1
+let g:yankring_history_dir = $HOME.'/.vim/cache'
 
 """ yanktmp.vim
 nnoremap <silent> sy :call YanktmpYank()<CR>
