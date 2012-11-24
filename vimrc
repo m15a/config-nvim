@@ -91,8 +91,8 @@ set background=dark
 "" http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 au BufRead,BufNewFile,FileType * hi Normal                   ctermbg=234
 au BufRead,BufNewFile,FileType * hi Visual       ctermfg=236 ctermbg=186
-au BufRead,BufNewFile,FileType * hi StatusLine   ctermfg=236 ctermbg=255
-au BufRead,BufNewFile,FileType * hi StatusLineNC ctermfg=236 ctermbg=247
+au BufRead,BufNewFile,FileType * hi StatusLine   ctermfg=236 "ctermbg=255
+au BufRead,BufNewFile,FileType * hi StatusLineNC ctermfg=236 "ctermbg=247
 au BufRead,BufNewFile,FileType * hi CursorLine               ctermbg=236
 au BufRead,BufNewFile,FileType * hi DiffAdd      ctermfg=236 ctermbg=61
 au BufRead,BufNewFile,FileType * hi DiffChange   ctermfg=236 ctermbg=65
