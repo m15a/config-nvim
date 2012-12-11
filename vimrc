@@ -1,5 +1,5 @@
 """ Configurations for MacVim with KaoriYa
-""" Last change: 2012-11-21 13:40:47.
+""" Last change: 2012-12-11 14:42:52.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ pathogen.vim
@@ -200,6 +200,7 @@ let NERDSpaceDelims=1
 "let g:surround_64="@{\r}"
 "
 """ unite.vim
+let g:unite_data_directory=$HOME.'/.vim/cache/unite'
 nnoremap <silent> <Leader>e :Unite
       \ -auto-resize buffer<CR>
 nnoremap <silent> <Leader>E :UniteWithCurrentDir
@@ -220,7 +221,13 @@ let autodate_format='%Y-%m-%d %H:%M:%S'
 let autodate_keyword_pre='Last change:'
 let autodate_keyword_post='\.'
 
+""" ref.vim
+let g:ref_cache_dir=$HOME.'/.vim/cache/vim_ref_cache'
+let g:ref_man_cmd='man -P cat'
+let g:ref_clojure_cmd='cake repl'
+
 """ neocomplcache
+let g:neocomplcache_temporary_dir=$HOME.'/.vim/cache/neocon'
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_max_list=20
 let g:neocomplcache_enable_ignore_case=1
@@ -345,6 +352,7 @@ let Tlist_Use_SingleClick=1
 let Tlist_WinWidth=28
 
 """ VimFiler
+let g:vimfiler_data_directory=$HOME.'/.vim/cache/vimfiler'
 let g:vimfiler_as_default_explorer=1
 
 
