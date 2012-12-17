@@ -1,11 +1,11 @@
 " ==============================================================================
 " MacVim settings for GUI
-" Last Change: 2012-12-16 17:46.
+" Last Change: 2012-12-17 18:57.
 " ==============================================================================
 
 "{{{ KEY MAPS
 
-"{{{ Toggle fullscreen
+""{{{ Toggle fullscreen
 function! g:gvimrc_toggle_fullscreen()
   if &g:fullscreen
     set nofullscreen
@@ -14,14 +14,14 @@ function! g:gvimrc_toggle_fullscreen()
   endif
 endfunction
 nnoremap <silent> <Leader>m :call g:gvimrc_toggle_fullscreen()<CR>
-"}}}
+""}}}
 
 "}}}
 "{{{ LOOK AND FEEL
 
 winpos 560 30
 
-"{{{ Some 'set ...'
+""{{{ Some 'set ...'
 set columns=86
 set lines=36
 set linespace=0
@@ -36,16 +36,16 @@ set guioptions-=T " hide tool bar
 set guioptions-=b " hide bottom scrollbar
 set guioptions-=r " hide right scrollbar
 set guioptions-=L " hide left scrollbar
-"}}}
- "{{{ Color on Japanese IM
+""}}}
+""{{{ Color on Japanese IM
 au BufRead,BufNewFile,FileType * hi IMLine guifg=#303030
 set transparency=10
-"}}}
-"{{{ Color scheme
+""}}}
+""{{{ Color scheme
 colorscheme hemisu
 set background=dark
-"}}}
-"{{{ Other highlights
+""}}}
+""{{{ Other highlights
 au BufRead,BufNewFile,FileType * hi Normal                     guibg=#1C1C1C
 au BufRead,BufNewFile,FileType * hi Visual       guifg=#303030 guibg=#D7D787
 au BufRead,BufNewFile,FileType * hi StatusLine   guifg=#303030 guibg=#EEEEEE
@@ -61,12 +61,12 @@ au BufRead,BufNewFile,FileType * hi Search       guifg=#870000 guibg=#FFAFD7
 au BufRead,BufNewFile,FileType * hi MatchParen   guifg=#303030 guibg=#AFD7FF
 au BufRead,BufNewFile,FileType * hi Comment      guifg=#AEAEAE
 au BufRead,BufNewFile,FileType * hi LineNr       guifg=#444444
-"}}}
-"{{{ Fonts
+""}}}
+""{{{ Fonts
 set termencoding=japan
 set gfn=Inconsolata:h20
 set gfw=Hiragino_Maru_Gothic_Pro:h20
-"}}}
+""}}}
 
 "}}}
 

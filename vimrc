@@ -1,13 +1,13 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2012-12-17 00:41.
+" Last Change: 2012-12-17 19:01.
 " ==============================================================================
 
 "{{{ PATH
 
 ""{{{ pathogen
 call pathogen#infect()
-"}}}
+""}}}
 
 "}}}
 "{{{ LANGUAGE
@@ -25,7 +25,7 @@ function! g:vimrc_recheck_fenc()
   endif
 endfunction
 autocmd BufReadPost * call g:vimrc_recheck_fenc()
-"}}}
+""}}}
 
 "}}}
 "{{{ UI OPTIONS
@@ -76,30 +76,30 @@ set visualbell
 set wildmenu
 set wildmode=list:longest
 set wrapscan
-"}}}
+""}}}
 ""{{{ Suffixes that get lower priority when doing tab completion for filenames
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg
 set suffixes+=.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
-"}}}
+""}}}
 ""{{{ 保存時に行末の空白を除去する
 " autocmd BufWritePre * :%s/\s\+$//ge
-"}}}
+""}}}
 
 "}}}
 "{{{ LOOK AND FEEL
 
-"{{{ Highlight current cursor line only
+""{{{ Highlight current cursor line only
 augroup vimrc_current_cursor_line
   autocmd! vimrc_current_cursor_line
   autocmd WinLeave * set nocursorline
   autocmd WinEnter,BufRead * set cursorline
 augroup END
-"}}}
-"{{{ Color scheme
+""}}}
+""{{{ Color scheme
 colorscheme hemisu
 set background=dark
-"}}}
-"{{{ Other highlights
+""}}}
+""{{{ Other highlights
 "" See http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 au BufRead,BufNewFile,FileType * hi Normal                   ctermbg=234
 au BufRead,BufNewFile,FileType * hi Visual       ctermfg=236 ctermbg=186
@@ -115,7 +115,7 @@ au BufRead,BufNewFile,FileType * hi Search       ctermfg=88  ctermbg=218
 au BufRead,BufNewFile,FileType * hi MatchParen   ctermfg=236 ctermbg=153
 au BufRead,BufNewFile,FileType * hi Comment      ctermfg=249
 au BufRead,BufNewFile,FileType * hi LineNr       ctermfg=238
-"}}}
+""}}}
 
 "}}}
 "{{{ KEY MAPS
@@ -123,40 +123,40 @@ au BufRead,BufNewFile,FileType * hi LineNr       ctermfg=238
 ""{{{ map leader を ';' に変更（そのため元の ';' を ';;' に避難）
 nnoremap ;; ;
 let mapleader=';'
-"}}}
+""}}}
 ""{{{ 移動系のキー
 nnoremap j gj
 nnoremap k gk
 nnoremap <C-j> +
 nnoremap <C-k> -
-"}}}
+""}}}
 ""{{{ フレームサイズを怠惰に変更する
 map + <C-W>+
 map - <C-W>-
 map > <C-W>>
 map < <C-W><
-"}}}
+""}}}
 ""{{{ 段落整形
 nmap Q gqap
-"}}}
+""}}}
 ""{{{ <C-c> の 2 回押しでハイライト消去
 nmap <silent> <C-c><C-c> :nohlsearch<CR>
-"}}}
+""}}}
 ""{{{ カンマのあとにスペースを1個補完
 inoremap , ,<SPACE>
-"}}}
+""}}}
 
 "}}}
 "{{{ PLUGINS
 
 ""{{{ matchit
 so $VIMRUNTIME/macros/matchit.vim
-"}}}
+""}}}
 ""{{{ autodate
 let autodate_format='%Y-%m-%d %H:%M'
 let autodate_keyword_pre='\c\%(#+\?DATE\|LAST \%(MODIFIED\|CHANGE\)\):'
 let autodate_keyword_post='\.'
-"}}}
+""}}}
 ""{{{ camelcasemotion
 "" Replace the default 'w', 'b', and 'e' mappings instead of defining
 "" additional mappings ',w', ',b', and ',e':
@@ -170,11 +170,11 @@ omap <silent> ib <Plug>CamelCaseMotion_ib
 vmap <silent> ib <Plug>CamelCaseMotion_ib
 omap <silent> ie <Plug>CamelCaseMotion_ie
 vmap <silent> ie <Plug>CamelCaseMotion_ie
-"}}}
+""}}}
 ""{{{ YankRing
 let g:yankring_window_auto_close = 1
 let g:yankring_history_dir = $HOME.'/.vim/cache'
-"}}}
+""}}}
 ""{{{ yanktmp
 let g:yanktmp_file = $HOME.'/.vim/cache/vimyanktmp'
 nnoremap <silent> sy :call YanktmpYank()<CR>
@@ -183,21 +183,21 @@ nnoremap <silent> sp :call YanktmpPaste_p()<CR>
 vnoremap <silent> sp :call YanktmpPaste_p()<CR>
 nnoremap <silent> sP :call YanktmpPaste_P()<CR>
 vnoremap <silent> sP :call YanktmpPaste_P()<CR>
-"}}}
+""}}}
 ""{{{ cmigemo
 nnoremap <silent> g/ :set incsearch<CR>g/
 nnoremap <silent> g? :set incsearch<CR>g?
-"}}}
+""}}}
 ""{{{ Tabular
 nnoremap <Leader>a= :Tabularize /=<CR>
 vnoremap <Leader>a= :Tabularize /=<CR>
 nnoremap <Leader>a: :Tabularize /:\zs<CR>
 vnoremap <Leader>a: :Tabularize /:\zs<CR>
-"}}}
+""}}}
 ""{{{ NERD Commenter
 let NERDSpaceDelims=1
 " let NERDRemoveExtraSpaces=1
-"}}}
+""}}}
 ""{{{ Surround
 "let g:surround_33="<!-- \r -->"
 "let g:surround_35="#{\r}"
@@ -205,7 +205,7 @@ let NERDSpaceDelims=1
 "let g:surround_37="<% \r %>"
 "let g:surround_45="<!-- \r -->"
 "let g:surround_64="@{\r}"
-"}}}
+""}}}
 ""{{{ Tag List
 nnoremap <Leader>l :TlistToggle<CR>
 " set tags=tags
@@ -219,12 +219,12 @@ let Tlist_File_Fold_Auto_Close = 1
 let Tlist_Use_Right_Window = 1
 let Tlist_Use_SingleClick = 1
 let Tlist_WinWidth = 28
-"}}}
+""}}}
 ""{{{ Powerline
 " let g:Powerline_symbols = 'fancy'
 let g:Powerline_cache_dir = $HOME.'/.vim/cache'
 " let g:Powerline_colorscheme = 'solarized256'
-"}}}
+""}}}
 ""{{{ Unite
 let g:unite_data_directory=$HOME.'/.vim/cache/unite'
 nnoremap <silent> <Leader>e :Unite
@@ -237,16 +237,16 @@ au FileType unite inoremap <silent> <buffer> <expr> <c-w>s unite#do_action('spli
 "" ウィンドウを縦に分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
 au FileType unite inoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
-"}}}
+""}}}
 ""{{{ ref
 let g:ref_cache_dir=$HOME.'/.vim/cache/vim_ref_cache'
 let g:ref_man_cmd='man -P cat'
 let g:ref_clojure_cmd='cake repl'
-"}}}
+""}}}
 ""{{{ VimFiler
 let g:vimfiler_data_directory = $HOME.'/.vim/cache/vimfiler'
 let g:vimfiler_as_default_explorer = 1
-"}}}
+""}}}
 ""{{{ neocomplcache
 
 "" Set options
@@ -328,7 +328,7 @@ function! g:vimrc_neocomplcache_update_tags() "{{{
 endfunction
 command NeoComplCacheUpdateTags call g:vimrc_neocomplcache_update_tags() "}}}
 
-"}}}
+""}}}
 ""{{{ OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
@@ -342,20 +342,20 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 au FileType cpp setlocal tags+=~/.vim/tags/cpp
-"}}}
+""}}}
 ""{{{ R plugin
 let vimrplugin_term = ""
 let vimrplugin_term_cmd = ""
 " let vimplugin_tmux=1
 " let vimrplugin_r_path='/opt/local/bin/R'
 " let vimrplugin_screenplugin=0
-"}}}
+""}}}
 ""{{{ Gauche (necoie)
 let is_gauche = 1
 au FileType scheme inoremap <buffer> ' '
 au FileType scheme inoremap <buffer> , ,
 "au FileType scheme inoremap <buffer> ` `()<LEFT>
-"}}}
+""}}}
 ""{{{ Slimv
 let g:slimv_cljapi_root = 'http://localhost/~mnacamura/refs/clojure/clojure/clojure/'
 let g:slimv_javadoc_root = 'http://localhost/~mnacamura/refs/java/jdk6/api/'
@@ -367,20 +367,20 @@ let g:slimv_repl_syntax = 1
 let g:slimv_repl_wrap = 1
 au FileType clojure inoremap <buffer> ' '
 " au FileType clojure inoremap <buffer> ` `()<LEFT>
-"}}}
+""}}}
 ""{{{ Ocaml
 " let g:omlet_indent = 1
 au FileType ocaml inoremap <buffer> ' '
 "}}}
 
-"}}}
+""}}}
 "{{{ FINALLY
 
 ""{{{ 前回終了したカーソル行に移動
 au BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \ exe "normal g`\"" | endif
-"}}}
+""}}}
 
 "}}}
 
