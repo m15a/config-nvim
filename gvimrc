@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings for GUI
-" Last Change: 2012-12-17 21:06.
+" Last Change: 2012-12-18 00:58.
 " ==============================================================================
 
 "{{{ KEY MAPS
@@ -42,8 +42,9 @@ au BufRead,BufNewFile,FileType * hi IMLine guifg=#303030
 set transparency=10
 ""}}}
 ""{{{ Color scheme
-colorscheme solarized
 set background=dark
+let g:solarized_menu = 0
+colorscheme solarized
 ""}}}
 ""{{{ Other highlights
 "" See http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim

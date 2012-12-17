@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2012-12-17 21:04.
+" Last Change: 2012-12-18 00:59.
 " ==============================================================================
 
 "{{{ PATH
@@ -96,8 +96,8 @@ augroup vimrc_current_cursor_line
 augroup END
 ""}}}
 ""{{{ Color scheme
-colorscheme solarized
 set background=dark
+colorscheme solarized
 ""}}}
 ""{{{ Other highlights
 "" See http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
