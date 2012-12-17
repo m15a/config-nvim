@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2012-12-17 19:01.
+" Last Change: 2012-12-17 21:04.
 " ==============================================================================
 
 "{{{ PATH
@@ -96,25 +96,16 @@ augroup vimrc_current_cursor_line
 augroup END
 ""}}}
 ""{{{ Color scheme
-colorscheme hemisu
+colorscheme solarized
 set background=dark
 ""}}}
 ""{{{ Other highlights
 "" See http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-au BufRead,BufNewFile,FileType * hi Normal                   ctermbg=234
-au BufRead,BufNewFile,FileType * hi Visual       ctermfg=236 ctermbg=186
-au BufRead,BufNewFile,FileType * hi StatusLine   ctermfg=236 "ctermbg=255
-au BufRead,BufNewFile,FileType * hi StatusLineNC ctermfg=236 "ctermbg=247
-au BufRead,BufNewFile,FileType * hi CursorLine               ctermbg=236
-au BufRead,BufNewFile,FileType * hi DiffAdd      ctermfg=236 ctermbg=61
-au BufRead,BufNewFile,FileType * hi DiffChange   ctermfg=236 ctermbg=65
-au BufRead,BufNewFile,FileType * hi DiffText     ctermfg=236 ctermbg=66
+au BufRead,BufNewFile,FileType * hi Normal       ctermfg=250
+au BufRead,BufNewFile,FileType * hi DiffAdd      ctermfg=234 ctermbg=61
+au BufRead,BufNewFile,FileType * hi DiffChange   ctermfg=234 ctermbg=66
+au BufRead,BufNewFile,FileType * hi DiffText     ctermfg=234 ctermbg=61
 au BufRead,BufNewFile,FileType * hi DiffDelete   ctermfg=202 ctermbg=95
-au BufRead,BufNewFile,FileType * hi IncSearch    ctermfg=88  ctermbg=218
-au BufRead,BufNewFile,FileType * hi Search       ctermfg=88  ctermbg=218
-au BufRead,BufNewFile,FileType * hi MatchParen   ctermfg=236 ctermbg=153
-au BufRead,BufNewFile,FileType * hi Comment      ctermfg=249
-au BufRead,BufNewFile,FileType * hi LineNr       ctermfg=238
 ""}}}
 
 "}}}

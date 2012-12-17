@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings for GUI
-" Last Change: 2012-12-17 18:57.
+" Last Change: 2012-12-17 21:06.
 " ==============================================================================
 
 "{{{ KEY MAPS
@@ -42,25 +42,17 @@ au BufRead,BufNewFile,FileType * hi IMLine guifg=#303030
 set transparency=10
 ""}}}
 ""{{{ Color scheme
-colorscheme hemisu
+colorscheme solarized
 set background=dark
 ""}}}
 ""{{{ Other highlights
-au BufRead,BufNewFile,FileType * hi Normal                     guibg=#1C1C1C
-au BufRead,BufNewFile,FileType * hi Visual       guifg=#303030 guibg=#D7D787
-au BufRead,BufNewFile,FileType * hi StatusLine   guifg=#303030 guibg=#EEEEEE
-au BufRead,BufNewFile,FileType * hi StatusLineNC guifg=#303030 guibg=#9E9E9E
+"" See http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
+au BufRead,BufNewFile,FileType * hi Normal       guifg=#BCBCBC
 au BufRead,BufNewFile,FileType * hi Cursor                     guibg=#EEB422
-au BufRead,BufNewFile,FileType * hi CursorLine                 guibg=#303030
-au BufRead,BufNewFile,FileType * hi DiffAdd                    guibg=#303060
-au BufRead,BufNewFile,FileType * hi DiffChange                 guibg=#306030
-au BufRead,BufNewFile,FileType * hi DiffText                   guibg=#284A28
-au BufRead,BufNewFile,FileType * hi DiffDelete   guifg=#C0C0C0 guibg=#603030
-au BufRead,BufNewFile,FileType * hi IncSearch    guifg=#870000 guibg=#FFAFD7
-au BufRead,BufNewFile,FileType * hi Search       guifg=#870000 guibg=#FFAFD7
-au BufRead,BufNewFile,FileType * hi MatchParen   guifg=#303030 guibg=#AFD7FF
-au BufRead,BufNewFile,FileType * hi Comment      guifg=#AEAEAE
-au BufRead,BufNewFile,FileType * hi LineNr       guifg=#444444
+au BufRead,BufNewFile,FileType * hi DiffAdd      guifg=#001E27 guibg=#5F5FAF
+au BufRead,BufNewFile,FileType * hi DiffChange   guifg=#001E27 guibg=#5F8787
+au BufRead,BufNewFile,FileType * hi DiffText     guifg=#001E27 guibg=#5F5FAF
+au BufRead,BufNewFile,FileType * hi DiffDelete   guifg=#FF5F00 guibg=#875F5F
 ""}}}
 ""{{{ Fonts
 set termencoding=japan
