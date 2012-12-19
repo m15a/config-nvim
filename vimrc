@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2012-12-18 00:59.
+" Last Change: 2012-12-19 17:51.
 " ==============================================================================
 
 "{{{ PATH
@@ -197,19 +197,9 @@ let NERDSpaceDelims=1
 "let g:surround_45="<!-- \r -->"
 "let g:surround_64="@{\r}"
 ""}}}
-""{{{ Tag List
-nnoremap <Leader>l :TlistToggle<CR>
-" set tags=tags
-let Tlist_Auto_Highlight_Tag = 1
-let Tlist_Auto_Update = 1
-let Tlist_Compact_Format = 1
-let Tlist_Ctags_Cmd = '/opt/local/bin/jexctags'
-" let Tlist_GHC_Cmd = '/usr/local/bin/ghc'
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_Use_Right_Window = 1
-let Tlist_Use_SingleClick = 1
-let Tlist_WinWidth = 28
+""{{{ Tagbar
+nnoremap <Leader>l :TagbarToggle<CR>
+let g:tagbar_ctags_bin = '/opt/local/bin/jexctags'
 ""}}}
 ""{{{ Powerline
 " let g:Powerline_symbols = 'fancy'
