@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2012-12-19 17:51.
+" Last Change: 2012-12-19 20:48.
 " ==============================================================================
 
 "{{{ PATH
@@ -200,6 +200,12 @@ let NERDSpaceDelims=1
 ""{{{ Tagbar
 nnoremap <Leader>l :TagbarToggle<CR>
 let g:tagbar_ctags_bin = '/opt/local/bin/jexctags'
+let g:tagbar_autoclose = 1
+let g:tagbar_autofocus = 1
+let g:tagbar_compact = 1
+let g:tagbar_show_visibility = 1
+" let g:tagbar_expand = 1
+let g:tagbar_iconchars = ['▾', '▸']
 ""}}}
 ""{{{ Powerline
 " let g:Powerline_symbols = 'fancy'
