@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2012-12-20 20:51.
+" Last Change: 2012-12-22 21:22.
 " ==============================================================================
 
 "{{{ PATH
@@ -179,6 +179,9 @@ vnoremap <silent> sP :call YanktmpPaste_P()<CR>
 ""{{{ cmigemo
 nnoremap <silent> g/ :set incsearch<CR>g/
 nnoremap <silent> g? :set incsearch<CR>g?
+""}}}
+""{{{ Gundo
+nnoremap <Leader>g :GundoToggle<CR>
 ""}}}
 ""{{{ Tabular
 nnoremap <Leader>a= :Tabularize /=<CR>
