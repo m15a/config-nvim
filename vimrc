@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2012-12-22 21:41.
+" Last Change: 2012-12-22 23:36.
 " ==============================================================================
 
 "{{{ PATH
@@ -179,6 +179,13 @@ nnoremap <silent> sp :call YanktmpPaste_p()<CR>
 vnoremap <silent> sp :call YanktmpPaste_p()<CR>
 nnoremap <silent> sP :call YanktmpPaste_P()<CR>
 vnoremap <silent> sP :call YanktmpPaste_P()<CR>
+""}}}
+""{{{ poslist
+let g:poslist_histsize = 1000
+map <C-o> <Plug>(poslist-prev-pos)
+map <C-i> <Plug>(poslist-next-pos)
+map <Leader><C-o> <Plug>(poslist-prev-buf)
+map <Leader><C-i> <Plug>(poslist-next-buf)
 ""}}}
 ""{{{ cmigemo
 nnoremap <silent> g/ :set incsearch<CR>g/
