@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2012-12-22 21:25.
+" Last Change: 2012-12-22 21:41.
 " ==============================================================================
 
 "{{{ PATH
@@ -43,7 +43,7 @@ set complete+=k
 set cursorline
 set diffopt=filler,vertical
 set expandtab
-set grepprg=internal
+" set grepprg=internal
 set hidden
 set history=1000
 set hlsearch
@@ -84,6 +84,10 @@ set suffixes+=.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 ""}}}
 ""{{{ 保存時に行末の空白を除去する
 " autocmd BufWritePre * :%s/\s\+$//ge
+""}}}
+""{{{ grep
+set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
+set grepprg=grep\ -nh
 ""}}}
 
 "}}}
