@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2012-12-22 21:22.
+" Last Change: 2012-12-22 21:25.
 " ==============================================================================
 
 "{{{ PATH
@@ -114,7 +114,7 @@ au BufRead,BufNewFile,FileType * hi DiffDelete   ctermfg=202 ctermbg=95
 
 ""{{{ map leader を ';' に変更（そのため元の ';' を ';;' に避難）
 nnoremap ;; ;
-let mapleader=';'
+let mapleader = ';'
 ""}}}
 ""{{{ 移動系のキー
 nnoremap j gj
@@ -145,9 +145,9 @@ inoremap , ,<SPACE>
 so $VIMRUNTIME/macros/matchit.vim
 ""}}}
 ""{{{ autodate
-let autodate_format='%Y-%m-%d %H:%M'
-let autodate_keyword_pre='\c\%(#+\?DATE\|LAST \%(MODIFIED\|CHANGE\)\):'
-let autodate_keyword_post='\.'
+let autodate_format = '%Y-%m-%d %H:%M'
+let autodate_keyword_pre = '\c\%(#+\?DATE\|LAST \%(MODIFIED\|CHANGE\)\):'
+let autodate_keyword_post = '\.'
 ""}}}
 ""{{{ camelcasemotion
 "" Replace the default 'w', 'b', and 'e' mappings instead of defining
@@ -190,7 +190,7 @@ nnoremap <Leader>a: :Tabularize /:\zs<CR>
 vnoremap <Leader>a: :Tabularize /:\zs<CR>
 ""}}}
 ""{{{ NERD Commenter
-let NERDSpaceDelims=1
+let NERDSpaceDelims = 1
 " let NERDRemoveExtraSpaces=1
 ""}}}
 ""{{{ Surround
@@ -217,7 +217,7 @@ let g:Powerline_cache_dir = $HOME.'/.vim/cache'
 " let g:Powerline_colorscheme = 'solarized256'
 ""}}}
 ""{{{ Unite
-let g:unite_data_directory=$HOME.'/.vim/cache/unite'
+let g:unite_data_directory = $HOME.'/.vim/cache/unite'
 nnoremap <silent> <Leader>e :Unite
       \ -auto-resize buffer file<CR>
 nnoremap <silent> <Leader>E :UniteWithCurrentDir
@@ -230,9 +230,9 @@ au FileType unite nnoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vspl
 au FileType unite inoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
 ""}}}
 ""{{{ ref
-let g:ref_cache_dir=$HOME.'/.vim/cache/vim_ref_cache'
-let g:ref_man_cmd='man -P cat'
-let g:ref_clojure_cmd='cake repl'
+let g:ref_cache_dir = $HOME.'/.vim/cache/vim_ref_cache'
+let g:ref_man_cmd = 'man -P cat'
+let g:ref_clojure_cmd = 'cake repl'
 ""}}}
 ""{{{ VimFiler
 let g:vimfiler_data_directory = $HOME.'/.vim/cache/vimfiler'
