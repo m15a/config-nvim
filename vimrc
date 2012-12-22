@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2012-12-22 23:54.
+" Last Change: 2012-12-23 00:22.
 " ==============================================================================
 
 "{{{ PATH
@@ -234,6 +234,9 @@ let g:tagbar_iconchars = ['▾', '▸']
 " let g:Powerline_symbols = 'fancy'
 let g:Powerline_cache_dir = $HOME.'/.vim/cache'
 " let g:Powerline_colorscheme = 'solarized256'
+""}}}
+""{{{ QFixGrep
+let g:MyGrep_MenuBar = 1
 ""}}}
 ""{{{ Unite
 let g:unite_data_directory = $HOME.'/.vim/cache/unite'
