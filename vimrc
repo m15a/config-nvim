@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2012-12-22 23:36.
+" Last Change: 2012-12-22 23:54.
 " ==============================================================================
 
 "{{{ PATH
@@ -88,6 +88,10 @@ set suffixes+=.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 ""{{{ grep
 set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
 set grepprg=grep\ -nh
+""}}}
+""{{{ * で検索した後カーソル移動しない
+nnoremap * *N
+nnoremap # #N
 ""}}}
 
 "}}}
@@ -186,6 +190,10 @@ map <C-o> <Plug>(poslist-prev-pos)
 map <C-i> <Plug>(poslist-next-pos)
 map <Leader><C-o> <Plug>(poslist-prev-buf)
 map <Leader><C-i> <Plug>(poslist-next-buf)
+""}}}
+""{{{ visualstar
+map * <Plug>(visualstar-*)N
+map # <Plug>(visualstar-#)N
 ""}}}
 ""{{{ cmigemo
 nnoremap <silent> g/ :set incsearch<CR>g/
