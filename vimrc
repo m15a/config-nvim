@@ -233,7 +233,7 @@ let g:tagbar_iconchars = ['▾', '▸']
 ""{{{ Powerline
 " let g:Powerline_symbols = 'fancy'
 let g:Powerline_cache_dir = $HOME.'/.vim/cache'
-" let g:Powerline_colorscheme = 'solarized256'
+let g:Powerline_colorscheme = 'solarized256'
 ""}}}
 ""{{{ QFixGrep
 let g:MyGrep_MenuBar = 1
