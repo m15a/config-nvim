@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2012-12-23 00:22.
+" Last Change: 2013-01-09 15:29.
 " ==============================================================================
 
 "{{{ PATH
@@ -105,12 +105,13 @@ augroup vimrc_current_cursor_line
 augroup END
 ""}}}
 ""{{{ Color scheme
-set background=dark
-colorscheme solarized
+" set background=dark
+" colorscheme solarized
+colorscheme Tomorrow-Night
 ""}}}
 ""{{{ Other highlights
 "" See http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-au BufRead,BufNewFile,FileType * hi Normal       ctermfg=250
+" au BufRead,BufNewFile,FileType * hi Normal       ctermfg=250
 au BufRead,BufNewFile,FileType * hi DiffAdd      ctermfg=234 ctermbg=61
 au BufRead,BufNewFile,FileType * hi DiffChange   ctermfg=234 ctermbg=66
 au BufRead,BufNewFile,FileType * hi DiffText     ctermfg=234 ctermbg=61
