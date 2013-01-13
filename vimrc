@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-01-14 00:50.
+" Last Change: 2013-01-14 04:49.
 " ==============================================================================
 
 "{{{ PATH
@@ -381,16 +381,24 @@ au FileType scheme inoremap <buffer> , ,
 "au FileType scheme inoremap <buffer> ` `()<LEFT>
 ""}}}
 ""{{{ Slimv
-let g:slimv_cljapi_root = 'http://localhost/~mnacamura/refs/clojure/clojure/clojure/'
-let g:slimv_javadoc_root = 'http://localhost/~mnacamura/refs/java/jdk6/api/'
-let g:slimv_ctags = '/opt/local/bin/jexctags -a --language-force=lisp *.lisp *.clj'
+let g:slimv_disable_scheme = 1
+let g:slimv_swank_cmd =
+      \ '!osascript -e "tell app \"Terminal\" to do'.
+      \ ' script \"sbcl --load ~/.vim/bundle/slimv/slime/start-swank.lisp\""'
+let g:slimv_swank_clojure =
+      \ '!osascript -e "tell app \"Terminal\" to do'.
+      \ ' script \"lein swank\""'
+let g:slimv_ctags = 'jexctags -a --language-force=lisp *.lisp *.clj'
 let g:slimv_leader = ','
-" let g:slimv_lisp = 'lein repl'
 let g:slimv_repl_split = 2
 let g:slimv_repl_syntax = 1
 let g:slimv_repl_wrap = 1
+let g:slimv_clhs_root = 'http://localhost/~mnacamura/refs/lisp/HyperSpec/Body/'
+let g:slimv_cljapi_root = 'http://localhost/~mnacamura/refs/clojure/clojure/clojure/'
+let g:slimv_javadoc_root = 'http://localhost/~mnacamura/refs/java/jdk6/api/'
 au FileType clojure inoremap <buffer> ' '
-" au FileType clojure inoremap <buffer> ` `()<LEFT>
+au FileType lisp inoremap <buffer> ' '
+" au FileType lisp inoremap <buffer> ` `()<LEFT>
 ""}}}
 ""{{{ Ocaml
 " let g:omlet_indent = 1
