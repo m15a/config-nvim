@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-01-13 23:09.
+" Last Change: 2013-01-14 00:50.
 " ==============================================================================
 
 "{{{ PATH
@@ -303,6 +303,16 @@ endif
 " autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
 " autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
 
+"" Partial omni completions
+let g:neocomplcache_force_overwrite_completefunc = 1
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.c =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
 "" Key maps
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
@@ -350,8 +360,12 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 ""}}}
-""{{{ neocomplcache-clang
-let g:neocomplcache_clang_use_library = 1
+""{{{ clang_complete
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_use_library = 1
+let g:clang_library_path = '/opt/local/libexec/llvm-3.2/lib'
+let g:clang_user_options = '|| exit 0'
 ""}}}
 ""{{{ R plugin
 let vimrplugin_term = ""
