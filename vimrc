@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-01-09 17:56.
+" Last Change: 2013-01-13 23:09.
 " ==============================================================================
 
 "{{{ PATH
@@ -262,26 +262,25 @@ let g:vimfiler_data_directory = $HOME.'/.vim/cache/vimfiler'
 let g:vimfiler_as_default_explorer = 1
 ""}}}
 ""{{{ neocomplcache
-
 "" Set options
-let g:neocomplcache_temporary_dir = $HOME.'/.vim/cache/neocon'
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_max_list = 20
+let g:neocomplcache_max_list = 100
 let g:neocomplcache_enable_ignore_case = 1
 let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_enable_auto_select = 1
 let g:neocomplcache_enable_auto_delimiter = 1
+" let g:neocomplcache_enable_camel_case_completion = 1
+" let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_temporary_dir = $HOME.'/.vim/cache/neocon'
 
 "" Include completions
 let g:neocomplcache_ctags_program = '/opt/local/bin/jexctags'
 if !exists('g:neocomplcache_include_paths')
   let g:neocomplcache_include_paths = {}
 endif
-let g:neocomplcache_include_paths.cpp =
-      \ "/opt/local/include/gcc45/c++,".
-      \ "/opt/local/lib/R/include,/opt/local/lib/R/include/R_ext"
+" let g:neocomplcache_include_paths.cpp =
+      " \ "/opt/local/include/gcc45/c++,".
+      " \ "/opt/local/lib/R/include,/opt/local/lib/R/include/R_ext"
 
 "" Dictionary completions
 if !exists('g:neocomplcache_dictionary_filetype_lists')
@@ -294,9 +293,9 @@ let g:neocomplcache_dictionary_filetype_lists.scheme =
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-autocmd FileType c setlocal omnifunc=ccomplete#Complete
+" let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+" let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+" autocmd FileType c setlocal omnifunc=ccomplete#Complete
 " autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 " autocmd FileType sql,mysql  setlocal omnifunc=xmlcomplete#CompleteTags
@@ -307,31 +306,20 @@ autocmd FileType c setlocal omnifunc=ccomplete#Complete
 "" Key maps
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
-" <C-h>, <BS>: close popup and delete backword char.
+"" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+"" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"" <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y> neocomplcache#close_popup()
 inoremap <expr><C-e> neocomplcache#cancel_popup()
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
-
-"" TAB completion
-function! g:vimrc_neocomplcache_insert_tab() "{{{
-  if neocomplcache#sources#snippets_complete#expandable()
-    return "\<Plug>(neocomplcache_snippets_expand)"
-  elseif pumvisible()
-    return "\<c-n>"
-  endif
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k\|<\|/'
-    return "\<tab>"
-  elseif exists('&omnifunc') && &omnifunc == ''
-    return "\<c-n>"
-  else
-    return "\<c-x>\<c-o>"
-  endif
-endfunction
-imap <expr><tab> g:vimrc_neocomplcache_insert_tab() "}}}
 
 "" Utilities
 function! g:vimrc_neocomplcache_update_tags() "{{{
@@ -341,21 +329,29 @@ function! g:vimrc_neocomplcache_update_tags() "{{{
   endfor
 endfunction
 command NeoComplCacheUpdateTags call g:vimrc_neocomplcache_update_tags() "}}}
-
 ""}}}
-""{{{ OmniCppComplete
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot = 1      " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1    " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1    " autocomplete after ::
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-"" automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
-au FileType cpp setlocal tags+=~/.vim/tags/cpp
+""{{{ neosnippet
+"" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+xmap <C-l>     <Plug>(neosnippet_start_unite_snippet_target)
+
+"" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)"
+ \: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)"
+ \: "\<TAB>"
+
+"" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+""}}}
+""{{{ neocomplcache-clang
+let g:neocomplcache_clang_use_library = 1
 ""}}}
 ""{{{ R plugin
 let vimrplugin_term = ""
