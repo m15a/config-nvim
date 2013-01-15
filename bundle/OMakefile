@@ -1,0 +1,10 @@
+VIM = /Applications/MacVim.app/Contents/MacOS/Vim
+
+.PHONY: helptags
+helptags:
+	foreach (plugin => ..., $(ls .))
+	   doc = $(plugin)/doc
+	   if $(file-exists $(doc))
+	      echo "helptags $(doc)"
+	      $(VIM) --cmd "helptags $(doc)" --cmd "q"
+
