@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-01-14 04:49.
+" Last Change: 2013-01-15 23:08.
 " ==============================================================================
 
 "{{{ PATH
@@ -212,6 +212,7 @@ vnoremap <Leader>a: :Tabularize /:\zs<CR>
 ""{{{ NERD Commenter
 let NERDSpaceDelims = 1
 " let NERDRemoveExtraSpaces=1
+let NERDCompactSexyComs = 1
 ""}}}
 ""{{{ Surround
 "let g:surround_33="<!-- \r -->"
