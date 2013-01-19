@@ -366,7 +366,7 @@ let g:clang_complete_auto = 0
 let g:clang_auto_select = 0
 let g:clang_use_library = 1
 let g:clang_library_path = '/opt/local/libexec/llvm-3.2/lib'
-let g:clang_user_options = '|| exit 0'
+let g:clang_user_options = '-std=c++11 -stdlib=libc++'
 ""}}}
 ""{{{ R plugin
 let vimrplugin_term = ""
