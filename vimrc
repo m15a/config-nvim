@@ -138,7 +138,8 @@ map > <C-W>>
 map < <C-W><
 ""}}}
 ""{{{ 段落整形
-nmap Q gqap
+" nmap Q gqap
+unmap Q
 ""}}}
 ""{{{ <C-c> の 2 回押しでハイライト消去
 nmap <silent> <C-c><C-c> :nohlsearch<CR>
@@ -157,6 +158,9 @@ so $VIMRUNTIME/macros/matchit.vim
 let autodate_format = '%Y-%m-%d %H:%M'
 let autodate_keyword_pre = '\c\%(#+\?DATE\|LAST \%(MODIFIED\|CHANGE\)\):'
 let autodate_keyword_post = '\.'
+""}}}
+""{{{ JpFormat
+set formatexpr=jpfmt#formatexpr()
 ""}}}
 ""{{{ camelcasemotion
 "" Replace the default 'w', 'b', and 'e' mappings instead of defining
