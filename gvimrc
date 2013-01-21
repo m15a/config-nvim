@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings for GUI
-" Last Change: 2013-01-20 05:56.
+" Last Change: 2013-01-22 00:25.
 " ==============================================================================
 
 "{{{ KEY MAPS
@@ -19,11 +19,11 @@ nnoremap <silent> <Leader>m :call g:gvimrc_toggle_fullscreen()<CR>
 "}}}
 "{{{ LOOK AND FEEL
 
-winpos 560 30
+winpos 470 40
 
 ""{{{ Some 'set ...'
 set columns=86
-set lines=36
+set lines=34
 set linespace=0
 set vb t_vb=
 set mousehide
@@ -58,8 +58,8 @@ au BufRead,BufNewFile,FileType * hi DiffDelete   guifg=#FF5F00 guibg=#875F5F
 ""}}}
 ""{{{ Fonts
 set termencoding=japan
-set gfn=Inconsolata:h20
-set gfw=Hiragino_Maru_Gothic_Pro:h20
+set gfn=Inconsolata:h22
+set gfw=Hiragino_Maru_Gothic_Pro:h22
 ""}}}
 
 "}}}
