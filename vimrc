@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-01-21 11:50.
+" Last Change: 2013-01-21 18:14.
 " ==============================================================================
 
 "{{{ PATH
@@ -160,7 +160,29 @@ let autodate_keyword_pre = '\c\%(#+\?DATE\|LAST \%(MODIFIED\|CHANGE\)\):'
 let autodate_keyword_post = '\.'
 ""}}}
 ""{{{ JpFormat
-set formatexpr=jpfmt#formatexpr()
+"" See https://sites.google.com/site/fudist/Home/jpformat
+set formatoptions+=mM " マルチバイト文字の行の連結時には空白を入力しない
+
+"" 日本語を含む場合は JpFormat を使う
+function! g:vimrc_recheck_jpformat()
+  if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
+    set formatexpr=jpfmt#formatexpr()
+    let g:vimrc_jpformat_on = 1
+  endif
+endfunction
+autocmd BufReadPost * call g:vimrc_recheck_jpformat()
+
+"" gq のスイッチ
+function! g:vimrc_switch_jpformat()
+  if !g:vimrc_jpformat_on
+    set formatexpr=jpfmt#formatexpr()
+    let g:vimrc_jpformat_on = 1
+  else
+    set formatexpr=autofmt#japanese#formatexpr()
+    let g:vimrc_jpformat_on = 0
+  endif
+endfunction
+command SwitchJpFormat call g:vimrc_switch_jpformat()
 ""}}}
 ""{{{ camelcasemotion
 "" Replace the default 'w', 'b', and 'e' mappings instead of defining
