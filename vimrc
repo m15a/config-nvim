@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-01-20 05:51.
+" Last Change: 2013-01-21 11:50.
 " ==============================================================================
 
 "{{{ PATH
@@ -408,6 +408,9 @@ au FileType lisp inoremap <buffer> ' '
 ""{{{ Ocaml
 " let g:omlet_indent = 1
 au FileType ocaml inoremap <buffer> ' '
+"}}}
+""{{{ Markdown
+au FileType mkd nnoremap Q :!qlmanage -p % >& /dev/null<cr>
 "}}}
 
 ""}}}
