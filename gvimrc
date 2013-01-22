@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings for GUI
-" Last Change: 2013-01-22 00:25.
+" Last Change: 2013-01-22 12:49.
 " ==============================================================================
 
 "{{{ KEY MAPS
@@ -49,11 +49,11 @@ colorscheme solarized
 ""}}}
 ""{{{ Other highlights
 "" See http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-au BufRead,BufNewFile,FileType * hi Normal       guifg=#3A3A3A
-au BufRead,BufNewFile,FileType * hi Cursor                     guibg=#3A3A3A
-au BufRead,BufNewFile,FileType * hi DiffAdd      guifg=#3A3A3A guibg=#5F5FAF
-au BufRead,BufNewFile,FileType * hi DiffChange   guifg=#3A3A3A guibg=#5F8787
-au BufRead,BufNewFile,FileType * hi DiffText     guifg=#3A3A3A guibg=#5F5FAF
+au BufRead,BufNewFile,FileType * hi Normal       guifg=#444444
+au BufRead,BufNewFile,FileType * hi Cursor                     guibg=#444444
+au BufRead,BufNewFile,FileType * hi DiffAdd      guifg=#444444 guibg=#5F5FAF
+au BufRead,BufNewFile,FileType * hi DiffChange   guifg=#444444 guibg=#5F8787
+au BufRead,BufNewFile,FileType * hi DiffText     guifg=#444444 guibg=#5F5FAF
 au BufRead,BufNewFile,FileType * hi DiffDelete   guifg=#FF5F00 guibg=#875F5F
 ""}}}
 ""{{{ Fonts
