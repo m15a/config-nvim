@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-01-22 19:58.
+" Last Change: 2013-01-23 00:03.
 " ==============================================================================
 
 "{{{ PATH
@@ -231,6 +231,7 @@ nnoremap <silent> g? :set incsearch<CR>g?
 ""}}}
 ""{{{ Gundo
 nnoremap <Leader>g :GundoToggle<CR>
+let g:gundo_close_on_revert = 1
 ""}}}
 ""{{{ Tabular
 nnoremap <Leader>a= :Tabularize /=<CR>
