@@ -104,6 +104,9 @@ augroup vimrc_current_cursor_line
   autocmd WinEnter,BufRead * set cursorline
 augroup END
 ""}}}
+""{{{ Colorize columns over 80. See http://hanschen.org/2012/10/24/
+exec "set colorcolumn=" . join (range (81, 335),  ',')
+""}}}
 ""{{{ Color scheme
 " colorscheme Tomorrow-Night
 set background=light
