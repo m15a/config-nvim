@@ -437,10 +437,10 @@ au FileType lisp inoremap <buffer> ' '
 ""{{{ Ocaml
 " let g:omlet_indent = 1
 au FileType ocaml inoremap <buffer> ' '
-"}}}
+""}}}
 ""{{{ Markdown
 au FileType mkd nnoremap Q :!qlmanage -p % >& /dev/null<cr>
-"}}}
+""}}}
 
 ""}}}
 "{{{ FINALLY
