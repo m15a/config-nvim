@@ -34,7 +34,7 @@ abbr        [](){}
 # scoped enumeration ( C++11 feature )
 snippet     enum_scoped
 abbr        enum struct {}
-    enum struct { ${1:TARGET} }
+    enum class ${1:#:name} { ${0:TARGET} };
 
 # static assert ( C++11 feature )
 snippet     static_assert
