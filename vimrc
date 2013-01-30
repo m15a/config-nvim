@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-01-23 00:03.
+" Last Change: 2013-01-30 19:28.
 " ==============================================================================
 
 "{{{ PATH
@@ -149,6 +149,15 @@ nmap <silent> <C-c><C-c> :nohlsearch<CR>
 ""}}}
 ""{{{ カンマのあとにスペースを1個補完
 inoremap , ,<SPACE>
+""}}}
+""{{{ Vim Technic Bible 4-1: Insert time stamps
+cnoremap <expr> <C-x>dt strftime('%Y%m%d')
+cnoremap <expr> <C-x>ts strftime('%Y%m%d%H%M')
+""}}}
+""{{{ Vim Technic Bible 4-6: Substitute a word with a yanked word
+nnoremap <silent> cy ce<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+vnoremap <silent> cy c<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 ""}}}
 
 "}}}
