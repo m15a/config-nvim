@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-01-30 19:28.
+" Last Change: 2013-02-06 13:40.
 " ==============================================================================
 
 "{{{ PATH
@@ -317,8 +317,14 @@ let g:neocomplcache_enable_auto_delimiter = 1
 " let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_temporary_dir = $HOME.'/.vim/cache/neocon'
 
-"" Include completions
+"" Ctags settings
 let g:neocomplcache_ctags_program = '/opt/local/bin/jexctags'
+if !exists('g:neocomplcache_ctags_arguments_list')
+  let g:neocomplcache_ctags_arguments_list = {}
+endif
+let g:neocomplcache_ctags_arguments_list.perl = '-R -h ".pm"'
+
+"" Include completions
 if !exists('g:neocomplcache_include_paths')
   let g:neocomplcache_include_paths = {}
 endif
@@ -330,6 +336,8 @@ endif
 if !exists('g:neocomplcache_dictionary_filetype_lists')
   let g:neocomplcache_dictionary_filetype_lists = {}
 endif
+let g:neocomplcache_dictionary_filetype_lists.perl =
+      \ $HOME.'/.vim/dict/perl.dict'
 let g:neocomplcache_dictionary_filetype_lists.scheme =
       \ $HOME.'/.gosh_completions'
 
