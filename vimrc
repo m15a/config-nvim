@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-02-06 13:40.
+" Last Change: 2013-02-08 10:58.
 " ==============================================================================
 
 "{{{ PATH
@@ -282,6 +282,11 @@ let g:Powerline_cache_dir = $HOME.'/.vim/cache'
 ""}}}
 ""{{{ QFixGrep
 let g:MyGrep_MenuBar = 1
+""}}}
+""{{{ Quickrun
+let g:quickrun_config = {
+      \ '*': {'split': ''}
+      \ }
 ""}}}
 ""{{{ Unite
 let g:unite_data_directory = $HOME.'/.vim/cache/unite'
