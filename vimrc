@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-03-09 20:49.
+" Last Change: 2013-03-09 21:26.
 " ==============================================================================
 
 "{{{ PATH
@@ -28,7 +28,7 @@ autocmd BufReadPost * call g:vimrc_recheck_fenc()
 ""}}}
 
 "}}}
-"{{{ UI OPTIONS
+"{{{ UI
 
 filetype on
 filetype plugin on
@@ -163,15 +163,36 @@ nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 "}}}
 "{{{ PLUGINS
 
-""{{{ matchit
-so $VIMRUNTIME/macros/matchit.vim
-""}}}
-""{{{ autodate
+""{{{ autodate.vim
 let autodate_format = '%Y-%m-%d %H:%M'
 let autodate_keyword_pre = '\c\%(#+\?DATE\|LAST \%(MODIFIED\|CHANGE\)\):'
 let autodate_keyword_post = '\.'
 ""}}}
-""{{{ JpFormat
+""{{{ camelcasemotion
+"" Replace the default 'w', 'b', and 'e' mappings instead of defining
+"" additional mappings ',w', ',b', and ',e':
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+"" Replace default 'iw' text-object and define 'ib' and 'ie' motions:
+omap <silent> iw <Plug>CamelCaseMotion_iw
+vmap <silent> iw <Plug>CamelCaseMotion_iw
+omap <silent> ib <Plug>CamelCaseMotion_ib
+vmap <silent> ib <Plug>CamelCaseMotion_ib
+omap <silent> ie <Plug>CamelCaseMotion_ie
+vmap <silent> ie <Plug>CamelCaseMotion_ie
+""}}}
+""{{{ clever-f.vim
+""}}}
+""{{{ cmigemo
+nnoremap <silent> g/ :set incsearch<CR>g/
+nnoremap <silent> g? :set incsearch<CR>g?
+""}}}
+""{{{ gundo.vim
+nnoremap <Leader>g :GundoToggle<CR>
+let g:gundo_close_on_revert = 1
+""}}}
+""{{{ JpFormat.vim
 "" See https://sites.google.com/site/fudist/Home/jpformat
 set formatoptions+=mM " マルチバイト文字の行の連結時には空白を入力しない
 
@@ -196,119 +217,8 @@ function! g:vimrc_switch_jpformat()
 endfunction
 command SwitchJpFormat call g:vimrc_switch_jpformat()
 ""}}}
-""{{{ camelcasemotion
-"" Replace the default 'w', 'b', and 'e' mappings instead of defining
-"" additional mappings ',w', ',b', and ',e':
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-"" Replace default 'iw' text-object and define 'ib' and 'ie' motions:
-omap <silent> iw <Plug>CamelCaseMotion_iw
-vmap <silent> iw <Plug>CamelCaseMotion_iw
-omap <silent> ib <Plug>CamelCaseMotion_ib
-vmap <silent> ib <Plug>CamelCaseMotion_ib
-omap <silent> ie <Plug>CamelCaseMotion_ie
-vmap <silent> ie <Plug>CamelCaseMotion_ie
-""}}}
-""{{{ YankRing
-let g:yankring_window_auto_close = 1
-let g:yankring_history_dir = $HOME.'/.vim/cache'
-""}}}
-""{{{ yanktmp
-let g:yanktmp_file = $HOME.'/.vim/cache/vimyanktmp'
-nnoremap <silent> sy :call YanktmpYank()<CR>
-vnoremap <silent> sy :call YanktmpYank()<CR>
-nnoremap <silent> sp :call YanktmpPaste_p()<CR>
-vnoremap <silent> sp :call YanktmpPaste_p()<CR>
-nnoremap <silent> sP :call YanktmpPaste_P()<CR>
-vnoremap <silent> sP :call YanktmpPaste_P()<CR>
-""}}}
-""{{{ poslist
-let g:poslist_histsize = 1000
-map <C-o> <Plug>(poslist-prev-pos)
-map <C-i> <Plug>(poslist-next-pos)
-map <Leader><C-o> <Plug>(poslist-prev-buf)
-map <Leader><C-i> <Plug>(poslist-next-buf)
-""}}}
-""{{{ visualstar
-map * <Plug>(visualstar-*)N
-map # <Plug>(visualstar-#)N
-""}}}
-""{{{ cmigemo
-nnoremap <silent> g/ :set incsearch<CR>g/
-nnoremap <silent> g? :set incsearch<CR>g?
-""}}}
-""{{{ Gundo
-nnoremap <Leader>g :GundoToggle<CR>
-let g:gundo_close_on_revert = 1
-""}}}
-""{{{ Tabular
-nnoremap <Leader>a= :Tabularize /=<CR>
-vnoremap <Leader>a= :Tabularize /=<CR>
-nnoremap <Leader>a: :Tabularize /:\zs<CR>
-vnoremap <Leader>a: :Tabularize /:\zs<CR>
-""}}}
-""{{{ NERD Commenter
-let NERDSpaceDelims = 1
-" let NERDRemoveExtraSpaces=1
-let NERDCompactSexyComs = 1
-""}}}
-""{{{ Surround
-"let g:surround_33="<!-- \r -->"
-"let g:surround_35="#{\r}"
-"let g:surround_36="${\r}"
-"let g:surround_37="<% \r %>"
-"let g:surround_45="<!-- \r -->"
-"let g:surround_64="@{\r}"
-""}}}
-""{{{ Tagbar
-nnoremap <Leader>l :TagbarToggle<CR>
-let g:tagbar_ctags_bin = '/opt/local/bin/jexctags'
-let g:tagbar_width = 35
-" let g:tagbar_autoclose = 1
-" let g:tagbar_autofocus = 1
-let g:tagbar_sort = 0
-let g:tagbar_compact = 1
-let g:tagbar_show_visibility = 1
-let g:tagbar_expand = 1
-let g:tagbar_singleclick = 1
-let g:tagbar_iconchars = ['▾', '▸']
-let g:tagbar_autoshowtag = 1
-""}}}
-""{{{ Powerline
-" let g:Powerline_symbols = 'fancy'
-let g:Powerline_cache_dir = $HOME.'/.vim/cache'
-" let g:Powerline_colorscheme = 'solarized256'
-""}}}
-""{{{ QFixGrep
-let g:MyGrep_MenuBar = 1
-""}}}
-""{{{ Quickrun
-let g:quickrun_config = {
-      \ '*': {'split': ''}
-      \ }
-""}}}
-""{{{ Unite
-let g:unite_data_directory = $HOME.'/.vim/cache/unite'
-nnoremap <silent> <Leader>e :Unite
-      \ -auto-resize buffer file<CR>
-nnoremap <silent> <Leader>E :UniteWithCurrentDir
-      \ -auto-resize file_mru directory_mru file<CR>
-"" ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <c-w>s unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <c-w>s unite#do_action('split')
-"" ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
-""}}}
-""{{{ ref
-let g:ref_cache_dir = $HOME.'/.vim/cache/vim_ref_cache'
-let g:ref_man_cmd = 'man -P cat'
-" let g:ref_clojure_cmd = 'cake repl'
-""}}}
-""{{{ VimFiler
-let g:vimfiler_data_directory = $HOME.'/.vim/cache/vimfiler'
-let g:vimfiler_as_default_explorer = 1
+""{{{ matchit
+so $VIMRUNTIME/macros/matchit.vim
 ""}}}
 ""{{{ neocomplcache
 let g:neocomplcache_enable_at_startup = 1
@@ -377,13 +287,143 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 ""}}}
-""{{{ Slimv
+""{{{ nerdcommenter
+let NERDSpaceDelims = 1
+" let NERDRemoveExtraSpaces=1
+let NERDCompactSexyComs = 1
+""}}}
+""{{{ occur.vim
+""}}}
+""{{{ qfixapp
+let QFixHowm_Key = 'g'
+let QFixHowm_KeyB = ';'
+let howm_dir = '~/Documents/howm'
+""}}}
+""{{{ slimv
 let g:slimv_disable_scheme = 1
 let g:slimv_ctags = 'jexctags -a --language-force=lisp *.lisp *.clj'
 let g:slimv_leader = ','
 let g:slimv_repl_split = 2
 let g:slimv_repl_syntax = 1
 let g:slimv_repl_wrap = 1
+""}}}
+""{{{ smartchr
+""}}}
+""{{{ sudo.vim
+""}}}
+""{{{ tabular
+nnoremap <Leader>a= :Tabularize /=<CR>
+vnoremap <Leader>a= :Tabularize /=<CR>
+nnoremap <Leader>a: :Tabularize /:\zs<CR>
+vnoremap <Leader>a: :Tabularize /:\zs<CR>
+""}}}
+""{{{ tagbar
+nnoremap <Leader>l :TagbarToggle<CR>
+let g:tagbar_ctags_bin = '/opt/local/bin/jexctags'
+let g:tagbar_width = 35
+" let g:tagbar_autoclose = 1
+" let g:tagbar_autofocus = 1
+let g:tagbar_sort = 0
+let g:tagbar_compact = 1
+let g:tagbar_show_visibility = 1
+let g:tagbar_expand = 1
+let g:tagbar_singleclick = 1
+let g:tagbar_iconchars = ['▾', '▸']
+let g:tagbar_autoshowtag = 1
+""}}}
+""{{{ taghighlight
+""}}}
+""{{{ unite-help
+""}}}
+""{{{ unite-outline
+""}}}
+""{{{ unite.vim
+let g:unite_data_directory = $HOME.'/.vim/cache/unite'
+nnoremap <silent> <Leader>e :Unite
+      \ -auto-resize buffer file<CR>
+nnoremap <silent> <Leader>E :UniteWithCurrentDir
+      \ -auto-resize file_mru directory_mru file<CR>
+"" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <c-w>s unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <c-w>s unite#do_action('split')
+"" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
+""}}}
+""{{{ vim-autoclose
+""}}}
+""{{{ vim-batch-source
+""}}}
+""{{{ vim-emacscommandline
+""}}}
+""{{{ vim-orgmode
+""}}}
+""{{{ vim-poslist
+let g:poslist_histsize = 1000
+map <C-o> <Plug>(poslist-prev-pos)
+map <C-i> <Plug>(poslist-next-pos)
+map <Leader><C-o> <Plug>(poslist-prev-buf)
+map <Leader><C-i> <Plug>(poslist-next-buf)
+""}}}
+""{{{ vim-powerline
+" let g:Powerline_symbols = 'fancy'
+let g:Powerline_cache_dir = $HOME.'/.vim/cache'
+" let g:Powerline_colorscheme = 'solarized256'
+""}}}
+""{{{ vim-pyte
+""}}}
+""{{{ vim-quickrun
+let g:quickrun_config = {
+      \ '*': {'split': ''}
+      \ }
+""}}}
+""{{{ vim-ref
+let g:ref_cache_dir = $HOME.'/.vim/cache/vim_ref_cache'
+let g:ref_man_cmd = 'man -P cat'
+" let g:ref_clojure_cmd = 'cake repl'
+""}}}
+""{{{ vim-repeat
+""}}}
+""{{{ vim-scmdiff
+""}}}
+""{{{ vim-surround
+"let g:surround_33="<!-- \r -->"
+"let g:surround_35="#{\r}"
+"let g:surround_36="${\r}"
+"let g:surround_37="<% \r %>"
+"let g:surround_45="<!-- \r -->"
+"let g:surround_64="@{\r}"
+""}}}
+""{{{ vim-tmux
+""}}}
+""{{{ vim-vis
+""}}}
+""{{{ vim-visualstar
+map * <Plug>(visualstar-*)N
+map # <Plug>(visualstar-#)N
+""}}}
+""{{{ vimfiler
+let g:vimfiler_data_directory = $HOME.'/.vim/cache/vimfiler'
+let g:vimfiler_as_default_explorer = 1
+""}}}
+""{{{ vim-proc
+""}}}
+""{{{ vimshell
+""}}}
+""{{{ vimux
+""}}}
+""{{{ YankRing.vim
+let g:yankring_window_auto_close = 1
+let g:yankring_history_dir = $HOME.'/.vim/cache'
+""}}}
+""{{{ yanktmp.vim
+let g:yanktmp_file = $HOME.'/.vim/cache/vimyanktmp'
+nnoremap <silent> sy :call YanktmpYank()<CR>
+vnoremap <silent> sy :call YanktmpYank()<CR>
+nnoremap <silent> sp :call YanktmpPaste_p()<CR>
+vnoremap <silent> sp :call YanktmpPaste_p()<CR>
+nnoremap <silent> sP :call YanktmpPaste_P()<CR>
+vnoremap <silent> sP :call YanktmpPaste_P()<CR>
 ""}}}
 
 ""}}}
@@ -395,6 +435,12 @@ let g:neocomplcache_ctags_arguments_list.perl = '-R -h ".pm"'
 let g:neocomplcache_dictionary_filetype_lists.perl =
       \ $HOME.'/.vim/dict/perl.dict'
 ""}}}
+""{{{ perldoc-vim
+""}}}
+""{{{ perlomni.vim
+""}}}
+""{{{ vim-perl
+""}}}
 
 "}}}
 "{{{  C/C++
@@ -405,6 +451,8 @@ let g:clang_auto_select = 0
 let g:clang_use_library = 1
 let g:clang_library_path = '/opt/local/libexec/llvm-3.2/lib'
 let g:clang_user_options = '-std=c++11 -stdlib=libc++'
+""}}}
+""{{{ cpp-vim
 ""}}}
 ""{{{ neocomplecache
 let g:neocomplcache_include_paths.cpp =
@@ -420,7 +468,7 @@ let g:neocomplcache_force_omni_patterns.cpp =
 "}}}
 "{{{ TeX
 "
-""{{{ TeX
+""{{{ tex.vim
 " let g:tex_fold_enabled = 1
 let g:tex_conceal = "adgm"
 ""}}}
@@ -428,7 +476,7 @@ let g:tex_conceal = "adgm"
 "}}}
 "{{{ R
 
-""{{{ R plugin
+""{{{ Vim-R-plugin
 " let vimrplugin_term = ""
 let vimrplugin_term_cmd = ""
 " let vimplugin_tmux=1
@@ -449,26 +497,30 @@ au FileType scheme inoremap <buffer> , ,
 let g:neocomplcache_dictionary_filetype_lists.scheme =
       \ $HOME.'/.gosh_completions'
 ""}}}
+""{{{ vim-gdev
+""}}}
 
 "}}}
 "{{{ OCaml
 
-""{{{ Ocaml
+""{{{ vim-ocaml
 " let g:omlet_indent = 1
 au FileType ocaml inoremap <buffer> ' '
+""}}}
+""{{{ vim-omake
 ""}}}
 
 "}}}
 "{{{ Haskell
 
-""{{{ haskellmode
+""{{{ haskellmode-vim
 let g:haddock_browser = "open -a Firefox"
 ""}}}
 
 "}}}
 "{{{ Clojure
 
-""{{{ Slimv
+""{{{ slimv
 let g:slimv_swank_clojure =
       \ '!osascript -e "tell app \"Terminal\" to do'.
       \ ' script \"lein swank\""'
@@ -480,7 +532,7 @@ au FileType clojure inoremap <buffer> ' '
 "}}}
 "{{{ Common Lisp
 
-""{{{ Slimv
+""{{{ slimv
 let g:slimv_swank_cmd =
       \ '!osascript -e "tell app \"Terminal\" to do'.
       \ ' script \"sbcl --load ~/.vim/bundle/slimv/slime/start-swank.lisp\""'
@@ -492,8 +544,8 @@ au FileType lisp inoremap <buffer> ' '
 "}}}
 "{{{ Markdown
 
-""{{{ Markdown
 au FileType mkd nnoremap Q :!qlmanage -p % >& /dev/null<cr>
+""{{{ vim-markdown
 ""}}}
 
 "}}}
