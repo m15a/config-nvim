@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-02-08 10:58.
+" Last Change: 2013-03-09 20:49.
 " ==============================================================================
 
 "{{{ PATH
@@ -304,14 +304,13 @@ au FileType unite inoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vspl
 ""{{{ ref
 let g:ref_cache_dir = $HOME.'/.vim/cache/vim_ref_cache'
 let g:ref_man_cmd = 'man -P cat'
-let g:ref_clojure_cmd = 'cake repl'
+" let g:ref_clojure_cmd = 'cake repl'
 ""}}}
 ""{{{ VimFiler
 let g:vimfiler_data_directory = $HOME.'/.vim/cache/vimfiler'
 let g:vimfiler_as_default_explorer = 1
 ""}}}
 ""{{{ neocomplcache
-"" Set options
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_max_list = 100
 let g:neocomplcache_enable_ignore_case = 1
@@ -321,81 +320,41 @@ let g:neocomplcache_enable_auto_delimiter = 1
 " let g:neocomplcache_enable_camel_case_completion = 1
 " let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_temporary_dir = $HOME.'/.vim/cache/neocon'
-
-"" Ctags settings
 let g:neocomplcache_ctags_program = '/opt/local/bin/jexctags'
 if !exists('g:neocomplcache_ctags_arguments_list')
   let g:neocomplcache_ctags_arguments_list = {}
 endif
-let g:neocomplcache_ctags_arguments_list.perl = '-R -h ".pm"'
-
-"" Include completions
 if !exists('g:neocomplcache_include_paths')
   let g:neocomplcache_include_paths = {}
 endif
-" let g:neocomplcache_include_paths.cpp =
-      " \ "/opt/local/include/gcc45/c++,".
-      " \ "/opt/local/lib/R/include,/opt/local/lib/R/include/R_ext"
-
-"" Dictionary completions
 if !exists('g:neocomplcache_dictionary_filetype_lists')
   let g:neocomplcache_dictionary_filetype_lists = {}
 endif
-let g:neocomplcache_dictionary_filetype_lists.perl =
-      \ $HOME.'/.vim/dict/perl.dict'
-let g:neocomplcache_dictionary_filetype_lists.scheme =
-      \ $HOME.'/.gosh_completions'
-
-"" Omni completions
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-" let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-" let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-" autocmd FileType c setlocal omnifunc=ccomplete#Complete
-" autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType sql,mysql  setlocal omnifunc=xmlcomplete#CompleteTags
-" autocmd FileType html,xhtml setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
-" autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
-
-"" Partial omni completions
 let g:neocomplcache_force_overwrite_completefunc = 1
 if !exists('g:neocomplcache_force_omni_patterns')
   let g:neocomplcache_force_omni_patterns = {}
 endif
-let g:neocomplcache_force_omni_patterns.c =
-      \ '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_force_omni_patterns.cpp =
-      \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-"" Key maps
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
-"" <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
   return neocomplcache#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 endfunction
-"" <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"" <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y> neocomplcache#close_popup()
 inoremap <expr><C-e> neocomplcache#cancel_popup()
-
-"" Utilities
-function! g:vimrc_neocomplcache_update_tags() "{{{
+function! g:vimrc_neocomplcache_update_tags()
   NeoComplCacheCachingInclude
   for file in neocomplcache#sources#include_complete#get_include_files(bufnr('%'))
     execute "setlocal tags+=".neocomplcache#cache#encode_name('include_tags', file)
   endfor
 endfunction
-command NeoComplCacheUpdateTags call g:vimrc_neocomplcache_update_tags() "}}}
+command NeoComplCacheUpdateTags call g:vimrc_neocomplcache_update_tags()
 ""}}}
 ""{{{ neosnippet
 let g:neosnippet#snippets_directory = $HOME.'/.vim/snippets'
@@ -418,6 +377,28 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 ""}}}
+""{{{ Slimv
+let g:slimv_disable_scheme = 1
+let g:slimv_ctags = 'jexctags -a --language-force=lisp *.lisp *.clj'
+let g:slimv_leader = ','
+let g:slimv_repl_split = 2
+let g:slimv_repl_syntax = 1
+let g:slimv_repl_wrap = 1
+""}}}
+
+""}}}
+
+"{{{ Perl
+
+""{{{ neocomplecache
+let g:neocomplcache_ctags_arguments_list.perl = '-R -h ".pm"'
+let g:neocomplcache_dictionary_filetype_lists.perl =
+      \ $HOME.'/.vim/dict/perl.dict'
+""}}}
+
+"}}}
+"{{{  C/C++
+
 ""{{{ clang_complete
 let g:clang_complete_auto = 0
 let g:clang_auto_select = 0
@@ -425,48 +406,98 @@ let g:clang_use_library = 1
 let g:clang_library_path = '/opt/local/libexec/llvm-3.2/lib'
 let g:clang_user_options = '-std=c++11 -stdlib=libc++'
 ""}}}
+""{{{ neocomplecache
+let g:neocomplcache_include_paths.cpp =
+      \ "/usr/include,".
+      \ "/usr/local/include,".
+      \ "/opt/local/include"
+let g:neocomplcache_force_omni_patterns.c =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+""}}}
+
+"}}}
+"{{{ TeX
+"
+""{{{ TeX
+" let g:tex_fold_enabled = 1
+let g:tex_conceal = "adgm"
+""}}}
+
+"}}}
+"{{{ R
+
 ""{{{ R plugin
-let vimrplugin_term = ""
+" let vimrplugin_term = ""
 let vimrplugin_term_cmd = ""
 " let vimplugin_tmux=1
 " let vimrplugin_r_path='/opt/local/bin/R'
-" let vimrplugin_screenplugin=0
+let vimrplugin_screenplugin = 0
 ""}}}
+
+"}}}
+"{{{ Gauche
+
 ""{{{ Gauche (necoie)
 let is_gauche = 1
 au FileType scheme inoremap <buffer> ' '
 au FileType scheme inoremap <buffer> , ,
 "au FileType scheme inoremap <buffer> ` `()<LEFT>
 ""}}}
-""{{{ Slimv
-let g:slimv_disable_scheme = 1
-let g:slimv_swank_cmd =
-      \ '!osascript -e "tell app \"Terminal\" to do'.
-      \ ' script \"sbcl --load ~/.vim/bundle/slimv/slime/start-swank.lisp\""'
-let g:slimv_swank_clojure =
-      \ '!osascript -e "tell app \"Terminal\" to do'.
-      \ ' script \"lein swank\""'
-let g:slimv_ctags = 'jexctags -a --language-force=lisp *.lisp *.clj'
-let g:slimv_leader = ','
-let g:slimv_repl_split = 2
-let g:slimv_repl_syntax = 1
-let g:slimv_repl_wrap = 1
-let g:slimv_clhs_root = 'http://localhost/~mnacamura/refs/lisp/HyperSpec/Body/'
-let g:slimv_cljapi_root = 'http://localhost/~mnacamura/refs/clojure/clojure/clojure/'
-let g:slimv_javadoc_root = 'http://localhost/~mnacamura/refs/java/jdk6/api/'
-au FileType clojure inoremap <buffer> ' '
-au FileType lisp inoremap <buffer> ' '
-" au FileType lisp inoremap <buffer> ` `()<LEFT>
+""{{{ neocomplecache
+let g:neocomplcache_dictionary_filetype_lists.scheme =
+      \ $HOME.'/.gosh_completions'
 ""}}}
+
+"}}}
+"{{{ OCaml
+
 ""{{{ Ocaml
 " let g:omlet_indent = 1
 au FileType ocaml inoremap <buffer> ' '
 ""}}}
+
+"}}}
+"{{{ Haskell
+
+""{{{ haskellmode
+let g:haddock_browser = "open -a Firefox"
+""}}}
+
+"}}}
+"{{{ Clojure
+
+""{{{ Slimv
+let g:slimv_swank_clojure =
+      \ '!osascript -e "tell app \"Terminal\" to do'.
+      \ ' script \"lein swank\""'
+let g:slimv_cljapi_root = 'http://localhost/~mnacamura/refs/clojure/clojure/clojure/'
+let g:slimv_javadoc_root = 'http://localhost/~mnacamura/refs/java/jdk6/api/'
+au FileType clojure inoremap <buffer> ' '
+""}}}
+
+"}}}
+"{{{ Common Lisp
+
+""{{{ Slimv
+let g:slimv_swank_cmd =
+      \ '!osascript -e "tell app \"Terminal\" to do'.
+      \ ' script \"sbcl --load ~/.vim/bundle/slimv/slime/start-swank.lisp\""'
+let g:slimv_clhs_root = 'http://localhost/~mnacamura/refs/lisp/HyperSpec/Body/'
+au FileType lisp inoremap <buffer> ' '
+" au FileType lisp inoremap <buffer> ` `()<LEFT>
+""}}}
+
+"}}}
+"{{{ Markdown
+
 ""{{{ Markdown
 au FileType mkd nnoremap Q :!qlmanage -p % >& /dev/null<cr>
 ""}}}
 
-""}}}
+"}}}
+
 "{{{ FINALLY
 
 ""{{{ 前回終了したカーソル行に移動
