@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-03-09 21:26.
+" Last Change: 2013-03-14 12:10.
 " ==============================================================================
 
 "{{{ PATH
@@ -467,10 +467,14 @@ let g:neocomplcache_force_omni_patterns.cpp =
 
 "}}}
 "{{{ TeX
-"
+
 ""{{{ tex.vim
 " let g:tex_fold_enabled = 1
-let g:tex_conceal = "adgm"
+" let g:tex_conceal = "adgm"
+let g:tex_conceal = 0
+""}}}
+""{{{ vim-quickrun
+let g:quickrun_config.tex = {'command' : 'omake'}
 ""}}}
 
 "}}}
