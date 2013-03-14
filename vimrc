@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-03-14 12:10.
+" Last Change: 2013-03-14 17:01.
 " ==============================================================================
 
 "{{{ PATH
@@ -55,7 +55,7 @@ set list
 set listchars=eol:$,tab:>_,trail:_,extends:>,precedes:<
 set mouse=a
 set nobackup
-set nocompatible
+set backupcopy=no
 set nocompatible
 set nowrap
 set number
