@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-03-14 17:01.
+" Last Change: 2013-03-25 18:26.
 " ==============================================================================
 
 "{{{ PATH
@@ -267,6 +267,7 @@ endfunction
 command NeoComplCacheUpdateTags call g:vimrc_neocomplcache_update_tags()
 ""}}}
 ""{{{ neosnippet
+set completeopt-=preview
 let g:neosnippet#snippets_directory = $HOME.'/.vim/snippets'
 "" Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
