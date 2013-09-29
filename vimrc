@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-07-24 18:12.
+" Last Change: 2013-08-16 12:10.
 " ==============================================================================
 
 "{{{ PATH
@@ -231,6 +231,10 @@ let g:neocomplcache_enable_auto_delimiter = 1
 " let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_temporary_dir = $HOME.'/.vim/cache/neocon'
 let g:neocomplcache_ctags_program = '/opt/local/bin/jexctags'
+if !exists('g:neocomplcache_keyword_patterns')
+  let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns._ = '\h\w*'
 if !exists('g:neocomplcache_ctags_arguments_list')
   let g:neocomplcache_ctags_arguments_list = {}
 endif
