@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-08-16 12:10.
+" Last Change: 2013-10-16 14:20.
 " ==============================================================================
 
 "{{{ PATH
@@ -230,31 +230,27 @@ let g:neocomplcache_enable_auto_delimiter = 1
 " let g:neocomplcache_enable_camel_case_completion = 1
 " let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_temporary_dir = $HOME.'/.vim/cache/neocon'
-let g:neocomplcache_ctags_program = '/opt/local/bin/jexctags'
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns._ = '\h\w*'
-if !exists('g:neocomplcache_ctags_arguments_list')
-  let g:neocomplcache_ctags_arguments_list = {}
-endif
-if !exists('g:neocomplcache_include_paths')
-  let g:neocomplcache_include_paths = {}
-endif
 if !exists('g:neocomplcache_dictionary_filetype_lists')
   let g:neocomplcache_dictionary_filetype_lists = {}
 endif
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_force_overwrite_completefunc = 1
-if !exists('g:neocomplcache_force_omni_patterns')
-  let g:neocomplcache_force_omni_patterns = {}
-endif
 if !exists('g:neocomplcache_keyword_patterns')
   let g:neocomplcache_keyword_patterns = {}
 endif
-let g:neocomplcache_keyword_patterns._ = '\h\w*'
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
+" let g:neocomplcache_force_overwrite_completefunc = 1
+if !exists('g:neocomplcache_include_paths')
+  let g:neocomplcache_include_paths = {}
+endif
+let g:neocomplcache_ctags_program = '/opt/local/bin/jexctags'
+if !exists('g:neocomplcache_ctags_arguments_list')
+  let g:neocomplcache_ctags_arguments_list = {}
+endif
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -264,15 +260,15 @@ endfunction
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
-function! g:vimrc_neocomplcache_update_tags()
-  NeoComplCacheCachingInclude
-  for file in neocomplcache#sources#include_complete#get_include_files(bufnr('%'))
-    execute "setlocal tags+=".neocomplcache#cache#encode_name('include_tags', file)
-  endfor
-endfunction
-command NeoComplCacheUpdateTags call g:vimrc_neocomplcache_update_tags()
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" function! g:vimrc_neocomplcache_update_tags()
+  " NeoComplCacheCachingInclude
+  " for file in neocomplcache#sources#include_complete#get_include_files(bufnr('%'))
+    " execute "setlocal tags+=".neocomplcache#cache#encode_name('include_tags', file)
+  " endfor
+" endfunction
+" command NeoComplCacheUpdateTags call g:vimrc_neocomplcache_update_tags()
 ""}}}
 ""{{{ neosnippet
 set completeopt-=preview
