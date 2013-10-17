@@ -378,9 +378,11 @@ let g:Powerline_cache_dir = $HOME.'/.vim/cache'
 ""{{{ vim-pyte
 ""}}}
 ""{{{ vim-quickrun
-let g:quickrun_config = {
-      \ '*': {'split': ''}
+let g:quickrun_config = {}
+let g:quickrun_config['_'] = {
+      \ 'outputter/buffer/split': "6sp",
       \ }
+nnoremap <silent> <Leader>q :QuickRun<CR>
 ""}}}
 ""{{{ vim-ref
 let g:ref_cache_dir = $HOME.'/.vim/cache/vim_ref_cache'
@@ -478,9 +480,7 @@ let g:neocomplcache_force_omni_patterns.cpp =
 " let g:tex_conceal = "adgm"
 let g:tex_conceal = 0
 ""}}}
-""{{{ vim-quickrun
-let g:quickrun_config.tex = {'command' : 'omake'}
-""}}}
+au FileType tex nnoremap <Leader>q :!omake<CR>
 
 "}}}
 "{{{ R
@@ -553,7 +553,7 @@ au FileType lisp inoremap <buffer> ' '
 "}}}
 "{{{ Markdown
 
-au FileType mkd nnoremap Q :!qlmanage -p % >& /dev/null<cr>
+au FileType mkd nnoremap <Leader>q :!qlmanage -p % >& /dev/null<cr>
 ""{{{ vim-markdown
 ""}}}
 
