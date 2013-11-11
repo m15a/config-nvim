@@ -1,7 +1,11 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-10-16 14:20.
+" Last Change: 2013-11-11 11:37.
 " ==============================================================================
+
+"" Hack for vim + fish problem:
+"" http://badsimplicity.com/vim-fish-e484-cant-open-file-tmpvrdnvqe0-error/
+set shell=/bin/sh
 
 "{{{ PATH
 
