@@ -1,27 +1,25 @@
 " ==============================================================================
 " MacVim settings for GUI
-" Last Change: 2013-01-22 12:49.
+" Last Change: 2013-11-15 03:12.
 " ==============================================================================
 
-"{{{ KEY MAPS
+"{{{ Key Maps
 
-""{{{ Toggle fullscreen
-function! g:gvimrc_toggle_fullscreen()
+"" Toggle fullscreen
+function! g:gvimrc_toggle_fullscreen ()
   if &g:fullscreen
     set nofullscreen
   else
     set fullscreen
   endif
 endfunction
-nnoremap <silent> <Leader>m :call g:gvimrc_toggle_fullscreen()<CR>
-""}}}
+nnoremap <silent> <Leader>m :call g:gvimrc_toggle_fullscreen ()<CR>
 
 "}}}
-"{{{ LOOK AND FEEL
+"{{{ Look and Feel
 
 winpos 470 40
 
-""{{{ Some 'set ...'
 set columns=86
 set lines=34
 set linespace=0
@@ -36,31 +34,20 @@ set guioptions-=T " hide tool bar
 set guioptions-=b " hide bottom scrollbar
 set guioptions-=r " hide right scrollbar
 set guioptions-=L " hide left scrollbar
-""}}}
-""{{{ Color on Japanese IM
+
+"" Color on Japanese IM
 au BufRead,BufNewFile,FileType * hi IMLine guifg=#303030
 set transparency=10
-""}}}
-""{{{ Color scheme
-" colorscheme Tomorrow-Night
-set background=light
+
+"" Color scheme
+set background=dark
 let g:solarized_menu = 0
 colorscheme solarized
-""}}}
-""{{{ Other highlights
-"" See http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-au BufRead,BufNewFile,FileType * hi Normal       guifg=#444444
-au BufRead,BufNewFile,FileType * hi Cursor                     guibg=#444444
-au BufRead,BufNewFile,FileType * hi DiffAdd      guifg=#444444 guibg=#5F5FAF
-au BufRead,BufNewFile,FileType * hi DiffChange   guifg=#444444 guibg=#5F8787
-au BufRead,BufNewFile,FileType * hi DiffText     guifg=#444444 guibg=#5F5FAF
-au BufRead,BufNewFile,FileType * hi DiffDelete   guifg=#FF5F00 guibg=#875F5F
-""}}}
-""{{{ Fonts
+
+"" Fonts
 set termencoding=japan
 set gfn=Inconsolata:h22
 set gfw=Hiragino_Maru_Gothic_Pro:h22
-""}}}
 
 "}}}
 
