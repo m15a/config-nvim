@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-11-15 03:08.
+" Last Change: 2013-11-15 16:50.
 " ==============================================================================
 
 "{{{ Encodings
@@ -236,10 +236,9 @@ let g:gundo_close_on_revert = 1
 "}}}
 NeoBundle 'thinca/vim-quickrun' "{{{
 let g:quickrun_config = {}
-let g:quickrun_config['_'] = {
-      \ 'outputter/buffer/split': "6sp",
+let g:quickrun_config._ = {
+      \ 'outputter/buffer/split' : '6sp',
       \ }
-nnoremap <silent> <Leader>q :QuickRun<CR>
 "}}}
 NeoBundle 'tpope/vim-surround' "{{{
 "}}}
