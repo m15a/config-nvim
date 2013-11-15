@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-11-15 16:56.
+" Last Change: 2013-11-15 23:34.
 " ==============================================================================
 
 "{{{ Encodings
@@ -267,7 +267,7 @@ NeoBundle 'Shougo/unite.vim' "{{{
 let g:unite_source_history_yank_enable = 1
 " Key maps
 let g:unite_data_directory = $HOME.'/.vim/cache/unite'
-nnoremap <Leader>e :<C-u>UniteWithBufferDir
+nnoremap <Leader>e :<C-u>Unite
       \ -auto-resize buffer file<CR>
 nnoremap <Leader>E :<C-u>UniteWithCurrentDir
       \ -auto-resize file_mru directory_mru file<CR>
@@ -301,13 +301,9 @@ NeoBundle 'Shougo/neocomplete.vim' "{{{
 let g:neocomplete#enable_at_startup     = 1
 let g:neocomplete#enable_auto_select    = 1
 let g:neocomplete#enable_auto_delimiter = 1
+let g:neocomplete#enable_smart_case     = 1
 let g:neocomplete#data_directory        = $HOME.'/.vim/cache/neocon'
-
-"" CTags
-let g:neocomplete#ctags_command = '/opt/local/bin/jexctags'
-if !exists('g:neocomplete#ctags_arguments')
-  let g:neocomplete#ctags_arguments= {}
-endif
+let g:neocomplete#ctags_command         = '/opt/local/bin/jexctags'
 
 "" Key maps
 inoremap <expr><C-g> neocomplete#undo_completion ()
@@ -321,6 +317,15 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+"" Initializings
+if !exists ('g:neocomplete#ctags_arguments')
+  let g:neocomplete#ctags_arguments = {}
+endif
+
+if !exists ('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
 "}}}
 NeoBundle 'Shougo/neosnippet.vim' "{{{
 " let g:neosnippet#snippets_directory            = $HOME./.vim/snippets
