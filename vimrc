@@ -355,9 +355,15 @@ endif
 let g:neocomplete#ctags_arguments.perl = '-R -h ".pm"'
 au FileType perl nnoremap <Leader>k :<C-u>Unite ref/perldoc<CR>
 au FileType perl nnoremap <Leader>m :<C-u>Unite perl/global<CR>
+au FileType perl nnoremap <Leader>t <Esc>:%! perltidy -se<CR>
+au FileType perl vnoremap <Leader>t <Esc>:'<,'>! perltidy -se<CR>
 NeoBundle 'vim-perl/vim-perl' "{{{
 "}}}
 NeoBundle 'y-uuki/unite-perl-module.vim' "{{{
+"}}}
+NeoBundle 'c9s/perlomni.vim' "{{{
+let g:neocomplete#sources#omni#input_patterns.perl =
+      \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 "}}}
 
 "}}}
