@@ -324,6 +324,15 @@ if has('conceal')
 endif
 "}}}
 
+"" Perl
+let g:neocomplete#ctags_arguments.perl = '-R -h ".pm"'
+au FileType perl nnoremap <Leader>k :<C-u>Unite ref/perldoc<CR>
+au FileType perl nnoremap <Leader>m :<C-u>Unite perl/global<CR>
+NeoBundle 'vim-perl/vim-perl' "{{{
+"}}}
+NeoBundle 'y-uuki/unite-perl-module.vim' "{{{
+"}}}
+
 "}}}
 "{{{ Finally
 
