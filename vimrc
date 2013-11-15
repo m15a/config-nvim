@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-11-15 16:50.
+" Last Change: 2013-11-15 16:56.
 " ==============================================================================
 
 "{{{ Encodings
@@ -263,17 +263,34 @@ vnoremap <silent> sP :call YanktmpPaste_P()<CR>
 
 "" Unite
 NeoBundle 'Shougo/unite.vim' "{{{
+" let g:unite_enable_start_insert = 1
+let g:unite_source_history_yank_enable = 1
+" Key maps
 let g:unite_data_directory = $HOME.'/.vim/cache/unite'
-nnoremap <silent> <Leader>e :Unite
+nnoremap <Leader>e :<C-u>UniteWithBufferDir
       \ -auto-resize buffer file<CR>
-nnoremap <silent> <Leader>E :UniteWithCurrentDir
+nnoremap <Leader>E :<C-u>UniteWithCurrentDir
       \ -auto-resize file_mru directory_mru file<CR>
+nnoremap <leader>y :<C-u>Unite history/yank<CR>
+
 "" ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <c-w>s unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <c-w>s unite#do_action('split')
 "" ウィンドウを縦に分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
 au FileType unite inoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
+"}}}
+NeoBundle 'osyo-manga/unite-quickfix' "{{{
+"}}}
+NeoBundle 'rhysd/quickrun-unite-quickfix-outputter' "{{{
+let g:quickrun_config._['outputter'] = 'unite_quickfix'
+"}}}
+
+"" Ref
+NeoBundle 'thinca/vim-ref' "{{{
+let g:ref_cache_dir = $HOME.'/.vim/cache/ref'
+let g:ref_use_vimproc = 1
+" let g:ref_open =
 "}}}
 
 "" Neocomplete
@@ -285,7 +302,12 @@ let g:neocomplete#enable_at_startup     = 1
 let g:neocomplete#enable_auto_select    = 1
 let g:neocomplete#enable_auto_delimiter = 1
 let g:neocomplete#data_directory        = $HOME.'/.vim/cache/neocon'
-let g:neocomplete#ctags_command         = '/opt/local/bin/jexctags'
+
+"" CTags
+let g:neocomplete#ctags_command = '/opt/local/bin/jexctags'
+if !exists('g:neocomplete#ctags_arguments')
+  let g:neocomplete#ctags_arguments= {}
+endif
 
 "" Key maps
 inoremap <expr><C-g> neocomplete#undo_completion ()
