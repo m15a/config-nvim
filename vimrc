@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-11-16 19:18.
+" Last Change: 2013-11-17 03:29.
 " ==============================================================================
 
 "{{{ Encodings
@@ -102,6 +102,7 @@ set list
 set listchars=eol:$,tab:>_,trail:_,extends:>,precedes:<
 set mouse=a
 set nobackup
+set nowritebackup
 set nowrap
 set number
 set ruler
