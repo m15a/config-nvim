@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-11-15 23:34.
+" Last Change: 2013-11-16 19:18.
 " ==============================================================================
 
 "{{{ Encodings
@@ -123,6 +123,9 @@ set wildmenu
 set wildmode=list:longest
 set wrapscan
 
+"" matchit
+source $VIMRUNTIME/macros/matchit.vim
+
 "" Hack for vim + fish problem:
 "" http://badsimplicity.com/vim-fish-e484-cant-open-file-tmpvrdnvqe0-error/
 set shell=/bin/sh
@@ -235,9 +238,14 @@ nnoremap <Leader>g :GundoToggle<CR>
 let g:gundo_close_on_revert = 1
 "}}}
 NeoBundle 'thinca/vim-quickrun' "{{{
+au QuickFixCmdPost * cfile
 let g:quickrun_config = {}
 let g:quickrun_config._ = {
-      \ 'outputter/buffer/split' : '6sp',
+      \ 'runner'                    : 'vimproc',
+      \ 'runner/vimproc/updatetime' : 40,
+      \ 'outputter'                 : 'quickfix',
+      \ 'outputter/buffer/split'    : '6sp',
+      \ 'outputter/quickfix/open_cmd' : 'cfile',
       \ }
 "}}}
 NeoBundle 'tpope/vim-surround' "{{{
@@ -267,11 +275,9 @@ NeoBundle 'Shougo/unite.vim' "{{{
 let g:unite_source_history_yank_enable = 1
 " Key maps
 let g:unite_data_directory = $HOME.'/.vim/cache/unite'
-nnoremap <Leader>e :<C-u>Unite
-      \ -auto-resize buffer file<CR>
-nnoremap <Leader>E :<C-u>UniteWithCurrentDir
-      \ -auto-resize file_mru directory_mru file<CR>
-nnoremap <leader>y :<C-u>Unite history/yank<CR>
+nnoremap <Leader>e :<C-u>Unite -auto-resize buffer file<CR>
+nnoremap <Leader>f :<C-u>Unite -auto-resize line<CR>
+nnoremap <leader>y :<C-u>Unite -auto-resize history/yank<CR>
 
 "" ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <c-w>s unite#do_action('split')
@@ -281,9 +287,7 @@ au FileType unite nnoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vspl
 au FileType unite inoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
 "}}}
 NeoBundle 'osyo-manga/unite-quickfix' "{{{
-"}}}
-NeoBundle 'rhysd/quickrun-unite-quickfix-outputter' "{{{
-let g:quickrun_config._['outputter'] = 'unite_quickfix'
+nnoremap <Leader>q :<C-u>Unite -auto-resize quickfix<CR>
 "}}}
 
 "" Ref
@@ -353,11 +357,13 @@ endif
 
 "" Perl
 let g:neocomplete#ctags_arguments.perl = '-R -h ".pm"'
-au FileType perl nnoremap <Leader>k :<C-u>Unite ref/perldoc<CR>
-au FileType perl nnoremap <Leader>m :<C-u>Unite perl/global<CR>
+au FileType perl nnoremap <Leader>k :<C-u>Unite -auto-resize ref/perldoc<CR>
+au FileType perl nnoremap <Leader>m :<C-u>Unite -auto-resize perl/global<CR>
 au FileType perl nnoremap <Leader>t <Esc>:%! perltidy -se<CR>
 au FileType perl vnoremap <Leader>t <Esc>:'<,'>! perltidy -se<CR>
 NeoBundle 'vim-perl/vim-perl' "{{{
+let perl_include_pod = 1
+let perl_fold = 1
 "}}}
 NeoBundle 'y-uuki/unite-perl-module.vim' "{{{
 "}}}
