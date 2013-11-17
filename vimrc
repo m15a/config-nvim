@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-11-17 03:29.
+" Last Change: 2013-11-18 03:14.
 " ==============================================================================
 
 "{{{ Encodings
@@ -327,9 +327,11 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 if !exists ('g:neocomplete#ctags_arguments')
   let g:neocomplete#ctags_arguments = {}
 endif
-
 if !exists ('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
+endif
+if !exists ('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
 endif
 "}}}
 NeoBundle 'Shougo/neosnippet.vim' "{{{
@@ -371,6 +373,14 @@ NeoBundle 'y-uuki/unite-perl-module.vim' "{{{
 NeoBundle 'c9s/perlomni.vim' "{{{
 let g:neocomplete#sources#omni#input_patterns.perl =
       \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+"}}}
+
+"" Fish
+" let g:neocomplete#force_omni_input_patterns.fish = '\h\w*'
+NeoBundle 'dag/vim-fish' "{{{
+" au BufRead,BufNewFile *.fish set filetype=fish
+au FileType fish compiler fish
+au FileType fish setlocal foldmethod=expr
 "}}}
 
 "}}}
