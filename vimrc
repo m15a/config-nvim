@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-11-18 03:26.
+" Last Change: 2013-11-18 03:29.
 " ==============================================================================
 
 "{{{ Encodings
@@ -129,7 +129,9 @@ source $VIMRUNTIME/macros/matchit.vim
 
 "" Hack for vim + fish problem:
 "" http://badsimplicity.com/vim-fish-e484-cant-open-file-tmpvrdnvqe0-error/
-set shell=/bin/sh
+if &shell =~# 'fish$'
+  set shell=/bin/sh
+endif
 
 "" 前回終了したカーソル行に移動
 au BufReadPost *
