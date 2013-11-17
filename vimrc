@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-11-18 03:14.
+" Last Change: 2013-11-18 03:26.
 " ==============================================================================
 
 "{{{ Encodings
@@ -235,7 +235,7 @@ let NERDSpaceDelims       = 1
 let NERDCompactSexyComs   = 1
 "}}}
 NeoBundle 'sjl/gundo.vim' "{{{
-nnoremap <Leader>g :GundoToggle<CR>
+nnoremap <Leader>u :GundoToggle<CR>
 let g:gundo_close_on_revert = 1
 "}}}
 NeoBundle 'thinca/vim-quickrun' "{{{
@@ -272,13 +272,21 @@ vnoremap <silent> sP :call YanktmpPaste_P()<CR>
 
 "" Unite
 NeoBundle 'Shougo/unite.vim' "{{{
-" let g:unite_enable_start_insert = 1
+let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
 " Key maps
 let g:unite_data_directory = $HOME.'/.vim/cache/unite'
 nnoremap <Leader>e :<C-u>Unite -auto-resize buffer file<CR>
 nnoremap <Leader>f :<C-u>Unite -auto-resize line<CR>
+nnoremap <Leader>g :<C-u>Unite -auto-resize grep:.<CR>
 nnoremap <leader>y :<C-u>Unite -auto-resize history/yank<CR>
+
+" Unite grep に ag (The Silver Searcher) を使う
+if executable ('ag')
+  let g:unite_source_grep_command       = 'ag'
+  let g:unite_source_grep_default_opts  = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 
 "" ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <c-w>s unite#do_action('split')
