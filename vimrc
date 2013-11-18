@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-11-18 03:29.
+" Last Change: 2013-11-18 17:07.
 " ==============================================================================
 
 "{{{ Encodings
@@ -210,6 +210,8 @@ nnoremap <Leader>a= :Tabularize /=<CR>
 vnoremap <Leader>a= :Tabularize /=<CR>
 nnoremap <Leader>a: :Tabularize /:\zs<CR>
 vnoremap <Leader>a: :Tabularize /:\zs<CR>
+nnoremap <Leader>a> :Tabularize /=><CR>
+vnoremap <Leader>a> :Tabularize /=><CR>
 "}}}
 NeoBundle 'houtsnip/vim-emacscommandline' "{{{
 "}}}
@@ -281,7 +283,9 @@ let g:unite_data_directory = $HOME.'/.vim/cache/unite'
 nnoremap <Leader>e :<C-u>Unite -auto-resize buffer file<CR>
 nnoremap <Leader>f :<C-u>Unite -auto-resize line<CR>
 nnoremap <Leader>g :<C-u>Unite -auto-resize grep:.<CR>
+nnoremap <Leader>G :<C-u>Unite -auto-resize grep:.<CR><C-R><C-W>
 nnoremap <leader>y :<C-u>Unite -auto-resize history/yank<CR>
+nnoremap <leader>R :<C-u>UniteResume -auto-resize<CR>
 
 " Unite grep に ag (The Silver Searcher) を使う
 if executable ('ag')
