@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2013-11-18 17:07.
+" Last Change: 2014-01-23 18:54.
 " ==============================================================================
 
 "{{{ Encodings
@@ -387,6 +387,19 @@ NeoBundle 'y-uuki/unite-perl-module.vim' "{{{
 NeoBundle 'c9s/perlomni.vim' "{{{
 let g:neocomplete#sources#omni#input_patterns.perl =
       \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+"}}}
+
+"" Haskell
+let NERD_haskell_alt_style = 1
+NeoBundle 'dag/vim2hs' "{{{
+"}}}
+NeoBundle 'eagletmt/neco-ghc' "{{{
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+" let g:necoghc_enable_detailed_browse = 1
+"}}}
+NeoBundle 'eagletmt/ghcmod-vim' "{{{
+"}}}
+NeoBundle 'eagletmt/unite-haddock' "{{{
 "}}}
 
 "" Fish
