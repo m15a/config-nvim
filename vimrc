@@ -371,6 +371,8 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 "}}}
+NeoBundle 'Shougo/neosnippet-snippets' "{{{
+"}}}
 
 "" Perl
 let g:neocomplete#ctags_arguments.perl = '-R -h ".pm"'
@@ -400,6 +402,10 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 NeoBundle 'eagletmt/ghcmod-vim' "{{{
 "}}}
 NeoBundle 'eagletmt/unite-haddock' "{{{
+"}}}
+
+"" R
+NeoBundle 'jimmyharris/vim-r-plugin2' "{{{
 "}}}
 
 "" Fish
