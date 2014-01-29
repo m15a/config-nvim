@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2014-01-23 18:54.
+" Last Change: 2014-01-27 22:55.
 " ==============================================================================
 
 "{{{ Encodings
@@ -406,6 +406,10 @@ NeoBundle 'eagletmt/unite-haddock' "{{{
 
 "" R
 NeoBundle 'jimmyharris/vim-r-plugin2' "{{{
+"}}}
+
+"" Gauche
+NeoBundle 'aharisu/vim-gdev' "{{{
 "}}}
 
 "" Fish
