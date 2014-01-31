@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2014-01-27 22:55.
+" Last Change: 2014-01-31 15:07.
 " ==============================================================================
 
 "{{{ Encodings
@@ -402,6 +402,19 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 NeoBundle 'eagletmt/ghcmod-vim' "{{{
 "}}}
 NeoBundle 'eagletmt/unite-haddock' "{{{
+"}}}
+
+"" OCaml
+" ocp-indent "{{{
+let g:ocp_indent_vimfile = system ("opam config var share")
+let g:ocp_indent_vimfile = substitute (g:ocp_indent_vimfile, '[\r\n]*$', '', '')
+let g:ocp_indent_vimfile = g:ocp_indent_vimfile . "/vim/syntax/ocp-indent.vim"
+au FileType ocaml exec ":source " . g:ocp_indent_vimfile
+"}}}
+NeoBundle 'the-lambda-church/merlin' "{{{
+set rtp+=~/.vim/bundle/merlin/vim/merlin
+set rtp+=~/.vim/bundle/merlin/vim/vimbufsync
+let g:neocomplete#force_omni_input_patterns.ocaml = '[^. *\t]\.\w*'
 "}}}
 
 "" R
