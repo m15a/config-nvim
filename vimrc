@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2014-02-07 14:38.
+" Last Change: 2014-02-07 14:59.
 " ==============================================================================
 
 "{{{ Encodings
@@ -434,10 +434,12 @@ au FileType fish setlocal foldmethod=expr
 "}}}
 
 "" Markdown
-au FileType pandoc nnoremap <Leader>r :!qlmanage -p % >&/dev/null<CR>
-" let g:quickrun_config.mkd = { 'command' : '' }
 NeoBundle 'vim-scripts/vim-pandoc' "{{{
 au BufRead,BufNewFile *.md set filetype=pandoc
+au FileType pandoc nnoremap <Leader>r :!qlmanage -p % >&/dev/null<CR>
+let g:pandoc_no_empty_implicits = 1
+let g:pandoc_no_spans           = 1
+
 "}}}
 
 
