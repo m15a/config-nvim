@@ -1,19 +1,19 @@
 " ==============================================================================
 " MacVim settings for GUI
-" Last Change: 2013-11-15 03:12.
+" Last Change: 2014-09-02 10:11.
 " ==============================================================================
 
 "{{{ Key Maps
 
 "" Toggle fullscreen
-function! g:gvimrc_toggle_fullscreen ()
+function! ToggleFullScreen ()
   if &g:fullscreen
     set nofullscreen
   else
     set fullscreen
   endif
 endfunction
-nnoremap <silent> <Leader>m :call g:gvimrc_toggle_fullscreen ()<CR>
+nnoremap <silent> <Leader>m :call ToggleFullScreen ()<CR>
 
 "}}}
 "{{{ Look and Feel

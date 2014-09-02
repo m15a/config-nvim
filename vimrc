@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2014-02-07 14:59.
+" Last Change: 2014-09-02 10:10.
 " ==============================================================================
 
 "{{{ Encodings
@@ -327,8 +327,8 @@ let g:neocomplete#ctags_command         = '/opt/local/bin/jexctags'
 "" Key maps
 inoremap <expr><C-g> neocomplete#undo_completion ()
 inoremap <expr><C-l> neocomplete#complete_common_string ()
-inoremap <silent> <CR> <C-r>=<SID>vimrc_neocomplete_cr_function ()<CR>
-function! s:vimrc_neocomplete_cr_function ()
+inoremap <silent> <CR> <C-r>=<SID>neocomplete_cr_function ()<CR>
+function! s:neocomplete_cr_function ()
   return neocomplete#close_popup () . "\<CR>"
 endfunction
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
