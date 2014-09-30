@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2014-09-02 10:10.
+" Last Change: 2014-09-30 11:30.
 " ==============================================================================
 
 "{{{ Encodings
@@ -272,6 +272,11 @@ nnoremap <silent> sp :call YanktmpPaste_p()<CR>
 vnoremap <silent> sp :call YanktmpPaste_p()<CR>
 nnoremap <silent> sP :call YanktmpPaste_P()<CR>
 vnoremap <silent> sP :call YanktmpPaste_P()<CR>
+"}}}
+NeoBundle 'scrooloose/syntastic' "{{{
+" let g:syntastic_auto_loc_list = 1
+map <silent> <Leader>E :Errors<CR>
+map <Leader>s :SyntasticToggleMode<CR>
 "}}}
 
 "" Unite
