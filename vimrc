@@ -399,6 +399,8 @@ let g:neocomplete#sources#omni#input_patterns.perl =
 "" Haskell
 let NERD_haskell_alt_style = 1
 NeoBundle 'dag/vim2hs' "{{{
+" let g:haskell_conceal = 0
+let g:haskell_conceal_wide = 1
 "}}}
 NeoBundle 'eagletmt/neco-ghc' "{{{
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
