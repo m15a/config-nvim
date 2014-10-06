@@ -399,7 +399,9 @@ let g:neocomplete#sources#omni#input_patterns.perl =
 "" Haskell
 let NERD_haskell_alt_style = 1
 NeoBundle 'dag/vim2hs' "{{{
-" let g:haskell_conceal = 0
+au FileType haskell compiler hlint
+" let g:hlint_args =
+let g:haskell_conceal = 0
 let g:haskell_conceal_wide = 1
 "}}}
 NeoBundle 'eagletmt/neco-ghc' "{{{
@@ -407,6 +409,8 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " let g:necoghc_enable_detailed_browse = 1
 "}}}
 NeoBundle 'eagletmt/ghcmod-vim' "{{{
+au FileType haskell nnoremap <Leader>t :<C-u>GhcModInfo<CR>
+au FileType haskell nnoremap <Leader>T :<C-u>GhcModInfoPreview<CR>
 "}}}
 NeoBundle 'eagletmt/unite-haddock' "{{{
 "}}}
