@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2014-09-30 11:30.
+" Last Change: 2014-10-08 23:40.
 " ==============================================================================
 
 "{{{ Encodings
@@ -408,7 +408,7 @@ NeoBundle 'eagletmt/neco-ghc' "{{{
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " let g:necoghc_enable_detailed_browse = 1
 "}}}
-NeoBundle 'eagletmt/ghcmod-vim' "{{{
+NeoBundle 'cdepillabout/ghcmod-vim', 'ghcmod-version-check' "{{{
 au FileType haskell nnoremap <Leader>t :<C-u>GhcModInfo<CR>
 au FileType haskell nnoremap <Leader>T :<C-u>GhcModInfoPreview<CR>
 "}}}
