@@ -428,6 +428,12 @@ set rtp+=~/.vim/bundle/merlin/vim/vimbufsync
 let g:neocomplete#force_omni_input_patterns.ocaml = '[^. *\t]\.\w*'
 "}}}
 
+"" Mathematica
+NeoBundle 'rsmenon/vim-mathematica' "{{{
+let g:mma_highlight_option = "solarized"
+let g:mma_candy = 2
+"}}}
+
 "" R
 NeoBundle 'jimmyharris/vim-r-plugin2' "{{{
 "}}}
