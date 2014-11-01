@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2014-10-28 09:45.
+" Last Change: 2014-11-01 15:13.
 " ==============================================================================
 
 "{{{ Encodings
@@ -278,6 +278,14 @@ NeoBundle 'scrooloose/syntastic' "{{{
 " let g:syntastic_auto_loc_list = 1
 map <silent> <Leader>E :Errors<CR>
 map <Leader>s :SyntasticToggleMode<CR>
+"}}}
+NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
+" let g:indent_guides_guide_size = 1
+au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+let g:indent_guides_start_level = 2
+" let g:indent_guides_default_mapping = 0
+" nnoremap <silent> <Leader>ig <Plug>IndentGuidesToggle
 "}}}
 
 "" Unite
