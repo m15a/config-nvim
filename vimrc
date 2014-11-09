@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2014-11-01 15:13.
+" Last Change: 2014-11-10 03:16.
 " ==============================================================================
 
 "{{{ Encodings
@@ -278,6 +278,12 @@ NeoBundle 'scrooloose/syntastic' "{{{
 " let g:syntastic_auto_loc_list = 1
 map <silent> <Leader>E :Errors<CR>
 map <Leader>s :SyntasticToggleMode<CR>
+if ! exists ('g:syntastic_mode_map')
+  let g:syntastic_mode_map = { "mode"             : "passive",
+                             \ "active_filetypes" : [],
+                             \ "passive_filetypes": []
+                             \ }
+endif
 "}}}
 NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
 " let g:indent_guides_guide_size = 1
