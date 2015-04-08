@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2015-04-08 14:35.
+" Last Change: 2015-04-08 20:06.
 " ==============================================================================
 
 "{{{ Encodings
@@ -395,6 +395,7 @@ NeoBundle 'Shougo/neosnippet-snippets' "{{{
 "}}}
 
 "" Perl
+au BufRead,BufNewFile cpanfile set filetype=perl
 let g:neocomplete#ctags_arguments.perl = '-R -h ".pm"'
 au FileType perl nnoremap <Leader>k :<C-u>Unite -auto-resize ref/perldoc<CR>
 au FileType perl nnoremap <Leader>m :<C-u>Unite -auto-resize perl/global<CR>
@@ -444,6 +445,7 @@ let g:neocomplete#force_omni_input_patterns.ocaml = '[^. *\t]\.\w*'
 "}}}
 
 "" Mathematica
+au BufRead,BufNewFile *.m set filetype=mma
 NeoBundle 'rsmenon/vim-mathematica' "{{{
 let g:mma_highlight_option = "solarized"
 let g:mma_candy = 2
@@ -463,7 +465,7 @@ au BufRead,BufNewFile *.nix set filetype=nix
 "" Fish
 " let g:neocomplete#force_omni_input_patterns.fish = '\h\w*'
 NeoBundle 'dag/vim-fish' "{{{
-" au BufRead,BufNewFile *.fish set filetype=fish
+au BufRead,BufNewFile *.fish set filetype=fish
 au FileType fish compiler fish
 au FileType fish setlocal foldmethod=expr
 "}}}
@@ -477,6 +479,8 @@ let g:pandoc_no_spans           = 1
 
 "}}}
 
+"" LaTeX
+au FileType tex,plaintex set foldmethod=marker
 
 "}}}
 "{{{ Finally
