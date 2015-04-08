@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2015-04-05 18:48.
+" Last Change: 2015-04-08 14:35.
 " ==============================================================================
 
 "{{{ Encodings
@@ -456,6 +456,9 @@ NeoBundle 'jimmyharris/vim-r-plugin2' "{{{
 "" Gauche
 NeoBundle 'aharisu/vim-gdev' "{{{
 "}}}
+
+"" Nix
+au BufRead,BufNewFile *.nix set filetype=nix
 
 "" Fish
 " let g:neocomplete#force_omni_input_patterns.fish = '\h\w*'
