@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2015-04-08 20:06.
+" Last Change: 2015-04-28 10:38.
 " ==============================================================================
 
 "{{{ Encodings
@@ -453,6 +453,8 @@ let g:mma_candy = 2
 
 "" R
 NeoBundle 'jimmyharris/vim-r-plugin2' "{{{
+let g:vimrplugin_term     = ""
+let g:vimrplugin_term_cmd = "tmux -c R -e"
 "}}}
 
 "" Gauche
