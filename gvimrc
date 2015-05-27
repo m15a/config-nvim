@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings for GUI
-" Last Change: 2014-09-10 03:06.
+" Last Change: 2015-05-20 10:40.
 " ==============================================================================
 
 "{{{ Key Maps
@@ -20,7 +20,7 @@ nnoremap <silent> <Leader>m :call ToggleFullScreen ()<CR>
 
 winpos 470 40
 
-set columns=84
+set columns=86
 set lines=36
 set linespace=0
 set vb t_vb=
