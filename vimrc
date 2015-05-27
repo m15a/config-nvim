@@ -484,6 +484,8 @@ let g:pandoc_no_spans           = 1
 "" LaTeX
 au FileType tex,plaintex set foldmethod=marker
 
+"" STAN
+NeoBundle 'maverickg/stan.vim' "{{{
 "}}}
 "{{{ Finally
 
