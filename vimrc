@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2015-04-28 10:38.
+" Last Change: 2015-05-27 10:51.
 " ==============================================================================
 
 "{{{ Encodings
@@ -30,8 +30,76 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "" After install, cd /path/to/vimproc; and make -f make make_mac.mak
 NeoBundle 'Shougo/vimproc'
 
+"" Look and feel
+NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim' }
+NeoBundle 'altercation/vim-colors-solarized'
+
+"" Interface
+NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'bkad/CamelCaseMotion'
+NeoBundle 'ghewgill/vim-scmdiff'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'houtsnip/vim-emacscommandline'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'rhysd/clever-f.vim'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'vim-scripts/YankRing.vim'
+NeoBundle 'vim-scripts/autodate.vim'
+NeoBundle 'vim-scripts/yanktmp.vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
+"" Unite
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'osyo-manga/unite-quickfix'
+
+"" Ref
+NeoBundle 'thinca/vim-ref'
+
+"" Neocomplete
+NeoBundle 'Shougo/context_filetype.vim'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+
+"" Perl
+NeoBundle 'vim-perl/vim-perl'
+NeoBundle 'y-uuki/unite-perl-module.vim'
+NeoBundle 'c9s/perlomni.vim'
+
+"" Haskell
+NeoBundle 'dag/vim2hs'
+NeoBundle 'eagletmt/neco-ghc'
+NeoBundle 'eagletmt/ghcmod-vim'
+NeoBundle 'eagletmt/unite-haddock'
+
+"" OCaml
+NeoBundle 'the-lambda-church/merlin'
+
+"" Mathematica
+NeoBundle 'rsmenon/vim-mathematica'
+
+"" R
+NeoBundle 'jimmyharris/vim-r-plugin2'
+
+"" Gauche
+NeoBundle 'aharisu/vim-gdev'
+
+"" Fish
+NeoBundle 'dag/vim-fish'
+
+"" Markdown
+NeoBundle 'vim-scripts/vim-pandoc'
+
+"" STAN
+NeoBundle 'maverickg/stan.vim'
+
 call neobundle#end ()
 filetype plugin indent on
+
+NeoBundleCheck
 
 "}}}
 "{{{ Key Maps
@@ -162,10 +230,10 @@ nnoremap # #N
 " nnoremap <Leade;>f :set invspell<CR>
 
 "}}}
-"{{{ Plugins
+"{{{ Plugin settings
 
 "" Look and feel
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim' } "{{{
+"{{{ NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim' }
 "" Fix terminal timeout when pressing escape
 if ! has('gui_running')
   set ttimeoutlen=10
@@ -182,15 +250,15 @@ set laststatus=2
 "" Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set noshowmode
 "}}}
-NeoBundle 'altercation/vim-colors-solarized' "{{{
+"{{{ NeoBundle 'altercation/vim-colors-solarized'
 set background=dark
 colorscheme solarized
 "}}}
 
 "" Interface
-NeoBundle 'Townk/vim-autoclose' "{{{
+"{{{ NeoBundle 'Townk/vim-autoclose'
 "}}}
-NeoBundle 'bkad/CamelCaseMotion' "{{{
+"{{{ NeoBundle 'bkad/CamelCaseMotion'
 "" Replace the default 'w', 'b', and 'e' mappings instead of defining
 "" additional mappings ',w', ',b', and ',e':
 map <silent> w <Plug>CamelCaseMotion_w
@@ -204,9 +272,9 @@ vmap <silent> ib <Plug>CamelCaseMotion_ib
 omap <silent> ie <Plug>CamelCaseMotion_ie
 vmap <silent> ie <Plug>CamelCaseMotion_ie
 "}}}
-NeoBundle 'ghewgill/vim-scmdiff' "{{{
+"{{{ NeoBundle 'ghewgill/vim-scmdiff'
 ""}}}
-NeoBundle 'godlygeek/tabular' "{{{
+"{{{ NeoBundle 'godlygeek/tabular'
 nnoremap <Leader>a= :Tabularize /=<CR>
 vnoremap <Leader>a= :Tabularize /=<CR>
 nnoremap <Leader>a: :Tabularize /:\zs<CR>
@@ -214,9 +282,9 @@ vnoremap <Leader>a: :Tabularize /:\zs<CR>
 nnoremap <Leader>a> :Tabularize /=><CR>
 vnoremap <Leader>a> :Tabularize /=><CR>
 "}}}
-NeoBundle 'houtsnip/vim-emacscommandline' "{{{
+"{{{ NeoBundle 'houtsnip/vim-emacscommandline'
 "}}}
-NeoBundle 'majutsushi/tagbar' "{{{
+"{{{ NeoBundle 'majutsushi/tagbar'
 nnoremap <Leader>l :TagbarToggle<CR>
 let g:tagbar_ctags_bin = '/opt/local/bin/jexctags'
 let g:tagbar_width = 35
@@ -230,20 +298,20 @@ let g:tagbar_singleclick = 1
 let g:tagbar_iconchars = ['▾', '▸']
 let g:tagbar_autoshowtag = 1
 "}}}
-NeoBundle 'rhysd/clever-f.vim' "{{{
+"{{{ NeoBundle 'rhysd/clever-f.vim'
 let g:clever_f_smart_case = 1
 let clever_f_use_migemo = 1
 "}}}
-NeoBundle 'scrooloose/nerdcommenter' "{{{
+"{{{ NeoBundle 'scrooloose/nerdcommenter'
 let NERDSpaceDelims       = 1
 " let NERDRemoveExtraSpaces = 1
 let NERDCompactSexyComs   = 1
 "}}}
-NeoBundle 'sjl/gundo.vim' "{{{
+"{{{ NeoBundle 'sjl/gundo.vim'
 nnoremap <Leader>u :GundoToggle<CR>
 let g:gundo_close_on_revert = 1
 "}}}
-NeoBundle 'thinca/vim-quickrun' "{{{
+"{{{ NeoBundle 'thinca/vim-quickrun'
 au QuickFixCmdPost * cfile
 let g:quickrun_config = {}
 let g:quickrun_config._ = {
@@ -254,18 +322,18 @@ let g:quickrun_config._ = {
       \ 'outputter/quickfix/open_cmd' : 'cfile',
       \ }
 "}}}
-NeoBundle 'tpope/vim-surround' "{{{
+"{{{ NeoBundle 'tpope/vim-surround'
 "}}}
-NeoBundle 'vim-scripts/YankRing.vim' "{{{
+"{{{ NeoBundle 'vim-scripts/YankRing.vim'
 let g:yankring_window_auto_close = 1
 let g:yankring_history_dir = $HOME.'/.vim/cache'
 "}}}
-NeoBundle 'vim-scripts/autodate.vim' "{{{
+"{{{ NeoBundle 'vim-scripts/autodate.vim'
 let autodate_format       = '%Y-%m-%d %H:%M'
 let autodate_keyword_pre  = '\c\%(#+\?DATE\|LAST \%(MODIFIED\|CHANGE\)\):'
 let autodate_keyword_post = '\.'
 "}}}
-NeoBundle 'vim-scripts/yanktmp.vim' "{{{
+"{{{ NeoBundle 'vim-scripts/yanktmp.vim'
 let g:yanktmp_file = $HOME.'/.vim/cache/yanktmp'
 nnoremap <silent> sy :call YanktmpYank()<CR>
 vnoremap <silent> sy :call YanktmpYank()<CR>
@@ -274,7 +342,7 @@ vnoremap <silent> sp :call YanktmpPaste_p()<CR>
 nnoremap <silent> sP :call YanktmpPaste_P()<CR>
 vnoremap <silent> sP :call YanktmpPaste_P()<CR>
 "}}}
-NeoBundle 'scrooloose/syntastic' "{{{
+"{{{ NeoBundle 'scrooloose/syntastic'
 " let g:syntastic_auto_loc_list = 1
 map <silent> <Leader>E :Errors<CR>
 map <Leader>s :SyntasticToggleMode<CR>
@@ -285,7 +353,7 @@ if ! exists ('g:syntastic_mode_map')
                              \ }
 endif
 "}}}
-NeoBundle 'nathanaelkane/vim-indent-guides' "{{{
+"{{{ NeoBundle 'nathanaelkane/vim-indent-guides'
 " let g:indent_guides_guide_size = 1
 au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
@@ -295,7 +363,7 @@ let g:indent_guides_start_level = 2
 "}}}
 
 "" Unite
-NeoBundle 'Shougo/unite.vim' "{{{
+"{{{ NeoBundle 'Shougo/unite.vim'
 let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
 " Key maps
@@ -321,21 +389,21 @@ au FileType unite inoremap <silent> <buffer> <expr> <c-w>s unite#do_action('spli
 au FileType unite nnoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
 au FileType unite inoremap <silent> <buffer> <expr> <c-w>v unite#do_action('vsplit')
 "}}}
-NeoBundle 'osyo-manga/unite-quickfix' "{{{
+"{{{ NeoBundle 'osyo-manga/unite-quickfix'
 nnoremap <Leader>q :<C-u>Unite -auto-resize quickfix<CR>
 "}}}
 
 "" Ref
-NeoBundle 'thinca/vim-ref' "{{{
+"{{{ NeoBundle 'thinca/vim-ref'
 let g:ref_cache_dir = $HOME.'/.vim/cache/ref'
 let g:ref_use_vimproc = 1
 " let g:ref_open =
 "}}}
 
 "" Neocomplete
-NeoBundle 'Shougo/context_filetype.vim' "{{{
+"{{{ NeoBundle 'Shougo/context_filetype.vim'
 "}}}
-NeoBundle 'Shougo/neocomplete.vim' "{{{
+"{{{ NeoBundle 'Shougo/neocomplete.vim'
 "" Options
 let g:neocomplete#enable_at_startup     = 1
 let g:neocomplete#enable_auto_select    = 1
@@ -368,7 +436,7 @@ if !exists ('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
 "}}}
-NeoBundle 'Shougo/neosnippet.vim' "{{{
+"{{{ NeoBundle 'Shougo/neosnippet.vim'
 " let g:neosnippet#snippets_directory            = $HOME./.vim/snippets
 " let g:neosnippet#enable_snipmate_compatibility = 1
 
@@ -391,7 +459,7 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 "}}}
-NeoBundle 'Shougo/neosnippet-snippets' "{{{
+"{{{ NeoBundle 'Shougo/neosnippet-snippets'
 "}}}
 
 "" Perl
@@ -401,34 +469,34 @@ au FileType perl nnoremap <Leader>k :<C-u>Unite -auto-resize ref/perldoc<CR>
 au FileType perl nnoremap <Leader>m :<C-u>Unite -auto-resize perl/global<CR>
 au FileType perl nnoremap <Leader>t <Esc>:%! perltidy -se<CR>
 au FileType perl vnoremap <Leader>t <Esc>:'<,'>! perltidy -se<CR>
-NeoBundle 'vim-perl/vim-perl' "{{{
+"{{{ NeoBundle 'vim-perl/vim-perl'
 let perl_include_pod = 1
 let perl_fold = 1
 "}}}
-NeoBundle 'y-uuki/unite-perl-module.vim' "{{{
+"{{{ NeoBundle 'y-uuki/unite-perl-module.vim'
 "}}}
-NeoBundle 'c9s/perlomni.vim' "{{{
+"{{{ NeoBundle 'c9s/perlomni.vim'
 let g:neocomplete#sources#omni#input_patterns.perl =
       \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 "}}}
 
 "" Haskell
 let NERD_haskell_alt_style = 1
-NeoBundle 'dag/vim2hs' "{{{
+"{{{ NeoBundle 'dag/vim2hs'
 au FileType haskell compiler hlint
 " let g:hlint_args =
 let g:haskell_conceal = 0
 let g:haskell_conceal_wide = 1
 "}}}
-NeoBundle 'eagletmt/neco-ghc' "{{{
+"{{{ NeoBundle 'eagletmt/neco-ghc'
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " let g:necoghc_enable_detailed_browse = 1
 "}}}
-NeoBundle 'eagletmt/ghcmod-vim' "{{{
+"{{{ NeoBundle 'eagletmt/ghcmod-vim'
 au FileType haskell nnoremap <Leader>t :<C-u>GhcModInfo<CR>
 au FileType haskell nnoremap <Leader>T :<C-u>GhcModInfoPreview<CR>
 "}}}
-NeoBundle 'eagletmt/unite-haddock' "{{{
+"{{{ NeoBundle 'eagletmt/unite-haddock'
 "}}}
 
 "" OCaml
@@ -438,7 +506,7 @@ let g:ocp_indent_vimfile = substitute (g:ocp_indent_vimfile, '[\r\n]*$', '', '')
 let g:ocp_indent_vimfile = g:ocp_indent_vimfile . "/vim/syntax/ocp-indent.vim"
 au FileType ocaml exec ":source " . g:ocp_indent_vimfile
 "}}}
-NeoBundle 'the-lambda-church/merlin' "{{{
+"{{{ NeoBundle 'the-lambda-church/merlin'
 set rtp+=~/.vim/bundle/merlin/vim/merlin
 set rtp+=~/.vim/bundle/merlin/vim/vimbufsync
 let g:neocomplete#force_omni_input_patterns.ocaml = '[^. *\t]\.\w*'
@@ -446,19 +514,19 @@ let g:neocomplete#force_omni_input_patterns.ocaml = '[^. *\t]\.\w*'
 
 "" Mathematica
 au BufRead,BufNewFile *.m set filetype=mma
-NeoBundle 'rsmenon/vim-mathematica' "{{{
+"{{{ NeoBundle 'rsmenon/vim-mathematica'
 let g:mma_highlight_option = "solarized"
 let g:mma_candy = 2
 "}}}
 
 "" R
-NeoBundle 'jimmyharris/vim-r-plugin2' "{{{
+"{{{ NeoBundle 'jimmyharris/vim-r-plugin2'
 let g:vimrplugin_term     = ""
 let g:vimrplugin_term_cmd = "tmux -c R -e"
 "}}}
 
 "" Gauche
-NeoBundle 'aharisu/vim-gdev' "{{{
+"{{{ NeoBundle 'aharisu/vim-gdev'
 "}}}
 
 "" Nix
@@ -466,14 +534,14 @@ au BufRead,BufNewFile *.nix set filetype=nix
 
 "" Fish
 " let g:neocomplete#force_omni_input_patterns.fish = '\h\w*'
-NeoBundle 'dag/vim-fish' "{{{
+"{{{ NeoBundle 'dag/vim-fish'
 au BufRead,BufNewFile *.fish set filetype=fish
 au FileType fish compiler fish
 au FileType fish setlocal foldmethod=expr
 "}}}
 
 "" Markdown
-NeoBundle 'vim-scripts/vim-pandoc' "{{{
+"{{{ NeoBundle 'vim-scripts/vim-pandoc'
 au BufRead,BufNewFile *.md set filetype=pandoc
 au FileType pandoc nnoremap <Leader>r :!qlmanage -p % >&/dev/null<CR>
 let g:pandoc_no_empty_implicits = 1
@@ -485,11 +553,8 @@ let g:pandoc_no_spans           = 1
 au FileType tex,plaintex set foldmethod=marker
 
 "" STAN
-NeoBundle 'maverickg/stan.vim' "{{{
+"{{{ NeoBundle 'maverickg/stan.vim'
 "}}}
-"{{{ Finally
-
-NeoBundleCheck
 
 "}}}
 
