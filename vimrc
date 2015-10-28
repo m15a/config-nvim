@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2015-05-27 10:51.
+" Last Change: 2015-10-28 10:30.
 " ==============================================================================
 
 "{{{ Encodings
@@ -31,7 +31,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
 
 "" Look and feel
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim' }
+NeoBundle 'powerline/powerline', { 'rtp' : 'powerline/bindings/vim' }
 NeoBundle 'altercation/vim-colors-solarized'
 
 "" Interface
@@ -233,7 +233,7 @@ nnoremap # #N
 "{{{ Plugin settings
 
 "" Look and feel
-"{{{ NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim' }
+"{{{ NeoBundle 'powerline/powerline', { 'rtp' : 'powerline/bindings/vim' }
 "" Fix terminal timeout when pressing escape
 if ! has('gui_running')
   set ttimeoutlen=10
