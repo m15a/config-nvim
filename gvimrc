@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings for GUI
-" Last Change: 2015-05-20 10:40.
+" Last Change: 2015-09-25 10:27.
 " ==============================================================================
 
 "{{{ Key Maps
@@ -37,7 +37,7 @@ set guioptions-=L " hide left scrollbar
 
 "" Color on Japanese IM
 au BufRead,BufNewFile,FileType * hi IMLine guifg=#303030
-set transparency=10
+set transparency=20
 
 "" Color scheme
 set background=dark
