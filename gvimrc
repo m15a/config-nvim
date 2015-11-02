@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings for GUI
-" Last Change: 2015-09-25 10:27.
+" Last Change: 2015-11-02 16:41.
 " ==============================================================================
 
 "{{{ Key Maps
@@ -21,7 +21,7 @@ nnoremap <silent> <Leader>m :call ToggleFullScreen ()<CR>
 winpos 470 40
 
 set columns=86
-set lines=36
+set lines=41
 set linespace=0
 set vb t_vb=
 set mousehide
@@ -46,8 +46,8 @@ colorscheme solarized
 
 "" Fonts
 set termencoding=japan
-set gfn=SourceCodePro-Regular:h18
-set gfw=Hiragino_Maru_Gothic_Pro:h18
+set gfn=SourceCodePro-Regular:h16
+set gfw=Hiragino_Maru_Gothic_Pro:h16
 
 "}}}
 
