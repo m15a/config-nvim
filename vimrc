@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2015-10-28 10:30.
+" Last Change: 2015-11-06 16:55.
 " ==============================================================================
 
 "{{{ Encodings
@@ -31,7 +31,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc'
 
 "" Look and feel
-NeoBundle 'powerline/powerline', { 'rtp' : 'powerline/bindings/vim' }
+NeoBundle 'bling/vim-airline'
 NeoBundle 'altercation/vim-colors-solarized'
 
 "" Interface
@@ -233,22 +233,12 @@ nnoremap # #N
 "{{{ Plugin settings
 
 "" Look and feel
-"{{{ NeoBundle 'powerline/powerline', { 'rtp' : 'powerline/bindings/vim' }
-"" Fix terminal timeout when pressing escape
-if ! has('gui_running')
-  set ttimeoutlen=10
-  augroup FastEscape
-    autocmd!
-    au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
-  augroup END
-endif
-
-"" Always display the statusline in all windows
-set laststatus=2
-
-"" Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set noshowmode
+"{{{ NeoBundle 'bling/vim-airline'
+let g:airline_left_sep          = ''
+let g:airline_right_sep         = ''
+let g:airline_detect_iminsert   = 1
+let g:airline_inactive_collapse = 1
+" let g:airline_powerline_fonts   = 0
 "}}}
 "{{{ NeoBundle 'altercation/vim-colors-solarized'
 set background=dark
