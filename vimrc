@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2015-11-06 16:55.
+" Last Change: 2015-11-16 17:35.
 " ==============================================================================
 
 "{{{ Encodings
@@ -92,6 +92,9 @@ NeoBundle 'dag/vim-fish'
 
 "" Markdown
 NeoBundle 'vim-scripts/vim-pandoc'
+
+""LaTeX
+NeoBundle 'lervag/vimtex'
 
 "" STAN
 NeoBundle 'maverickg/stan.vim'
@@ -540,7 +543,7 @@ let g:pandoc_no_spans           = 1
 "}}}
 
 "" LaTeX
-au FileType tex,plaintex set foldmethod=marker
+set conceallevel=0
 
 "" STAN
 "{{{ NeoBundle 'maverickg/stan.vim'
