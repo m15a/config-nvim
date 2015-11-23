@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings for GUI
-" Last Change: 2015-11-06 16:48.
+" Last Change: 2015-11-23 10:03.
 " ==============================================================================
 
 "{{{ Key Maps
@@ -20,9 +20,9 @@ nnoremap <silent> <Leader>m :call ToggleFullScreen ()<CR>
 
 winpos 470 40
 
-set columns=86
-set lines=41
-set linespace=0
+set columns=100
+set lines=40
+set linespace=1
 set vb t_vb=
 set mousehide
 set imdisable
