@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2015-11-16 17:35.
+" Last Change: 2015-11-23 11:19.
 " ==============================================================================
 
 "{{{ Encodings
@@ -544,6 +544,7 @@ let g:pandoc_no_spans           = 1
 
 "" LaTeX
 set conceallevel=0
+let g:tex_flavor = 'latex'
 
 "" STAN
 "{{{ NeoBundle 'maverickg/stan.vim'
