@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings for GUI
-" Last Change: 2015-11-23 10:03.
+" Last Change: 2016-01-19 16:36.
 " ==============================================================================
 
 "{{{ Key Maps
@@ -47,7 +47,7 @@ colorscheme solarized
 "" Fonts
 set termencoding=japan
 set gfn=SourceCodePro-Regular:h16
-set gfw=Hiragino_Maru_Gothic_ProN:h16
+set gfw=Rounded\ Mgen+\ 1m\ Regular:h16
 
 "}}}
 
