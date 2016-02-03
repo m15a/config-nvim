@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2015-11-23 11:19.
+" Last Change: 2016-02-03 16:19.
 " ==============================================================================
 
 "{{{ Encodings
@@ -50,6 +50,7 @@ NeoBundle 'vim-scripts/YankRing.vim'
 NeoBundle 'vim-scripts/autodate.vim'
 NeoBundle 'vim-scripts/yanktmp.vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'fuenor/JpFormat.vim'
 
 "" Unite
 NeoBundle 'Shougo/unite.vim'
@@ -353,6 +354,18 @@ au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 let g:indent_guides_start_level = 2
 " let g:indent_guides_default_mapping = 0
 " nnoremap <silent> <Leader>ig <Plug>IndentGuidesToggle
+"}}}
+"{{{ NeoBundle 'fuenor/JpFormat.vim'
+set formatexpr=jpfmt#formatexpr()
+set formatoptions+=mM  " 日本語の行の連結時には空白を入力しない
+
+" 現在行を整形
+nnoremap <silent> gl gqq
+vnoremap <silent> gl gqq
+
+" 現在の段落を整形
+nnoremap <silent> gp gqap
+vnoremap <silent> gp gqap
 "}}}
 
 "" Unite
