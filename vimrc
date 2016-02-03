@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2016-02-03 16:19.
+" Last Change: 2016-02-03 16:23.
 " ==============================================================================
 
 "{{{ Encodings
@@ -359,13 +359,9 @@ let g:indent_guides_start_level = 2
 set formatexpr=jpfmt#formatexpr()
 set formatoptions+=mM  " 日本語の行の連結時には空白を入力しない
 
-" 現在行を整形
-nnoremap <silent> gl gqq
-vnoremap <silent> gl gqq
-
 " 現在の段落を整形
-nnoremap <silent> gp gqap
-vnoremap <silent> gp gqap
+nnoremap <silent> Q gqap
+vnoremap <silent> Q gqap
 "}}}
 
 "" Unite
