@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/bundle')
 
-Plug 'altercation/vim-colors-solarized'
+Plug 'joshdick/onedark.vim'
+Plug 'joshdick/airline-onedark.vim'
 Plug 'bling/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/YankRing.vim'

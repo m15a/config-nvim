@@ -1,6 +1,5 @@
-"" Solarized Dark (vim-colors-solarized)
-set background=dark
-colorscheme solarized
+"" One Dark theme
+colorscheme onedark
 
 "" Highlight current cursor line only
 augroup vimrc_current_cursor_line
