@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2016-02-15 18:32.
+" Last Change: 2016-02-05 18:28.
 " ==============================================================================
 
 "{{{ Encodings
@@ -85,6 +85,9 @@ Plug 'aharisu/vim-gdev'
 
 "" Fish
 Plug 'dag/vim-fish'
+
+"" Jq
+Plug 'vito-c/jq.vim'
 
 "" Markdown
 Plug 'vim-scripts/vim-pandoc'
@@ -533,6 +536,10 @@ au BufRead,BufNewFile *.nix set filetype=nix
 au BufRead,BufNewFile *.fish set filetype=fish
 au FileType fish compiler fish
 au FileType fish setlocal foldmethod=expr
+"}}}
+
+"" Jq
+"{{{ Plug 'vito-c/jq.vim'
 "}}}
 
 "" Markdown
