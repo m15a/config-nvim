@@ -1,6 +1,6 @@
 " ==============================================================================
 " MacVim settings
-" Last Change: 2016-02-05 18:28.
+" Last Change: 2016-02-15 18:41.
 " ==============================================================================
 
 "{{{ Encodings
@@ -194,7 +194,9 @@ set wildmode=list:longest
 set wrapscan
 
 "" matchit
-source $VIMRUNTIME/macros/matchit.vim
+if !exists ('g:loaded_matchit')
+  runtime macros/matchit.vim
+endif
 
 "" Hack for vim + fish problem:
 "" http://badsimplicity.com/vim-fish-e484-cant-open-file-tmpvrdnvqe0-error/
