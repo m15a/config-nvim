@@ -13,4 +13,4 @@ augroup current_cursor_gutter
 augroup END
 
 "" Colorize columns over 80: http://hanschen.org/2012/10/24/
-exec "set colorcolumn=" . join (range (81, 335), ',')
+exec "set colorcolumn=" . join(range(81, 335), ',')
