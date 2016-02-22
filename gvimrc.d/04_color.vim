@@ -1,4 +1,4 @@
-"" One Dark theme
+"" Atom One Dark theme
 colorscheme onedark
 
 "" Highlight current cursor line number (gutter)
