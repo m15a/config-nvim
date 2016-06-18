@@ -23,7 +23,6 @@ Plug 'ghewgill/vim-scmdiff'
 
 "" Unite
 Plug 'Shougo/unite.vim'
-Plug 'osyo-manga/unite-quickfix'
 
 "" Deoplete
 Plug 'Shougo/deoplete.nvim'
