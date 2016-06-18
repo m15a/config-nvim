@@ -14,9 +14,7 @@ set tabstop=4
 set wildmode=list:longest
 
 "" Suffixes that get lower priority when doing tab completion for filenames
-set suffixes=.bak,~,.swp,.o,.info
-set suffixes+=.brf,.cb,.ind,.idx,.ilg,.inx
-set suffixes+=.aux,.bbl,.blg,.dvi,.end,.fls,.log,.out,.spl,.tdo,.toc  " TeX
+set suffixes+=.aux,.bbl,.blg,.dvi,.end,.fls,.log,.out,.spl,.tdo,.toc  " LaTeX
 
 "" Clipboard integration
 set clipboard+=unnamed
