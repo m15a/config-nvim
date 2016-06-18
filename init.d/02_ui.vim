@@ -1,26 +1,46 @@
-set clipboard+=unnamed
-set complete+=k
-set diffopt+=vertical
-set expandtab
-set hidden
+"" Ignoring case in patterns
 set ignorecase
+set smartcase
 set infercase
-set list
-set listchars=eol:$,tab:>_,trail:_,extends:>,precedes:<
+
+"" Tab expansion and indentation
+set expandtab
+set shiftwidth=2
+set smartindent
+set softtabstop=4
+set tabstop=4
+
+"" Command-line completion
+set wildmode=list:longest
+
+"" Suffixes that get lower priority when doing tab completion for filenames
+set suffixes=.bak,~,.swp,.o,.info
+set suffixes+=.brf,.cb,.ind,.idx,.ilg,.inx
+set suffixes+=.aux,.bbl,.blg,.dvi,.end,.fls,.log,.out,.spl,.tdo,.toc  " TeX
+
+"" Clipboard integration
+set clipboard+=unnamed
+
+"" hide a buffer instead of unloading it when it is abandoned
+set hidden
+
+"" Enable dictionary completion by <CTRL-N> or <CTRL-P>
+set complete+=k
+
+"" Miscellaneous look and feel
+set diffopt+=vertical
 set nowrap
 set number
 set ruler
 set scroll=5
 set scrolloff=4
-set shiftwidth=2
 set showmatch
-set smartcase
-set smartindent
-set softtabstop=4
-set tabstop=4
 set virtualedit=all
 set visualbell
-set wildmode=list:longest
+
+"" Display style of tabs, spaces, and trailing blanks
+set list
+set listchars=eol:$,tab:>_,trail:_,extends:>,precedes:<
 
 "" Change the cursor shape in the terminal
 :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -31,19 +51,14 @@ if &shell =~# 'fish$'
   set shell=/bin/sh
 endif
 
+"" * で検索した後カーソル移動しない
+nnoremap * *N
+nnoremap # #N
+
 "" 前回終了したカーソル行に移動
 au BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \ exe "normal g`\"" | endif
 
-"" Suffixes that get lower priority when doing tab completion for filenames
-set suffixes=.bak,~,.swp,.o,.info
-set suffixes+=.brf,.cb,.ind,.idx,.ilg,.inx
-set suffixes+=.aux,.bbl,.blg,.dvi,.end,.fls,.log,.out,.spl,.tdo,.toc  " TeX
-
 "" 保存時に行末の空白を除去する
 " autocmd BufWritePre * :%s/\s\+$//ge
-
-"" * で検索した後カーソル移動しない
-nnoremap * *N
-nnoremap # #N
