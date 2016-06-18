@@ -25,8 +25,8 @@ Plug 'ghewgill/vim-scmdiff'
 Plug 'Shougo/unite.vim'
 Plug 'osyo-manga/unite-quickfix'
 
-"" Neocomplete
-Plug 'Shougo/neocomplete.vim'
+"" Deoplete
+Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/context_filetype.vim'
