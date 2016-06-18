@@ -38,7 +38,7 @@ set visualbell
 
 "" Display style of tabs, spaces, and trailing blanks
 set list
-set listchars=eol:$,tab:>_,trail:_,extends:>,precedes:<
+set listchars=eol:¬,tab:>_,trail:_,extends:»,precedes:«,nbsp:_
 
 "" Change the cursor shape in the terminal
 :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
