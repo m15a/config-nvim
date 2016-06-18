@@ -42,6 +42,9 @@ set wildmenu
 set wildmode=list:longest
 set wrapscan
 
+"" Change the cursor shape in the terminal
+:let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
 "" matchit
 if !exists ('g:loaded_matchit')
   runtime macros/matchit.vim
