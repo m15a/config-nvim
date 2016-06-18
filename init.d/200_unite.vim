@@ -1,7 +1,6 @@
 let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
 " Key maps
-let g:unite_data_directory = $HOME.'/.vim/cache/unite'
 nnoremap <Leader>e :<C-u>Unite -auto-resize buffer file<CR>
 nnoremap <Leader>f :<C-u>Unite -auto-resize line<CR>
 nnoremap <Leader>g :<C-u>Unite -auto-resize grep:.<CR>

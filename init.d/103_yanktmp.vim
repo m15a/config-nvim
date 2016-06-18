@@ -1,4 +1,4 @@
-let g:yanktmp_file = $HOME.'/.vim/cache/yanktmp'
+let g:yanktmp_file = g:nvim_cache.'/yanktmp'
 nnoremap <silent> sy :call YanktmpYank()<CR>
 vnoremap <silent> sy :call YanktmpYank()<CR>
 nnoremap <silent> sp :call YanktmpPaste_p()<CR>

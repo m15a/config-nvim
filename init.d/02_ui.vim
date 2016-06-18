@@ -36,7 +36,6 @@ set smarttab
 set softtabstop=4
 set tabstop=4
 set textwidth=80
-set viminfo+=n~/.vim/cache/viminfo
 set virtualedit=all
 set visualbell
 set wildmenu

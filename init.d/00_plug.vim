@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/bundle')
+call plug#begin(g:nvim_data.'/plugged')
 
 Plug 'joshdick/onedark.vim'
 Plug 'joshdick/airline-onedark.vim'

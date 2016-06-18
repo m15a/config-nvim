@@ -1,4 +1,3 @@
-" let g:neosnippet#snippets_directory            = $HOME./.vim/snippets
 " let g:neosnippet#enable_snipmate_compatibility = 1
 
 "" Key maps

@@ -3,7 +3,6 @@ let g:neocomplete#enable_at_startup     = 1
 let g:neocomplete#enable_auto_select    = 1
 let g:neocomplete#enable_auto_delimiter = 1
 let g:neocomplete#enable_smart_case     = 1
-let g:neocomplete#data_directory        = $HOME.'/.vim/cache/neocon'
 let g:neocomplete#ctags_command         = '/opt/local/bin/jexctags'
 
 "" Key maps
