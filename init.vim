@@ -1,0 +1,1 @@
+runtime! init.d/*.vim
