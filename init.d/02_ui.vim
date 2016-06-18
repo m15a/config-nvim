@@ -26,6 +26,7 @@ set hidden
 set complete+=k
 
 "" Miscellaneous look and feel
+set cursorline
 set diffopt+=vertical
 set nowrap
 set number
