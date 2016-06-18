@@ -1,3 +1,6 @@
+"" True-color support
+set termguicolors
+
 "" Atom One Dark theme
 colorscheme onedark
 
