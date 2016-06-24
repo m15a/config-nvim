@@ -37,6 +37,9 @@ set showmatch
 set virtualedit=all
 set visualbell
 
+"" Persistent undo
+set undofile
+
 "" Display style of tabs, spaces, and trailing blanks
 set list
 set listchars=eol:¬,tab:>_,trail:_,extends:»,precedes:«,nbsp:_
