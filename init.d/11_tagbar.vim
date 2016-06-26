@@ -1,3 +1,5 @@
+Plug 'majutsushi/tagbar'
+
 nnoremap <Leader>l :TagbarToggle<CR>
 " let g:tagbar_ctags_bin = '/opt/local/bin/jexctags'
 let g:tagbar_width = 35

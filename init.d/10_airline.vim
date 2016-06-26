@@ -1,3 +1,6 @@
+Plug 'bling/vim-airline'
+Plug 'joshdick/airline-onedark.vim'
+
 let g:airline_left_sep  = ''
 let g:airline_right_sep = ''
 

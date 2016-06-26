@@ -1,3 +1,5 @@
+Plug 'thinca/vim-quickrun'
+
 au QuickFixCmdPost * cfile
 let g:quickrun_config = {}
 let g:quickrun_config._ = {

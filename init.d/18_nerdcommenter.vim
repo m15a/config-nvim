@@ -1,3 +1,5 @@
+Plug 'scrooloose/nerdcommenter'
+
 let NERDSpaceDelims       = 1
 " let NERDRemoveExtraSpaces = 1
 let NERDCompactSexyComs   = 1

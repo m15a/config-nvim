@@ -2,7 +2,7 @@
 set termguicolors
 
 "" Atom One Dark theme
-colorscheme onedark
+Plug 'joshdick/onedark.vim'
 
 "" Colorize columns over 80
 "" See http://hanschen.org/2012/10/24/

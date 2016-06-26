@@ -1,3 +1,5 @@
+Plug 'LeafCage/yankround.vim'
+
 let g:yankround_dir = g:nvim_cache.'/yankround'
 
 nmap p <Plug>(yankround-p)

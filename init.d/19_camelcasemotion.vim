@@ -1,3 +1,5 @@
+Plug 'bkad/CamelCaseMotion'
+
 "" Replace the default 'w', 'b', and 'e' mappings instead of defining
 "" additional mappings ',w', ',b', and ',e':
 map <silent> w <Plug>CamelCaseMotion_w

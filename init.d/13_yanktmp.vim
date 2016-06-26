@@ -1,3 +1,5 @@
+Plug 'rtakasuke/yanktmp.vim'
+
 let g:yanktmp_file      = g:nvim_cache.'/yanktmp'
 let g:yanktmp_mode_file = g:nvim_cache.'/yanktmp_mode'
 

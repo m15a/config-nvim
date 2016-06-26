@@ -1,3 +1,7 @@
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/context_filetype.vim'
+
 " let g:neosnippet#enable_snipmate_compatibility = 1
 
 "" Key maps

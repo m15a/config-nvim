@@ -1,3 +1,5 @@
+Plug 'scrooloose/syntastic'
+
 " let g:syntastic_auto_loc_list = 1
 map <silent> <Leader>E :Errors<CR>
 map <Leader>s :SyntasticToggleMode<CR>
