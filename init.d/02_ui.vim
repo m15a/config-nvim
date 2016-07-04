@@ -34,6 +34,7 @@ set ruler
 set scroll=5
 set scrolloff=4
 set showmatch
+set spelllang=en,cjk  " 日本語をスペルチェックから除外する
 set virtualedit=all
 set visualbell
 
