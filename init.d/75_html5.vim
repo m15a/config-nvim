@@ -1,8 +1,7 @@
 Plug 'mattn/emmet-vim'
 
-" let g:user_emmet_mode = 'iv'
-" let g:user_emmet_leader_key = '<C-Y>'
-" let g:use_emmet_complete_tag = 1
+let g:use_emmet_complete_tag = 0
+let g:user_emmet_mode = 'iv'
 
 Plug 'mattn/webapi-vim'
 Plug 'othree/html5.vim'
