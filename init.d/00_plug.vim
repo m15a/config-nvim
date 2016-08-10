@@ -1,4 +1,4 @@
-call plug#begin(g:nvim_data.'/plugged')
+call plug#begin(g:data_home.'/plugged')
 
 Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-surround'
