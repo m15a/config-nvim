@@ -7,8 +7,8 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ deoplete#mappings#manual_complete()
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+  let l:col = col('.') - 1
+  return !l:col || getline('.')[l:col - 1]  =~# '\s'
 endfunction
 inoremap <expr><C-h> deoplete#smart_close_popup() . "\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup() . "\<C-h>"
