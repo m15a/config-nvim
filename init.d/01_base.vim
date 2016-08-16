@@ -59,6 +59,7 @@ endif
 
 "" 前回終了したカーソル行に移動
 augroup nvimrc_recoverlastcursor
+  autocmd!
   au BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
         \   exec "normal g`\"" |
