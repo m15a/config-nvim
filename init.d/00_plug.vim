@@ -19,4 +19,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
+"" Indent guides
+Plug 'nathanaelkane/vim-indent-guides'
+
 call plug#end()
