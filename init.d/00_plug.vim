@@ -26,4 +26,10 @@ Plug 'nathanaelkane/vim-indent-guides'
 "" Tagbar
 Plug 'majutsushi/tagbar'
 
+"" Deoplete and Neosnippet
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+
 call plug#end()
