@@ -14,3 +14,8 @@ inoremap <expr><C-h> deoplete#smart_close_popup() . "\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup() . "\<C-h>"
 inoremap <expr><C-g> deoplete#undo_completion()
 inoremap <expr><C-l> deoplete#refresh()
+
+augroup nvimrc_deoplete
+  autocmd!
+  au VimEnter,ColorScheme * hi PmenuSel guifg=black guibg=#bbbbbb 
+augroup END
