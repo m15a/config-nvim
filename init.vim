@@ -6,6 +6,6 @@ let g:nvimrc_data_home = (exists($XDG_DATA_HOME)   ?
 let g:nvimrc_cache_home = (exists($XDG_CACHE_HOME)  ?
       \ $XDG_CACHE_HOME : $HOME . "/.cache") . "/nvim"
 
-runtime! init.d/0*_*.vim
+runtime! init.d/*.vim
 
 " vim: foldmethod=marker
