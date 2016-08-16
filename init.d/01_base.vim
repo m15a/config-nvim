@@ -1,3 +1,9 @@
+"" Encodings
+set fileformat=unix
+set fileformats=unix,dos,mac
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
+
 "" Ignoring case in patterns
 set ignorecase
 set smartcase
@@ -45,23 +51,21 @@ set undofile
 set list
 set listchars=eol:¬,tab:>_,trail:_,extends:»,precedes:«,nbsp:_
 
-"" Change the cursor shape in the terminal
-:let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
 "" Hack for vim + fish problem:
 "" http://badsimplicity.com/vim-fish-e484-cant-open-file-tmpvrdnvqe0-error/
 if &shell =~# 'fish$'
   set shell=/bin/sh
 endif
 
-"" * で検索した後カーソル移動しない
-nnoremap * *N
-nnoremap # #N
-
 "" 前回終了したカーソル行に移動
-au BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \ exe "normal g`\"" | endif
+augroup nvimrc
+  au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exec "normal g`\"" |
+        \ endif
+augroup END
 
 "" 保存時に行末の空白を除去する
-" autocmd BufWritePre * :%s/\s\+$//ge
+" augroup nvimrc
+  " au BufWritePre * :%s/\s\+$//ge
+" augroup END

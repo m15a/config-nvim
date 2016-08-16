@@ -1,6 +1,7 @@
-call plug#begin(g:data_home.'/plugged')
+call plug#begin(g:nvimrc_data_home . '/plugged')
 
-Plug 'Townk/vim-autoclose'
-Plug 'tpope/vim-surround'
-Plug 'houtsnip/vim-emacscommandline'
-Plug 'ghewgill/vim-scmdiff'
+Plug 'joshdick/onedark.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'hallzy/lightline-onedark'
+
+call plug#end()
