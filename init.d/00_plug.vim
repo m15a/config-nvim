@@ -4,6 +4,7 @@ call plug#begin(g:nvimrc_data_home . '/plugged')
 Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'hallzy/lightline-onedark'
+Plug 'ap/vim-buftabline'
 
 "" Fix block paste when clipboard=unnamed
 Plug 'bfredl/nvim-miniyank'
