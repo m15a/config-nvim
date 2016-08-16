@@ -22,4 +22,7 @@ Plug 'tpope/vim-unimpaired'
 "" Indent guides
 Plug 'nathanaelkane/vim-indent-guides'
 
+"" Tagbar
+Plug 'majutsushi/tagbar'
+
 call plug#end()
