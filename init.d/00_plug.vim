@@ -29,4 +29,8 @@ Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
+"" VimL
+Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-syntax'
+
 call plug#end()
