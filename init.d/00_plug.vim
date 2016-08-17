@@ -33,6 +33,9 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
 
+"" Fish
+Plug 'dag/vim-fish'
+
 "" Mathematica
 Plug 'rsmenon/vim-mathematica'
 

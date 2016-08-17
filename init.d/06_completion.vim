@@ -25,6 +25,8 @@ augroup END
 "}}}
 " neosnippet {{{
 
+let g:neosnippet#snippets_directory = g:nvimrc_config_home . '/snippets'
+
 "" Key maps
 imap <C-s> <Plug>(neosnippet_expand_or_jump)
 smap <C-s> <Plug>(neosnippet_expand_or_jump)
