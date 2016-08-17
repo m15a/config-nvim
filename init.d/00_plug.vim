@@ -39,6 +39,9 @@ Plug 'dag/vim-fish'
 "" Tmux
 Plug 'keith/tmux.vim'
 
+"" LaTeX
+Plug 'lervag/vimtex'
+
 "" Mathematica
 Plug 'rsmenon/vim-mathematica'
 
