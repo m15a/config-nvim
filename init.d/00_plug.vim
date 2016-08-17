@@ -36,6 +36,9 @@ Plug 'Shougo/neco-syntax'
 "" Fish
 Plug 'dag/vim-fish'
 
+"" Tmux
+Plug 'keith/tmux.vim'
+
 "" Mathematica
 Plug 'rsmenon/vim-mathematica'
 
