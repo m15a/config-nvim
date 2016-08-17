@@ -46,9 +46,10 @@ set visualbell
 "" Persistent undo
 set undofile
 
-"" Display style of tabs, spaces, and trailing blanks
+"" Display style of tabs, spaces, trailing blanks, and soft wraps
 set list
 set listchars=eol:¬,tab:>_,trail:_,extends:»,precedes:«,nbsp:_
+set showbreak=»
 
 "" Hack for vim + fish problem:
 "" http://badsimplicity.com/vim-fish-e484-cant-open-file-tmpvrdnvqe0-error/
