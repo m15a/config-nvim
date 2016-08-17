@@ -33,4 +33,7 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
 
+"" Mathematica
+Plug 'rsmenon/vim-mathematica'
+
 call plug#end()
