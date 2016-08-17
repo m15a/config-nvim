@@ -1,26 +1,31 @@
-"" Change the cursor shape in the terminal
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+set termguicolors                     " True-color support
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " Change the cursor shape in the terminal
 
-"" True-color support
-set termguicolors
+" onedark.vim {{{
 
-"" Atom One Dark theme
 let g:onedark_termcolors = 256
 let g:onedark_terminal_italics = 1
 colorscheme onedark
 
-"" Lightline
+"}}}
+" lightline.vim {{{
+
 let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ }
 
-"" Buftabline
+"}}}
+" vim-buftabline {{{
+
 let g:buftabline_show = 1
 augroup nvimrc_buftabline
   autocmd!
   au VimEnter,ColorScheme * hi BufTabLineCurrent guifg=black guibg=#9ac27c
 augroup END
 
-"" Colorize columns over 80
-"" See http://hanschen.org/2012/10/24/
+"}}}
+
+"" Colorize columns over 80: http://hanschen.org/2012/10/24/
 exec 'set colorcolumn=' . join(range(81, 335), ',')
+
+" vim: foldmethod=marker

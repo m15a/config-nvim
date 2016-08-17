@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 "" ';' as a map leader and  let ';;' map ';'
 nnoremap ;; ;
 let g:mapleader = ';'
@@ -20,6 +22,10 @@ map < <C-W><
 
 "" <C-c><C-c> clears highlights
 nmap <silent> <C-c><C-c> :nohlsearch<CR>
+
+"" Format the current paragraph
+nnoremap <silent> Q gqap
+vnoremap <silent> Q gqap
 
 "" Complete a space after a comma
 " inoremap , ,<SPACE>

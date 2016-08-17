@@ -1,3 +1,5 @@
+" deoplete.nvim {{{
+
 let g:deoplete#enable_at_startup = 1
 " let g:deoplete#enable_camel_case = 1
 
@@ -19,3 +21,20 @@ augroup nvimrc_deoplete
   autocmd!
   au VimEnter,ColorScheme * hi PmenuSel guifg=black guibg=#bbbbbb 
 augroup END
+
+"}}}
+" neosnippet {{{
+
+"" Key maps
+imap <C-s> <Plug>(neosnippet_expand_or_jump)
+smap <C-s> <Plug>(neosnippet_expand_or_jump)
+xmap <C-s> <Plug>(neosnippet_expand_target)
+
+"" For snippet_complete marker
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+"}}}
+
+" vim: foldmethod=marker

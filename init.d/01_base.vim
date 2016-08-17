@@ -1,8 +1,8 @@
-"" Encodings
+scriptencoding utf-8
+
+"" Use <NL> for <EOL>
 set fileformat=unix
 set fileformats=unix,dos,mac
-set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
 
 "" Ignoring case in patterns
 set ignorecase
@@ -40,7 +40,6 @@ set ruler
 set scroll=5
 set scrolloff=4
 set showmatch
-set spelllang=en,cjk  " 日本語をスペルチェックから除外する
 set virtualedit=all
 set visualbell
 
@@ -57,16 +56,11 @@ if &shell =~# 'fish$'
   set shell=/bin/sh
 endif
 
-"" 前回終了したカーソル行に移動
-augroup nvimrc_recoverlastcursor
+"" Move cursor to its last position
+augroup nvimrc_lastcursorposition
   autocmd!
   au BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
         \   exec "normal g`\"" |
         \ endif
 augroup END
-
-"" 保存時に行末の空白を除去する
-" augroup nvimrc
-  " au BufWritePre * :%s/\s\+$//ge
-" augroup END

@@ -6,10 +6,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'hallzy/lightline-onedark'
 Plug 'ap/vim-buftabline'
 
-"" Fix block paste when clipboard=unnamed
-Plug 'bfredl/nvim-miniyank'
-
 "" Basic UI enhancements
+Plug 'bfredl/nvim-miniyank' " Fix block paste when clipboard=unnamed
 Plug 'Townk/vim-autoclose'
 Plug 'bkad/CamelCaseMotion'
 Plug 'godlygeek/tabular'
@@ -19,14 +17,10 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-
-"" Indent guides
 Plug 'nathanaelkane/vim-indent-guides'
-
-"" Tagbar
 Plug 'majutsushi/tagbar'
 
-"" Deoplete and Neosnippet
+"" Code completion
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neosnippet.vim'
