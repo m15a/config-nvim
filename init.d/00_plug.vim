@@ -20,6 +20,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'majutsushi/tagbar'
 
+"" Japanese editing
+Plug 'fuenor/JpFormat.vim'
+
 "" Code completion
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/context_filetype.vim'
