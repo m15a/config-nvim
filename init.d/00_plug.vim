@@ -45,4 +45,7 @@ Plug 'lervag/vimtex'
 "" Mathematica
 Plug 'rsmenon/vim-mathematica'
 
+"" Julia
+Plug 'JuliaLang/julia-vim'
+
 call plug#end()

@@ -1,0 +1,102 @@
+snippet #!
+abbr    #!/usr/bin/env julia
+alias   shebang
+options head
+  #!/usr/bin/env julia
+  ${0}
+
+snippet module
+abbr    module ... end
+  function ${1:#:ModuleName}
+    ${0:TARGET}
+  end
+
+snippet function
+abbr    function ... end
+  function ${1:#:functionname}(${2:#:args})
+    ${0:TARGET}
+  end
+
+snippet macro
+abbr    macro ... end
+  macro ${1:#:macroname}(${2:#:args})
+    ${0:TARGET}
+  end
+
+snippet begin
+abbr    begin ... end
+  begin
+    ${0:TARGET}
+  end
+
+snippet let
+abbr    let ... end
+  let ${1:#:varname} = ${2:#:expr}
+    ${0:TARGET}
+  end
+
+snippet if
+abbr    if ... end
+  if ${1:#:condition}
+    ${0:TARGET}
+  end
+
+snippet if-else
+abbr    if ... else ... end
+  if ${1:#:condition}
+    ${2:TARGET}
+  else
+    ${0:TARGET}
+  end
+
+snippet if-elseif
+abbr    if ... elseif ... else ... end
+  if ${1:#:condition}
+    ${2:TARGET}
+  elseif ${3:#:condition}
+    ${4:TARGET}
+  else
+    ${0:TARGET}
+  end
+
+snippet ternary
+abbr    ... ? ... : ...
+  ${1:#:condition} ? ${2:#:TARGET} : ${0:#:TARGET}
+
+snippet while
+abbr    while ... end
+  while ${1:#:condition}
+    ${0:TARGET}
+  end
+
+snippet for
+abbr    for i = ... end
+  for ${1:i} = ${2:#:range}
+    ${0:TARGET}
+  end
+
+snippet for-in
+abbr    for ... in ... end
+  for ${1:#:elem} in ${2:#:container}
+    ${0:TARGET}
+  end
+
+snippet for-nested
+abbr    for i = ..., j = ... ... end
+  for ${1:i} = ${2:#:range}, ${3:j} = ${4:#:range}
+    ${0:TARGET}
+  end
+
+snippet try-catch
+abbr    try ... catch ... end
+  try
+    ${1:TARGET}
+  catch ${2:#:exception}
+    ${0:TARGET}
+  end
+
+snippet enum
+abbr    @enum ...
+  @enum ${1:#:EnumType} ${0:TARGET}
+
+# vim:set et ts=2 sts=2 sw=2 tw=0:
