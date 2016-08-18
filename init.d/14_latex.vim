@@ -1,4 +1,3 @@
-let g:vimtex_latexmk_progname = "~/Library/Python/3.5/bin/nvr"
 let g:vimtex_complete_close_braces = 1
 " let g:vimtex_complete_recursive_bib = 1
 
