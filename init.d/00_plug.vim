@@ -30,6 +30,9 @@ Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
+"" SCM integration
+Plug 'mhinz/vim-signify'
+
 "" Fish
 Plug 'dag/vim-fish'
 
