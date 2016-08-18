@@ -24,7 +24,7 @@ Plug 'majutsushi/tagbar'
 Plug 'fuenor/JpFormat.vim'
 
 "" Code completion
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
