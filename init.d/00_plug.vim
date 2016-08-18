@@ -49,6 +49,14 @@ Plug 'JuliaLang/julia-vim'
 "" LaTeX
 Plug 'lervag/vimtex'
 
+"" HTML/CSS
+Plug 'othree/html5.vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'cakebaker/scss-syntax.vim'
+" Plug 'skammer/vim-css-color'  " too heavy!
+Plug 'mattn/emmet-vim'
+" Plug 'mattn/webapi-vim'
+
 "" Javascript
 Plug 'othree/yajs.vim'            " for ES6
 Plug 'othree/es.next.syntax.vim'  " for ES7
