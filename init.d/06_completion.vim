@@ -19,7 +19,7 @@ inoremap <expr><C-l> deoplete#refresh()
 
 augroup nvimrc_deoplete
   autocmd!
-  au VimEnter,ColorScheme * hi PmenuSel guifg=black guibg=#bbbbbb 
+  au VimEnter,ColorScheme * hi PmenuSel guifg=#282c34 guibg=#abb2bf
 augroup END
 
 "}}}

@@ -20,7 +20,7 @@ let g:lightline = {
 let g:buftabline_show = 1
 augroup nvimrc_buftabline
   autocmd!
-  au VimEnter,ColorScheme * hi BufTabLineCurrent guifg=black guibg=#9ac27c
+  au VimEnter,ColorScheme * hi BufTabLineCurrent guifg=#282c34 guibg=#9ac27c
 augroup END
 
 "}}}
