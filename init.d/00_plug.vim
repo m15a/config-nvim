@@ -19,6 +19,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'majutsushi/tagbar'
+Plug 'wellle/targets.vim'
 
 "" Japanese editing
 Plug 'fuenor/JpFormat.vim'
