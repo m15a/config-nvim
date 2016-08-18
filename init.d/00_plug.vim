@@ -49,4 +49,14 @@ Plug 'rsmenon/vim-mathematica'
 "" Julia
 Plug 'JuliaLang/julia-vim'
 
+"" Javascript
+Plug 'othree/yajs.vim'            " for ES6
+Plug 'othree/es.next.syntax.vim'  " for ES7
+Plug 'gavocanov/vim-js-indent'
+Plug 'carlitux/deoplete-ternjs'
+" Plug 'othree/jspc.vim'  " don't know how to use it with deoplete-ternjs
+
+"" JSON
+Plug 'elzr/vim-json'
+
 call plug#end()
