@@ -30,24 +30,24 @@ Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
-"" VimL
-Plug 'Shougo/neco-vim'
-Plug 'Shougo/neco-syntax'
-
 "" Fish
 Plug 'dag/vim-fish'
 
 "" Tmux
 Plug 'keith/tmux.vim'
 
-"" LaTeX
-Plug 'lervag/vimtex'
+"" VimL
+Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-syntax'
 
 "" Mathematica
 Plug 'rsmenon/vim-mathematica'
 
 "" Julia
 Plug 'JuliaLang/julia-vim'
+
+"" LaTeX
+Plug 'lervag/vimtex'
 
 "" Javascript
 Plug 'othree/yajs.vim'            " for ES6
