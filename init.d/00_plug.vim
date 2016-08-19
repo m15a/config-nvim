@@ -43,6 +43,10 @@ Plug 'keith/tmux.vim'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
 
+"" Rust
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+
 "" Mathematica
 Plug 'rsmenon/vim-mathematica'
 
