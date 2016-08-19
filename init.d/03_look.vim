@@ -1,8 +1,8 @@
 set termguicolors                     " True-color support
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " Change the cursor shape in the terminal
 
-"" Colorize columns over 80: http://hanschen.org/2012/10/24/
-exec 'set colorcolumn=' . join(range(81, 335), ',')
+"" Colorize columns over &textwidth: http://hanschen.org/2012/10/24/
+exec 'set colorcolumn=+' . join(range(1, 256), ',+')
 
 "" Color definitions in onedark.vim 
 let s:black   = { "gui": "#282C34", "cterm": "235" }
