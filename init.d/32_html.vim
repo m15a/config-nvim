@@ -11,3 +11,18 @@ augroup nvimrc_html
   au FileType css,scss setlocal iskeyword+=-
   au FileType html,css,scss EmmetInstall
 augroup END
+
+let g:tagbar_type_html =
+      \ { 'ctagstype' : 'html'
+      \ , 'kinds' : [ 'i:identifiers'
+      \             , 'c:classes'
+      \             ]
+      \ }
+
+let g:tagbar_type_css =
+      \ { 'ctagstype' : 'Css'
+      \ , 'kinds'     : [ 'c:classes'
+      \                 , 's:selectors'
+      \                 , 'i:identities'
+      \                 ]
+      \ }
