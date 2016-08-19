@@ -79,7 +79,7 @@ let g:indent_guides_auto_colors = 0
 "}}}
 " tagbar {{{
 
-nnoremap <Leader>l :TagbarToggle<CR>
+nnoremap <Leader>l :<C-u>TagbarToggle<CR>
 
 let g:tagbar_width = 35
 " let g:tagbar_autoclose = 1

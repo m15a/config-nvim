@@ -7,8 +7,8 @@ let g:signify_vcs_cmds =
       \ , 'darcs': 'darcs diff --no-pause-for-gui --diff-command="diff -rN -U0 %1 %2" -- %f'
       \ }
 
-nnoremap <Leader>d :SignifyToggle<CR>
-nnoremap <Leader>D :SignifyToggleHighlight<CR>
+nnoremap <Leader>d :<C-u>SignifyToggle<CR>
+nnoremap <Leader>D :<C-u>SignifyToggleHighlight<CR>
 
 "" patdiff-like flavour
 let g:signify_sign_add    = '+|'
