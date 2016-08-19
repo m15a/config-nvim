@@ -12,10 +12,3 @@ nnoremap <Leader>d :SignifyToggleHighlight<CR>
 let g:signify_sign_add    = '+|'
 " let g:signify_sign_delete = '_'
 let g:signify_sign_change = '!|'
-augroup nvimrc_scm
-  autocmd!
-  " au VimEnter,ColorScheme * hi SignColumn guibg=#6f7783
-  au VimEnter,ColorScheme * hi SignifySignAdd    guifg=#282c34 guibg=#98c379
-  au VimEnter,ColorScheme * hi SignifySignChange guifg=#282c34 guibg=#d19a66
-  au VimEnter,ColorScheme * hi SignifySignDelete guifg=#282c34 guibg=#e06c75
-augroup END
