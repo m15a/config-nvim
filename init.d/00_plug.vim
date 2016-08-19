@@ -49,6 +49,12 @@ Plug 'rsmenon/vim-mathematica'
 "" Julia
 Plug 'JuliaLang/julia-vim'
 
+"" R
+Plug 'jalvesaq/Nvim-R'
+
+"" Stan
+Plug 'mnacamura/mc-stan.vim'
+
 "" LaTeX
 Plug 'lervag/vimtex'
 
