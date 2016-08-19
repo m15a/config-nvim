@@ -40,6 +40,7 @@ set ruler
 set scroll=5
 set scrolloff=4
 set showmatch
+set textwidth=80
 set virtualedit=all
 set visualbell
 
