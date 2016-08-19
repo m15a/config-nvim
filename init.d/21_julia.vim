@@ -4,6 +4,7 @@ augroup nvimrc_julia
   autocmd!
   "" This does not work
   " au FileType julia setlocal omnifunc=syntaxcomplete#Complete
+  "" TODO: omni completion
 augroup END
 
 let g:tagbar_type_julia =

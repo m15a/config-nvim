@@ -12,3 +12,5 @@ let g:deoplete#omni#input_patterns.mma =
       \ [ '\$'
       \ , '[A-Z]\w*'
       \ ]
+
+" TODO: configure ctags and tagbar
