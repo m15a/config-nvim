@@ -5,30 +5,30 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " Change the cursor shape in the terminal
 exec 'set colorcolumn=+' . join(range(1, 256), ',+')
 
 "" Color definitions in onedark.vim 
-let s:black   = { "gui": "#282C34", "cterm": "235" }
-let s:white   = { "gui": "#ABB2BF", "cterm": "145" }
-let s:red     = { "gui": "#E06C75", "cterm": "204" }
-let s:dred    = { "gui": "#BE5046", "cterm": "196" }  " s:dark_red
-let s:green   = { "gui": "#98C379", "cterm": "114" }
-let s:yellow  = { "gui": "#E5C07b", "cterm": "180" }
-let s:dyellow = { "gui": "#D19A66", "cterm": "173" }  " s:dark_yellow
-let s:blue    = { "gui": "#61AFEF", "cterm":  "39" }
-let s:purple  = { "gui": "#C678DD", "cterm": "170" }
-let s:cyan    = { "gui": "#56B6C2", "cterm":  "38" }
-let s:vgrey   = { "gui": "#3E4452", "cterm": "237" }  " s:vidual_grey
-let s:sgrey   = { "gui": "#3B4048", "cterm": "238" }  " s:special_grey
+let s:black   = { 'gui': '#282C34', 'cterm': '235' }
+let s:white   = { 'gui': '#ABB2BF', 'cterm': '145' }
+let s:red     = { 'gui': '#E06C75', 'cterm': '204' }
+let s:dred    = { 'gui': '#BE5046', 'cterm': '196' }  " s:dark_red
+let s:green   = { 'gui': '#98C379', 'cterm': '114' }
+let s:yellow  = { 'gui': '#E5C07b', 'cterm': '180' }
+let s:dyellow = { 'gui': '#D19A66', 'cterm': '173' }  " s:dark_yellow
+let s:blue    = { 'gui': '#61AFEF', 'cterm':  '39' }
+let s:purple  = { 'gui': '#C678DD', 'cterm': '170' }
+let s:cyan    = { 'gui': '#56B6C2', 'cterm':  '38' }
+let s:vgrey   = { 'gui': '#3E4452', 'cterm': '237' }  " s:vidual_grey
+let s:sgrey   = { 'gui': '#3B4048', 'cterm': '238' }  " s:special_grey
 
 "" Change Search/IncSearch colors
 augroup nvimrc_searchcolor
   autocmd!
   au VimEnter,ColorScheme *
-        \ exec "hi Search"
-        \          "ctermfg=" s:black.cterm "ctermbg=" s:cyan.cterm
-        \          "guifg="   s:black.gui   "guibg="   s:cyan.gui
+        \ exec 'hi Search'
+        \          'ctermfg=' s:black.cterm 'ctermbg=' s:cyan.cterm
+        \          'guifg='   s:black.gui   'guibg='   s:cyan.gui
   au VimEnter,ColorScheme *
-        \ exec "hi IncSearch"
-        \          "ctermfg=" s:black.cterm "ctermbg=" s:cyan.cterm
-        \          "guifg="   s:black.gui   "guibg="   s:cyan.gui
+        \ exec 'hi IncSearch'
+        \          'ctermfg=' s:black.cterm 'ctermbg=' s:cyan.cterm
+        \          'guifg='   s:black.gui   'guibg='   s:cyan.gui
 augroup END
 
 " onedark.vim {{{

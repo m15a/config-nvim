@@ -13,8 +13,8 @@ nmap [rust]e :<C-u>RustExpand<Space>
 nmap [rust]E :<C-u>RustExpand!<Space>
 nmap [rust]f :<C-u>RustFmt<CR>
 
-let g:racer_cmd    = $HOME . "/Library/Cargo/bin/racer"
-let $RUST_SRC_PATH = $HOME . "/Repos/rust/src"
+let g:racer_cmd    = $HOME . '/Library/Cargo/bin/racer'
+let $RUST_SRC_PATH = $HOME . '/Repos/rust/src'
 
 let g:tagbar_type_rust =
       \ { 'ctagstype' : 'rust'
