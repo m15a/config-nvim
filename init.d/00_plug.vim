@@ -43,6 +43,12 @@ Plug 'keith/tmux.vim'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
 
+"" Haskell
+Plug 'neovimhaskell/haskell-vim'
+Plug 'eagletmt/neco-ghc'
+" Plug 'eagletmt/ghcmod-vim'  " missing vimproc warning in neovim
+Plug 'itchyny/vim-haskell-sort-import'
+
 "" Rust
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
