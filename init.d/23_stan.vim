@@ -1,6 +1,6 @@
 augroup nvimrc_stan
   autocmd!
-  au FileType stan setlocal omnifunc=syntaxcomplete#Complete
+  au FileType stan setl omnifunc=syntaxcomplete#Complete
 augroup END
 
 if !exists('g:deoplete#omni#input_patterns')

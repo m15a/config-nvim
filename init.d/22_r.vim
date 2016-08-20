@@ -1,6 +1,6 @@
 augroup nvimrc_r
   autocmd!
-  au FileType r setlocal shiftwidth=2 softtabstop=2
+  au FileType r setl shiftwidth=2 softtabstop=2
 augroup END
 
 if !exists('g:deoplete#omni#input_patterns')

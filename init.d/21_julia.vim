@@ -1,7 +1,7 @@
 augroup nvimrc_julia
   autocmd!
   "" This does not work
-  " au FileType julia setlocal omnifunc=syntaxcomplete#Complete
+  " au FileType julia setl omnifunc=syntaxcomplete#Complete
   "" TODO: omni completion
 augroup END
 

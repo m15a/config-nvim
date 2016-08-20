@@ -1,8 +1,8 @@
 augroup nvimrc_fish
   autocmd!
-  au FileType fish setlocal shiftwidth=2 softtabstop=2
+  au FileType fish setl shiftwidth=2 softtabstop=2
   au FileType fish compiler fish
-  " au FileType fish setlocal foldmethod=expr
+  " au FileType fish setl foldmethod=expr
 augroup END
 
 if !exists('g:deoplete#omni#input_patterns')

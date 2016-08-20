@@ -1,7 +1,7 @@
 augroup nvimrc_mathematica
   autocmd!
   au BufRead,BufNewFile *.m set filetype=mma
-  au FileType mma setlocal shiftwidth=2 softtabstop=2
+  au FileType mma setl shiftwidth=2 softtabstop=2
 augroup END
 
 let g:mma_candy = 1

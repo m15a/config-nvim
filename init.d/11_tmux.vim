@@ -1,6 +1,6 @@
 augroup nvimrc_tmux
   autocmd!
-  au FileType tmux setlocal omnifunc=syntaxcomplete#Complete
+  au FileType tmux setl omnifunc=syntaxcomplete#Complete
 augroup END
 
 if !exists('g:deoplete#omni#input_patterns')

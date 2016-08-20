@@ -1,6 +1,6 @@
 augroup nvimrc_html
   autocmd!
-  au FileType html,css,scss setlocal shiftwidth=2 softtabstop=2
+  au FileType html,css,scss setl shiftwidth=2 softtabstop=2
 augroup END
 
 " let g:html5_event_handler_attributes_complete = 0
@@ -10,7 +10,7 @@ let g:html5_aria_attributes_complete = 0
 
 augroup nvimrc_css3syntax
   autocmd!
-  au FileType css,scss setlocal iskeyword+=-
+  au FileType css,scss setl iskeyword+=-
 augroup END
 
 let g:user_emmet_install_global = 0
