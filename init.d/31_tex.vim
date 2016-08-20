@@ -1,6 +1,6 @@
 augroup nvimrc_tex
   autocmd!
-  au FileType tex,latex setl shiftwidth=2 softtabstop=2
+  au FileType tex,bib,bst setl shiftwidth=2 softtabstop=2
 augroup END
 
 let g:vimtex_complete_close_braces = 1
