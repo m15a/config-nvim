@@ -15,6 +15,7 @@ let s:dyellow = { 'gui': '#D19A66', 'cterm': '173' }  " s:dark_yellow
 let s:blue    = { 'gui': '#61AFEF', 'cterm':  '39' }
 let s:purple  = { 'gui': '#C678DD', 'cterm': '170' }
 let s:cyan    = { 'gui': '#56B6C2', 'cterm':  '38' }
+let s:cgrey   = { "gui": "#2C323C", "cterm": "236" }  " s:cursor_grey
 let s:vgrey   = { 'gui': '#3E4452', 'cterm': '237' }  " s:vidual_grey
 let s:sgrey   = { 'gui': '#3B4048', 'cterm': '238' }  " s:special_grey
 
@@ -62,7 +63,7 @@ augroup END
 augroup nvimrc_indentguides
   autocmd!
   au VimEnter,ColorScheme *
-        \ exec "hi IndentGuidesOdd" "ctermbg=" s:sgrey.cterm "guibg=" s:sgrey.gui
+        \ exec "hi IndentGuidesOdd ctermbg=" s:sgrey.cterm "guibg=" s:sgrey.gui
 augroup END
 
 "}}}
@@ -70,7 +71,8 @@ augroup END
 
 augroup nvimrc_signify
   autocmd!
-  " au VimEnter,ColorScheme * hi SignColumn guibg=#6f7783
+  au VimEnter,ColorScheme *
+        \ exec "hi SignColumn ctermbg=" s:cgrey.cterm "guibg=" s:cgrey.gui
   au VimEnter,ColorScheme *
         \ exec "hi SignifySignAdd"
         \          "ctermfg=" s:black.cterm "guifg=" s:black.gui
