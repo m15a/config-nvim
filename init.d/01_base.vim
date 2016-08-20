@@ -61,7 +61,7 @@ endif
 augroup nvimrc_lastcursorposition
   autocmd!
   au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exec "normal g`\"" |
+        \ if line("'\"") > 0 && line("'\"") <= line("$")|
+        \   exec "normal g`\""|
         \ endif
 augroup END
