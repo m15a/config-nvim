@@ -86,4 +86,7 @@ Plug 'carlitux/deoplete-ternjs'
 "" JSON
 Plug 'elzr/vim-json'
 
+"" TOML
+Plug 'cespare/vim-toml'
+
 call plug#end()
