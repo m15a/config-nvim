@@ -1,5 +1,6 @@
 augroup nvimrc_fish
   autocmd!
+  au FileType fish setlocal shiftwidth=2 softtabstop=2
   au FileType fish compiler fish
   " au FileType fish setlocal foldmethod=expr
 augroup END

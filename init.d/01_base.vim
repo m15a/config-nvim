@@ -11,10 +11,9 @@ set infercase
 
 "" Tab expansion and indentation
 set expandtab
-set shiftwidth=2
 set smartindent
+set shiftwidth=4
 set softtabstop=4
-set tabstop=4
 
 "" Command-line completion
 set wildmode=list:longest

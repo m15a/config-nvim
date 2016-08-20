@@ -1,3 +1,8 @@
+augroup nvimrc_tex
+  autocmd!
+  au FileType tex,latex setlocal shiftwidth=2 softtabstop=2
+augroup END
+
 let g:vimtex_complete_close_braces = 1
 " let g:vimtex_complete_recursive_bib = 1
 
