@@ -17,6 +17,9 @@ nnoremap <C-k> -
 nnoremap * *N
 nnoremap # #N
 
+"" Search with very magic
+nnoremap / /\v
+
 "" Maps to change frame sizes
 map + <C-W>+
 map - <C-W>-
