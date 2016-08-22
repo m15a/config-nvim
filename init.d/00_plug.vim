@@ -47,6 +47,10 @@ Plug 'Shougo/neco-syntax'
 "" OMake
 Plug 'tkztmk/vim-omake'
 
+"" Perl
+Plug 'vim-perl/vim-perl'
+Plug 'c9s/perlomni.vim'
+
 "" Haskell
 Plug 'neovimhaskell/haskell-vim'
 Plug 'eagletmt/neco-ghc'
