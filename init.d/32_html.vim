@@ -25,11 +25,13 @@ let g:tagbar_type_html =
       \ { 'ctagstype' : 'html'
       \ , 'kinds' : [ 'i:identifiers'
       \             , 'c:classes'
+      \             , 'a:named anchors'
+      \             , 'f:Javascript functions'
       \             ]
       \ }
 
 let g:tagbar_type_css =
-      \ { 'ctagstype' : 'Css'
+      \ { 'ctagstype' : 'css'
       \ , 'kinds'     : [ 'c:classes'
       \                 , 's:selectors'
       \                 , 'i:identities'

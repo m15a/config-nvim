@@ -9,6 +9,10 @@ let g:julia_syntax_highlight_deprecated = 1
 
 let g:tagbar_type_julia =
       \ { 'ctagstype' : 'julia'
-      \ , 'kinds'     : ['f:functions']
-      \ , 'sro'       : '.'
+      \ , 'kinds'     : [ 'a:abstract'
+      \                 , 'i:immutable'
+      \                 , 't:type'
+      \                 , 'm:macro'
+      \                 , 'f:function'
+      \                 ]
       \ }

@@ -10,8 +10,10 @@ let g:deoplete#omni#input_patterns.r = '(?:[^\W\d_]|\.[^\d])[\w\.]*'
 
 let g:tagbar_type_r =
       \ { 'ctagstype' : 'r'
-      \ , 'kinds'     : [ 'f:Functions'
-      \                 , 'g:GlobalVariables'
-      \                 , 'v:FunctionVariables'
+      \ , 'kinds'     : [ 'f:functions'
+      \                 , 'l:libraries'
+      \                 , 's:sources'
+      \                 , 'g:global variables'
+      \                 , 'v:function variables'
       \                 ]
       \ }
