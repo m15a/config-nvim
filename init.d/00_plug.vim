@@ -22,6 +22,7 @@ Plug 'majutsushi/tagbar'
 Plug 'wellle/targets.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'neomake/neomake'
+Plug 'icersong/timestamp.vim'
 
 "" Japanese editing
 Plug 'fuenor/JpFormat.vim'
