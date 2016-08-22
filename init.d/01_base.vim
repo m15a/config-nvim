@@ -16,6 +16,7 @@ set shiftwidth=4
 set softtabstop=4
 
 "" Command-line completion
+set wildignorecase
 set wildmode=list:longest
 set suffixes+=.omc  " OMake
 
