@@ -125,5 +125,11 @@ let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeChDirMode = 1
 
 "}}}
+" neomake {{{
+
+nnoremap <Leader>r :<C-u>Neomake<CR>
+nnoremap <Leader>R :<C-u>Neomake!<CR>
+
+"}}}
 
 " vim: foldmethod=marker

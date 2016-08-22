@@ -21,6 +21,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'majutsushi/tagbar'
 Plug 'wellle/targets.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'neomake/neomake'
 
 "" Japanese editing
 Plug 'fuenor/JpFormat.vim'
