@@ -1,5 +1,6 @@
 augroup nvimrc_julia
   autocmd!
+  au FileType julia setl shiftwidth=2 softtabstop=2
   "" This does not work
   " au FileType julia setl omnifunc=syntaxcomplete#Complete
   "" TODO: omni completion
