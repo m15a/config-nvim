@@ -44,6 +44,9 @@ Plug 'keith/tmux.vim'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
 
+"" OMake
+Plug 'tkztmk/vim-omake'
+
 "" Haskell
 Plug 'neovimhaskell/haskell-vim'
 Plug 'eagletmt/neco-ghc'
