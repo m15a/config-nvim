@@ -20,6 +20,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'majutsushi/tagbar'
 Plug 'wellle/targets.vim'
+Plug 'scrooloose/nerdtree'
 
 "" Japanese editing
 Plug 'fuenor/JpFormat.vim'
