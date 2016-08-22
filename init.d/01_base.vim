@@ -17,9 +17,7 @@ set softtabstop=4
 
 "" Command-line completion
 set wildmode=list:longest
-
-"" Suffixes that get lower priority when doing tab completion for filenames
-set suffixes+=.aux,.bbl,.blg,.dvi,.end,.fls,.log,.out,.spl,.tdo,.toc  " LaTeX
+set suffixes+=.omc  " OMake
 
 "" Clipboard integration
 set clipboard+=unnamed
