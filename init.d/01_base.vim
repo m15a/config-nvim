@@ -29,6 +29,9 @@ set hidden
 "" Enable dictionary completion by <CTRL-N> or <CTRL-P>
 set complete+=k
 
+"" Let <CTRL-A> and <CTRL-X> interpret only decimal numbers
+set nrformats=
+
 "" Miscellaneous look and feel
 set cursorline
 set diffopt+=vertical
