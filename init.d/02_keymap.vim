@@ -21,10 +21,10 @@ nnoremap # #N
 nnoremap / /\v
 
 "" Maps to change frame sizes
-map + <C-W>+
-map - <C-W>-
-map > <C-W>>
-map < <C-W><
+" map + <C-W>+
+" map - <C-W>-
+" map > <C-W>>
+" map < <C-W><
 
 "" <C-c><C-c> clears highlights
 nmap <silent> <C-c><C-c> :nohlsearch<CR>
