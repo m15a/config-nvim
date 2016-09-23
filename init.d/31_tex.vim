@@ -3,6 +3,7 @@ setl suffixes+=.aux,.bbl,.blg,.dvi,.end,.fls,.log,.out,.spl,.tdo,.toc
 augroup nvimrc_tex
   autocmd!
   au FileType tex,bib,bst setl shiftwidth=2 softtabstop=2
+  au FileType tex,bib,bst setl conceallevel=0
 augroup END
 
 let g:vimtex_complete_close_braces = 1
