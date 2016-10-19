@@ -77,6 +77,10 @@ Plug 'jalvesaq/Nvim-R'
 "" Stan
 Plug 'mnacamura/mc-stan.vim'
 
+"" Markdown
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+
 "" LaTeX
 Plug 'lervag/vimtex'
 
