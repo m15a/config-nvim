@@ -32,11 +32,11 @@ augroup nvimrc_searchcolor
         \          'guifg='   s:black.gui   'guibg='   s:cyan.gui
 augroup END
 
-" onedark.vim {{{
+" vim-one {{{
 
-let g:onedark_termcolors = 256
-let g:onedark_terminal_italics = 1
-colorscheme onedark
+let g:one_allow_italics = 1
+set background=dark
+colorscheme one
 
 "}}}
 " lightline.vim {{{

@@ -1,14 +1,14 @@
 call plug#begin(g:nvimrc_data_home . '/plugged')
 
 "" Look and feel
-Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
 Plug 'hallzy/lightline-onedark'
 Plug 'ap/vim-buftabline'
 
 "" Basic UI enhancements
 Plug 'bfredl/nvim-miniyank' " Fix block paste when clipboard=unnamed
-Plug 'ervandew/matchem'
+" Plug 'ervandew/matchem'
 Plug 'bkad/CamelCaseMotion'
 Plug 'godlygeek/tabular'
 Plug 'houtsnip/vim-emacscommandline'
