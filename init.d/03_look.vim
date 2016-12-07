@@ -34,7 +34,7 @@ augroup END
 
 "" Dark theme for terminal and light theme for writing
 let s:iterm_profile = $ITERM_PROFILE
-let g:nvimrc_term_writing = match(s:iterm_profile, 'writing')
+let g:nvimrc_term_writing = (match(s:iterm_profile, 'writing') > 0 ? 1 : 0)
 if g:nvimrc_term_writing
   set background=light
 else
