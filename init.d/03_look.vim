@@ -46,6 +46,13 @@ endif
 let g:one_allow_italics = 1
 colorscheme one
 
+"" TODO: Loading vim-one somehow changes bg to light. Should be fixed.
+if g:nvimrc_term_writing
+  set background=light
+else
+  set background=dark
+endif
+
 "}}}
 " lightline.vim {{{
 
