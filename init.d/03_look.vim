@@ -4,7 +4,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " Change the cursor shape in the terminal
 "" Colorize columns over &textwidth: http://hanschen.org/2012/10/24/
 exec 'set colorcolumn=+' . join(range(1, 256), ',+')
 
-"" Color definitions in onedark.vim 
+"" Color definitions in onedark.vim
 let s:black   = { 'gui': '#282C34', 'cterm': '235' }
 let s:white   = { 'gui': '#ABB2BF', 'cterm': '145' }
 let s:red     = { 'gui': '#E06C75', 'cterm': '204' }
@@ -32,10 +32,18 @@ augroup nvimrc_searchcolor
         \          'guifg='   s:black.gui   'guibg='   s:cyan.gui
 augroup END
 
+"" Dark theme for terminal and light theme for writing
+let s:iterm_profile = $ITERM_PROFILE
+let g:nvimrc_term_writing = match(s:iterm_profile, 'writing')
+if g:nvimrc_term_writing
+  set background=light
+else
+  set background=dark
+endif
+
 " vim-one {{{
 
 let g:one_allow_italics = 1
-set background=dark
 colorscheme one
 
 "}}}
