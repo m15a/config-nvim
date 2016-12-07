@@ -57,7 +57,7 @@ endif
 " lightline.vim {{{
 
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'one',
       \ }
 
 "}}}

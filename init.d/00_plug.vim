@@ -3,7 +3,6 @@ call plug#begin(g:nvimrc_data_home . '/plugged')
 "" Look and feel
 Plug 'rakr/vim-one'
 Plug 'itchyny/lightline.vim'
-Plug 'hallzy/lightline-onedark'
 Plug 'ap/vim-buftabline'
 
 "" Basic UI enhancements
