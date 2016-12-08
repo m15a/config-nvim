@@ -63,9 +63,10 @@ colorscheme one
 "}}}
 " lightline.vim {{{
 
-let g:lightline = {
-      \ 'colorscheme': 'one',
-      \ }
+if !exists("g:lightline")
+  let g:lightline = {}
+endif
+let g:lightline.colorscheme = 'one'
 
 "}}}
 " vim-buftabline {{{
