@@ -7,7 +7,7 @@ Plug 'ap/vim-buftabline'
 
 "" Basic UI enhancements
 Plug 'bfredl/nvim-miniyank' " Fix block paste when clipboard=unnamed
-" Plug 'ervandew/matchem'
+Plug 'jiangmiao/auto-pairs'
 Plug 'bkad/CamelCaseMotion'
 Plug 'godlygeek/tabular'
 Plug 'houtsnip/vim-emacscommandline'
