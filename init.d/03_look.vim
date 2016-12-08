@@ -2,9 +2,8 @@ set termguicolors                     " True-color support
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 " Change the cursor shape in the terminal
 
 "" Dark theme for terminal and light theme for writing
-let s:iterm_profile = $ITERM_PROFILE
-let g:nvimrc_term_writing = (match(s:iterm_profile, 'writing') > 0 ? 1 : 0)
-if g:nvimrc_term_writing
+let g:nvimrc_background_light = match($ITERM_PROFILE, 'writing') > 0 ? 1 : 0
+if g:nvimrc_background_light
   set background=light
 else
   set background=dark
@@ -13,21 +12,7 @@ endif
 "" Colorize columns over &textwidth: http://hanschen.org/2012/10/24/
 exec 'set colorcolumn=+' . join(range(1, 256), ',+')
 
-if &background ==# 'dark'
-  "" Color definitions in vim-one dark background
-  let s:black        = { 'gui': '#282C34', 'cterm': '16'  }
-  let s:white        = { 'gui': '#ABB2BF', 'cterm': '145' }
-  let s:light_red    = { 'gui': '#E06C75', 'cterm': '168' }
-  let s:dark_red     = { 'gui': '#BE5046', 'cterm': '130' }
-  let s:green        = { 'gui': '#98C379', 'cterm': '114' }
-  let s:light_yellow = { 'gui': '#E5C07b', 'cterm': '180' }
-  let s:dark_yellow  = { 'gui': '#D19A66', 'cterm': '173' }
-  let s:blue         = { 'gui': '#61AFEF', 'cterm': '75'  }
-  let s:magenta      = { 'gui': '#C678DD', 'cterm': '176' }
-  let s:cyan         = { 'gui': '#56B6C2', 'cterm': '73'  }
-  let s:gutter_grey  = { 'gui': '#3B4048', 'cterm': '60'  }
-  let s:comment_grey = { 'gui': '#5C6370', 'cterm': '59'  }
-else
+if g:nvimrc_background_light
   "" Color definitions in vim-one light background
   let s:black        = { 'gui': '#FAFAFA', 'cterm': '255' }
   let s:white        = { 'gui': '#494B53', 'cterm': '23'  }
@@ -41,6 +26,20 @@ else
   let s:cyan         = { 'gui': '#0184BC', 'cterm': '31'  }
   let s:gutter_grey  = { 'gui': '#9E9E9E', 'cterm': '246' }
   let s:comment_grey = { 'gui': '#A0A1A7', 'cterm': '145' }
+else
+  "" Color definitions in vim-one dark background
+  let s:black        = { 'gui': '#282C34', 'cterm': '16'  }
+  let s:white        = { 'gui': '#ABB2BF', 'cterm': '145' }
+  let s:light_red    = { 'gui': '#E06C75', 'cterm': '168' }
+  let s:dark_red     = { 'gui': '#BE5046', 'cterm': '130' }
+  let s:green        = { 'gui': '#98C379', 'cterm': '114' }
+  let s:light_yellow = { 'gui': '#E5C07b', 'cterm': '180' }
+  let s:dark_yellow  = { 'gui': '#D19A66', 'cterm': '173' }
+  let s:blue         = { 'gui': '#61AFEF', 'cterm': '75'  }
+  let s:magenta      = { 'gui': '#C678DD', 'cterm': '176' }
+  let s:cyan         = { 'gui': '#56B6C2', 'cterm': '73'  }
+  let s:gutter_grey  = { 'gui': '#3B4048', 'cterm': '60'  }
+  let s:comment_grey = { 'gui': '#5C6370', 'cterm': '59'  }
 end
 
 "" Change Search/IncSearch colors
@@ -60,13 +59,6 @@ augroup END
 
 let g:one_allow_italics = 1
 colorscheme one
-
-"" TODO: Loading vim-one somehow changes bg to light. Should be fixed.
-if g:nvimrc_term_writing
-  set background=light
-else
-  set background=dark
-endif
 
 "}}}
 " lightline.vim {{{
