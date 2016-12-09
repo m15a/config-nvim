@@ -12,55 +12,26 @@ endif
 "" Colorize columns over &textwidth: http://hanschen.org/2012/10/24/
 exec 'set colorcolumn=+' . join(range(1, 256), ',+')
 
-if g:nvimrc_background_light
-  "" Color definitions in vim-one light background
-  let s:black        = '#FAFAFA'
-  let s:white        = '#494B53'
-  let s:light_red    = '#E45649'
-  let s:dark_red     = '#CA1243'
-  let s:green        = '#50A14F'
-  let s:light_yellow = '#C18401'
-  let s:dark_yellow  = '#986801'
-  let s:blue         = '#4078F2'
-  let s:magenta      = '#A626A4'
-  let s:cyan         = '#0184BC'
-  let s:gutter_grey  = '#9E9E9E'
-  let s:comment_grey = '#A0A1A7'
-else
-  "" Color definitions in vim-one dark background
-  let s:black        = '#282C34'
-  let s:white        = '#ABB2BF'
-  let s:light_red    = '#E06C75'
-  let s:dark_red     = '#BE5046'
-  let s:green        = '#98C379'
-  let s:light_yellow = '#E5C07b'
-  let s:dark_yellow  = '#D19A66'
-  let s:blue         = '#61AFEF'
-  let s:magenta      = '#C678DD'
-  let s:cyan         = '#56B6C2'
-  let s:gutter_grey  = '#3B4048'
-  let s:comment_grey = '#5C6370'
-end
-
 "" Change Search/IncSearch colors
 augroup nvimrc_searchcolor
   autocmd!
-  au VimEnter,ColorScheme * exec 'hi Search    guifg=' s:black 'guibg=' s:cyan
-  au VimEnter,ColorScheme * exec 'hi IncSearch guifg=' s:black 'guibg=' s:cyan
+  "" Two Firewatch Dark and Light
+  au VimEnter,ColorScheme * hi Search    guifg=#282c34 guibg=#56b6c2
+  au VimEnter,ColorScheme * hi IncSearch guifg=#282c34 guibg=#56b6c2 gui=none
 augroup END
 
 " vim-one {{{
 
 let g:one_allow_italics = 1
 let g:one_disable_cterm_support = 1
-colorscheme one
+" colorscheme one
 
 "}}}
 " vim-two-firewatch {{{
 
 let g:two_firewatch_italics = 1
 let g:two_firewatch_disable_cterm = 1
-" colorscheme two-firewatch
+colorscheme two-firewatch
 
 "}}}
 " lightline.vim {{{
@@ -76,7 +47,15 @@ let g:lightline.colorscheme = 'one'
 let g:buftabline_show = 1
 augroup nvimrc_buftabline
   autocmd!
-  au VimEnter,ColorScheme * exec 'hi BufTabLineCurrent guifg=' s:black 'guibg=' s:green
+  if g:nvimrc_background_light
+    "" Two Firewatch Light
+    au VimEnter,ColorScheme * exec 'hi BufTabLineCurrent guifg=#faf8f5 guibg=#896724'
+  else
+    "" Two Firewatch Dark
+    au VimEnter,ColorScheme * exec 'hi BufTabLineCurrent guifg=#282c34 guibg=#abb2bf'
+  endif
+  au VimEnter,ColorScheme * exec 'hi BufTabLineActive  guifg= guibg='
+  au VimEnter,ColorScheme * exec 'hi BufTabLineHidden  guifg= guibg='
 augroup END
 
 "}}}
@@ -84,10 +63,18 @@ augroup END
 
 augroup nvimrc_signify
   autocmd!
-  au VimEnter,ColorScheme * exec 'hi SignColumn                         guibg=' s:comment_grey
-  au VimEnter,ColorScheme * exec 'hi SignifySignAdd    guifg=' s:black 'guibg=' s:green
-  au VimEnter,ColorScheme * exec 'hi SignifySignChange guifg=' s:black 'guibg=' s:dark_yellow
-  au VimEnter,ColorScheme * exec 'hi SignifySignDelete guifg=' s:black 'guibg=' s:light_red
+  au VimEnter,ColorScheme * hi SignColumn guibg=none
+  if g:nvimrc_background_light
+    "" Two Firewatch Light
+    au VimEnter,ColorScheme * hi SignifySignAdd    guifg=#e5ddcb guibg=#43d08a
+    au VimEnter,ColorScheme * hi SignifySignChange guifg=#e5ddcb guibg=#e0c285
+    au VimEnter,ColorScheme * hi SignifySignDelete guifg=#e5ddcb guibg=#e05252 gui=bold
+  else
+    "" Two Firewatch Dark
+    au VimEnter,ColorScheme * hi SignifySignAdd    guifg=#3e4452 guibg=#43d08a
+    au VimEnter,ColorScheme * hi SignifySignChange guifg=#3e4452 guibg=#e0c285
+    au VimEnter,ColorScheme * hi SignifySignDelete guifg=#3e4452 guibg=#e05252 gui=bold
+  endif
 augroup END
 
 "}}}
@@ -95,7 +82,10 @@ augroup END
 
 augroup nvimrc_deoplete
   autocmd!
-  au VimEnter,ColorScheme * exec "hi PmenuSel guifg=" s:black "guibg=" s:white
+  if !g:nvimrc_background_light
+    "" Two Firewatch Dark
+    au VimEnter,ColorScheme * hi PmenuSel guifg=#3e4452 guibg=#abb2bf
+  endif
 augroup END
 
 "}}}
