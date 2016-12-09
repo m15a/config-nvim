@@ -80,14 +80,6 @@ augroup nvimrc_buftabline
 augroup END
 
 "}}}
-" vim-indent-guides {{{
-
-augroup nvimrc_indentguides
-  autocmd!
-  au VimEnter,ColorScheme * exec "hi IndentGuidesOdd guibg=" s:gutter_grey
-augroup END
-
-"}}}
 " vim-signify {{{
 
 augroup nvimrc_signify

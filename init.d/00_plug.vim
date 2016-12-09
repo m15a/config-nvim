@@ -19,7 +19,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 " Plug 'kana/vim-textobj-entire'  " This conflicts with vimtex's mapping `ie`
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'majutsushi/tagbar'
 Plug 'wellle/targets.vim'
 Plug 'scrooloose/nerdtree'
