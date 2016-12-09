@@ -58,6 +58,7 @@ augroup END
 " vim-one {{{
 
 let g:one_allow_italics = 1
+let g:one_disable_cterm_support = 1
 colorscheme one
 
 "}}}
