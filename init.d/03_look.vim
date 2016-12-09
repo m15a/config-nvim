@@ -14,45 +14,39 @@ exec 'set colorcolumn=+' . join(range(1, 256), ',+')
 
 if g:nvimrc_background_light
   "" Color definitions in vim-one light background
-  let s:black        = { 'gui': '#FAFAFA', 'cterm': '255' }
-  let s:white        = { 'gui': '#494B53', 'cterm': '23'  }
-  let s:light_red    = { 'gui': '#E45649', 'cterm': '166' }
-  let s:dark_red     = { 'gui': '#CA1243', 'cterm': '160' }
-  let s:green        = { 'gui': '#50A14F', 'cterm': '71'  }
-  let s:light_yellow = { 'gui': '#C18401', 'cterm': '136' }
-  let s:dark_yellow  = { 'gui': '#986801', 'cterm': '94'  }
-  let s:blue         = { 'gui': '#4078F2', 'cterm': '33'  }
-  let s:magenta      = { 'gui': '#A626A4', 'cterm': '127' }
-  let s:cyan         = { 'gui': '#0184BC', 'cterm': '31'  }
-  let s:gutter_grey  = { 'gui': '#9E9E9E', 'cterm': '246' }
-  let s:comment_grey = { 'gui': '#A0A1A7', 'cterm': '145' }
+  let s:black        = '#FAFAFA'
+  let s:white        = '#494B53'
+  let s:light_red    = '#E45649'
+  let s:dark_red     = '#CA1243'
+  let s:green        = '#50A14F'
+  let s:light_yellow = '#C18401'
+  let s:dark_yellow  = '#986801'
+  let s:blue         = '#4078F2'
+  let s:magenta      = '#A626A4'
+  let s:cyan         = '#0184BC'
+  let s:gutter_grey  = '#9E9E9E'
+  let s:comment_grey = '#A0A1A7'
 else
   "" Color definitions in vim-one dark background
-  let s:black        = { 'gui': '#282C34', 'cterm': '16'  }
-  let s:white        = { 'gui': '#ABB2BF', 'cterm': '145' }
-  let s:light_red    = { 'gui': '#E06C75', 'cterm': '168' }
-  let s:dark_red     = { 'gui': '#BE5046', 'cterm': '130' }
-  let s:green        = { 'gui': '#98C379', 'cterm': '114' }
-  let s:light_yellow = { 'gui': '#E5C07b', 'cterm': '180' }
-  let s:dark_yellow  = { 'gui': '#D19A66', 'cterm': '173' }
-  let s:blue         = { 'gui': '#61AFEF', 'cterm': '75'  }
-  let s:magenta      = { 'gui': '#C678DD', 'cterm': '176' }
-  let s:cyan         = { 'gui': '#56B6C2', 'cterm': '73'  }
-  let s:gutter_grey  = { 'gui': '#3B4048', 'cterm': '60'  }
-  let s:comment_grey = { 'gui': '#5C6370', 'cterm': '59'  }
+  let s:black        = '#282C34'
+  let s:white        = '#ABB2BF'
+  let s:light_red    = '#E06C75'
+  let s:dark_red     = '#BE5046'
+  let s:green        = '#98C379'
+  let s:light_yellow = '#E5C07b'
+  let s:dark_yellow  = '#D19A66'
+  let s:blue         = '#61AFEF'
+  let s:magenta      = '#C678DD'
+  let s:cyan         = '#56B6C2'
+  let s:gutter_grey  = '#3B4048'
+  let s:comment_grey = '#5C6370'
 end
 
 "" Change Search/IncSearch colors
 augroup nvimrc_searchcolor
   autocmd!
-  au VimEnter,ColorScheme *
-        \ exec 'hi Search'
-        \          'ctermfg=' s:black.cterm 'ctermbg=' s:cyan.cterm
-        \          'guifg='   s:black.gui   'guibg='   s:cyan.gui
-  au VimEnter,ColorScheme *
-        \ exec 'hi IncSearch'
-        \          'ctermfg=' s:black.cterm 'ctermbg=' s:cyan.cterm
-        \          'guifg='   s:black.gui   'guibg='   s:cyan.gui
+  au VimEnter,ColorScheme * exec 'hi Search    guifg=' s:black 'guibg=' s:cyan
+  au VimEnter,ColorScheme * exec 'hi IncSearch guifg=' s:black 'guibg=' s:cyan
 augroup END
 
 " vim-one {{{
@@ -75,10 +69,7 @@ let g:lightline.colorscheme = 'one'
 let g:buftabline_show = 1
 augroup nvimrc_buftabline
   autocmd!
-  au VimEnter,ColorScheme *
-        \ exec "hi BufTabLineCurrent"
-        \          "ctermfg=" s:black.cterm "ctermbg=" s:green.cterm
-        \          "guifg="   s:black.gui   "guibg="   s:green.gui
+  au VimEnter,ColorScheme * exec 'hi BufTabLineCurrent guifg=' s:black 'guibg=' s:green
 augroup END
 
 "}}}
@@ -86,8 +77,7 @@ augroup END
 
 augroup nvimrc_indentguides
   autocmd!
-  au VimEnter,ColorScheme *
-        \ exec "hi IndentGuidesOdd ctermbg=" s:gutter_grey.cterm "guibg=" s:gutter_grey.gui
+  au VimEnter,ColorScheme * exec "hi IndentGuidesOdd guibg=" s:gutter_grey
 augroup END
 
 "}}}
@@ -95,20 +85,10 @@ augroup END
 
 augroup nvimrc_signify
   autocmd!
-  au VimEnter,ColorScheme *
-        \ exec "hi SignColumn ctermbg=" s:comment_grey.cterm "guibg=" s:comment_grey.gui
-  au VimEnter,ColorScheme *
-        \ exec "hi SignifySignAdd"
-        \          "ctermfg=" s:black.cterm "guifg=" s:black.gui
-        \          "ctermbg=" s:green.cterm "guibg=" s:green.gui
-  au VimEnter,ColorScheme *
-        \ exec "hi SignifySignChange"
-        \          "ctermfg=" s:black.cterm       "guifg=" s:black.gui
-        \          "ctermbg=" s:dark_yellow.cterm "guibg=" s:dark_yellow.gui
-  au VimEnter,ColorScheme *
-        \ exec "hi SignifySignDelete"
-        \          "ctermfg=" s:black.cterm "guifg=" s:black.gui
-        \          "ctermbg=" s:light_red.cterm   "guibg=" s:light_red.gui
+  au VimEnter,ColorScheme * exec 'hi SignColumn                         guibg=' s:comment_grey
+  au VimEnter,ColorScheme * exec 'hi SignifySignAdd    guifg=' s:black 'guibg=' s:green
+  au VimEnter,ColorScheme * exec 'hi SignifySignChange guifg=' s:black 'guibg=' s:dark_yellow
+  au VimEnter,ColorScheme * exec 'hi SignifySignDelete guifg=' s:black 'guibg=' s:light_red
 augroup END
 
 "}}}
@@ -116,10 +96,7 @@ augroup END
 
 augroup nvimrc_deoplete
   autocmd!
-  au VimEnter,ColorScheme *
-        \ exec "hi PmenuSel"
-        \          "ctermfg=" s:black.cterm "ctermbg=" s:white.cterm
-        \          "guifg="   s:black.gui   "guibg="   s:white.gui
+  au VimEnter,ColorScheme * exec "hi PmenuSel guifg=" s:black "guibg=" s:white
 augroup END
 
 "}}}
