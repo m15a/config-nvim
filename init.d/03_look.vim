@@ -56,6 +56,13 @@ let g:one_disable_cterm_support = 1
 colorscheme one
 
 "}}}
+" vim-two-firewatch {{{
+
+let g:two_firewatch_italics = 1
+let g:two_firewatch_disable_cterm = 1
+" colorscheme two-firewatch
+
+"}}}
 " lightline.vim {{{
 
 if !exists("g:lightline")
