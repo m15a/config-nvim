@@ -11,6 +11,16 @@ endif
 
 "" Colorize columns over &textwidth: http://hanschen.org/2012/10/24/
 exec 'set colorcolumn=+' . join(range(1, 256), ',+')
+augroup nvimrc_colorcolumn
+  autocmd!
+  if g:nvimrc_background_light
+    "" Two Firewatch Light
+    au VimEnter,ColorScheme * hi ColorColumn guifg=#896724
+  else
+    "" Two Firewatch Dark
+    au VimEnter,ColorScheme * hi ColorColumn guifg=#abb2bf
+  endif
+augroup END
 
 "" Change Search/IncSearch colors
 augroup nvimrc_searchcolor
