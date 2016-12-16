@@ -1,11 +1,8 @@
 scriptencoding utf-8
 
-"" Let ';' and ',' be <Leader> and <LocalLeader>
-"" Default ';' and ',' behaviors are recovered by clever-f.vim
 nnoremap ;; ;
-nnoremap ,, ,
 let g:mapleader = ';'
-let g:maplocalleader = ','
+let g:maplocalleader = "'"
 
 "" Cursor moves
 nnoremap j gj
