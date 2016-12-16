@@ -47,6 +47,8 @@ vnoremap <Leader>a> :Tabularize /=><CR>
 "}}}
 " clever-f.vim {{{
 
+let g:clever_f_mark_char_color = 'Search'
+
 let g:clever_f_smart_case = 1
 let g:clever_f_use_migemo = 1
 
