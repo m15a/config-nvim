@@ -8,6 +8,14 @@ augroup END
 
 let g:vimtex_complete_close_braces = 1
 " let g:vimtex_complete_recursive_bib = 1
+let g:vimtix_delim_toggle_mod_list =
+      \ [ ['\left', '\right']
+      \ , ['\langle', '\rangle']
+      \ ]
+" let g:vimtex_format_enabled = 1
+let g:vimtex_fold_enabled = 1
+let g:vimtex_latexmk_enabled = 0
+let g:vimtex_view_enabled = 0
 
 if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
