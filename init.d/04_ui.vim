@@ -1,5 +1,11 @@
 scriptencoding utf-8
 
+"" Use ripgrep if available
+if executable('rg')
+  set grepprg=rg\ -N\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
 " nvim-miniyank {{{
 
 map p <Plug>(miniyank-autoput)
