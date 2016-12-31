@@ -4,7 +4,6 @@ call plug#begin(g:nvimrc_data_home . '/plugged')
 Plug '~/Repos/vim-one', { 'branch' : 'disable_cterm_support' }
 Plug '~/Repos/vim-two-firewatch', { 'branch' : 'disable_cterm_support' }
 Plug 'itchyny/lightline.vim'
-Plug 'ap/vim-buftabline'
 
 "" Basic UI enhancements
 Plug 'bfredl/nvim-miniyank' " Fix block paste when clipboard=unnamed

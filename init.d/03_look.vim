@@ -52,23 +52,6 @@ endif
 let g:lightline.colorscheme = 'one'
 
 "}}}
-" vim-buftabline {{{
-
-let g:buftabline_show = 1
-augroup nvimrc_buftabline
-  autocmd!
-  if g:nvimrc_background_light
-    "" Two Firewatch Light
-    au VimEnter,ColorScheme * exec 'hi BufTabLineCurrent guifg=#faf8f5 guibg=#896724'
-  else
-    "" Two Firewatch Dark
-    au VimEnter,ColorScheme * exec 'hi BufTabLineCurrent guifg=#282c34 guibg=#abb2bf'
-  endif
-  au VimEnter,ColorScheme * exec 'hi BufTabLineActive  guifg= guibg='
-  au VimEnter,ColorScheme * exec 'hi BufTabLineHidden  guifg= guibg='
-augroup END
-
-"}}}
 " vim-signify {{{
 
 augroup nvimrc_signify
