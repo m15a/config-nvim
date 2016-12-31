@@ -24,6 +24,7 @@ Plug 'wellle/targets.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'neomake/neomake'
 Plug 'icersong/timestamp.vim'
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 
 "" Japanese editing
 Plug 'fuenor/JpFormat.vim'
