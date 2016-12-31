@@ -26,8 +26,8 @@ augroup END
 augroup nvimrc_searchcolor
   autocmd!
   "" Two Firewatch Dark and Light
-  au VimEnter,ColorScheme * hi Search    guifg=#282c34 guibg=#56b6c2
-  au VimEnter,ColorScheme * hi IncSearch guifg=#282c34 guibg=#56b6c2 gui=none
+  au VimEnter,ColorScheme * hi Search    guifg=#282c34 guibg=#56b6c2 gui=bold
+  au VimEnter,ColorScheme * hi IncSearch guifg=#282c34 guibg=#56b6c2 gui=bold
 augroup END
 
 " vim-one {{{
