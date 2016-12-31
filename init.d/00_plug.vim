@@ -20,7 +20,6 @@ Plug 'tpope/vim-unimpaired'
 " Plug 'kana/vim-textobj-entire'  " This conflicts with vimtex's mapping `ie`
 Plug 'majutsushi/tagbar'
 Plug 'wellle/targets.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'neomake/neomake'
 Plug 'icersong/timestamp.vim'
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }

@@ -106,25 +106,6 @@ let g:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_autoshowtag = 1
 
 "}}}
-" nerdtree {{{
-
-nnoremap <Leader>t :<C-u>NERDTreeToggle<CR>
-augroup nvimrc_nerdtree
-  autocmd!
-  au FileType nerdtree nnoremap <buffer> b :<C-u>Bookmark<CR>
-augroup END
-
-let g:NERDTreeWinSize = 24
-let g:NERDTreeCaseSensitiveSort = 1
-" let g:NERDTreeHijackNetrw = 0
-" let g:NERDTreeRespectWildIgnore = 1
-let g:NERDTreeIgnore = ['\~$', '^\.git$[[dir]]', '^\.hg$[[dir]]', '^_darcs$[[dir]]']
-let g:NERDTreeBookmarksFile = g:nvimrc_data_home . '/nerdtree_bookmarks'
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeShowBookmarks = 1
-let g:NERDTreeChDirMode = 1
-
-"}}}
 "{{{ denite.nvim
 
 "" Change file_rec command
