@@ -7,6 +7,8 @@ let g:maplocalleader = "'"
 "" Cursor moves
 nnoremap j gj
 nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 nnoremap <C-j> +
 nnoremap <C-k> -
 
