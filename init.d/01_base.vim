@@ -73,3 +73,6 @@ if executable('rg')
   set grepprg=rg\ -S\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
+
+"" '%%' expands to '%:h'
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
