@@ -14,6 +14,10 @@ function! s:check_back_space() abort
 endfunction
 inoremap <expr><C-h> deoplete#smart_close_popup() . "\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup() . "\<C-h>"
+inoremap <silent> <CR> <C-r>=<SID>cr_wrapper()<CR>
+function! s:cr_wrapper() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
 inoremap <expr><C-g> deoplete#undo_completion()
 inoremap <expr><C-l> deoplete#refresh()
 
