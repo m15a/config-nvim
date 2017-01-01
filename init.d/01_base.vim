@@ -67,3 +67,9 @@ augroup nvimrc_lastcursorposition
         \   exec "normal g`\""|
         \ endif
 augroup END
+
+"" Use ripgrep if available
+if executable('rg')
+  set grepprg=rg\ -S\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
