@@ -25,8 +25,8 @@ nnoremap / /\v
 " map > <C-W>>
 " map < <C-W><
 
-"" <C-c><C-c> clears highlights
-nmap <silent> <C-c><C-c> :nohlsearch<CR>
+"" Clear highlights
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 "" Format the current paragraph
 nnoremap <silent> Q gqap
