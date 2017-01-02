@@ -6,6 +6,7 @@ Plug '~/Repos/vim-two-firewatch', { 'branch' : 'disable_cterm_support' }
 Plug 'itchyny/lightline.vim'
 
 "" Basic UI enhancements
+source $VIMRUNTIME/macros/matchit.vim
 Plug 'bfredl/nvim-miniyank' " Fix block paste when clipboard=unnamed
 Plug 'jiangmiao/auto-pairs'
 Plug 'bkad/CamelCaseMotion'
