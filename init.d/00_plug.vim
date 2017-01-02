@@ -10,6 +10,7 @@ source $VIMRUNTIME/macros/matchit.vim
 Plug 'bfredl/nvim-miniyank' " Fix block paste when clipboard=unnamed
 Plug 'jiangmiao/auto-pairs'
 Plug 'bkad/CamelCaseMotion'
+Plug 'thinca/vim-visualstar'
 Plug 'godlygeek/tabular'
 Plug 'houtsnip/vim-emacscommandline'
 Plug 'rhysd/clever-f.vim'
