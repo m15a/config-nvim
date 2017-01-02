@@ -18,12 +18,17 @@ Plug 'tyru/caw.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-" Plug 'kana/vim-textobj-entire'  " This conflicts with vimtex's mapping `ie`
 Plug 'majutsushi/tagbar'
 Plug 'wellle/targets.vim'
 Plug 'neomake/neomake'
 Plug 'icersong/timestamp.vim'
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+
+"" Enhanced text objects
+Plug 'kana/vim-textobj-user'
+" Plug 'kana/vim-textobj-entire'  " This conflicts with vimtex's mapping `ie`
+Plug 'kana/vim-textobj-lastpat'
+" More text objects may be introduced from https://github.com/kana/vim-textobj-user/wiki
 
 "" Japanese editing
 Plug 'fuenor/JpFormat.vim'
