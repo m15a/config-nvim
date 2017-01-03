@@ -19,6 +19,10 @@ nnoremap # #N
 "" Search with very magic
 nnoremap / /\v
 
+"" Practical Vim, TIP 92
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+
 "" Maps to change frame sizes
 " map + <C-W>+
 " map - <C-W>-
