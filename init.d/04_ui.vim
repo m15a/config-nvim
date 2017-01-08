@@ -111,8 +111,12 @@ call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
 "" Key maps
 noremap [unite] <Nop>
 map <Leader>u [unite]
-nmap <silent> [unite]e :<C-u>Denite buffer file_rec<CR>
-nmap <silent> [unite]g :<C-u>Denite grep<CR>
+nmap <silent> [unite]e :<C-u>Denite buffer file_rec -buffer-name=search-buffer-denite<CR>
+nmap <silent> [unite]g :<C-u>Denite grep -buffer-name=search-buffer-denite<CR>
+"" See http://qiita.com/pocari/items/1b76c211d5555fa87834
+nmap <silent> [unite]r :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
+nmap <silent> [unite][ :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=+1 -immediately<CR>
+nmap <silent> [unite]] :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=-1 -immediately<CR>
 call denite#custom#map(
       \ 'insert',
       \ '<C-a>',
