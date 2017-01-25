@@ -1,6 +1,7 @@
 augroup nvimrc_markdown
   autocmd!
   au FileType markdown,markdown.pandoc,pandoc setl shiftwidth=2 softtabstop=2
+  au FileType markdown,markdown.pandoc,pandoc setl spell
   au FileType markdown let b:timestamp_regexp =
         \   '\v\C%(<[Uu]pdated\s*:\s+)@<='
         \ . g:nvimrc_timestamp_datetime_regexp
