@@ -43,7 +43,7 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'mhinz/vim-signify'
 
 "" Fish
-Plug 'onodera-punpun/vim-fish'
+Plug 'RobertAudi/vim-fish'
 
 "" Tmux
 Plug 'keith/tmux.vim'
