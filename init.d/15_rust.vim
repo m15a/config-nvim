@@ -1,4 +1,4 @@
-let g:rust_conceal = 1
+" let g:rust_conceal = 1
 " let g:rust_conceal_mod_path = 1
 " let g:rust_conceal_pub = 1
 let g:rust_recommended_style = 0
