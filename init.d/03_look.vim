@@ -49,7 +49,7 @@ colorscheme two-firewatch
 if !exists("g:lightline")
   let g:lightline = {}
 endif
-let g:lightline.colorscheme = 'one'
+let g:lightline.colorscheme = 'twofirewatch'
 
 "}}}
 " vim-signify {{{
