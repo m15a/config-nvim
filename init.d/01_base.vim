@@ -20,8 +20,11 @@ set wildignorecase
 set wildmode=list:longest
 set suffixes+=.omc  " OMake
 
+"" Mouse
+set mouse=a
+
 "" Clipboard integration
-set clipboard+=unnamed
+set clipboard+=unnamedplus
 
 "" hide a buffer instead of unloading it when it is abandoned
 set hidden
