@@ -48,6 +48,9 @@ Plug 'RobertAudi/vim-fish'
 "" Tmux
 Plug 'keith/tmux.vim'
 
+"" Nix
+Plug 'LnL7/vim-nix'
+
 "" VimL
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
