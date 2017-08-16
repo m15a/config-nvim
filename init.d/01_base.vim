@@ -21,7 +21,7 @@ set wildmode=list:longest
 set suffixes+=.omc  " OMake
 
 "" Clipboard integration
-set clipboard+=unnamed
+set clipboard+=unnamedplus
 
 "" hide a buffer instead of unloading it when it is abandoned
 set hidden
