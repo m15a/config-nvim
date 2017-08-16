@@ -1,8 +1,8 @@
 call plug#begin(g:nvimrc_data_home . '/plugged')
 
 "" Look and feel
-Plug '~/Repos/vim-one', { 'branch' : 'disable_cterm_support' }
-Plug '~/Repos/vim-two-firewatch', { 'branch' : 'disable_cterm_support' }
+Plug 'dracula/vim'
+Plug 'jonathanfilip/vim-lucius'
 Plug 'itchyny/lightline.vim'
 
 "" Basic UI enhancements
