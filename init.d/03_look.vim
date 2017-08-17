@@ -11,8 +11,8 @@ colorscheme lucius
 
 augroup lucius_color_tweaks
   autocmd!
-  au VimEnter,ColorScheme * hi Search guifg=fg guibg=#afd7ff
-  au VimEnter,ColorScheme * hi IncSearch guifg=fg guibg=#afd7ff
+  au VimEnter,ColorScheme * hi Search    gui=bold guifg=fg guibg=#afd7ff
+  au VimEnter,ColorScheme * hi IncSearch gui=bold guifg=fg guibg=#afd7ff
 augroup END
 
 "}}}
