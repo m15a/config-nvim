@@ -5,6 +5,7 @@ let g:cache_home = (exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : $HOME . "/.cac
 
 call plug#begin(g:data_home . '/plugged') "{{{
 Plug 'LnL7/vim-nix'
+Plug 'dag/vim-fish'
 Plug 'itchyny/lightline.vim'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'tpope/vim-sensible'
