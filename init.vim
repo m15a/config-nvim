@@ -13,7 +13,9 @@ call plug#end()
 "}}}
 "{{{ Color scheme and status line
 
-set termguicolors
+if $COLORTERM == 'truecolor'  " VTE, Konsole, and iTerm2
+  set termguicolors
+endif
 set background=light
 colorscheme lucius
 
