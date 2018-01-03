@@ -60,5 +60,25 @@ set wildignorecase
 set wildmode=list:longest
 
 "}}}
+"{{{ UI enhancements
+
+"" '%%' expands to '%:h'
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
+
+augroup remember_last_cursor_position
+  autocmd!
+  au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exec "normal g`\"" |
+        \ endif
+augroup END
+
+"" Use ripgrep if available
+if executable('rg')
+  set grepprg=rg\ -S\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+"}}}
 
 " vim: fdm=marker sw=2 et
