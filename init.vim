@@ -26,4 +26,4 @@ let g:lightline.colorscheme = 'PaperColor'  " TODO: Lucius Light/Dark theme
 
 "}}}
 
-" vim: fdm=marker
+" vim: fdm=marker sw=2 et
