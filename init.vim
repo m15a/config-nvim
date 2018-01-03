@@ -4,6 +4,7 @@ let g:data_home = (exists('$XDG_DATA_HOME') ? $XDG_DATA_HOME : $HOME . "/.local/
 let g:cache_home = (exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : $HOME . "/.cache") . "/nvim"
 
 call plug#begin(g:data_home . '/plugged') "{{{
+Plug 'LnL7/vim-nix'
 Plug 'itchyny/lightline.vim'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'tpope/vim-sensible'
