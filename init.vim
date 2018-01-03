@@ -26,5 +26,39 @@ if !exists("g:lightline") | let g:lightline = {} | endif
 let g:lightline.colorscheme = 'PaperColor'  " TODO: Lucius Light/Dark theme
 
 "}}}
+"{{{ Basic settings
+
+set clipboard+=unnamedplus
+set complete+=k  " Enable dictionary completion
+set cursorline
+set diffopt+=vertical
+set expandtab
+set fileformat=unix
+set fileformats=unix,dos,mac
+set hidden  " Hide a buffer instead of unloading it
+set ignorecase
+set infercase
+set list
+set listchars=eol:¬,tab:>_,trail:_,extends:»,precedes:«,nbsp:_
+set mouse=a
+set nowrap
+set nrformats=  " Only dicimal numbers are allowed for <CTRL-A/X>
+set number
+" set scroll=5
+set scrolloff=4
+set shiftwidth=4
+set showbreak=»
+set showmatch
+set smartcase
+set smartindent
+set softtabstop=-1
+set textwidth=78
+set virtualedit=all
+set visualbell
+set undofile
+set wildignorecase
+set wildmode=list:longest
+
+"}}}
 
 " vim: fdm=marker sw=2 et
