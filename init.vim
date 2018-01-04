@@ -19,6 +19,9 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'  " required by the other textobj plugins
 Plug 'wellle/targets.vim'
 
+"" UI enhancements
+Plug 'rhysd/clever-f.vim'
+
 "" Language plugins
 Plug 'LnL7/vim-nix'
 Plug 'dag/vim-fish'
@@ -96,5 +99,12 @@ if executable('rg')
   set grepprg=rg\ -S\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
+
+"" Set <Leader> resp. <LocalLeader> to ';' resp. ',' by using clever-f
+let g:mapleader = ';'
+let g:maplocalleader = ','
+let g:clever_f_smart_case = 1
+let g:clever_f_use_migemo = 1
+let g:clever_f_repeat_last_char_inputs = ["\<Tab>"]
 
 " vim: fdm=marker sw=2 et
