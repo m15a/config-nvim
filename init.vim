@@ -12,6 +12,13 @@ Plug 'tpope/vim-sensible'
 Plug 'itchyny/lightline.vim'
 Plug 'jonathanfilip/vim-lucius'
 
+"" Text objects
+Plug 'glts/vim-textobj-comment'
+Plug 'kana/vim-textobj-entire'  " conflicts with vimtex's mapping `ie`
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-user'  " required by the other textobj plugins
+Plug 'wellle/targets.vim'
+
 "" Language plugins
 Plug 'LnL7/vim-nix'
 Plug 'dag/vim-fish'
