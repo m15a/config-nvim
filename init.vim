@@ -76,6 +76,9 @@ augroup remember_last_cursor_position
         \ endif
 augroup END
 
+"" Colorize columns over &textwidth
+exec 'set colorcolumn=+' . join(range(1, 256), ',+')
+
 "" Use ripgrep if available
 if executable('rg')
   set grepprg=rg\ -S\ --vimgrep\ --no-heading
