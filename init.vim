@@ -22,6 +22,7 @@ Plug 'wellle/targets.vim'
 "" UI enhancements
 Plug 'houtsnip/vim-emacscommandline'
 Plug 'rhysd/clever-f.vim'
+Plug 'thinca/vim-visualstar'
 
 "" Language plugins
 Plug 'LnL7/vim-nix'
@@ -107,5 +108,9 @@ let g:maplocalleader = ','
 let g:clever_f_smart_case = 1
 let g:clever_f_use_migemo = 1
 let g:clever_f_repeat_last_char_inputs = ["\<Tab>"]
+
+"" Search the text at the cursor or selected in visual mode
+map * <Plug>(visualstar-*)N
+map # <Plug>(visualstar-#)N
 
 " vim: fdm=marker sw=2 et
