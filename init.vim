@@ -23,6 +23,8 @@ Plug 'wellle/targets.vim'
 Plug 'houtsnip/vim-emacscommandline'
 Plug 'rhysd/clever-f.vim'
 Plug 'thinca/vim-visualstar'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 
 "" Language plugins
 Plug 'LnL7/vim-nix'
