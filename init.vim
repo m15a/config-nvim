@@ -21,10 +21,12 @@ Plug 'wellle/targets.vim'
 
 "" UI enhancements
 Plug 'houtsnip/vim-emacscommandline'
+" Plug 'jiangmiao/auto-pairs'  " vim-surround provides it by <C-S>
 Plug 'rhysd/clever-f.vim'
 Plug 'thinca/vim-visualstar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 
 "" Language plugins
 Plug 'LnL7/vim-nix'
