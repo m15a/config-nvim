@@ -13,6 +13,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'jonathanfilip/vim-lucius'
 
 "" Text objects
+Plug 'chaoren/vim-wordmotion'  " replaces CamelCaseMotion
 Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-entire'  " conflicts with vimtex's mapping `ie`
 Plug 'kana/vim-textobj-indent'
@@ -83,6 +84,11 @@ augroup END
 
 if !exists("g:lightline") | let g:lightline = {} | endif
 let g:lightline.colorscheme = 'PaperColor'  " TODO: Lucius Light/Dark theme
+
+"" Text objects {{{1
+
+"" Separators of connected-words.without_spaces.likeThis
+let g:wordmotion_spaces = '_-.'
 
 "" UI enhancements {{{1
 
