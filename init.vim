@@ -20,6 +20,7 @@ Plug 'kana/vim-textobj-user'  " required by the other textobj plugins
 Plug 'wellle/targets.vim'
 
 "" UI enhancements
+Plug 'houtsnip/vim-emacscommandline'
 Plug 'rhysd/clever-f.vim'
 
 "" Language plugins
