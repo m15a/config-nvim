@@ -4,11 +4,18 @@ let s:data_home = (exists('$XDG_DATA_HOME') ? $XDG_DATA_HOME : $HOME . "/.local/
 let s:cache_home = (exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : $HOME . "/.cache") . "/nvim"
 
 call plug#begin(s:data_home . '/plugged') "{{{
-Plug 'LnL7/vim-nix'
-Plug 'dag/vim-fish'
+
+"" Essentials
+Plug 'tpope/vim-sensible'
+
+"" Color scheme and status line
 Plug 'itchyny/lightline.vim'
 Plug 'jonathanfilip/vim-lucius'
-Plug 'tpope/vim-sensible'
+
+"" Language plugins
+Plug 'LnL7/vim-nix'
+Plug 'dag/vim-fish'
+
 call plug#end()
 "}}}
 "{{{ Color scheme and status line
