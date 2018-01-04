@@ -3,9 +3,9 @@ let s:config_home = (exists('$XDG_CONFIG_HOME') ? $XDG_CONFIG_HOME : $HOME . "/.
 let s:data_home = (exists('$XDG_DATA_HOME') ? $XDG_DATA_HOME : $HOME . "/.local/share") . "/nvim"
 let s:cache_home = (exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : $HOME . "/.cache") . "/nvim"
 
-call plug#begin(s:data_home . '/plugged') "{{{
+call plug#begin(s:data_home . '/plugged') "{{{1
 
-"" Essentials
+"" Basic settings
 Plug 'tpope/vim-sensible'
 
 "" Color scheme and status line
@@ -24,26 +24,8 @@ Plug 'LnL7/vim-nix'
 Plug 'dag/vim-fish'
 
 call plug#end()
-"}}}
-"{{{ Color scheme and status line
 
-if $COLORTERM == 'truecolor'  " VTE, Konsole, and iTerm2
-  set termguicolors
-endif
-set background=light
-colorscheme lucius
-
-augroup lucius_color_tweaks
-  autocmd!
-  au VimEnter,ColorScheme * hi Search    gui=bold guifg=fg guibg=#afd7ff
-  au VimEnter,ColorScheme * hi IncSearch gui=bold guifg=fg guibg=#afd7ff
-augroup END
-
-if !exists("g:lightline") | let g:lightline = {} | endif
-let g:lightline.colorscheme = 'PaperColor'  " TODO: Lucius Light/Dark theme
-
-"}}}
-"{{{ Basic settings
+"" Basic settings {{{1
 
 set clipboard+=unnamedplus
 set complete+=k  " Enable dictionary completion
@@ -76,8 +58,24 @@ set undofile
 set wildignorecase
 set wildmode=list:longest
 
-"}}}
-"{{{ UI enhancements
+"" Color scheme and status line {{{1
+
+if $COLORTERM == 'truecolor'  " VTE, Konsole, and iTerm2
+  set termguicolors
+endif
+set background=light
+colorscheme lucius
+
+augroup lucius_color_tweaks
+  autocmd!
+  au VimEnter,ColorScheme * hi Search    gui=bold guifg=fg guibg=#afd7ff
+  au VimEnter,ColorScheme * hi IncSearch gui=bold guifg=fg guibg=#afd7ff
+augroup END
+
+if !exists("g:lightline") | let g:lightline = {} | endif
+let g:lightline.colorscheme = 'PaperColor'  " TODO: Lucius Light/Dark theme
+
+"" UI enhancements {{{1
 
 "" '%%' expands to '%:h'
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
@@ -98,7 +96,5 @@ if executable('rg')
   set grepprg=rg\ -S\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
-
-"}}}
 
 " vim: fdm=marker sw=2 et
