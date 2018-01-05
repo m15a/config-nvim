@@ -15,7 +15,6 @@ Plug 'jonathanfilip/vim-lucius'
 "" Text objects
 Plug 'chaoren/vim-wordmotion'  " replaces CamelCaseMotion
 Plug 'glts/vim-textobj-comment'
-Plug 'kana/vim-textobj-entire'  " conflicts with vimtex's mapping `ie`
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'  " required by the other textobj plugins
 Plug 'wellle/targets.vim'
