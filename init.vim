@@ -22,6 +22,7 @@ Plug 'wellle/targets.vim'
 "" UI enhancements
 Plug 'houtsnip/vim-emacscommandline'
 " Plug 'jiangmiao/auto-pairs'  " vim-surround provides it by <C-S>
+Plug 'junegunn/vim-easy-align'
 Plug 'rhysd/clever-f.vim'
 Plug 'thinca/vim-visualstar'
 Plug 'tpope/vim-commentary'
@@ -122,5 +123,10 @@ let g:clever_f_repeat_last_char_inputs = ["\<Tab>"]
 "" Search the text at the cursor or selected in visual mode
 map * <Plug>(visualstar-*)N
 map # <Plug>(visualstar-#)N
+
+"" Use `ga` for aligning instead of showing the ASCII value at the cursor
+nnoremap gA ga
+nmap ga <Plug>(EasyAlign)
+vmap ga <Plug>(EasyAlign)
 
 " vim: fdm=marker sw=2 et
