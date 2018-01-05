@@ -27,6 +27,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'thinca/vim-visualstar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
