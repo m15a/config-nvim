@@ -82,7 +82,12 @@ if $COLORTERM ==# 'truecolor'  " VTE, Konsole, and iTerm2
   set termguicolors
 endif
 set background=light
-colorscheme lucius
+
+try
+  colorscheme lucius
+catch /\v^Vim%(\(\a+\))=:E185/
+  " Suppress error messages
+endtry
 
 augroup lucius_color_tweaks
   autocmd!
