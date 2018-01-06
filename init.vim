@@ -3,39 +3,43 @@ let s:config_home = (exists('$XDG_CONFIG_HOME') ? $XDG_CONFIG_HOME : $HOME . "/.
 let s:data_home = (exists('$XDG_DATA_HOME') ? $XDG_DATA_HOME : $HOME . "/.local/share") . "/nvim"
 let s:cache_home = (exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : $HOME . "/.cache") . "/nvim"
 
-call plug#begin(s:data_home . '/plugged') "{{{1
+if exists('*minpac#init') "{{{1
+  call minpac#init({'dir': s:data_home . '/site'})
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-"" Basic settings
-Plug 'tpope/vim-sensible'
+  "" Basic settings
+  call minpac#add('tpope/vim-sensible')
 
-"" Color scheme and status line
-Plug 'itchyny/lightline.vim'
-Plug 'jonathanfilip/vim-lucius'
+  "" Color scheme and status line
+  call minpac#add('itchyny/lightline.vim')
+  call minpac#add('jonathanfilip/vim-lucius')
 
-"" Text objects
-Plug 'chaoren/vim-wordmotion'  " replaces CamelCaseMotion
-Plug 'glts/vim-textobj-comment'
-Plug 'kana/vim-textobj-indent'
-Plug 'kana/vim-textobj-user'  " required by the other textobj plugins
-Plug 'wellle/targets.vim'
+  "" Text objects
+  call minpac#add('chaoren/vim-wordmotion')  " replaces CamelCaseMotion
+  call minpac#add('glts/vim-textobj-comment')
+  call minpac#add('kana/vim-textobj-indent')
+  call minpac#add('kana/vim-textobj-user')  " required by the other textobj plugins
+  call minpac#add('wellle/targets.vim')
 
-"" UI enhancements
-Plug 'houtsnip/vim-emacscommandline'
-" Plug 'jiangmiao/auto-pairs'  " vim-surround provides it by <C-S>
-Plug 'junegunn/vim-easy-align'
-Plug 'rhysd/clever-f.vim'
-Plug 'thinca/vim-visualstar'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
+  "" UI enhancements
+  call minpac#add('houtsnip/vim-emacscommandline')
+  " call minpac#add('jiangmiao/auto-pairs')  " vim-surround provides it by <C-S>
+  call minpac#add('junegunn/vim-easy-align')
+  call minpac#add('rhysd/clever-f.vim')
+  call minpac#add('thinca/vim-visualstar')
+  call minpac#add('tpope/vim-commentary')
+  call minpac#add('tpope/vim-repeat')
+  call minpac#add('tpope/vim-speeddating')
+  call minpac#add('tpope/vim-surround')
+  call minpac#add('tpope/vim-unimpaired')
 
-"" Language settings
-Plug 'LnL7/vim-nix'
-Plug 'mnacamura/vim-fish'
+  "" Language settings
+  call minpac#add('LnL7/vim-nix')
+  call minpac#add('mnacamura/vim-fish')
+endif
 
-call plug#end()
+command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 
 "" Basic settings {{{1
 
