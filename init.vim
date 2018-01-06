@@ -31,7 +31,7 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
-"" Language plugins
+"" Language settings
 Plug 'LnL7/vim-nix'
 Plug 'dag/vim-fish'
 
@@ -129,5 +129,18 @@ map # <Plug>(visualstar-#)N
 nnoremap gA ga
 nmap ga <Plug>(EasyAlign)
 vmap ga <Plug>(EasyAlign)
+
+"" Language settings {{{1
+
+augroup lang_viml "{{{2
+  autocmd!
+  au FileType vim setl shiftwidth=2
+augroup END
+
+augroup lang_fish "{{{2
+  autocmd!
+  au FileType fish setl shiftwidth=2
+augroup END
+
 
 " vim: fdm=marker sw=2 et
