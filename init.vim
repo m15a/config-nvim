@@ -1,7 +1,9 @@
+scriptencoding utf-8
+
 "" Set base directories before loading init scripts
-let s:config_home = (exists('$XDG_CONFIG_HOME') ? $XDG_CONFIG_HOME : $HOME . "/.config") . "/nvim"
-let s:data_home = (exists('$XDG_DATA_HOME') ? $XDG_DATA_HOME : $HOME . "/.local/share") . "/nvim"
-let s:cache_home = (exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : $HOME . "/.cache") . "/nvim"
+let s:config_home = (exists('$XDG_CONFIG_HOME') ? $XDG_CONFIG_HOME : $HOME . '/.config') . '/nvim'
+let s:data_home = (exists('$XDG_DATA_HOME') ? $XDG_DATA_HOME : $HOME . '/.local/share') . '/nvim'
+let s:cache_home = (exists('$XDG_CACHE_HOME') ? $XDG_CACHE_HOME : $HOME . '/.cache') . '/nvim'
 
 if exists('*minpac#init') "{{{1
   call minpac#init({'dir': s:data_home . '/site'})
@@ -76,7 +78,7 @@ set wildmode=list:longest
 
 "" Color scheme and status line {{{1
 
-if $COLORTERM == 'truecolor'  " VTE, Konsole, and iTerm2
+if $COLORTERM ==# 'truecolor'  " VTE, Konsole, and iTerm2
   set termguicolors
 endif
 set background=light
@@ -88,7 +90,7 @@ augroup lucius_color_tweaks
   au VimEnter,ColorScheme * hi IncSearch gui=bold guifg=fg guibg=#afd7ff
 augroup END
 
-if !exists("g:lightline") | let g:lightline = {} | endif
+if !exists('g:lightline') | let g:lightline = {} | endif
 let g:lightline.colorscheme = 'PaperColor'  " TODO: Lucius Light/Dark theme
 
 "" Text objects {{{1
