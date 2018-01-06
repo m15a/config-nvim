@@ -33,7 +33,7 @@ Plug 'tpope/vim-unimpaired'
 
 "" Language settings
 Plug 'LnL7/vim-nix'
-Plug 'dag/vim-fish'
+Plug 'mnacamura/vim-fish'
 
 call plug#end()
 
