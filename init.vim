@@ -76,6 +76,12 @@ set undofile
 set wildignorecase
 set wildmode=list:longest
 
+"" Hack for vim + fish problem:
+if &shell =~# '/fish$'
+  let $SHELL = system('which sh')
+  let &shell = $SHELL
+endif
+
 "" Color scheme and status line {{{1
 
 if $COLORTERM ==# 'truecolor'  " VTE, Konsole, and iTerm2
