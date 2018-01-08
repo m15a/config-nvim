@@ -16,6 +16,7 @@ if exists('*minpac#init') "{{{1
   "" Color scheme and status line
   call minpac#add('itchyny/lightline.vim')
   call minpac#add('jonathanfilip/vim-lucius')
+  call minpac#add('maximbaz/lightline-ale')
 
   "" Text objects
   call minpac#add('chaoren/vim-wordmotion')  " replaces CamelCaseMotion
@@ -35,6 +36,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('tpope/vim-speeddating')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-unimpaired')
+  call minpac#add('w0rp/ale')
 
   "" Language settings
   call minpac#add('LnL7/vim-nix')
@@ -113,6 +115,24 @@ augroup END
 
 if !exists('g:lightline') | let g:lightline = {} | endif
 let g:lightline.colorscheme = 'PaperColor'  " TODO: Lucius Light/Dark theme
+
+let g:lightline.component_expand = {
+      \   'ale_warnings': 'lightline#ale#warnings',
+      \   'ale_errors': 'lightline#ale#errors',
+      \   'ale_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \   'ale_warnings': 'warning',
+      \   'ale_errors': 'error',
+      \ }
+let g:lightline.active = {
+      \  'left': [
+      \     [ 'mode', 'paste' ],
+      \     [ 'readonly', 'filename', 'modified' ],
+      \     [ 'ale_errors', 'ale_warnings', 'ale_ok' ],
+      \   ]
+      \ }
+let g:lightline#ale#indicator_ok = ''
 
 "" Text objects {{{1
 
