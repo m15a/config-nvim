@@ -10,6 +10,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   "" Basic settings
+  call minpac#add('bfredl/nvim-miniyank')
   call minpac#add('tpope/vim-sensible')
 
   "" Color scheme and status line
@@ -81,6 +82,10 @@ if &shell =~# '/fish$'
   let $SHELL = system('which sh')
   let &shell = $SHELL
 endif
+
+"" Fix block paste when clipboard=unnamed[plus]
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
 
 "" Color scheme and status line {{{1
 
