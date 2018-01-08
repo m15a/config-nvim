@@ -106,6 +106,11 @@ augroup lucius_color_tweaks
   au VimEnter,ColorScheme * hi IncSearch gui=bold guifg=fg guibg=#afd7ff
 augroup END
 
+augroup spell_color_tweaks
+  autocmd!
+  au VimEnter,ColorScheme * hi SpellBad gui=undercurl guifg=#d70000
+augroup END
+
 if !exists('g:lightline') | let g:lightline = {} | endif
 let g:lightline.colorscheme = 'PaperColor'  " TODO: Lucius Light/Dark theme
 
