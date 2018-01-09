@@ -143,8 +143,12 @@ let g:wordmotion_spaces = '_-.'
 
 "" UI enhancements {{{1
 
-"" '%%' expands to '%:h'
+"" Practical Vim, Tip 42: '%%' expands to '%:h'
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
+
+"" Practical Vim, Tip 93: Repeat the last substitution by '&'
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
 
 augroup remember_last_cursor_position
   autocmd!
@@ -178,6 +182,12 @@ map # <Plug>(visualstar-#)N
 nnoremap gA ga
 nmap ga <Plug>(EasyAlign)
 vmap ga <Plug>(EasyAlign)
+
+"“ Modern Vim, Tip 12: ALE mappings in the style of unimpaired
+nmap <silent> [W <Plug>(ale_first)
+nmap <silent> [w <Plug>(ale_previous)
+nmap <silent> ]w <Plug>(ale_next)
+nmap <silent> ]W <Plug>(ale_last)
 
 "" Language settings {{{1
 
