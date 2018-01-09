@@ -14,33 +14,35 @@ if exists('*minpac#init') "{{{1
   call minpac#add('tpope/vim-sensible')
 
   "" Color scheme and status line
+  call minpac#add('maximbaz/lightline-ale')
   call minpac#add('itchyny/lightline.vim')
   call minpac#add('jonathanfilip/vim-lucius')
-  call minpac#add('maximbaz/lightline-ale')
 
   "" Text objects
-  call minpac#add('chaoren/vim-wordmotion')  " replaces CamelCaseMotion
+  call minpac#add('wellle/targets.vim')
   call minpac#add('glts/vim-textobj-comment')
   call minpac#add('kana/vim-textobj-indent')
   call minpac#add('kana/vim-textobj-user')  " required by the other textobj plugins
-  call minpac#add('wellle/targets.vim')
+  call minpac#add('chaoren/vim-wordmotion')  " replaces CamelCaseMotion
 
   "" UI enhancements
-  call minpac#add('houtsnip/vim-emacscommandline')
+  call minpac#add('w0rp/ale')
   " call minpac#add('jiangmiao/auto-pairs')  " vim-surround provides it by <C-S>
-  call minpac#add('junegunn/vim-easy-align')
   call minpac#add('rhysd/clever-f.vim')
-  call minpac#add('thinca/vim-visualstar')
   call minpac#add('tpope/vim-commentary')
+  call minpac#add('junegunn/vim-easy-align')
+  call minpac#add('houtsnip/vim-emacscommandline')
   call minpac#add('tpope/vim-repeat')
   call minpac#add('tpope/vim-speeddating')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-unimpaired')
-  call minpac#add('w0rp/ale')
+  call minpac#add('thinca/vim-visualstar')
 
   "" Language settings
-  call minpac#add('LnL7/vim-nix')
   call minpac#add('mnacamura/vim-fish')
+  call minpac#add('LnL7/vim-nix')
+
+  " Sorted by repo name: `:'<,'>sort /\v^[^\/]+\//`
 endif
 
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
