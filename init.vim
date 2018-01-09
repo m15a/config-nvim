@@ -68,6 +68,7 @@ set nowrap
 set nrformats=  " Only dicimal numbers are allowed for <CTRL-A/X>
 set number
 " set scroll=5
+set path=.,,
 set scrolloff=4
 set shiftwidth=4
 set showbreak=»
@@ -75,6 +76,7 @@ set showmatch
 set smartcase
 set smartindent
 set softtabstop=-1
+set suffixes+=.omc  " OMake
 set textwidth=78
 set virtualedit=all
 set visualbell
