@@ -20,6 +20,7 @@ if exists('*minpac#init') "{{{1
 
   "" Text objects
   call minpac#add('wellle/targets.vim')
+  call minpac#add('kana/vim-tabpagecd')
   call minpac#add('glts/vim-textobj-comment')
   call minpac#add('kana/vim-textobj-indent')
   call minpac#add('kana/vim-textobj-user')  " required by the other textobj plugins
