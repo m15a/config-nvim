@@ -87,7 +87,7 @@ set wildmode=list:longest
 
 "" Hack for vim + fish problem:
 if &shell =~# '/fish$'
-  let $SHELL = system('which sh')
+  let $SHELL = system("which sh | tr -d '\n'")
   let &shell = $SHELL
 endif
 
