@@ -42,6 +42,7 @@ if exists('*minpac#init') "{{{1
 
   "" Language settings
   call minpac#add('mnacamura/vim-fish')
+  call minpac#add('rsmenon/vim-mathematica')
   call minpac#add('LnL7/vim-nix')
 
   " Sorted by repo name: `:'<,'>sort /\v^[^\/]+\//`
@@ -224,5 +225,13 @@ augroup lang_fish "{{{2
   au FileType fish setl shiftwidth=2 | compiler fish
 augroup END
 
+augroup lang_mathematica "{{{2
+  autocmd!
+  au BufRead,BufNewFile *.m set filetype=mma
+  au FileType mma setl shiftwidth=2
+  au FileType mma setl conceallevel=0
+augroup END
+
+let g:mma_candy = 1
 
 " vim: fdm=marker sw=2 et
