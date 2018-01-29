@@ -215,6 +215,11 @@ nmap <silent> [skim]/ :<C-u>History/<CR>
 
 "" Language settings {{{1
 
+augroup lang_make "{{{2
+  autocmd!
+  au FileType make setl tabstop=4
+augroup END
+
 augroup lang_viml "{{{2
   autocmd!
   au FileType vim setl shiftwidth=2
