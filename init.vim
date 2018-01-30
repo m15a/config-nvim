@@ -112,8 +112,16 @@ endtry
 
 augroup lucius_color_tweaks
   autocmd!
-  au VimEnter,ColorScheme * hi Search    gui=bold guifg=fg guibg=#afd7ff
-  au VimEnter,ColorScheme * hi IncSearch gui=bold guifg=fg guibg=#afd7ff
+  au VimEnter,ColorScheme *
+        \ if &background ==# 'light' |
+        \   hi Search    gui=bold guifg=fg guibg=#afd7ff |
+        \   hi IncSearch gui=bold guifg=fg guibg=#afd7ff |
+        \ elseif &background ==# 'dark' |
+        \   hi Search    gui=bold guifg=bg guibg=#afd7ff |
+        \   hi IncSearch gui=bold guifg=bg guibg=#afd7ff |
+        \ else |
+        \   echomsg "This message will never be seen!" |
+        \ endif
 augroup END
 
 augroup spell_color_tweaks
@@ -122,7 +130,13 @@ augroup spell_color_tweaks
 augroup END
 
 if !exists('g:lightline') | let g:lightline = {} | endif
-let g:lightline.colorscheme = 'PaperColor'  " TODO: Lucius Light/Dark theme
+if &background ==# 'light'
+  let g:lightline.colorscheme = 'PaperColor'  " TODO: Lucius Light theme
+elseif &background ==# 'dark'
+  let g:lightline.colorscheme = 'seoul256'  " TODO: Lucius Dark theme
+else
+  echom 'This message will never be seen'
+end
 
 let g:lightline.component_expand = {
       \   'ale_warnings': 'lightline#ale#warnings',
