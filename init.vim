@@ -44,6 +44,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('mnacamura/vim-fish')
   call minpac#add('rsmenon/vim-mathematica')
   call minpac#add('LnL7/vim-nix')
+  call minpac#add('vim-pandoc/vim-pandoc-syntax')
 
   " Sorted by repo name: `:'<,'>sort /\v^[^\/]+\//`
 endif
@@ -228,6 +229,11 @@ augroup END
 augroup lang_fish "{{{2
   autocmd!
   au FileType fish setl shiftwidth=2 | compiler fish
+augroup END
+
+augroup lang_markdown "{{{2
+  autocmd!
+  au BufNewFile,BufFilePre,BufRead *.md setl filetype=markdown.pandoc
 augroup END
 
 augroup lang_mathematica "{{{2
