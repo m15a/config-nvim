@@ -248,7 +248,15 @@ augroup END
 augroup lang_markdown "{{{2
   autocmd!
   au BufNewFile,BufFilePre,BufRead *.md setl filetype=markdown.pandoc
+  au FileType markdown*
+        \ nnoremap <buffer> j gj|
+        \ nnoremap <buffer> k gk|
+        \ nnoremap <buffer> gj j|
+        \ nnoremap <buffer> gk k|
+        \ setl wrap
 augroup END
+
+let g:pandoc#syntax#conceal#use = 0
 
 augroup lang_mathematica "{{{2
   autocmd!
