@@ -113,12 +113,13 @@ endtry
 augroup lucius_color_tweaks
   autocmd!
   au VimEnter,ColorScheme *
+        \ hi Visual gui=bold |
         \ if &background ==# 'light' |
-        \   hi Search    gui=bold guifg=fg guibg=#afd7ff |
-        \   hi IncSearch gui=bold guifg=fg guibg=#afd7ff |
+        \   hi IncSearch gui=underline guibg=#afd7ff |
+        \   hi Search    gui=bold      guibg=#afd7ff |
         \ elseif &background ==# 'dark' |
-        \   hi Search    gui=bold guifg=bg guibg=#afd7ff |
-        \   hi IncSearch gui=bold guifg=bg guibg=#afd7ff |
+        \   hi IncSearch gui=underline guibg=#5fd7d7 |
+        \   hi Search    gui=bold      guibg=#5fd7d7 |
         \ else |
         \   echomsg "This message will never be seen!" |
         \ endif
