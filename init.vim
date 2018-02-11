@@ -102,7 +102,7 @@ map P <Plug>(miniyank-autoPut)
 if $COLORTERM ==# 'truecolor'  " VTE, Konsole, and iTerm2
   set termguicolors
 endif
-set background=light
+set background=dark
 
 try
   colorscheme lucius
