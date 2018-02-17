@@ -41,6 +41,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('thinca/vim-visualstar')
 
   "" Language settings
+  call minpac#add('JuliaEditorSupport/julia-vim')
   call minpac#add('mnacamura/vim-fish')
   call minpac#add('rsmenon/vim-mathematica')
   call minpac#add('LnL7/vim-nix')
@@ -266,5 +267,11 @@ augroup lang_mathematica "{{{2
 augroup END
 
 let g:mma_candy = 0
+
+augroup lang_julia "{{{2
+  autocmd!
+  au FileType julia
+        \ nnoremap <buffer> <silent> <LocalLeader>f :call julia#toggle_function_blockassign()<CR>
+augroup END
 
 " vim: fdm=marker sw=2 et
