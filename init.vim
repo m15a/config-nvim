@@ -47,6 +47,9 @@ if exists('*minpac#init') "{{{1
   call minpac#add('LnL7/vim-nix')
   call minpac#add('vim-pandoc/vim-pandoc-syntax')
 
+  "" Applications inside Vim
+  call minpac#add('vimwiki/vimwiki')
+
   " Sorted by repo name: `:'<,'>sort /\v^[^\/]+\//`
 endif
 
@@ -273,5 +276,16 @@ augroup lang_julia "{{{2
   au FileType julia
         \ nnoremap <buffer> <silent> <LocalLeader>f :call julia#toggle_function_blockassign()<CR>
 augroup END
+
+"" Applications inside Vim {{{1
+
+"" Vimwiki {{{2
+let s:vimwiki_root = '~/Clouds/Dropbox/Documents/vimwiki'
+let g:vimwiki_listsyms = ' x'
+let s:vimwiki_main =
+      \ { 'path': s:vimwiki_root . '/main'
+      \ , 'template_path': s:vimwiki_root . '/_templates'
+      \ }
+let g:vimwiki_list = [ s:vimwiki_main ]
 
 " vim: fdm=marker sw=2 et
