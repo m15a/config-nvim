@@ -40,7 +40,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('tpope/vim-unimpaired')
   call minpac#add('thinca/vim-visualstar')
 
-  "" Language settings
+  "" Language extensions
   call minpac#add('JuliaEditorSupport/julia-vim')
   call minpac#add('mnacamura/vim-fish')
   call minpac#add('rsmenon/vim-mathematica')
@@ -230,7 +230,7 @@ nmap <silent> [skim]/ :<C-u>History/<CR>
 " nmap <silent> [skim]C :<C-u>BCommits<CR>  " fugative.vim is required
 " nmap <silent> [skim]: :<C-u>Commands<CR>  " TODO: Conflicts with History:
 
-"" Language settings {{{1
+"" Language extensions {{{1
 
 augroup lang_make "{{{2
   autocmd!
