@@ -125,7 +125,7 @@ augroup lucius_color_tweaks
         \   hi IncSearch gui=underline guibg=#5fd7d7 |
         \   hi Search    gui=bold      guibg=#5fd7d7 |
         \ else |
-        \   echomsg "This message will never be seen!" |
+        \   echoerr "This message will never be seen!" |
         \ endif
 augroup END
 
@@ -140,7 +140,7 @@ if &background ==# 'light'
 elseif &background ==# 'dark'
   let g:lightline.colorscheme = 'seoul256'  " TODO: Lucius Dark theme
 else
-  echom 'This message will never be seen'
+  echoerr 'This message will never be seen'
 end
 
 let g:lightline.component_expand = {
