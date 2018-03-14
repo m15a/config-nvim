@@ -217,14 +217,15 @@ nmap <silent> ]W <Plug>(ale_last)
 "" Skim key mappings
 noremap [skim] <Nop>
 map <Leader>e [skim]
-nmap [skim]f :<C-u>Files ./
+nmap [skim]f :<C-u>Files ./<CR>
+nmap [skim]F :<C-u>Files 
 nmap <silent> [skim]g :<C-u>GFiles<CR>
 nmap <silent> [skim]G :<C-u>GFiles?<CR>
 nmap <silent> [skim]b :<C-u>Buffers<CR>
 nmap [skim]L :<C-u>Lines 
 nmap [skim]l :<C-u>BLines 
-nmap [skim]T :<C-u>Tags  
-nmap [skim]t :<C-u>BTags  
+nmap [skim]T :<C-u>Tags 
+nmap [skim]t :<C-u>BTags 
 nmap <silent> [skim]m :<C-u>Marks<CR>  " TODO: Marks does not work!
 nmap <silent> [skim]h :<C-u>History<CR>  " TODO: History does not work!
 nmap <silent> [skim]: :<C-u>History:<CR>
