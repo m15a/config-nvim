@@ -281,12 +281,13 @@ augroup END
 "" Applications inside Vim {{{1
 
 "" Vimwiki {{{2
+let g:vimwiki_auto_chdir = 1
 let s:vimwiki_root = '~/Clouds/Dropbox/Documents/vimwiki'
 let g:vimwiki_listsyms = ' x'
-let s:vimwiki_main =
-      \ { 'path': s:vimwiki_root . '/main'
+let s:vimwiki_default =
+      \ { 'path': s:vimwiki_root . '/default'
       \ , 'template_path': s:vimwiki_root . '/_templates'
       \ }
-let g:vimwiki_list = [ s:vimwiki_main ]
+let g:vimwiki_list = [ s:vimwiki_default ]
 
 " vim: fdm=marker sw=2 et
