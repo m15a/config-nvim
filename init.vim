@@ -17,6 +17,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('maximbaz/lightline-ale')
   call minpac#add('itchyny/lightline.vim')
   call minpac#add('jonathanfilip/vim-lucius')
+  call minpac#add('roosta/vim-srcery')
 
   "" Text objects
   call minpac#add('wellle/targets.vim')
@@ -112,39 +113,28 @@ endif
 set background=dark
 
 try
-  colorscheme lucius
+  colorscheme srcery
 catch /\v^Vim%(\(\a+\))=:E185/
   " Suppress error messages
 endtry
 
-augroup lucius_color_tweaks
+augroup color_tweaks
   autocmd!
+  " Makes the background transparent. Leave these out if you're not using a
+  " transparent terminal.
+  " TODO: Fix this when opening vim with no files
+  "    Error detected while processing VimEnter Auto commands for "*":
+  "    E749: empty buffer<Paste>`
   au VimEnter,ColorScheme *
-        \ hi Visual gui=bold |
-        \ if &background ==# 'light' |
-        \   hi IncSearch gui=underline guibg=#afd7ff |
-        \   hi Search    gui=bold      guibg=#afd7ff |
-        \ elseif &background ==# 'dark' |
-        \   hi IncSearch gui=underline guibg=#5fd7d7 |
-        \   hi Search    gui=bold      guibg=#5fd7d7 |
-        \ else |
-        \   echoerr "This message will never be seen!" |
-        \ endif
-augroup END
+        \ | hi Normal ctermbg=NONE guibg=NONE
+        \ | hi NonText ctermbg=NONE guibg=NONE
 
-augroup spell_color_tweaks
-  autocmd!
+  " Spell colors
   au VimEnter,ColorScheme * hi SpellBad gui=undercurl guifg=#d70000
 augroup END
 
 if !exists('g:lightline') | let g:lightline = {} | endif
-if &background ==# 'light'
-  let g:lightline.colorscheme = 'PaperColor'  " TODO: Lucius Light theme
-elseif &background ==# 'dark'
-  let g:lightline.colorscheme = 'seoul256'  " TODO: Lucius Dark theme
-else
-  echoerr 'This message will never be seen'
-end
+let g:lightline.colorscheme = 'srcery'
 
 let g:lightline.component_expand = {
       \   'ale_warnings': 'lightline#ale#warnings',
