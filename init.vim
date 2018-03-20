@@ -304,7 +304,7 @@ augroup END
 
 "" Vimwiki {{{2
 let g:vimwiki_auto_chdir = 1
-let s:vimwiki_root = '~/Clouds/Dropbox/Documents/vimwiki'
+let s:vimwiki_root = '~/clouds/Dropbox/Documents/vimwiki'
 let g:vimwiki_listsyms = ' x'
 let s:vimwiki_default =
       \ { 'path': s:vimwiki_root . '/default'
