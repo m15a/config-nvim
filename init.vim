@@ -121,17 +121,8 @@ endtry
 
 augroup color_tweaks
   autocmd!
-  " Makes the background transparent. Leave these out if you're not using a
-  " transparent terminal.
-  " TODO: Fix this when opening vim with no files
-  "    Error detected while processing VimEnter Auto commands for "*":
-  "    E749: empty buffer<Paste>`
-  au VimEnter,ColorScheme *
-        \ | hi Normal ctermbg=NONE guibg=NONE
-        \ | hi NonText ctermbg=NONE guibg=NONE
-
   " Spell colors
-  au VimEnter,ColorScheme * hi SpellBad gui=undercurl guifg=#d70000
+  au VimEnter,ColorScheme * hi SpellBad gui=undercurl guifg=#f75341
 augroup END
 
 if !exists('g:lightline') | let g:lightline = {} | endif
