@@ -50,6 +50,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('rsmenon/vim-mathematica')
   call minpac#add('LnL7/vim-nix')
   call minpac#add('vim-pandoc/vim-pandoc-syntax')
+  call minpac#add('baskerville/vim-sxhkdrc')
 
   "" Applications inside Vim
   call minpac#add('vimwiki/vimwiki')
