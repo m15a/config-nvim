@@ -121,8 +121,15 @@ endtry
 
 augroup color_tweaks
   autocmd!
-  " Spell colors
-  au VimEnter,ColorScheme * hi SpellBad gui=undercurl guifg=#f75341
+  " Gruvbox orange
+  au VimEnter,ColorScheme *
+        \ hi Search    ctermbg=166 guibg=#d65d0e |
+        \ hi IncSearch ctermbg=166 guibg=#d65d0e |
+        \ hi PmenuSel  ctermbg=166 guibg=#d65d0e |
+
+  " Srcery brred
+  au VimEnter,ColorScheme *
+        \ hi SpellBad ctermfg=9 guifg=#f75341 gui=undercurl
 augroup END
 
 if !exists('g:lightline') | let g:lightline = {} | endif
