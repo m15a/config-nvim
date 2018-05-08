@@ -46,6 +46,8 @@ if exists('*minpac#init') "{{{1
 
   "" Language extensions
   call minpac#add('JuliaEditorSupport/julia-vim')
+  call minpac#add('jalvesaq/Nvim-R')
+  call minpac#add('maverickg/stan.vim')
   call minpac#add('mnacamura/vim-fish')
   call minpac#add('rsmenon/vim-mathematica')
   call minpac#add('LnL7/vim-nix')
@@ -282,6 +284,16 @@ augroup lang_mathematica "{{{2
 augroup END
 
 let g:mma_candy = 0
+
+augroup lang_r "{{{2
+  autocmd!
+  au TermOpen * setl nonumber
+  au FileType r setl shiftwidth=2
+augroup END
+
+let g:R_assign = 0
+let g:R_pdfviewer = 'zathura'
+" let g:R_args = ['-q']
 
 augroup lang_julia "{{{2
   autocmd!
