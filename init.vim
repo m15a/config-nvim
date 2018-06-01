@@ -53,6 +53,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('LnL7/vim-nix')
   call minpac#add('vim-pandoc/vim-pandoc-syntax')
   call minpac#add('baskerville/vim-sxhkdrc')
+  call minpac#add('cespare/vim-toml')
 
   "" Applications inside Vim
   call minpac#add('vimwiki/vimwiki')
