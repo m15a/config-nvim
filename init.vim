@@ -32,6 +32,7 @@ if exists('*minpac#init') "{{{1
   " call minpac#add('jiangmiao/auto-pairs')  " vim-surround provides it by <C-S>
   call minpac#add('rhysd/clever-f.vim')
   call minpac#add('lotabout/skim.vim')
+  call minpac#add('majutsushi/tagbar')
   call minpac#add('tpope/vim-commentary')
   call minpac#add('junegunn/vim-easy-align')
   call minpac#add('houtsnip/vim-emacscommandline')
@@ -228,6 +229,10 @@ nmap <silent> [skim]/ :<C-u>History/<CR>
 " nmap <silent> [skim]c :<C-u>Commits<CR>  " fugative.vim is required
 " nmap <silent> [skim]C :<C-u>BCommits<CR>  " fugative.vim is required
 " nmap <silent> [skim]: :<C-u>Commands<CR>  " TODO: Conflicts with History:
+
+"" Tagbar settings
+let g:tagbar_singleclick = 1
+nmap <silent> <Leader>l :TagbarToggle<CR>
 
 "" Japanese settings {{{1
 
