@@ -53,6 +53,8 @@ if exists('*minpac#init') "{{{1
   call minpac#add('rsmenon/vim-mathematica')
   call minpac#add('LnL7/vim-nix')
   call minpac#add('vim-pandoc/vim-pandoc-syntax')
+  call minpac#add('rust-lang/rust.vim')
+  call minpac#add('racer-rust/vim-racer')
   call minpac#add('baskerville/vim-sxhkdrc')
   call minpac#add('cespare/vim-toml')
 
@@ -300,6 +302,16 @@ augroup END
 let g:R_assign = 0
 let g:R_pdfviewer = 'zathura'
 " let g:R_args = ['-q']
+
+augroup lang_rust "{{{2
+  autocmd!
+augroup END
+
+let g:rust_conceal = 1
+" let g:rust_conceal_mod_path = 1
+" let g:rust_conceal_pub = 1
+let g:rust_fold = 1
+" let g:ftplugin_rust_source_path = $HOME.'/dev/rust'
 
 augroup lang_julia "{{{2
   autocmd!
