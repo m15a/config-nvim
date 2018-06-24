@@ -305,6 +305,11 @@ let g:R_pdfviewer = 'zathura'
 
 augroup lang_rust "{{{2
   autocmd!
+  au FileType rust
+        \ nmap <buffer> <silent> K <Plug>(rust-doc)|
+        \ nmap <buffer> <silent> gd <Plug>(rust-def)|
+        \ nmap <buffer> <silent> gs <Plug>(rust-def-split)|
+        \ nmap <buffer> <silent> gv <Plug>(rust-def-vertical)
 augroup END
 
 let g:rust_conceal = 0
