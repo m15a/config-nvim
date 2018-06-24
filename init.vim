@@ -307,11 +307,12 @@ augroup lang_rust "{{{2
   autocmd!
 augroup END
 
-let g:rust_conceal = 1
-" let g:rust_conceal_mod_path = 1
-" let g:rust_conceal_pub = 1
-let g:rust_fold = 1
-" let g:ftplugin_rust_source_path = $HOME.'/dev/rust'
+let g:rust_conceal = 0
+let g:rust_fold = 2
+
+"" vim-racer
+let $RUST_SRC_PATH = $HOME . '/.nix-profile/lib/rustlib/src/rust/src'
+let g:ftplugin_rust_source_path = $RUST_SRC_PATH
 
 augroup lang_julia "{{{2
   autocmd!
