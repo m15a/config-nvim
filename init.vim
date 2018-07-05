@@ -51,7 +51,6 @@ if exists('*minpac#init') "{{{1
   call minpac#add('maverickg/stan.vim')
   call minpac#add('mnacamura/vim-fish')
   call minpac#add('rsmenon/vim-mathematica')
-  call minpac#add('LnL7/vim-nix')
   call minpac#add('vim-pandoc/vim-pandoc-syntax')
   call minpac#add('rust-lang/rust.vim')
   call minpac#add('racer-rust/vim-racer')
