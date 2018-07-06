@@ -128,9 +128,9 @@ augroup color_tweaks
   autocmd!
   " Gruvbox orange
   au VimEnter,ColorScheme *
-        \ hi Search    ctermbg=166 guibg=#d65d0e |
-        \ hi IncSearch ctermbg=166 guibg=#d65d0e |
-        \ hi PmenuSel  ctermbg=166 guibg=#d65d0e |
+        \ hi Search    ctermbg=166 guibg=#d75f00 |
+        \ hi IncSearch ctermbg=166 guibg=#d75f00 |
+        \ hi PmenuSel  ctermbg=166 guibg=#d75f00 |
 
   " Srcery brred
   au VimEnter,ColorScheme *
