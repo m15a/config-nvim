@@ -17,7 +17,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('maximbaz/lightline-ale')
   call minpac#add('itchyny/lightline.vim')
   call minpac#add('jonathanfilip/vim-lucius')
-  call minpac#add('roosta/vim-srcery')
+  call minpac#add('srcery-colors/srcery-vim')
 
   "" Text objects
   call minpac#add('wellle/targets.vim')
