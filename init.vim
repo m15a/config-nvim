@@ -50,7 +50,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('jalvesaq/Nvim-R')
   call minpac#add('maverickg/stan.vim')
   call minpac#add('mnacamura/vim-fish')
-  call minpac#add('rsmenon/vim-mathematica')
+  call minpac#add('arnoudbuzing/wolfram-vim')
   call minpac#add('vim-pandoc/vim-pandoc-syntax')
   call minpac#add('rust-lang/rust.vim')
   call minpac#add('racer-rust/vim-racer')
@@ -286,8 +286,8 @@ let g:pandoc#syntax#conceal#use = 0
 
 augroup lang_mathematica "{{{2
   autocmd!
-  au BufNewFile,BufFilePre,BufRead *.m set filetype=mma
-  au FileType mma setl shiftwidth=2
+  au BufNewFile,BufFilePre,BufRead *.m,*.wl setl filetype=wl
+  au FileType wl setl shiftwidth=2
 augroup END
 
 let g:mma_candy = 0
