@@ -50,7 +50,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('jalvesaq/Nvim-R')
   call minpac#add('maverickg/stan.vim')
   call minpac#add('mnacamura/vim-fish')
-  call minpac#add('arnoudbuzing/wolfram-vim')
+  call minpac#add('mnacamura/wolfram-vim', {'branch': 'plugin-manager'})
   call minpac#add('vim-pandoc/vim-pandoc-syntax')
   call minpac#add('rust-lang/rust.vim')
   call minpac#add('racer-rust/vim-racer')
