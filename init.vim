@@ -306,7 +306,7 @@ let g:mma_candy = 0
 augroup lang_r "{{{2
   autocmd!
   au TermOpen * setl nonumber
-  au FileType r setl shiftwidth=2
+  au FileType r setl shiftwidth=4
 augroup END
 
 let g:R_assign = 0
