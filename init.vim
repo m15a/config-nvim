@@ -312,6 +312,7 @@ augroup END
 let g:R_assign = 0
 let g:R_pdfviewer = 'zathura'
 " let g:R_args = ['-q']
+let g:ale_r_lintr_options = "with_defaults(line_length_linter(" . &textwidth . "))"
 
 augroup lang_rust "{{{2
   autocmd!
