@@ -216,7 +216,7 @@ augroup END
 
 augroup lang_fish "{{{2
   autocmd!
-  au FileType fish setl shiftwidth=2 | compiler fish
+  au FileType fish compiler fish
 augroup END
 
 augroup lang_markdown "{{{2
