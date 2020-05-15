@@ -40,6 +40,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('fuenor/JpFormat.vim')
 
   "" Language extensions
+  call minpac#add('aliou/bats.vim')
   call minpac#add('JuliaEditorSupport/julia-vim')
   call minpac#add('jalvesaq/Nvim-R')
   call minpac#add('maverickg/stan.vim')
