@@ -22,7 +22,7 @@ if exists('*minpac#init') "{{{1
   call minpac#add('chaoren/vim-wordmotion')  " replaces CamelCaseMotion
 
   "" UI enhancements
-  call minpac#add('w0rp/ale')
+  call minpac#add('dense-analysis/ale')
   " call minpac#add('jiangmiao/auto-pairs')  " vim-surround provides it by <C-S>
   call minpac#add('rhysd/clever-f.vim')
   call minpac#add('lotabout/skim.vim')
