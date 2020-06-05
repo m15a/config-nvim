@@ -90,7 +90,7 @@ set smartcase
 set smartindent
 set softtabstop=-1
 set suffixes+=.omc  " OMake
-set textwidth=78
+set textwidth=100
 set virtualedit=all
 set visualbell
 set undofile
