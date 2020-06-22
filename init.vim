@@ -234,6 +234,37 @@ augroup lang_fish "{{{2
   au FileType fish compiler fish
 augroup END
 
+augroup lang_scheme "{{{2
+  autocmd!
+  au FileType r7rs call s:iron_add_gauche()
+augroup END
+
+let g:r7rs_more_parens = '}]'
+let g:r7rs_use_gauche = 1
+let g:tagbar_type_r7rs = {
+      \   'ctagstype': 'scheme',
+      \   'kinds': [ 'f:functions' ]
+      \ }
+let g:parinfer_gauche_reader_syntax = 1
+
+fun! s:iron_add_gauche() abort
+lua << EOF
+local iron = require('iron')
+iron.core.add_repl_definitions {
+  r7rs = {
+    gauche = {
+      command = {"gosh"}
+    }
+  }
+}
+iron.core.set_config {
+  preferred = {
+    r7rs = "gauche"
+  }
+}
+EOF
+endfun
+
 augroup lang_fennel "{{{2
   autocmd!
   au FileType fennel call s:iron_add_fennel()
