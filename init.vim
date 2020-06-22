@@ -234,6 +234,29 @@ augroup lang_fish "{{{2
   au FileType fish compiler fish
 augroup END
 
+augroup lang_fennel "{{{2
+  autocmd!
+  au FileType fennel call s:iron_add_fennel()
+augroup END
+
+fun! s:iron_add_fennel() abort
+lua << EOF
+local iron = require('iron')
+iron.core.add_repl_definitions {
+  fennel = {
+    fennel = {
+      command = {"fennel"}
+    }
+  }
+}
+iron.core.set_config {
+  preferred = {
+    fennel = "fennel"
+  }
+}
+EOF
+endfun
+
 augroup lang_markdown "{{{2
   autocmd!
   au BufNewFile,BufFilePre,BufRead *.md setl filetype=markdown.pandoc
