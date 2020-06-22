@@ -145,10 +145,6 @@ let g:clever_f_smart_case = 1
 let g:clever_f_use_migemo = 1
 let g:clever_f_repeat_last_char_inputs = ["\<Tab>"]
 
-"" Search the text at the cursor or selected in visual mode
-map * <Plug>(visualstar-*)N
-map # <Plug>(visualstar-#)N
-
 "" Use `ga` for aligning instead of showing the ASCII value at the cursor
 nnoremap gA ga
 nmap ga <Plug>(EasyAlign)
