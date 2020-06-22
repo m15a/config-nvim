@@ -257,8 +257,28 @@ augroup END
 
 augroup lang_scheme "{{{2
   autocmd!
-  au FileType r7rs call s:iron_add_gauche()
+  au FileType scheme,r7rs call s:iron_add_scheme()
 augroup END
+fun! s:iron_add_scheme() abort
+lua << EOF
+local iron = require('iron')
+iron.core.set_config {
+  repl_open_cmd = 'top 10 split',
+  preferred = {
+    scheme = 'gauche',
+    r7rs = 'gauche'
+  }
+}
+iron.core.add_repl_definitions {
+  scheme = {
+    gauche = { command = {'gosh'} }
+  },
+  r7rs = {
+    gauche = { command = {'gosh'} }
+  }
+}
+EOF
+endfun
 
 let g:r7rs_more_parens = '}]'
 let g:r7rs_use_gauche = 1
@@ -268,42 +288,22 @@ let g:tagbar_type_r7rs = {
       \ }
 let g:parinfer_gauche_reader_syntax = 1
 
-fun! s:iron_add_gauche() abort
-lua << EOF
-local iron = require('iron')
-iron.core.add_repl_definitions {
-  r7rs = {
-    gauche = {
-      command = {"gosh"}
-    }
-  }
-}
-iron.core.set_config {
-  preferred = {
-    r7rs = "gauche"
-  }
-}
-EOF
-endfun
-
 augroup lang_fennel "{{{2
   autocmd!
   au FileType fennel call s:iron_add_fennel()
 augroup END
-
 fun! s:iron_add_fennel() abort
 lua << EOF
 local iron = require('iron')
-iron.core.add_repl_definitions {
-  fennel = {
-    fennel = {
-      command = {"fennel"}
-    }
+iron.core.set_config {
+  repl_open_cmd = 'top 10 split',
+  preferred = {
+    fennel = 'fennel'
   }
 }
-iron.core.set_config {
-  preferred = {
-    fennel = "fennel"
+iron.core.add_repl_definitions {
+  fennel = {
+    fennel = { command = {'fennel'} }
   }
 }
 EOF
