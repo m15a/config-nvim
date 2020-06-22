@@ -178,6 +178,7 @@ nmap <silent> [skim]/ :<C-u>History/<CR>
 
 "" Tagbar settings
 let g:tagbar_singleclick = 1
+let g:tagbar_autoclose = 1
 nmap <silent> <Leader>l :TagbarToggle<CR>
 
 " See https://vim.fandom.com/wiki/Insert_current_date_or_time
