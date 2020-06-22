@@ -203,9 +203,9 @@ let g:iron_map_defaults = 0
 let g:iron_map_extended = 0
 noremap [iron] <Nop>
 map <Leader>r [iron]
-nmap <silent> [iron]r :IronRepl<CR>
-nmap <silent> [iron]t :IronReplHere<CR> 
-nmap <silent> [iron]R :IronRestart<CR> 
+nmap <silent> [iron]r :IronRepl<CR><ESC>
+nmap <silent> [iron]t :IronReplHere<CR>
+nmap <silent> [iron]R :IronRestart<CR>
 nmap [iron]E :IronSend! 
 nmap <silent> [iron]f :IronFocus<CR>
 nmap [iron]w :IronWatchCurrentFile 
