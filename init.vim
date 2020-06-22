@@ -257,6 +257,7 @@ augroup END
 
 augroup lang_scheme "{{{2
   autocmd!
+  au BufNewFile,BufRead *.scm,*.sld,*.ss let b:parinfer_gauche_reader_syntax = 1
   au FileType scheme,r7rs call s:iron_add_scheme()
 augroup END
 fun! s:iron_add_scheme() abort
@@ -286,7 +287,6 @@ let g:tagbar_type_r7rs = {
       \   'ctagstype': 'scheme',
       \   'kinds': [ 'f:functions' ]
       \ }
-let g:parinfer_gauche_reader_syntax = 1
 
 augroup lang_fennel "{{{2
   autocmd!
