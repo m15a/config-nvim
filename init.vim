@@ -198,6 +198,27 @@ augroup update_timestamp
   au BufWritePre * call UpdateTimestamp('%Y-%m-%d')
 augroup END
 
+" Iron key mappings
+let g:iron_map_defaults = 0
+let g:iron_map_extended = 0
+noremap [iron] <Nop>
+map <Leader>r [iron]
+nmap <silent> [iron]r :IronRepl<CR>
+nmap <silent> [iron]t :IronReplHere<CR> 
+nmap <silent> [iron]R :IronRestart<CR> 
+nmap [iron]E :IronSend! 
+nmap <silent> [iron]f :IronFocus<CR>
+nmap [iron]w :IronWatchCurrentFile 
+nmap [iron]u :IronUnwatchCurrentFile<CR>
+nmap <silent> [iron]e <Plug>(iron-send-motion)
+vmap <silent> [iron]e <Plug>(iron-visual-send)
+" nmap <silent> [iron]. <Plug>(iron-repeat-cmd)  " TODO: fix error
+nmap <silent> [iron]l <Plug>(iron-send-line)
+nmap <silent> [iron]<CR> <Plug>(iron-cr)
+nmap <silent> [iron]<C-c> <Plug>(iron-interrupt)
+nmap <silent> [iron]q <Plug>(iron-exit)
+nmap <silent> [iron]<C-l> <Plug>(iron-clear)
+
 "" Japanese settings {{{1
 
 set ambiwidth=double  " □や○の文字があってもカーソル位置がずれないようにする。
