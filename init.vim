@@ -11,7 +11,6 @@ if exists('*minpac#init') "{{{1
 
   "" Basic settings
   call minpac#add('bfredl/nvim-miniyank')
-  call minpac#add('tpope/vim-sensible')
 
   "" Text objects
   call minpac#add('wellle/targets.vim')
@@ -63,45 +62,6 @@ command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 
 "" Basic settings {{{1
-
-set clipboard+=unnamedplus
-set complete+=k  " Enable dictionary completion
-set cursorline
-set diffopt+=vertical
-set expandtab
-set fileformat=unix
-set fileformats=unix,dos,mac
-set hidden  " Hide a buffer instead of unloading it
-set ignorecase
-set infercase
-set list
-set listchars=eol:¬,tab:>_,trail:_,extends:»,precedes:«,nbsp:_
-set mouse=a
-set nowrap
-set nrformats=  " Only dicimal numbers are allowed for <CTRL-A/X>
-set number
-" set scroll=5
-set path=.,,
-set scrolloff=4
-set shiftwidth=4
-set showbreak=»
-set showmatch
-set smartcase
-set smartindent
-set softtabstop=-1
-set suffixes+=.omc  " OMake
-set textwidth=100
-set virtualedit=all
-set visualbell
-set undofile
-set wildignorecase
-set wildmode=list:longest
-
-"" Hack for vim + fish problem:
-if &shell =~# '/fish$'
-  let $SHELL = system("which sh | tr -d '\n'")
-  let &shell = $SHELL
-endif
 
 "" Fix block paste when clipboard=unnamed[plus]
 map p <Plug>(miniyank-autoput)
