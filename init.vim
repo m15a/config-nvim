@@ -20,7 +20,6 @@ if exists('*minpac#init') "{{{1
   "" UI enhancements
   call minpac#add('dense-analysis/ale')
   " call minpac#add('jiangmiao/auto-pairs')  " vim-surround provides it by <C-S>
-  call minpac#add('rhysd/clever-f.vim')
   call minpac#add('lotabout/skim.vim')
   call minpac#add('majutsushi/tagbar')
   call minpac#add('tpope/vim-commentary')
@@ -88,13 +87,6 @@ if executable('rg')
   set grepprg=rg\ -S\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
-
-"" Set <Leader> resp. <LocalLeader> to ';' resp. ',' by using clever-f
-let g:mapleader = ';'
-let g:maplocalleader = ','
-let g:clever_f_smart_case = 1
-let g:clever_f_use_migemo = 1
-let g:clever_f_repeat_last_char_inputs = ["\<Tab>"]
 
 "" Use `ga` for aligning instead of showing the ASCII value at the cursor
 nnoremap gA ga
