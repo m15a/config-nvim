@@ -9,9 +9,6 @@ if exists('*minpac#init') "{{{1
   call minpac#init({'dir': s:data_home . '/site'})
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-  "" Basic settings
-  call minpac#add('bfredl/nvim-miniyank')
-
   "" Text objects
   call minpac#add('wellle/targets.vim')
   call minpac#add('kana/vim-tabpagecd')
@@ -60,12 +57,6 @@ endif
 
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
-
-"" Basic settings {{{1
-
-"" Fix block paste when clipboard=unnamed[plus]
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
 
 "" Text objects {{{1
 
