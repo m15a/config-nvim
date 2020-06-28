@@ -10,25 +10,18 @@ if exists('*minpac#init') "{{{1
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   "" Text objects
-  call minpac#add('wellle/targets.vim')
-  call minpac#add('kana/vim-tabpagecd')
   call minpac#add('glts/vim-textobj-comment')
   call minpac#add('kana/vim-textobj-indent')
   call minpac#add('kana/vim-textobj-user')  " required by the other textobj plugins
-  call minpac#add('chaoren/vim-wordmotion')  " replaces CamelCaseMotion
 
   "" UI enhancements
   call minpac#add('dense-analysis/ale')
-  " call minpac#add('jiangmiao/auto-pairs')  " vim-surround provides it by <C-S>
   call minpac#add('lotabout/skim.vim')
   call minpac#add('majutsushi/tagbar')
   call minpac#add('tpope/vim-commentary')
-  call minpac#add('junegunn/vim-easy-align')
   call minpac#add('houtsnip/vim-emacscommandline')
   call minpac#add('tpope/vim-repeat')
   call minpac#add('tpope/vim-speeddating')
-  call minpac#add('tpope/vim-surround')
-  call minpac#add('tpope/vim-unimpaired')
   call minpac#add('thinca/vim-visualstar')
 
   "" Japanese settings
@@ -57,11 +50,6 @@ endif
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 
-"" Text objects {{{1
-
-"" Separators of connected-words.without_spaces.likeThis
-let g:wordmotion_spaces = '_-.'
-
 "" UI enhancements {{{1
 
 "" Practical Vim, Tip 42: '%%' expands to '%:h'
@@ -88,12 +76,7 @@ if executable('rg')
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-"" Use `ga` for aligning instead of showing the ASCII value at the cursor
-nnoremap gA ga
-nmap ga <Plug>(EasyAlign)
-vmap ga <Plug>(EasyAlign)
-
-"“ Modern Vim, Tip 12: ALE mappings in the style of unimpaired
+"" Modern Vim, Tip 12: ALE mappings in the style of unimpaired
 nmap <silent> [W <Plug>(ale_first)
 nmap <silent> [w <Plug>(ale_previous)
 nmap <silent> ]w <Plug>(ale_next)
