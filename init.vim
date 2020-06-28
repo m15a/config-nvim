@@ -124,27 +124,6 @@ augroup update_timestamp
   au BufWritePre * call UpdateTimestamp('%Y-%m-%d')
 augroup END
 
-" Iron key mappings
-let g:iron_map_defaults = 0
-let g:iron_map_extended = 0
-noremap [iron] <Nop>
-map <Leader>r [iron]
-nmap <silent> [iron]r :IronRepl<CR><ESC>
-nmap <silent> [iron]t :IronReplHere<CR>
-nmap <silent> [iron]R :IronRestart<CR>
-nmap [iron]E :IronSend! 
-nmap <silent> [iron]f :IronFocus<CR>
-nmap [iron]w :IronWatchCurrentFile 
-nmap [iron]u :IronUnwatchCurrentFile<CR>
-nmap <silent> [iron]e <Plug>(iron-send-motion)
-vmap <silent> [iron]e <Plug>(iron-visual-send)
-" nmap <silent> [iron]. <Plug>(iron-repeat-cmd)  " TODO: fix error
-nmap <silent> [iron]l <Plug>(iron-send-line)
-nmap <silent> [iron]<CR> <Plug>(iron-cr)
-nmap <silent> [iron]<C-c> <Plug>(iron-interrupt)
-nmap <silent> [iron]q <Plug>(iron-exit)
-nmap <silent> [iron]<C-l> <Plug>(iron-clear)
-
 "" Japanese settings {{{1
 
 set ambiwidth=double  " □や○の文字があってもカーソル位置がずれないようにする。
@@ -184,28 +163,7 @@ augroup END
 augroup lang_scheme "{{{2
   autocmd!
   au BufNewFile,BufRead *.scm,*.sld,*.ss let b:parinfer_gauche_reader_syntax = 1
-  au FileType scheme,r7rs call s:iron_add_scheme()
 augroup END
-fun! s:iron_add_scheme() abort
-lua << EOF
-local iron = require('iron')
-iron.core.set_config {
-  repl_open_cmd = 'top 10 split',
-  preferred = {
-    scheme = 'gauche',
-    r7rs = 'gauche'
-  }
-}
-iron.core.add_repl_definitions {
-  scheme = {
-    gauche = { command = {'gosh'} }
-  },
-  r7rs = {
-    gauche = { command = {'gosh'} }
-  }
-}
-EOF
-endfun
 
 let g:r7rs_more_parens = '}]'
 let g:r7rs_use_gauche = 1
@@ -213,27 +171,6 @@ let g:tagbar_type_r7rs = {
       \   'ctagstype': 'scheme',
       \   'kinds': [ 'f:functions' ]
       \ }
-
-augroup lang_fennel "{{{2
-  autocmd!
-  au FileType fennel call s:iron_add_fennel()
-augroup END
-fun! s:iron_add_fennel() abort
-lua << EOF
-local iron = require('iron')
-iron.core.set_config {
-  repl_open_cmd = 'top 10 split',
-  preferred = {
-    fennel = 'fennel'
-  }
-}
-iron.core.add_repl_definitions {
-  fennel = {
-    fennel = { command = {'fennel'} }
-  }
-}
-EOF
-endfun
 
 augroup lang_markdown "{{{2
   autocmd!
