@@ -34,7 +34,6 @@ if exists('*minpac#init') "{{{1
   call minpac#add('maverickg/stan.vim')
   call minpac#add('mnacamura/vim-fish')
   call minpac#add('arnoudbuzing/wolfram-vim')
-  call minpac#add('vim-pandoc/vim-pandoc-syntax')
   call minpac#add('vim-pandoc/vim-rmarkdown')
   call minpac#add('rust-lang/rust.vim')
   call minpac#add('racer-rust/vim-racer')
@@ -154,29 +153,6 @@ let g:tagbar_type_r7rs = {
       \   'ctagstype': 'scheme',
       \   'kinds': [ 'f:functions' ]
       \ }
-
-augroup lang_markdown "{{{2
-  autocmd!
-  au BufNewFile,BufFilePre,BufRead *.md setl filetype=markdown.pandoc
-  au FileType markdown*
-        \ nnoremap <buffer> j gj|
-        \ nnoremap <buffer> k gk|
-        \ nnoremap <buffer> gj j|
-        \ nnoremap <buffer> gk k|
-        \ setl wrap
-augroup END
-
-augroup lang_rmarkdown "{{{2
-  autocmd!
-  au FileType rmarkdown
-        \ nnoremap <buffer> j gj|
-        \ nnoremap <buffer> k gk|
-        \ nnoremap <buffer> gj j|
-        \ nnoremap <buffer> gk k|
-        \ setl wrap
-augroup END
-
-let g:pandoc#syntax#conceal#use = 0
 
 augroup lang_mathematica "{{{2
   autocmd!
