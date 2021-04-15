@@ -15,7 +15,6 @@ if exists('*minpac#init') "{{{1
   call minpac#add('houtsnip/vim-emacscommandline')
   call minpac#add('tpope/vim-repeat')
   call minpac#add('tpope/vim-speeddating')
-  call minpac#add('thinca/vim-visualstar')
 
   "" Language extensions
   call minpac#add('aliou/bats.vim')
