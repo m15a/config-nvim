@@ -9,16 +9,9 @@ if exists('*minpac#init') "{{{1
   call minpac#init({'dir': s:data_home . '/site'})
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-  "" Text objects
-  call minpac#add('glts/vim-textobj-comment')
-  call minpac#add('kana/vim-textobj-indent')
-  call minpac#add('kana/vim-textobj-user')  " required by the other textobj plugins
-
   "" UI enhancements
   call minpac#add('dense-analysis/ale')
   call minpac#add('lotabout/skim.vim')
-  call minpac#add('majutsushi/tagbar')
-  call minpac#add('tpope/vim-commentary')
   call minpac#add('houtsnip/vim-emacscommandline')
   call minpac#add('tpope/vim-repeat')
   call minpac#add('tpope/vim-speeddating')
@@ -100,11 +93,6 @@ nmap <silent> [skim]/ :<C-u>History/<CR>
 " nmap <silent> [skim]c :<C-u>Commits<CR>  " fugative.vim is required
 " nmap <silent> [skim]C :<C-u>BCommits<CR>  " fugative.vim is required
 " nmap <silent> [skim]: :<C-u>Commands<CR>  " TODO: Conflicts with History:
-
-"" Tagbar settings
-let g:tagbar_singleclick = 1
-let g:tagbar_autoclose = 1
-nmap <silent> <Leader>l :TagbarToggle<CR>
 
 "" Japanese settings {{{1
 
