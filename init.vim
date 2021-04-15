@@ -29,9 +29,6 @@ if exists('*minpac#init') "{{{1
   call minpac#add('baskerville/vim-sxhkdrc')
   call minpac#add('cespare/vim-toml')
 
-  "" Applications inside Vim
-  call minpac#add('vimwiki/vimwiki')
-
   " Sorted by repo name: `:'<,'>sort /\v^[^\/]+\//`
 endif
 
@@ -159,16 +156,5 @@ augroup lang_julia "{{{2
         \ nnoremap <buffer> <silent> <LocalLeader>f :call julia#toggle_function_blockassign()<CR>
 augroup END
 
-"" Applications inside Vim {{{1
-
-"" Vimwiki {{{2
-let g:vimwiki_auto_chdir = 1
-let s:vimwiki_root = '~/Dropbox/Documents/vimwiki'
-let g:vimwiki_listsyms = ' x'
-let s:vimwiki_default =
-      \ { 'path': s:vimwiki_root . '/default'
-      \ , 'template_path': s:vimwiki_root . '/_templates'
-      \ }
-let g:vimwiki_list = [ s:vimwiki_default ]
 
 " vim: fdm=marker sw=2 et
