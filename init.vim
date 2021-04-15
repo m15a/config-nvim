@@ -17,9 +17,6 @@ if exists('*minpac#init') "{{{1
   call minpac#add('tpope/vim-speeddating')
   call minpac#add('thinca/vim-visualstar')
 
-  "" Japanese settings
-  call minpac#add('fuenor/JpFormat.vim')
-
   "" Language extensions
   call minpac#add('aliou/bats.vim')
   call minpac#add('JuliaEditorSupport/julia-vim')
@@ -93,25 +90,6 @@ nmap <silent> [skim]/ :<C-u>History/<CR>
 " nmap <silent> [skim]c :<C-u>Commits<CR>  " fugative.vim is required
 " nmap <silent> [skim]C :<C-u>BCommits<CR>  " fugative.vim is required
 " nmap <silent> [skim]: :<C-u>Commands<CR>  " TODO: Conflicts with History:
-
-"" Japanese settings {{{1
-
-set ambiwidth=double  " □や○の文字があってもカーソル位置がずれないようにする。
-set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
-set formatoptions+=mB  " 日本語の行同士の連結には空白を入力しない
-set matchpairs+=（:）,「:」,『:』,【:】,［:］,〈:〉,《:》,‘:’,“:”
-set spelllang+=cjk  " 日本語をスペルチェックから除外する
-
-"" 日本語入力がオンのままでも使えるコマンド(Enterキーは必要)
-"" http://qiita.com/ssh0/items/9e7f0d8b8f033183dd0b
-nnoremap あ a
-nnoremap い i
-nnoremap う u
-nnoremap お o
-nnoremap っd dd
-nnoremap っy yy
-
-set formatexpr=jpfmt#formatexpr()
 
 "" Language extensions {{{1
 
