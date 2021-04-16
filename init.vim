@@ -9,9 +9,6 @@ if exists('*minpac#init') "{{{1
   call minpac#init({'dir': s:data_home . '/site'})
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-  "" UI enhancements
-  call minpac#add('tpope/vim-speeddating')
-
   "" Language extensions
   call minpac#add('aliou/bats.vim')
   call minpac#add('JuliaEditorSupport/julia-vim')
