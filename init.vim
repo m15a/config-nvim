@@ -10,10 +10,6 @@ if exists('*minpac#init') "{{{1
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   "" UI enhancements
-  call minpac#add('dense-analysis/ale')
-  call minpac#add('lotabout/skim.vim')
-  call minpac#add('houtsnip/vim-emacscommandline')
-  call minpac#add('tpope/vim-repeat')
   call minpac#add('tpope/vim-speeddating')
 
   "" Language extensions
@@ -34,34 +30,6 @@ endif
 
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
-
-"" UI enhancements {{{1
-
-"" Modern Vim, Tip 12: ALE mappings in the style of unimpaired
-nmap <silent> [W <Plug>(ale_first)
-nmap <silent> [w <Plug>(ale_previous)
-nmap <silent> ]w <Plug>(ale_next)
-nmap <silent> ]W <Plug>(ale_last)
-
-"" Skim key mappings
-noremap [skim] <Nop>
-map <Leader>e [skim]
-nmap [skim]f :<C-u>Files ./<CR>
-nmap [skim]F :<C-u>Files 
-nmap <silent> [skim]g :<C-u>GFiles<CR>
-nmap <silent> [skim]G :<C-u>GFiles?<CR>
-nmap <silent> [skim]b :<C-u>Buffers<CR>
-nmap [skim]L :<C-u>Lines 
-nmap [skim]l :<C-u>BLines 
-nmap [skim]T :<C-u>Tags 
-nmap [skim]t :<C-u>BTags 
-nmap <silent> [skim]m :<C-u>Marks<CR>  " TODO: Marks does not work!
-nmap <silent> [skim]h :<C-u>History<CR>  " TODO: History does not work!
-nmap <silent> [skim]: :<C-u>History:<CR>
-nmap <silent> [skim]/ :<C-u>History/<CR>
-" nmap <silent> [skim]c :<C-u>Commits<CR>  " fugative.vim is required
-" nmap <silent> [skim]C :<C-u>BCommits<CR>  " fugative.vim is required
-" nmap <silent> [skim]: :<C-u>Commands<CR>  " TODO: Conflicts with History:
 
 "" Language extensions {{{1
 
