@@ -11,7 +11,6 @@ if exists('*minpac#init') "{{{1
 
   "" Language extensions
   call minpac#add('aliou/bats.vim')
-  call minpac#add('JuliaEditorSupport/julia-vim')
   call minpac#add('jalvesaq/Nvim-R')
   call minpac#add('maverickg/stan.vim')
   call minpac#add('arnoudbuzing/wolfram-vim')
@@ -85,11 +84,6 @@ let g:rust_fold = 2
 "" vim-racer
 let g:ftplugin_rust_source_path = $RUST_SRC_PATH
 
-augroup lang_julia "{{{2
-  autocmd!
-  au FileType julia
-        \ nnoremap <buffer> <silent> <LocalLeader>f :call julia#toggle_function_blockassign()<CR>
-augroup END
 
 
 " vim: fdm=marker sw=2 et
