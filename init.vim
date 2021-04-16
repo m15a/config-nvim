@@ -28,11 +28,6 @@ command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 
 "" Language extensions {{{1
 
-augroup lang_make "{{{2
-  autocmd!
-  au FileType make setl tabstop=4
-augroup END
-
 augroup lang_scheme "{{{2
   autocmd!
   au BufNewFile,BufRead *.scm,*.sld,*.ss let b:parinfer_gauche_reader_syntax = 1
