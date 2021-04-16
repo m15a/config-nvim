@@ -14,7 +14,6 @@ if exists('*minpac#init') "{{{1
   call minpac#add('JuliaEditorSupport/julia-vim')
   call minpac#add('jalvesaq/Nvim-R')
   call minpac#add('maverickg/stan.vim')
-  call minpac#add('mnacamura/vim-fish')
   call minpac#add('arnoudbuzing/wolfram-vim')
   call minpac#add('vim-pandoc/vim-rmarkdown')
   call minpac#add('rust-lang/rust.vim')
@@ -38,11 +37,6 @@ augroup END
 augroup lang_viml "{{{2
   autocmd!
   au FileType vim setl shiftwidth=2
-augroup END
-
-augroup lang_fish "{{{2
-  autocmd!
-  au FileType fish compiler fish
 augroup END
 
 augroup lang_scheme "{{{2
