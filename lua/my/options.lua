@@ -1,4 +1,5 @@
 local u = require'my.utils'
+local env = vim.env
 local o = vim.o
 local wo = vim.wo
 
@@ -30,6 +31,7 @@ o.ignorecase = true
 o.smartcase = true
 o.wildignorecase = true
 o.path = '.,,'
+o.termguicolors = env.COLORTERM == 'truecolor'
 
 wo.number = true
 wo.list = true
