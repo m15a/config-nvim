@@ -79,6 +79,8 @@ g.maplocalleader = ','
 g.clever_f_smart_case = true
 g.clever_f_use_migemo = true
 
+use 'tyru/caw.vim' -- {{{1
+
 -- }}}
 
 -- vim: fdm=marker
