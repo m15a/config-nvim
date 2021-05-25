@@ -91,6 +91,15 @@ use 'tyru/caw.vim' -- {{{1
 
 use 'thinca/vim-visualstar' -- {{{1
 
+use 'dkarter/bullets.vim' -- {{{1
+g.bullets_enabled_file_types = {
+  'gitcommit',
+  'markdown',
+  'pandoc',
+  'text',
+}
+g.bullets_checkbox_markers = ' x'
+
 -- }}}
 
 -- vim: fdm=marker
