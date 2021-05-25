@@ -85,6 +85,8 @@ use 'tpope/vim-unimpaired' -- {{{1
 
 use 'tpope/vim-repeat' -- {{{1
 
+use 'chaoren/vim-wordmotion' -- {{{1
+
 use 'tyru/caw.vim' -- {{{1
 
 -- }}}
