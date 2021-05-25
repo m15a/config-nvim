@@ -100,6 +100,8 @@ g.bullets_enabled_file_types = {
 }
 g.bullets_checkbox_markers = ' x'
 
+use 'machakann/vim-sandwich' -- {{{1
+
 -- }}}
 
 -- vim: fdm=marker
