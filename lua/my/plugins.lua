@@ -89,6 +89,8 @@ use 'chaoren/vim-wordmotion' -- {{{1
 
 use 'tyru/caw.vim' -- {{{1
 
+use 'thinca/vim-visualstar' -- {{{1
+
 -- }}}
 
 -- vim: fdm=marker
