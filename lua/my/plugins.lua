@@ -81,6 +81,10 @@ g.clever_f_use_migemo = true
 
 use 'houtsnip/vim-emacscommandline' -- {{{1
 
+use 'tpope/vim-unimpaired' -- {{{1
+
+use 'tpope/vim-repeat' -- {{{1
+
 use 'tyru/caw.vim' -- {{{1
 
 -- }}}
