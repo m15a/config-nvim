@@ -122,6 +122,8 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+use 'neovim/nvim-lspconfig' -- {{{1
+
 -- }}}
 
 -- vim: fdm=marker
