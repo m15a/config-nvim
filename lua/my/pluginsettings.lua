@@ -124,21 +124,16 @@ g.bullets_enabled_file_types = {
 }
 g.bullets_checkbox_markers = ' x'
 
--- use 'nvim-treesitter/nvim-treesitter' {{{1
+-- nvim-treesitter/nvim-treesitter {{{1
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
-    disable = {"fennel"},
+    disable = {
+      "fennel",
+    },
   },
   incremental_selection = {
-    enable = true,
-    keymaps = {
-      -- Be consistent with unimpaired.vim.
-      init_selection = "]g",
-      node_incremental = "]g",
-      node_decremental = "[g",
-      scope_incremental = "]G",
-    },
+    enable = false,  -- too much for me!
   },
   indent = {
     enable = true,
