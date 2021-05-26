@@ -102,6 +102,26 @@ g.bullets_checkbox_markers = ' x'
 
 use 'machakann/vim-sandwich' -- {{{1
 
+use 'nvim-treesitter/nvim-treesitter' -- {{{1
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      -- Be consistent with unimpaired.vim.
+      init_selection = "]g",
+      node_incremental = "]g",
+      node_decremental = "[g",
+      scope_incremental = "]G",
+    },
+  },
+  indent = {
+    enable = true,
+  },
+}
+
 -- }}}
 
 -- vim: fdm=marker
