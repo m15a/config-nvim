@@ -29,7 +29,11 @@ local function on_attach(client, bufnr)
 end
 
 local servers = {
+  'bashls',
+  'dockerls',
   'pyright',
+  'rust_analyzer',
+  'vimls',
 }
 
 for _, server in ipairs(servers) do
