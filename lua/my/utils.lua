@@ -1,14 +1,5 @@
 local utils = {}
 
--- :set 'name'='value'
-function utils.set(name, value)
-  if type(value) == 'boolean' then
-    vim.cmd('set ' .. (value and '' or 'no') .. name) 
-  else
-    vim.cmd('set ' .. name .. '=' .. tostring(value))
-  end
-end
-
 -- :augroup 'name' ... :augroup END
 -- Usage:
 --   utils.augroup('name', function(au)

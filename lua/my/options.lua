@@ -1,28 +1,28 @@
 local u = require'my.utils'
 local env = vim.env
-local o = vim.o
+local o = vim.opt
 local wo = vim.wo
 
--- Need to be set via vim command until neovim/neovim/pull/13479 is merged.
-do
-  local options = {
-    undofile = true,
-    textwidth = 100,
-    shiftwidth = 4,
-    softtabstop = -1,
-    expandtab = true,
-    infercase = true,
-    smartindent = true,
-  }
-  for k, v in pairs(options) do u.set(k, v) end
-end
-
+o.undofile = true
+o.textwidth = 100
+o.shiftwidth = 4
+o.softtabstop = -1
+o.expandtab = true
+o.infercase = true
+o.smartindent = true
 o.hidden = true
 o.mouse = 'nv'
 o.visualbell = true
 o.scrolloff = 5
-o.diffopt = o.diffopt .. ',vertical'
-o.listchars = 'eol:¬,tab:›_,trail:_,extends:»,precedes:«,nbsp:_'
+o.diffopt:append 'vertical'
+o.listchars = {
+  eol = '¬',
+  tab = '›_',
+  trail = '_',
+  extends = '»',
+  precedes = '«',
+  nbsp = '_'
+}
 o.showbreak = '»'
 o.showmatch = true
 o.virtualedit = 'block'

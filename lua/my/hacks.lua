@@ -1,6 +1,6 @@
 local u = require'my.utils'
 local env = vim.env
-local o = vim.o
+local o = vim.opt
 
 -- Hack for vim + fish problem.
 env.SHELL = '/run/current-system/sw/bin/bash'
