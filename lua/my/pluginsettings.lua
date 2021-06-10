@@ -118,5 +118,10 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+-- use 'npxbr/glow.nvim' {{{1
+u.augroup('glow', function(au)
+  au [[FileType markdown nnoremap <buffer> <silent> <Space> <Cmd>Glow<CR>]]
+end)
+
 -- }}}
 -- vim: fdm=marker
