@@ -32,3 +32,24 @@ if vim.fn.executable('rg') == 1 then
     '%f',
   }
 end
+
+-- Update timestamp automatically
+-- See https://vim.fandom.com/wiki/Insert_current_date_or_time
+-- TODO: translate it into lua
+vim.cmd[[
+fun! UpdateTimestamp(format)
+  if !&modified | return | endif
+  let l:pos = getpos('.')
+  let l:n = min([10, line('$')])
+  let l:date = strftime(a:format)
+  if match(getline(1, l:n), l:date) > -1 | return | endif
+  let l:cmd = '1,' . l:n . 's#\v\c(Last %(Change|Modified): ).*#\1' . l:date . '#e'
+  keepj exec l:cmd
+  call histdel('search', -1)
+  call setpos('.', l:pos)
+endfun
+augroup update_timestamp
+  autocmd!
+  au BufWritePre * call UpdateTimestamp('%Y-%m-%d')
+augroup END
+]]
