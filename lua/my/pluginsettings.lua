@@ -102,6 +102,7 @@ g.bullets_checkbox_markers = ' x'
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
+    disable = {"fennel"},
   },
   incremental_selection = {
     enable = true,
