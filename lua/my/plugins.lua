@@ -1,26 +1,26 @@
 vim.cmd 'packadd paq-nvim'
-local use = require'paq-nvim'.paq
-
-use {'savq/paq-nvim', opt = true}
-use 'chaoren/vim-wordmotion'
-use 'dkarter/bullets.vim'
-use 'famiu/feline.nvim'
-use 'houtsnip/vim-emacscommandline'
-use 'kyazdani42/nvim-web-devicons'
-use 'lewis6991/gitsigns.nvim'
-use 'machakann/vim-sandwich'
-use 'neovim/nvim-lspconfig'
-use 'nvim-lua/plenary.nvim'
-use 'nvim-treesitter/nvim-treesitter'
-use 'rhysd/clever-f.vim'
-use 'srcery-colors/srcery-vim'
-use 'thinca/vim-visualstar'
-use 'tpope/vim-repeat'
-use 'tpope/vim-unimpaired'
-use 'tyru/caw.vim'
-use 'LnL7/vim-nix'
-use 'NovaDev94/vim-fish'
-use 'cespare/vim-toml'
-use 'aliou/bats.vim'
-use 'mnacamura/vim-fennel-syntax'
-use 'npxbr/glow.nvim'
+require'paq-nvim' {
+  {'savq/paq-nvim', opt = true},
+  'chaoren/vim-wordmotion',
+  'dkarter/bullets.vim',
+  'famiu/feline.nvim',
+  'houtsnip/vim-emacscommandline',
+  'kyazdani42/nvim-web-devicons',
+  'lewis6991/gitsigns.nvim',
+  'machakann/vim-sandwich',
+  'neovim/nvim-lspconfig',
+  'nvim-lua/plenary.nvim',
+  'nvim-treesitter/nvim-treesitter',
+  'rhysd/clever-f.vim',
+  'srcery-colors/srcery-vim',
+  'thinca/vim-visualstar',
+  'tpope/vim-repeat',
+  'tpope/vim-unimpaired',
+  'tyru/caw.vim',
+  'LnL7/vim-nix',
+  'NovaDev94/vim-fish',
+  'cespare/vim-toml',
+  'aliou/bats.vim',
+  'mnacamura/vim-fennel-syntax',
+  'npxbr/glow.nvim',
+}
