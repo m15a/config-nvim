@@ -3,6 +3,7 @@ local env = vim.env
 local o = vim.opt
 local wo = vim.wo
 
+o.clipboard = 'unnamedplus'
 o.undofile = true
 o.textwidth = 100
 o.shiftwidth = 4
