@@ -1,31 +1,52 @@
+local u = require'my.utils'
 local lsp = require'lspconfig'
 
 local function on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  -- TODO: Customize key maps for my taste.
-  local maps = {
-    {'n', 'gD',              '<Cmd>lua vim.lsp.buf.declaration()<CR>'},
-    {'n', 'gd',              '<Cmd>lua vim.lsp.buf.definition()<CR>'},
-    {'n', 'K',               '<Cmd>lua vim.lsp.buf.hover()<CR>'},
-    {'n', 'gi',              '<Cmd>lua vim.lsp.buf.implementation()<CR>'},
-    {'n', '<C-k>',           '<Cmd>lua vim.lsp.buf.signature_help()<CR>'},
+  vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
+
+  local keymaps = {
+    -- {'n', '', '<Cmd>lua vim.lsp.buf.declaration()<CR>'},
+    {'n', '<C-]>', '<Cmd>lua vim.lsp.buf.definition()<CR>'},
+    {'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>'},
+    {'n', '<LocalLeader>s', '<Cmd>lua vim.lsp.buf.signature_help()<CR>'},
+    {'n', '<LocalLeader>t', '<Cmd>lua vim.lsp.buf.type_definition()<CR>'},
+
+    {'n', 'gr', '<Cmd>lua vim.lsp.buf.rename()<CR>'},
+    {'n', 'ga', '<Cmd>lua vim.lsp.buf.code_action()<CR>'},
+    {'x', 'ga', ':<C-u>lua vim.lsp.buf.range_code_action()<CR>'},
+
+    {'n', '<LocalLeader>lr', '<Cmd>lua vim.lsp.buf.references()<CR>'},
+    {'n', '<LocalLeader>li', '<Cmd>lua vim.lsp.buf.implementation()<CR>'},
+    {'n', '<LocalLeader>ls', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>'},
+    {'n', '<LocalLeader>lw', '<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>'},
+    {'n', '<LocalLeader>lc', '<Cmd>lua vim.lsp.buf.incoming_calls()<CR>'},
+    {'n', '<LocalLeader>lC', '<Cmd>lua vim.lsp.buf.outgoing_calls()<CR>'},
+
+    {'n', '[d',              '<Cmd>lua vim.diagnostic.goto_prev()<CR>'},
+    {'n', ']d',              '<Cmd>lua vim.diagnostic.goto_next()<CR>'},
+    {'n', '<LocalLeader>d',  '<Cmd>lua vim.diagnostic.open_float()<CR>'},
+
     {'n', '<LocalLeader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>'},
     {'n', '<LocalLeader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>'},
-    {'n', '<LocalLeader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>'},
-    {'n', '<LocalLeader>D',  '<Cmd>lua vim.lsp.buf.type_definition()<CR>'},
-    {'n', '<LocalLeader>rn', '<Cmd>lua vim.lsp.buf.rename()<CR>'},
-    {'n', '<LocalLeader>ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>'},
-    {'n', 'gr',              '<Cmd>lua vim.lsp.buf.references()<CR>'},
-    {'n', '<LocalLeader>e',  '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>'},
-    {'n', '[d',              '<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>'},
-    {'n', ']d',              '<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>'},
-    {'n', '<LocalLeader>q',  '<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>'},
-    {'n', '<LocalLeader>s',  '<Cmd>lua vim.lsp.buf.formatting()<CR>'},
+    {'n', '<LocalLeader>ww', '<Cmd>lua vim.lsp.buf.list_workspace_folders()<CR>'},
   }
-  for _, map in ipairs(maps) do
-    table.insert(map, {noremap = true, silent = true})
-    vim.api.nvim_buf_set_keymap(bufnr, unpack(map))
+  for _, keymap in ipairs(keymaps) do
+    table.insert(keymap, {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(bufnr, unpack(keymap))
   end
+
+  --[[
+  TODO: Usage of `vim.lsp.buf.document_highlight()` requires the following highlight groups to be
+  defined or you won't be able to see the actual highlights:
+    * `LspReferenceText`
+    * `LspReferenceRead`
+    * `LspReferenceWrite`
+  ]]
+  u.augroup('lsp_document_highlight', function(au)
+    au [[CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
+    au [[CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
+  end)
 end
 
 local servers = {
