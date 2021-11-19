@@ -9,6 +9,8 @@ require'paq-nvim' {
 
   -- LSP {{{1
   'neovim/nvim-lspconfig',
+  'RishabhRD/popfix',
+  'RishabhRD/nvim-lsputils',
 
   -- Markdown {{{1
   'npxbr/glow.nvim',
