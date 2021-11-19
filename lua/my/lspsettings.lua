@@ -57,6 +57,10 @@ local function on_attach(client, bufnr)
   vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
   vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
   vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+
+  -- lspkind-nvim
+  require'lspkind'.init {
+  }
 end
 
 local servers = {

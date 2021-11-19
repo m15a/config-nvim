@@ -11,6 +11,7 @@ require'paq-nvim' {
   'neovim/nvim-lspconfig',
   'RishabhRD/popfix',
   'RishabhRD/nvim-lsputils',
+  'onsails/lspkind-nvim',
 
   -- Markdown {{{1
   'npxbr/glow.nvim',
