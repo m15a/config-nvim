@@ -12,6 +12,7 @@ require'paq-nvim' {
   'RishabhRD/popfix',
   'RishabhRD/nvim-lsputils',
   'onsails/lspkind-nvim',
+  'jose-elias-alvarez/null-ls.nvim',
 
   -- Markdown {{{1
   'npxbr/glow.nvim',
