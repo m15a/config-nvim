@@ -43,10 +43,14 @@ local function on_attach(client, bufnr)
     * `LspReferenceRead`
     * `LspReferenceWrite`
   ]]
-  u.augroup('lsp_document_highlight', function(au)
-    au [[CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
-    au [[CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
-  end)
+  -- NOTE: Highlight document only if available; see
+  -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/355#discussioncomment-1651619
+  if client.resolved_capabilities.document_highlight then
+    u.augroup('lsp_document_highlight', function(au)
+      au [[CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
+      au [[CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
+    end)
+  end
 
   -- nvim-lsputils
   vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
