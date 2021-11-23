@@ -124,5 +124,8 @@ u.augroup('glow', function(au)
   au [[FileType markdown nnoremap <buffer> <silent> <Space> <Cmd>Glow<CR>]]
 end)
 
+-- vim-pandoc/vim-pandoc-syntax {{{1
+g['pandoc#syntax#conceal#use'] = false
+
 -- }}}
 -- vim: fdm=marker
