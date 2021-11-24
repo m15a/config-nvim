@@ -42,7 +42,7 @@ require'paq-nvim' {
 
   -- Motion {{{1
   'chaoren/vim-wordmotion',
-  'rhysd/clever-f.vim',
+  'ggandor/lightspeed.nvim',
 
   -- Search {{{1
   'thinca/vim-visualstar',
