@@ -73,6 +73,8 @@ require'lightspeed'.setup {
     labeled = nil,
   },
 }
+g.mapleader = ';'
+g.maplocalleader = ','
 
 -- machakann/vim-sandwich {{{1
 -- Use vim-surround keymaps to resolve conflicts with lightspeed.nvim
