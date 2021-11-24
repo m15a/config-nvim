@@ -65,22 +65,6 @@ require'nvim-web-devicons'.setup {
   default = true,
 }
 
--- use 'simrat39/symbols-outline.nvim' {{{1
-g.symbols_outline = {
-  highlight_hovered_item = true,
-  show_guides = true,
-  auto_preview = true, -- experimental
-  position = 'right',
-  keymaps = {
-    close = "<Esc>",
-    goto_location = "<CR>",
-    focus_location = "o",
-    hover_symbol = "<Space>",
-    rename_symbol = "r",
-    code_actions = "a",
-  },
-  lsp_blacklist = {},
-}
 
 -- ggandor/lightspeed.nvim {{{1
 require'lightspeed'.setup {
