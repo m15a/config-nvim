@@ -24,16 +24,16 @@ local function on_attach(client, bufnr)
     {'n', 'ga', '<Cmd>lua vim.lsp.buf.code_action()<CR>'},
     {'x', 'ga', ':<C-u>lua vim.lsp.buf.range_code_action()<CR>'},
 
-    {'n', '<LocalLeader>lr', '<Cmd>lua vim.lsp.buf.references()<CR>'},
-    {'n', '<LocalLeader>li', '<Cmd>lua vim.lsp.buf.implementation()<CR>'},
-    {'n', '<LocalLeader>ls', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>'},
-    {'n', '<LocalLeader>lw', '<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>'},
-    {'n', '<LocalLeader>lc', '<Cmd>lua vim.lsp.buf.incoming_calls()<CR>'},
-    {'n', '<LocalLeader>lC', '<Cmd>lua vim.lsp.buf.outgoing_calls()<CR>'},
+    {'n', '<LocalLeader>er', '<Cmd>lua vim.lsp.buf.references()<CR>'},
+    {'n', '<LocalLeader>ei', '<Cmd>lua vim.lsp.buf.implementation()<CR>'},
+    {'n', '<LocalLeader>es', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>'},
+    {'n', '<LocalLeader>ew', '<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>'},
+    {'n', '<LocalLeader>ec', '<Cmd>lua vim.lsp.buf.incoming_calls()<CR>'},
+    {'n', '<LocalLeader>eC', '<Cmd>lua vim.lsp.buf.outgoing_calls()<CR>'},
 
     {'n', '[d',              '<Cmd>lua vim.diagnostic.goto_prev()<CR>'},
     {'n', ']d',              '<Cmd>lua vim.diagnostic.goto_next()<CR>'},
-    {'n', '<LocalLeader>d',  '<Cmd>lua vim.diagnostic.open_float()<CR>'},
+    {'n', '<LocalLeader>ed', '<Cmd>lua vim.diagnostic.open_float()<CR>'},
 
     {'n', '<LocalLeader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>'},
     {'n', '<LocalLeader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>'},
