@@ -17,8 +17,8 @@ local function on_attach(client, bufnr)
     -- {'n', '', '<Cmd>lua vim.lsp.buf.declaration()<CR>'},
     {'n', '<C-]>', '<Cmd>lua vim.lsp.buf.definition()<CR>'},
     {'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>'},
-    {'n', '<LocalLeader>s', '<Cmd>lua vim.lsp.buf.signature_help()<CR>'},
-    {'n', '<LocalLeader>t', '<Cmd>lua vim.lsp.buf.type_definition()<CR>'},
+    {'n', '<LocalLeader>ss', '<Cmd>lua vim.lsp.buf.signature_help()<CR>'},
+    {'n', '<LocalLeader>st', '<Cmd>lua vim.lsp.buf.type_definition()<CR>'},
 
     {'n', 'gr', '<Cmd>lua vim.lsp.buf.rename()<CR>'},
     {'n', 'ga', '<Cmd>lua vim.lsp.buf.code_action()<CR>'},

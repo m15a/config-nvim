@@ -20,6 +20,7 @@ require'paq-nvim' {
 
   -- Syntax {{{1
   'nvim-treesitter/nvim-treesitter',
+  'nvim-treesitter/nvim-treesitter-textobjects',
   'machakann/vim-sandwich',
 
   -- Colorscheme {{{1
