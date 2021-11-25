@@ -16,6 +16,7 @@ require'paq-nvim' {
 
   -- Markdown {{{1
   'npxbr/glow.nvim',
+  'rhysd/vim-gfm-syntax',
   'vim-pandoc/vim-pandoc-syntax',
 
   -- Syntax {{{1

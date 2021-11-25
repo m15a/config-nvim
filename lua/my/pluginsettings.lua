@@ -208,6 +208,15 @@ u.augroup('glow', function(au)
   au [[FileType markdown nnoremap <buffer> <silent> <Space> <Cmd>Glow<CR>]]
 end)
 
+-- rhysd/vim-gfm-syntax {{{1
+g.gfm_syntax_enable_always = false
+g.gfm_syntax_enable_filetypes = {
+  'markdown.gfm',
+}
+u.augroup('gfm_syntax', function(au)
+  au [[BufNewFile,BufRead README.md setl filetype=markdown.gfm]]
+end)
+
 -- vim-pandoc/vim-pandoc-syntax {{{1
 g['pandoc#syntax#conceal#use'] = false
 
