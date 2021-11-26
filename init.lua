@@ -1,5 +1,4 @@
 require 'my.options'
 require 'my.plugins'
-require 'my.lsp'
 require 'my.filetypes'
 require 'my.hacks'

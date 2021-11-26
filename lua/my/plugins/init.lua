@@ -1,6 +1,9 @@
 require 'my.plugins.paq'
 
+require 'my.plugins.lsputils'
+require 'my.plugins.lspkind'
 require 'my.plugins.null-ls'
+require 'my.plugins.lspconfig'
 require 'my.plugins.treesitter'
 require 'my.plugins.sandwich'
 require 'my.plugins.srcery'
