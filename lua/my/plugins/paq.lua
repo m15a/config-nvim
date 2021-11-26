@@ -24,11 +24,6 @@ require'paq-nvim' {
   'onsails/lspkind-nvim',
   'jose-elias-alvarez/null-ls.nvim',
 
-  -- Markdown {{{1
-  'npxbr/glow.nvim',
-  'rhysd/vim-gfm-syntax',
-  'vim-pandoc/vim-pandoc-syntax',
-
   -- Syntax {{{1
   'nvim-treesitter/nvim-treesitter',
   'nvim-treesitter/nvim-treesitter-textobjects',
@@ -68,6 +63,11 @@ require'paq-nvim' {
   'houtsnip/vim-emacscommandline',
 
   -- Language specific {{{1
+  -- Markdown {{{2
+  'npxbr/glow.nvim',
+  'rhysd/vim-gfm-syntax',
+  'vim-pandoc/vim-pandoc-syntax',
+
   -- Nix {{{2
   'LnL7/vim-nix',
 

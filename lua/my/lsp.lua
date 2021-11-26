@@ -1,14 +1,6 @@
 local v = require'my.utils.vimsl'
 local lsp = require'lspconfig'
 
--- null-ls.nvim
-require'null-ls'.config {
-  sources = {
-    require'null-ls'.builtins.diagnostics.luacheck,
-    -- TODO: add more sources
-  }
-}
-
 local function on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
