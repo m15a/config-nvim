@@ -5,8 +5,8 @@
   local path = fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
   if fn.empty(fn.glob(path)) > 0 then
     fn.system {'git', 'clone', '--depth=1', repo, path}
+    vim.cmd [[packadd paq-nvim]]
   end
-  vim.cmd [[packadd paq-nvim]]
 end)()
 
 require'paq-nvim' {
