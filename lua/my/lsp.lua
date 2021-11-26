@@ -68,14 +68,14 @@ local function on_attach(client, bufnr)
 end
 
 local servers = {
-  'bashls',
-  'dockerls',
-  'pyright',
-  'rust_analyzer',
-  'vimls',
-  'null-ls',
+  ['null-ls'] = false,
+  bashls = 'bash-language-server',
+  vimls = 'vim-language-server',
+  pyright = 'pyright',
+  dockerls = 'docker-langserver',
 }
-
-for _, server in ipairs(servers) do
-  lsp[server].setup { on_attach = on_attach }
+for server, cmd in pairs(servers) do
+  if server == 'null-ls' or vim.fn.executable(cmd) > 0 then
+    lsp[server].setup { on_attach = on_attach }
+  end
 end
