@@ -67,10 +67,12 @@ require'paq-nvim' {
 
   -- Language specific {{{1
   -- Markdown {{{2
-  'npxbr/glow.nvim',
+  {'mnacamura/glow.nvim', branch = 'preview-buffer-filetype'},
   'rhysd/vim-gfm-syntax',
   'vim-pandoc/vim-pandoc-syntax',
   'dhruvasagar/vim-table-mode',
+  'crispgm/telescope-heading.nvim',
+  'nvim-telescope/telescope-bibtex.nvim',
 
   -- Nix {{{2
   'LnL7/vim-nix',
