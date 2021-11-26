@@ -71,6 +71,7 @@ require'paq-nvim' {
   'rhysd/vim-gfm-syntax',
   'vim-pandoc/vim-pandoc-syntax',
   'dhruvasagar/vim-table-mode',
+  'crispgm/telescope-heading.nvim',
 
   -- Nix {{{2
   'LnL7/vim-nix',
