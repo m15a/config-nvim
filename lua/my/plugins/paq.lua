@@ -29,6 +29,9 @@ require'paq-nvim' {
   'nvim-treesitter/nvim-treesitter-textobjects',
   'machakann/vim-sandwich',
 
+  -- Fuzzy finder {{{1
+  'nvim-telescope/telescope.nvim',
+
   -- Colorscheme {{{1
   'srcery-colors/srcery-vim',
 
