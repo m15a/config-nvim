@@ -1,4 +1,3 @@
-local u = require'my.utils'
 local env = vim.env
 local o = vim.opt
 local wo = vim.wo

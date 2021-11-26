@@ -1,12 +1,15 @@
-local utils = {}
+-- Utility functions as a DSL for Vim commands
+
+local vimsl = {}
 
 -- :augroup 'name' ... :augroup END
 -- Usage:
---   utils.augroup('name', function(au)
+--   local vimsl = require'my.utils.vimsl'
+--   vimsl.augroup('name', function(au)
 --     au [[ ... ]]
 --     au [[ ... ]]
 --   end)
-function utils.augroup(name, autocmds)
+function vimsl.augroup(name, autocmds)
   local lines = {
     'augroup ' .. name,
     'autocmd!'
@@ -19,8 +22,8 @@ function utils.augroup(name, autocmds)
 end
 
 -- :colorscheme 'name'
-function utils.colorscheme(name)
+function vimsl.colorscheme(name)
   vim.cmd('colorscheme ' .. name)
 end
 
-return utils
+return vimsl

@@ -1,11 +1,11 @@
-local u = require'my.utils'
+local v = require'my.utils.vimsl'
 local g = vim.g
 
 -- use 'srcery-colors/srcery-vim' {{{1
 g.srcery_italic = true
 g.srcery_dim_lisp_paren = true
 g.srcery_transparent_background = true
-u.colorscheme 'srcery'
+v.colorscheme 'srcery'
 
 -- use 'famiu/feline.nvim' {{{1
 do
@@ -204,7 +204,7 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- use 'npxbr/glow.nvim' {{{1
-u.augroup('glow', function(au)
+v.augroup('glow', function(au)
   au [[FileType markdown nnoremap <buffer> <silent> <Space> <Cmd>Glow<CR>]]
 end)
 
@@ -213,7 +213,7 @@ g.gfm_syntax_enable_always = false
 g.gfm_syntax_enable_filetypes = {
   'markdown.gfm',
 }
-u.augroup('gfm_syntax', function(au)
+v.augroup('gfm_syntax', function(au)
   au [[BufNewFile,BufRead README.md setl filetype=markdown.gfm]]
 end)
 
