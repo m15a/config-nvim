@@ -67,6 +67,7 @@ require'paq-nvim' {
   'npxbr/glow.nvim',
   'rhysd/vim-gfm-syntax',
   'vim-pandoc/vim-pandoc-syntax',
+  'dhruvasagar/vim-table-mode',
 
   -- Nix {{{2
   'LnL7/vim-nix',
