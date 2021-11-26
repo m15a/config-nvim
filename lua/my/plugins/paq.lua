@@ -1,11 +1,21 @@
-vim.cmd 'packadd paq-nvim'
+-- Bootstrap paq-nvim
+(function()
+  local fn = vim.fn
+  local repo = 'https://github.com/savq/paq-nvim'
+  local path = fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
+  if fn.empty(fn.glob(path)) > 0 then
+    fn.system {'git', 'clone', '--depth=1', repo, path}
+  end
+  vim.cmd [[packadd paq-nvim]]
+end)()
+
 require'paq-nvim' {
   --[[
   Sections below are mostly based on
   [rockerBOO/awesome-neovim](https://github.com/rockerBOO/awesome-neovim).
   ]]
   -- Plugin manager {{{1
-  {'savq/paq-nvim', opt = true},
+  'savq/paq-nvim',
 
   -- LSP {{{1
   'neovim/nvim-lspconfig',
