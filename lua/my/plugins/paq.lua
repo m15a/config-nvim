@@ -72,6 +72,7 @@ require'paq-nvim' {
   'vim-pandoc/vim-pandoc-syntax',
   'dhruvasagar/vim-table-mode',
   'crispgm/telescope-heading.nvim',
+  'nvim-telescope/telescope-bibtex.nvim',
 
   -- Nix {{{2
   'LnL7/vim-nix',
