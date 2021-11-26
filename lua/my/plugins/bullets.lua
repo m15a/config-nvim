@@ -3,6 +3,8 @@ local v = require'my.utils.vimsl'
 
 g.bullets_enabled_file_types = {
   'markdown',
+  'markdown.gfm',
+  'markdown.pandoc',
   'gitcommit',
   'text',
 }
