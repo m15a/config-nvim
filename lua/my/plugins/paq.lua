@@ -31,6 +31,7 @@ require'paq-nvim' {
 
   -- Fuzzy finder {{{1
   'nvim-telescope/telescope.nvim',
+  'nvim-telescope/telescope-symbols.nvim',
 
   -- Colorscheme {{{1
   'srcery-colors/srcery-vim',
