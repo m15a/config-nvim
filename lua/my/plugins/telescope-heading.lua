@@ -1,5 +1,5 @@
-local map = vim.api.nvim_set_keymap
+local map = require'my.utils.telescope'.set_keymap
 
 require'telescope'.load_extension('heading')
 
-map('n', '[telescope]h', '<Cmd>Telescope heading sorting_strategy=ascending<CR>', {silent = true})
+map('h', '<Cmd>Telescope heading sorting_strategy=ascending<CR>')
