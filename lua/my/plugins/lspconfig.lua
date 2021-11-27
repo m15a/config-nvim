@@ -27,13 +27,15 @@ local keymaps = {
   {'n', '<LocalLeader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>'},
   {'n', '<LocalLeader>ww', '<Cmd>lua vim.lsp.buf.list_workspace_folders()<CR>'},
 }
+for _, keymap in ipairs(keymaps) do
+  table.insert(keymap, {noremap = true, silent = true})
+end
 
 local function on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
 
   for _, keymap in ipairs(keymaps) do
-    table.insert(keymap, {noremap = true, silent = true})
     vim.api.nvim_buf_set_keymap(bufnr, unpack(keymap))
   end
 
