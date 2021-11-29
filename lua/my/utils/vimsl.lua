@@ -6,15 +6,19 @@ local vimsl = {}
 -- Usage:
 --   local vimsl = require'my.utils.vimsl'
 --   vimsl.augroup('name', function(au)
---     au [[ ... ]]
---     au [[ ... ]]
+--     au [[ string ]]
+--     au {'table', 'of', 'string'}
 --   end)
+--   -- or 
 function vimsl.augroup(name, autocmds)
   local lines = {
     'augroup ' .. name,
     'autocmd!'
   }
   autocmds(function(line)
+    if type(line) == 'table' then
+      line = table.concat(line, ' ')
+    end
     table.insert(lines, 'autocmd ' .. line)
   end)
   table.insert(lines, 'augroup END')

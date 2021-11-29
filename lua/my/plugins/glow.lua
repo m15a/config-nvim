@@ -8,15 +8,14 @@ local filetypes = {
   'glowpreview',
 }
 
-local cmd = table.concat({
-  'FileType',
-  table.concat(filetypes, ','),
-  'nnoremap',
-  '<buffer>',
-  '<silent>',
-  toggle_map,
-  '<Cmd>Glow<CR>',
-}, ' ')
 v.augroup('glow', function(au)
-  au(cmd)
+  au {
+    'FileType',
+    table.concat(filetypes, ','),
+    'nnoremap',
+    '<buffer>',
+    '<silent>',
+    toggle_map,
+    '<Cmd>Glow<CR>',
+  }
 end)

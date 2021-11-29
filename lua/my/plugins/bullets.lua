@@ -25,7 +25,7 @@ g.bullets_checkbox_markers = ' x'
 -- https://github.com/dkarter/bullets.vim/blob/master/plugin/bullets.vim
 -- TODO: lazy evaluation of this function with g:bullets_*
 local function set_keymap(mapping_type, mapping, action)
-  local cmd = {
+  return {
     'FileType',
     table.concat(g.bullets_enabled_file_types, ','),
     mapping_type,
@@ -34,7 +34,6 @@ local function set_keymap(mapping_type, mapping, action)
     mapping,
     action,
   }
-  return table.concat(cmd, ' ')
 end
 
 -- See `augroup TextBulletsMappings` in
