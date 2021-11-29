@@ -39,13 +39,6 @@ local function on_attach(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, unpack(keymap))
   end
 
-  --[[
-  TODO: Usage of `vim.lsp.buf.document_highlight()` requires the following highlight groups to be
-  defined or you won't be able to see the actual highlights:
-    * `LspReferenceText`
-    * `LspReferenceRead`
-    * `LspReferenceWrite`
-  ]]
   -- NOTE: Highlight document only if available; see
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/355#discussioncomment-1651619
   if client.resolved_capabilities.document_highlight then
