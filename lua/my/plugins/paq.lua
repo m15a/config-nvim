@@ -23,6 +23,7 @@ require'paq-nvim' {
   'RishabhRD/nvim-lsputils',
   'onsails/lspkind-nvim',
   'jose-elias-alvarez/null-ls.nvim',
+  'folke/lsp-colors.nvim',
 
   -- Syntax {{{1
   'nvim-treesitter/nvim-treesitter',
