@@ -9,10 +9,7 @@ local function format_sources(sources)
 end
 
 local keymaps = {
-  ['sm'] = {'math'},
-  ['st'] = {'latex'},
-  ['se'] = {'emoji'},
-  ['sg'] = {'gitmoji'},
+  ['S'] = {'math', 'latex', 'emoji', 'gitmoji'},
 }
 
 local cmd = "<Cmd>lua require'telescope.builtin'.symbols{sources=%s}<CR>"
