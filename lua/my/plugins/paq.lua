@@ -30,6 +30,9 @@ require'paq-nvim' {
   'nvim-treesitter/nvim-treesitter-textobjects',
   'machakann/vim-sandwich',
 
+  -- Terminal integration {{{1
+  'mnacamura/iron.nvim',
+
   -- Fuzzy finder {{{1
   'nvim-telescope/telescope.nvim',
   'nvim-telescope/telescope-symbols.nvim',
