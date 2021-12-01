@@ -68,7 +68,7 @@ require'paq-nvim' {
   'tpope/vim-unimpaired',
 
   -- Command line {{{1
-  'houtsnip/vim-emacscommandline',
+  'tpope/vim-rsi',
 
   -- Language specific {{{1
   -- Markdown {{{2
