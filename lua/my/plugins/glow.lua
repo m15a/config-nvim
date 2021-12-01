@@ -1,4 +1,7 @@
 local v = require'my.utils.vimsl'
+local g = vim.g
+
+g.glow_border = 'rounded'
 
 local toggle_map = '<Space>'
 local filetypes = {
