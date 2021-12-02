@@ -1,15 +1,6 @@
--- Bootstrap paq-nvim
-(function()
-  local fn = vim.fn
-  local repo = "https://github.com/savq/paq-nvim"
-  local path = fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
-  if fn.empty(fn.glob(path)) > 0 then
-    fn.system({ "git", "clone", "--depth=1", repo, path })
-    vim.cmd([[packadd paq-nvim]])
-  end
-end)()
+local M = {}
 
-require("paq-nvim")({
+M.specs = {
   --[[
   Sections below are mostly based on
   [rockerBOO/awesome-neovim](https://github.com/rockerBOO/awesome-neovim).
@@ -94,5 +85,23 @@ require("paq-nvim")({
   -- TOML {{{2
   "cespare/vim-toml",
   -- }}}1
-})
+}
+
+function M.bootstrap()
+  local fn = vim.fn
+  local repo = "https://github.com/savq/paq-nvim"
+  local path = fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
+  if fn.empty(fn.glob(path)) > 0 then
+    fn.system({ "git", "clone", "--depth=1", repo, path })
+    vim.cmd([[packadd paq-nvim]])
+  end
+end
+
+function M.setup()
+  M.bootstrap()
+  require("paq")(M.specs)
+end
+
+return M
+
 -- vim: fdm=marker
