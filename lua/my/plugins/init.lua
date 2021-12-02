@@ -1,7 +1,13 @@
 local namespace = ...
 
 local function require_(basename)
-  require(namespace .. "." .. basename)
+  -- If the required script returns a module, then call setup().
+  -- Otherwise, it is simply a setup script.
+  local mod = require(namespace .. "." .. basename)
+  if type(mod) == "boolean" then
+    return mod
+  end
+  mod.setup()
 end
 
 require_("paq")
