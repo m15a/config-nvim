@@ -1,6 +1,6 @@
 -- Utility functions as a DSL for Vim commands
 
-local vimsl = {}
+local M = {}
 
 -- :augroup 'name' ... :augroup END
 -- Usage:
@@ -9,7 +9,7 @@ local vimsl = {}
 --     au [[ string ]]
 --     au {'table', 'of', 'string'}
 --   end)
-function vimsl.augroup(name, autocmds)
+function M.augroup(name, autocmds)
   local lines = {
     "augroup " .. name,
     "autocmd!",
@@ -25,8 +25,8 @@ function vimsl.augroup(name, autocmds)
 end
 
 -- :colorscheme 'name'
-function vimsl.colorscheme(name)
+function M.colorscheme(name)
   vim.cmd("colorscheme " .. name)
 end
 
-return vimsl
+return M
