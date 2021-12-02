@@ -8,8 +8,8 @@ let
   nixpkgs = fetchTarballFromGitHub {
     owner = "NixOS";
     repo = "nixpkgs";
-    rev = "7fad01d9d5a3f82081c00fb57918d64145dc904c";
-    sha256 = "0g0jn8cp1f3zgs7xk2xb2vwa44gb98qlp7k0dvigs0zh163c2kim";
+    rev = "78cb77b29d37a9663e05b61abb4fa09465da4b70";
+    sha256 = "0a6nv2wx82zgcw4rnvhjj0pqm0w4acbafnpj1imgjpzwss7v6w0i";
   };
 
   pkgs = import nixpkgs {};
@@ -17,6 +17,7 @@ in
 
 pkgs.mkShell {
   buildInputs = [
-    pkgs.luaPackages.luacheck
+    pkgs.selene
+    pkgs.stylua
   ];
 }
