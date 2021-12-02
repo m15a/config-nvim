@@ -44,7 +44,7 @@ M.specs = {
   "lewis6991/gitsigns.nvim",
 
   -- Comment {{{1
-  "tyru/caw.vim",
+  "b3nj5m1n/kommentary",
 
   -- Motion {{{1
   "chaoren/vim-wordmotion",
