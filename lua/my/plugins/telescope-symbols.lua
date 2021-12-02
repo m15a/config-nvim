@@ -1,15 +1,15 @@
-local map = require'my.utils.telescope'.set_keymap
+local map = require("my.utils.telescope").set_keymap
 
 local function format_sources(sources)
   local quoted = {}
   for i, source in ipairs(sources) do
     quoted[i] = "'" .. source .. "'"
   end
-  return '{' .. table.concat(quoted, ',') .. '}'
+  return "{" .. table.concat(quoted, ",") .. "}"
 end
 
 local keymaps = {
-  ['S'] = {'math', 'latex', 'emoji', 'gitmoji'},
+  ["S"] = { "math", "latex", "emoji", "gitmoji" },
 }
 
 local cmd = "<Cmd>lua require'telescope.builtin'.symbols{sources=%s}<CR>"

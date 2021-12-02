@@ -9,25 +9,24 @@ local vimsl = {}
 --     au [[ string ]]
 --     au {'table', 'of', 'string'}
 --   end)
---   -- or 
 function vimsl.augroup(name, autocmds)
   local lines = {
-    'augroup ' .. name,
-    'autocmd!'
+    "augroup " .. name,
+    "autocmd!",
   }
   autocmds(function(line)
-    if type(line) == 'table' then
-      line = table.concat(line, ' ')
+    if type(line) == "table" then
+      line = table.concat(line, " ")
     end
-    table.insert(lines, 'autocmd ' .. line)
+    table.insert(lines, "autocmd " .. line)
   end)
-  table.insert(lines, 'augroup END')
-  vim.cmd(table.concat(lines, '\n'))
+  table.insert(lines, "augroup END")
+  vim.cmd(table.concat(lines, "\n"))
 end
 
 -- :colorscheme 'name'
 function vimsl.colorscheme(name)
-  vim.cmd('colorscheme ' .. name)
+  vim.cmd("colorscheme " .. name)
 end
 
 return vimsl
