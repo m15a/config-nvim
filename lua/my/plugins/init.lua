@@ -1,13 +1,8 @@
 local namespace = ...
+local utils = require("my.utils")
 
 local function require_(basename)
-  -- If the required script returns a module, then call setup().
-  -- Otherwise, it is simply a setup script.
-  local mod = require(namespace .. "." .. basename)
-  if type(mod) == "boolean" then
-    return mod
-  end
-  mod.setup()
+  utils.require(namespace .. "." .. basename)
 end
 
 require_("paq")

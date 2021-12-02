@@ -1,55 +1,46 @@
-require("telescope").setup({
-  defaults = {
-    mappings = {
-      i = {
-        -- ['<C-a>'] = '',
+local builtin = require("telescope.builtin")
+local keymaps = require("my.keymaps")
+
+local M = {}
+
+function M.setup()
+  require("telescope").setup({
+    defaults = {
+      mappings = {
+        i = {
+          -- ['<C-a>'] = '',
+        },
       },
     },
-  },
-})
+  })
 
-do
-  local map = vim.api.nvim_set_keymap
+  local tmap = keymaps.set_telescope_keymap
+  local lmap = keymaps.set_lsp_keymap
+  local gmap = keymaps.set_git_keymap
 
-  map("", "[telescope]", "<Nop>", { noremap = true })
-  map("", "<Leader>e", "[telescope]", {})
+  tmap("F", "<Cmd>Telescope find_files<CR>")
+  tmap("f", "<Cmd>lua require'my.plugins.telescope'.git_files_or_find_files()<CR>")
+  tmap("*", "<Cmd>Telescope grep_string<CR>")
+  tmap("g", "<Cmd>Telescope live_grep<CR>")
+  tmap("o", "<Cmd>Telescope file_browser sorting_strategy=ascending<CR>")
 
-  map("n", "<Leader>E", "<Cmd>Telescope builtin<CR>", { silent = true })
-
-  map("", "[lsp]", "<Nop>", { noremap = true })
-  map("", "<Leader>l", "[lsp]", {})
-
-  map("", "[git]", "<Nop>", { noremap = true })
-  map("", "<Leader>g", "[git]", {})
-end
-
-do
-  local map = require("my.utils.telescope").set_keymap
-  local lmap = require("my.utils.telescope").set_lsp_keymap
-  local gmap = require("my.utils.telescope").set_git_keymap
-
-  map("F", "<Cmd>Telescope find_files<CR>")
-  map("f", "<Cmd>lua require'my.utils.telescope'.git_files_or_find_files()<CR>")
-  map("*", "<Cmd>Telescope grep_string<CR>")
-  map("g", "<Cmd>Telescope live_grep<CR>")
-  map("o", "<Cmd>Telescope file_browser sorting_strategy=ascending<CR>")
-
-  map("b", "<Cmd>Telescope buffers<CR>")
-  map("O", "<Cmd>Telescope oldfiles<CR>")
-  map(":", "<Cmd>Telescope commands<CR>")
-  -- map('t', '<Cmd>Telescope tags<CR>')
-  map(";", "<Cmd>Telescope command_history<CR>")
-  map("?", "<Cmd>Telescope search_history<CR>")
-  map("h", "<Cmd>Telescope help_tags<CR>")
-  map("m", "<Cmd>Telescope man_pages<CR>")
-  map("M", "<Cmd>Telescope marks<CR>")
-  map("q", "<Cmd>Telescope quickfix<CR>")
-  map("l", "<Cmd>Telescope loclist<CR>")
-  map("<C-o>", "<Cmd>Telescope jumplist<CR>")
-  map("r", "<Cmd>Telescope registers<CR>")
-  map("s", "<Cmd>Telescope spell_suggest<CR>")
-  map("/", "<Cmd>Telescope current_buffer_fuzzy_find<CR>")
-  map("e", "<Cmd>Telescope resume<CR>")
+  tmap("b", "<Cmd>Telescope buffers<CR>")
+  tmap("O", "<Cmd>Telescope oldfiles<CR>")
+  tmap(":", "<Cmd>Telescope commands<CR>")
+  -- tmap('t', '<Cmd>Telescope tags<CR>')
+  tmap(";", "<Cmd>Telescope command_history<CR>")
+  tmap("?", "<Cmd>Telescope search_history<CR>")
+  tmap("h", "<Cmd>Telescope help_tags<CR>")
+  tmap("m", "<Cmd>Telescope man_pages<CR>")
+  tmap("M", "<Cmd>Telescope marks<CR>")
+  tmap("q", "<Cmd>Telescope quickfix<CR>")
+  tmap("l", "<Cmd>Telescope loclist<CR>")
+  tmap("<C-o>", "<Cmd>Telescope jumplist<CR>")
+  tmap("r", "<Cmd>Telescope registers<CR>")
+  tmap("s", "<Cmd>Telescope spell_suggest<CR>")
+  tmap("/", "<Cmd>Telescope current_buffer_fuzzy_find<CR>")
+  tmap("e", "<Cmd>Telescope resume<CR>")
+  tmap("E", "<Cmd>Telescope builtin<CR>")
 
   lmap("r", "<Cmd>Telescope lsp_references<CR>")
   lmap("s", "<Cmd>Telescope lsp_document_symbols<CR>") -- TODO: fall back to treesitter
@@ -69,5 +60,15 @@ do
   gmap("w", "<Cmd>Telescope git_status<CR>")
   gmap("s", "<Cmd>Telescope git_stash<CR>")
 
-  map("t", "<Cmd>Telescope treesitter<CR>")
+  tmap("t", "<Cmd>Telescope treesitter<CR>")
 end
+
+function M.git_files_or_find_files(opts)
+  opts = opts or {}
+  local ok = pcall(builtin.git_files, opts)
+  if not ok then
+    builtin.find_files(opts)
+  end
+end
+
+return M

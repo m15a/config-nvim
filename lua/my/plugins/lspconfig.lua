@@ -1,58 +1,48 @@
 local v = require("my.utils.vimsl")
 local lspconfig = require("lspconfig")
 
-local keymaps = {
-  { "n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>" },
-  { "n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>" },
-  { "n", "gt", "<Cmd>lua vim.lsp.buf.type_definition()<CR>" }, -- I don't use tabs
-  { "n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>" },
-  { "n", "D", "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
+local bare_keymaps = {
+  { "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>" },
+  { "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>" },
+  { "gt", "<Cmd>lua vim.lsp.buf.type_definition()<CR>" }, -- I don't use tabs
+  { "K", "<Cmd>lua vim.lsp.buf.hover()<CR>" },
+  { "D", "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
 
-  { "n", "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>" },
-  { "n", "gr", "<Cmd>lua vim.lsp.buf.rename()<CR>" },
-  { "n", "ga", "<Cmd>lua vim.lsp.buf.code_action()<CR>" },
-  { "x", "ga", ":<C-u>lua vim.lsp.buf.range_code_action()<CR>" },
+  { "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>" },
+  { "gr", "<Cmd>lua vim.lsp.buf.rename()<CR>" },
+  { "ga", "<Cmd>lua vim.lsp.buf.code_action()<CR>" },
+  { "ga", ":<C-u>lua vim.lsp.buf.range_code_action()<CR>", { mode = "x" } },
 
-  { "n", "[d", "<Cmd>lua vim.diagnostic.goto_prev()<CR>" },
-  { "n", "]d", "<Cmd>lua vim.diagnostic.goto_next()<CR>" },
+  { "[d", "<Cmd>lua vim.diagnostic.goto_prev()<CR>" },
+  { "]d", "<Cmd>lua vim.diagnostic.goto_next()<CR>" },
 }
-for _, keymap in ipairs(keymaps) do
-  table.insert(keymap, { noremap = true, silent = true })
-end
 
 local workspace_keymaps = {
-  { "n", "[workspace]a", "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>" },
-  { "n", "[workspace]r", "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>" },
-  { "n", "[workspace]w", "<Cmd>lua vim.lsp.buf.list_workspace_folders()<CR>" },
+  { "a", "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>" },
+  { "r", "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>" },
+  { "w", "<Cmd>lua vim.lsp.buf.list_workspace_folders()<CR>" },
 }
-for _, keymap in ipairs(workspace_keymaps) do
-  table.insert(keymap, { silent = true })
-end
 
 local lsp_keymaps = {
-  { "n", "[lsp]f", "<Cmd>lua vim.lsp.buf.formatting()<CR>" },
+  { "f", "<Cmd>lua vim.lsp.buf.formatting()<CR>" },
 }
-for _, keymap in ipairs(lsp_keymaps) do
-  table.insert(keymap, { silent = true })
-end
 
-local function on_attach(client, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+local function on_attach(client, buf)
+  vim.api.nvim_buf_set_option(buf, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_buf_set_option(buf, "formatexpr", "v:lua.vim.lsp.formatexpr()")
 
-  for _, keymap in ipairs(keymaps) do
-    vim.api.nvim_buf_set_keymap(bufnr, unpack(keymap))
+  local keymaps = require("my.keymaps")
+
+  for _, keymap in ipairs(bare_keymaps) do
+    keymaps.buf_set_keymap(buf, unpack(keymap))
   end
 
-  vim.api.nvim_buf_set_keymap(bufnr, "", "[workspace]", "<Nop>", { noremap = true })
-  vim.api.nvim_buf_set_keymap(bufnr, "", "<LocalLeader>w", "[workspace]", {})
   for _, keymap in ipairs(workspace_keymaps) do
-    vim.api.nvim_buf_set_keymap(bufnr, unpack(keymap))
+    keymaps.buf_set_workspace_keymap(buf, unpack(keymap))
   end
 
-  -- The prefix [lsp] is defined in my.plugins.telescope
   for _, keymap in ipairs(lsp_keymaps) do
-    vim.api.nvim_buf_set_keymap(bufnr, unpack(keymap))
+    keymaps.buf_set_lsp_keymap(buf, unpack(keymap))
   end
 
   -- NOTE: Highlight document only if available; see
