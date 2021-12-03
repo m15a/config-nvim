@@ -1,6 +1,19 @@
 local v = require 'my.utils.vimsl'
 local lspconfig = require 'lspconfig'
 
+-- Change diagnostic symbols in the sign column (gutter)
+-- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#change-diagnostic-symbols-in-the-sign-column-gutter
+local diagnostic_signs = {
+   Error = " ",
+   Warn = " ",
+   Hint = " ",
+   Info = " ",
+}
+for type, sign in pairs(diagnostic_signs) do
+   local hl = "DiagnosticSign" .. type
+   vim.fn.sign_define(hl, { text = sign, texthl = hl, numhl = hl })
+end
+
 -- Use RishabhRD/lspactions if available
 local lsp_buf, diagnostic
 if require 'lspactions' then
