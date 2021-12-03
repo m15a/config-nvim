@@ -1,7 +1,15 @@
+# Synopsis
+
+An example of NeoVim configuration, being developed by the policy:
+
+    Stay vanilla+ as far as I can, but telescope is unavoidable!
+
 # Plugins
 
-Subsections below are mostly adopted from
-[rockerBOO/awesome-neovim](https://github.com/rockerBOO/awesome-neovim).
+Here is the list of plugins used in this configuration.
+
+Subsections below are adopted from [rockerBOO/awesome-neovim](https://github.com/rockerBOO/awesome-neovim),
+from which most plugins listed here are employed.
 
 ## Plugin manager
 
