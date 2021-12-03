@@ -1,46 +1,46 @@
-local v = require("my.utils.vimsl")
+local v = require 'my.utils.vimsl'
 local env = vim.env
 local o = vim.opt
 
 -- Hack for vim + fish problem.
-env.SHELL = "/run/current-system/sw/bin/bash"
+env.SHELL = '/run/current-system/sw/bin/bash'
 o.shell = env.SHELL
 
-v.augroup("remember_last_cursor_position", function(au)
-   au([[BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal g`\"" | endif]])
+v.augroup('remember_last_cursor_position', function(au)
+   au [[BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal g`\"" | endif]]
 end)
 
 -- Practical Vim, Tip 42: '%%' expands to '%:h'
 vim.api.nvim_set_keymap(
-   "c",
-   "%%",
+   'c',
+   '%%',
    [[getcmdtype() == ':' ? expand('%:h') . '/' : '%%']],
    { expr = true, noremap = true }
 )
 
 -- Practical Vim, Tip 93: Repeat the last substitution by '&'
-for _, mode in ipairs({ "n", "x" }) do
-   vim.api.nvim_set_keymap(mode, "&", [[:&&<CR>]], { noremap = true })
+for _, mode in ipairs { 'n', 'x' } do
+   vim.api.nvim_set_keymap(mode, '&', [[:&&<CR>]], { noremap = true })
 end
 
-if vim.fn.executable("rg") == 1 then
+if vim.fn.executable 'rg' == 1 then
    o.grepprg = table.concat({
-      "rg",
-      "--smart-case",
-      "--with-filename",
-      "--no-heading",
-      "--vimgrep",
-   }, " ")
+      'rg',
+      '--smart-case',
+      '--with-filename',
+      '--no-heading',
+      '--vimgrep',
+   }, ' ')
    o.grepformat = {
-      "%f:%l:%c:%m",
-      "%f",
+      '%f:%l:%c:%m',
+      '%f',
    }
 end
 
 -- Update timestamp automatically
 -- See https://vim.fandom.com/wiki/Insert_current_date_or_time
 -- TODO: translate it into lua
-vim.cmd([[
+vim.cmd [[
 fun! UpdateTimestamp(format)
   if !&modified | return | endif
   let l:pos = getpos('.')
@@ -56,4 +56,4 @@ augroup update_timestamp
   autocmd!
   au BufWritePre * call UpdateTimestamp('%Y-%m-%d')
 augroup END
-]])
+]]

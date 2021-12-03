@@ -28,7 +28,7 @@ local srcery = {
    xgray6 = g.srcery_xgray6,
 }
 
-local colors = vim.tbl_extend("error", srcery, {
+local colors = vim.tbl_extend('error', srcery, {
    fg = srcery.brwhite,
    bg = srcery.black,
    violet = srcery.magenta,
@@ -36,7 +36,7 @@ local colors = vim.tbl_extend("error", srcery, {
    oceanlue = srcery.blue,
 })
 
-require("feline").setup({
-   preset = "noicon",
+require('feline').setup {
+   preset = 'noicon',
    colors = colors,
-})
+}
