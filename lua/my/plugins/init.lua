@@ -7,8 +7,9 @@ end
 
 require_("paq")
 
+require_("astronauta")
 require_("lightspeed")
-require_("lsputils")
+require_("lspactions")
 require_("lspkind")
 require_("null-ls")
 require_("lspconfig")

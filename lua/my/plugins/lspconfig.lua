@@ -1,20 +1,27 @@
 local v = require("my.utils.vimsl")
 local lspconfig = require("lspconfig")
 
+-- Use RishabhRD/lspactions if available
+local lsp_buf, diagnostic
+if require("lspactions") then
+   lsp_buf, diagnostic = "require'lspactions'", "require'lspactions'.diagnostic"
+else
+   lsp_buf, diagnostic = "vim.lsp.buf", "vim.lsp.diagnostic"
+end
 local bare_keymaps = {
-   { "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>" },
    { "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>" },
-   { "gt", "<Cmd>lua vim.lsp.buf.type_definition()<CR>" }, -- I don't use tabs
+   { "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>" },
+   -- { "gt", "<Cmd>lua vim.lsp.buf.type_definition()<CR>" }, -- I don't use tabs
    { "K", "<Cmd>lua vim.lsp.buf.hover()<CR>" },
-   { "D", "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>" },
+   { "D", "<Cmd>lua " .. diagnostic .. ".show_line_diagnostics()<CR>" },
 
    { "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>" },
-   { "gr", "<Cmd>lua vim.lsp.buf.rename()<CR>" },
-   { "ga", "<Cmd>lua vim.lsp.buf.code_action()<CR>" },
-   { "ga", ":<C-u>lua vim.lsp.buf.range_code_action()<CR>", { mode = "x" } },
+   { "gr", "<Cmd>lua " .. lsp_buf .. ".rename()<CR>" },
+   { "ga", "<Cmd>lua " .. lsp_buf .. ".code_action()<CR>" },
+   { "ga", ":<C-u>lua " .. lsp_buf .. ".range_code_action()<CR>", { mode = "x" } },
 
-   { "[d", "<Cmd>lua vim.diagnostic.goto_prev()<CR>" },
-   { "]d", "<Cmd>lua vim.diagnostic.goto_next()<CR>" },
+   { "[d", "<Cmd>lua " .. diagnostic .. ".goto_prev()<CR>" },
+   { "]d", "<Cmd>lua " .. diagnostic .. ".goto_next()<CR>" },
 }
 
 local workspace_keymaps = {

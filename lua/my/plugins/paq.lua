@@ -10,8 +10,7 @@ M.specs = {
 
    -- LSP {{{1
    "neovim/nvim-lspconfig",
-   "RishabhRD/popfix",
-   "RishabhRD/nvim-lsputils",
+   "RishabhRD/lspactions",
    "onsails/lspkind-nvim",
    "jose-elias-alvarez/null-ls.nvim",
    "folke/lsp-colors.nvim",
@@ -36,6 +35,8 @@ M.specs = {
 
    -- Neovim Lua development {{{1
    "nvim-lua/plenary.nvim",
+   "nvim-lua/popup.nvim",
+   "tjdevries/astronauta.nvim",
 
    -- Statusline {{{1
    "famiu/feline.nvim",

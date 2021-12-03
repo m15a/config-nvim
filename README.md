@@ -18,8 +18,7 @@ from which most plugins listed here are employed.
 ## LSP
 
 - [x] [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-- [x] [RishabhRD/nvim-lsputils](https://github.com/RishabhRD/nvim-lsputils)
-    + depends on [RishabhRD/popfix](https://github.com/RishabhRD/popfix)
+- [x] [RishabhRD/lspactions](https://github.com/RishabhRD/lspactions)
 - [x] [onsails/lspkind-nvim](https://github.com/onsails/lspkind-nvim)
 - [x] [jose-elias-alvarez/null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim)
 - [x] [folke/lsp-colors.nvim](https://github.com/folke/lsp-colors.nvim)
@@ -74,6 +73,8 @@ from which most plugins listed here are employed.
 ## Neovim Lua development
 
 - [x] [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
+- [x] [nvim-lua/popup.nvim](https://github.com/nvim-lua/popup.nvim)
+- [x] [tjdevries/astronauta.nvim](https://github.com/tjdevries/astronauta.nvim)
 
 ## Statusline
 
