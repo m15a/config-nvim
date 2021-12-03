@@ -48,7 +48,7 @@ null_ls.config({
       -- formatting.shfmt.with({ condition = has_file(".editorconfig") }),
 
       -- Fish
-      formatting.fish_indent.with({ condition = has_executable("fish") }),
+      formatting.fish_indent.with({ condition = has_executable("fish_indent") }),
 
       -- Python
       diagnostics.flake8.with({ condition = has_file("pyproject.toml") }),
