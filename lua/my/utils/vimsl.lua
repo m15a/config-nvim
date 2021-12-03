@@ -10,23 +10,23 @@ local M = {}
 --     au {'table', 'of', 'string'}
 --   end)
 function M.augroup(name, autocmds)
-  local lines = {
-    "augroup " .. name,
-    "autocmd!",
-  }
-  autocmds(function(line)
-    if type(line) == "table" then
-      line = table.concat(line, " ")
-    end
-    table.insert(lines, "autocmd " .. line)
-  end)
-  table.insert(lines, "augroup END")
-  vim.cmd(table.concat(lines, "\n"))
+   local lines = {
+      "augroup " .. name,
+      "autocmd!",
+   }
+   autocmds(function(line)
+      if type(line) == "table" then
+         line = table.concat(line, " ")
+      end
+      table.insert(lines, "autocmd " .. line)
+   end)
+   table.insert(lines, "augroup END")
+   vim.cmd(table.concat(lines, "\n"))
 end
 
 -- :colorscheme 'name'
 function M.colorscheme(name)
-  vim.cmd("colorscheme " .. name)
+   vim.cmd("colorscheme " .. name)
 end
 
 return M

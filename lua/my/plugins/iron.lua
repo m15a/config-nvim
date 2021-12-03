@@ -1,25 +1,25 @@
 local iron = require("iron")
 
 iron.core.set_config({
-  repl_open_cmd = "top 10 split",
-  preferred = {
-    bash = "bash",
-    fish = "fish",
-    python = "python",
-  },
+   repl_open_cmd = "top 10 split",
+   preferred = {
+      bash = "bash",
+      fish = "fish",
+      python = "python",
+   },
 })
 
 iron.core.add_repl_definitions({
-  bash = {
-    bash = {
-      command = { "bash", "-i" },
-    },
-  },
-  fish = {
-    fish = {
-      command = { "fish", "--interactive", "--private" },
-    },
-  },
+   bash = {
+      bash = {
+         command = { "bash", "-i" },
+      },
+   },
+   fish = {
+      fish = {
+         command = { "fish", "--interactive", "--private" },
+      },
+   },
 })
 
 -- TODO: These maps should be buffer local after launching iron repl.

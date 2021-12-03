@@ -2,7 +2,7 @@ local namespace = ...
 local utils = require("my.utils")
 
 local function require_(basename)
-  utils.require(namespace .. "." .. basename)
+   utils.require(namespace .. "." .. basename)
 end
 
 require_("paq")

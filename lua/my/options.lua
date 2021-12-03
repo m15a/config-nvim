@@ -16,12 +16,12 @@ o.visualbell = true
 o.scrolloff = 5
 o.diffopt:append("vertical")
 o.listchars = {
-  eol = "¬",
-  tab = "›_",
-  trail = "_",
-  extends = "»",
-  precedes = "«",
-  nbsp = "_",
+   eol = "¬",
+   tab = "›_",
+   trail = "_",
+   extends = "»",
+   precedes = "«",
+   nbsp = "_",
 }
 o.showbreak = "»"
 o.showmatch = true
@@ -37,9 +37,9 @@ wo.number = true
 wo.list = true
 wo.cursorline = true
 wo.colorcolumn = (function()
-  local colorcolumn = {}
-  for i = 1, 256 do
-    table.insert(colorcolumn, "+" .. i)
-  end
-  return table.concat(colorcolumn, ",")
+   local colorcolumn = {}
+   for i = 1, 256 do
+      table.insert(colorcolumn, "+" .. i)
+   end
+   return table.concat(colorcolumn, ",")
 end)()
