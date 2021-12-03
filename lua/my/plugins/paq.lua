@@ -82,6 +82,9 @@ M.specs = {
    -- Fish {{{2
    "NovaDev94/vim-fish",
 
+   -- Lua {{{2
+   "euclidianAce/BetterLua.vim",
+
    -- Fennel {{{2
    "mnacamura/vim-fennel-syntax",
 
