@@ -87,9 +87,6 @@ M.specs = {
 
    -- Fennel {{{2
    "mnacamura/vim-fennel-syntax",
-
-   -- TOML {{{2
-   "cespare/vim-toml",
    -- }}}1
 }
 
