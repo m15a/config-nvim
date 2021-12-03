@@ -1,7 +1,7 @@
 local M = {}
 
 M.specs = {
-    --[[
+   --[[
    Sections below are mostly based on
    [rockerBOO/awesome-neovim](https://github.com/rockerBOO/awesome-neovim).
    ]]
@@ -45,6 +45,9 @@ M.specs = {
 
    -- Comment {{{1
    "b3nj5m1n/kommentary",
+
+   -- Quickfix {{{1
+   { url = "https://gitlab.com/yorickpeterse/nvim-pqf.git" },
 
    -- Motion {{{1
    "chaoren/vim-wordmotion",
