@@ -15,9 +15,9 @@ g.bullets_outline_levels = {
    "num",
    "abc",
    "rom",
-   "std*",
-   "std+",
    "std-",
+   "std+",
+   "std*",
 }
 g.bullets_checkbox_markers = " x"
 
