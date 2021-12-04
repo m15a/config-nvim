@@ -73,8 +73,6 @@ most plugins listed here are employed.
 ## Git
 
 - [x] [lewis6991/gitsigns.nvim][24]
-- [ ] [tveskag/nvim-blame-line][25]
-  or [f-person/git-blame.nvim][26]
 
 ## Comment
 
@@ -161,8 +159,6 @@ most plugins listed here are employed.
 [22]: https://github.com/famiu/feline.nvim
 [23]: https://github.com/yamatsum/nvim-cursorline
 [24]: https://github.com/lewis6991/gitsigns.nvim
-[25]: https://github.com/tveskag/nvim-blame-line
-[26]: https://github.com/f-person/git-blame.nvim
 [27]: https://github.com/b3nj5m1n/kommentary
 [28]: https://gitlab.com/yorickpeterse/nvim-pqf
 [29]: https://github.com/chaoren/vim-wordmotion
