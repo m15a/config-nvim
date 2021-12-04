@@ -97,7 +97,6 @@ most plugins listed here are employed.
 
 - [ ] [windwp/nvim-autopairs][32] or [steelsojka/pears.nvim][33]
 - [x] [monaqa/dial.nvim][34]
-- [ ] [mizlan/iswap.nvim][35]
 - [x] [nacro90/numb.nvim][36]
 - [x] [ethanholz/nvim-lastplace][37]
 
@@ -172,7 +171,6 @@ most plugins listed here are employed.
 [32]: https://github.com/windwp/nvim-autopairs
 [33]: https://github.com/steelsojka/pears.nvim
 [34]: https://github.com/monaqa/dial.nvim
-[35]: https://github.com/mizlan/iswap.nvim
 [36]: https://github.com/nacro90/numb.nvim
 [37]: https://github.com/ethanholz/nvim-lastplace
 [38]: https://github.com/tpope/vim-rsi
