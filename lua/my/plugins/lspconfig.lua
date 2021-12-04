@@ -1,40 +1,97 @@
 local v = require 'my.utils.vimsl'
 local lspconfig = require 'lspconfig'
 
--- Change diagnostic symbols in the sign column (gutter)
+-- Use RishabhRD/lspactions if available
+local lspactions_is_ok, lspactions = pcall(require, 'lspactions')
+
+-- Change diagnostic symbols in the gutter.
 -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#change-diagnostic-symbols-in-the-sign-column-gutter
 local diagnostic_signs = {
-   Error = " ",
-   Warn = " ",
-   Hint = " ",
-   Info = " ",
+   Error = ' ',
+   Warn = ' ',
+   Hint = ' ',
+   Info = ' ',
 }
-for type, sign in pairs(diagnostic_signs) do
-   local hl = "DiagnosticSign" .. type
-   vim.fn.sign_define(hl, { text = sign, texthl = hl, numhl = hl })
+
+-- Set floating window borders.
+-- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#borders
+local float_border = {
+   { '╭', 'FloatBorder' },
+   { '─', 'FloatBorder' },
+   { '╮', 'FloatBorder' },
+   { '│', 'FloatBorder' },
+   { '╯', 'FloatBorder' },
+   { '─', 'FloatBorder' },
+   { '╰', 'FloatBorder' },
+   { '│', 'FloatBorder' },
+}
+
+local M = {}
+
+function M.rename()
+   if lspactions_is_ok then
+      lspactions.rename()
+   else
+      vim.lsp.buf.rename()
+   end
 end
 
--- Use RishabhRD/lspactions if available
-local lsp_buf, diagnostic
-if require 'lspactions' then
-   lsp_buf, diagnostic = "require'lspactions'", "require'lspactions'.diagnostic"
-else
-   lsp_buf, diagnostic = 'vim.lsp.buf', 'vim.lsp.diagnostic'
+function M.code_action()
+   if lspactions_is_ok then
+      lspactions.code_action()
+   else
+      vim.lsp.buf.code_action()
+   end
 end
+
+function M.range_code_action()
+   if lspactions_is_ok then
+      lspactions.range_code_action()
+   else
+      vim.lsp.buf.range_code_action()
+   end
+end
+
+M.diagnostic = {}
+
+function M.diagnostic.show_line_diagnostics()
+   if lspactions_is_ok then
+      lspactions.diagnostic.show_line_diagnostics { border = float_border }
+   else
+      vim.diagnostic.open_float(0, { scope = 'line', border = float_border })
+   end
+end
+
+function M.diagnostic.goto_prev()
+   if lspactions_is_ok then
+      lspactions.diagnostic.goto_prev { float = { border = float_border } }
+   else
+      vim.diagnostic.goto_prev { float = { border = float_border } }
+   end
+end
+
+function M.diagnostic.goto_next()
+   if lspactions_is_ok then
+      lspactions.diagnostic.goto_next { float = { border = float_border } }
+   else
+      vim.diagnostic.goto_next { float = { border = float_border } }
+   end
+end
+
 local bare_keymaps = {
    { 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>' },
    { 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>' },
    -- { "gt", "<Cmd>lua vim.lsp.buf.type_definition()<CR>" }, -- I don't use tabs
    { 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>' },
-   { 'D', '<Cmd>lua ' .. diagnostic .. '.show_line_diagnostics()<CR>' },
+   { 'D', "<Cmd>lua require'my.plugins.lspconfig'.diagnostic.show_line_diagnostics()<CR>" },
 
    { '<C-k>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>' },
-   { 'gr', '<Cmd>lua ' .. lsp_buf .. '.rename()<CR>' },
-   { 'ga', '<Cmd>lua ' .. lsp_buf .. '.code_action()<CR>' },
-   { 'ga', ':<C-u>lua ' .. lsp_buf .. '.range_code_action()<CR>', { mode = 'x' } },
+   { 'gr', "<Cmd>lua require'my.plugins.lspconfig'.rename()<CR>" },
+   { 'ga', "<Cmd>lua require'my.plugins.lspconfig'.code_action()<CR>" },
+   { 'ga', ":<C-u>lua require'my.plugins.lspconfig'.range_code_action()<CR>", { mode = 'x' } },
 
-   { '[d', '<Cmd>lua ' .. diagnostic .. '.goto_prev()<CR>' },
-   { ']d', '<Cmd>lua ' .. diagnostic .. '.goto_next()<CR>' },
+   { '[d', "<Cmd>lua require'my.plugins.lspconfig'.diagnostic.goto_prev()<CR>" },
+   { ']d', "<Cmd>lua require'my.plugins.lspconfig'.diagnostic.goto_next()<CR>" },
 }
 
 local workspace_keymaps = {
@@ -65,7 +122,7 @@ local function on_attach(client, buf)
       keymaps.buf_set_lsp_keymap(buf, unpack(keymap))
    end
 
-   -- NOTE: Highlight document only if available; see
+   -- NOTE: Highlight document only if available
    -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/355#discussioncomment-1651619
    if client.resolved_capabilities.document_highlight then
       v.augroup('lsp_document_highlight', function(au)
@@ -84,8 +141,25 @@ local servers = {
    pyright = 'pyright',
    dockerls = 'docker-langserver',
 }
-for server, cmd in pairs(servers) do
-   if server == 'null-ls' or vim.fn.executable(cmd) > 0 then
-      lspconfig[server].setup { on_attach = on_attach }
+
+function M.setup()
+   for type, sign in pairs(diagnostic_signs) do
+      local hl = 'DiagnosticSign' .. type
+      vim.fn.sign_define(hl, { text = sign, texthl = hl, numhl = hl })
+   end
+
+   local handlers = vim.lsp.handlers
+   handlers['textDocument/hover'] = vim.lsp.with(handlers.hover, { border = float_border })
+   handlers['textDocument/signatureHelp'] = vim.lsp.with(
+      handlers.signature_help,
+      { border = float_border }
+   )
+
+   for server, cmd in pairs(servers) do
+      if server == 'null-ls' or vim.fn.executable(cmd) > 0 then
+         lspconfig[server].setup { on_attach = on_attach }
+      end
    end
 end
+
+return M
