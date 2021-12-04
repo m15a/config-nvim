@@ -99,7 +99,7 @@ from which most plugins listed here are employed.
 - [ ] [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs) or [steelsojka/pears.nvim](https://github.com/steelsojka/pears.nvim)
 - [ ] [monaqa/dial.nvim](https://github.com/monaqa/dial.nvim)
 - [ ] [mizlan/iswap.nvim](https://github.com/mizlan/iswap.nvim)
-- [ ] [nacro90/numb.nvim](https://github.com/nacro90/numb.nvim)
+- [x] [nacro90/numb.nvim](https://github.com/nacro90/numb.nvim)
 - [x] [ethanholz/nvim-lastplace](https://github.com/ethanholz/nvim-lastplace)
 
 ## Command line
