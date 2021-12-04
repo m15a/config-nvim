@@ -106,10 +106,6 @@ from which most plugins listed here are employed.
 
 - [x] [tpope/vim-rsi](https://github.com/tpope/vim-rsi)
 
-## Split and window
-
-- [ ] [gitlab.com/yorickpeterse/nvim-window](https://gitlab.com/yorickpeterse/nvim-window)
-
 ## Language specific
 
 ### Markdown
