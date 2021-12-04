@@ -26,7 +26,8 @@ most plugins listed here are employed.
 - [x] [nvim-treesitter/nvim-treesitter][8]
 - [x] [nvim-treesitter/nvim-treesitter-textobjects][9]
 - [x] [machakann/vim-sandwich][10]
-    + TODO: Replace it with neovim counterpart.
+    + TODO: Replace it with [blackCauldron7/surround.nvim][51]
+    + NOTE: surround.nvim still does not support dot repeat.
 
 ## Terminal integration
 
@@ -187,5 +188,6 @@ most plugins listed here are employed.
 [48]: https://github.com/NovaDev94/vim-fish
 [49]: https://github.com/euclidianAce/BetterLua.vim
 [50]: https://github.com/mnacamura/vim-fennel-syntax
+[51]: https://github.com/blackCauldron7/surround.nvim
 
 <!-- vim: set ft=markdown.gfm tw=80: -->
