@@ -61,6 +61,7 @@ M.specs = {
    'dkarter/bullets.vim',
    'tpope/vim-repeat',
    'tpope/vim-unimpaired',
+   'ethanholz/nvim-lastplace',
 
    -- Command line {{{1
    'tpope/vim-rsi',

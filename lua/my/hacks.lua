@@ -1,14 +1,9 @@
-local v = require 'my.utils.vimsl'
 local env = vim.env
 local o = vim.opt
 
 -- Hack for vim + fish problem.
 env.SHELL = '/run/current-system/sw/bin/bash'
 o.shell = env.SHELL
-
-v.augroup('remember_last_cursor_position', function(au)
-   au [[BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exec "normal g`\"" | endif]]
-end)
 
 -- Practical Vim, Tip 42: '%%' expands to '%:h'
 vim.api.nvim_set_keymap(

@@ -100,7 +100,7 @@ from which most plugins listed here are employed.
 - [ ] [monaqa/dial.nvim](https://github.com/monaqa/dial.nvim)
 - [ ] [mizlan/iswap.nvim](https://github.com/mizlan/iswap.nvim)
 - [ ] [nacro90/numb.nvim](https://github.com/nacro90/numb.nvim)
-- [ ] [ethanholz/nvim-lastplace](https://github.com/ethanholz/nvim-lastplace)
+- [x] [ethanholz/nvim-lastplace](https://github.com/ethanholz/nvim-lastplace)
 
 ## Command line
 
