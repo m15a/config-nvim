@@ -39,12 +39,12 @@ from which most plugins listed here are employed.
 
 - [ ] [chentau/marks.nvim](https://github.com/chentau/marks.nvim)
 
-## Fuzzy Finder
+## Fuzzy finder
 
 - [x] [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [x] [nvim-telescope/telescope-symbols.nvim](https://github.com/nvim-telescope/telescope-symbols.nvim)
 
-## Colorscheme Creation
+## Colorscheme creation
 
 - [ ] [Iron-E/nvim-highlite](https://github.com/Iron-E/nvim-highlite)
 
@@ -106,7 +106,7 @@ from which most plugins listed here are employed.
 
 - [x] [tpope/vim-rsi](https://github.com/tpope/vim-rsi)
 
-## Split and Window
+## Split and window
 
 - [ ] [gitlab.com/yorickpeterse/nvim-window](https://gitlab.com/yorickpeterse/nvim-window)
 
