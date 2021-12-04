@@ -68,7 +68,7 @@ most plugins listed here are employed.
 
 ## Cursorline
 
-- [ ] [yamatsum/nvim-cursorline][23]
+- [x] [yamatsum/nvim-cursorline][23]
 
 ## Git
 

@@ -41,6 +41,9 @@ M.specs = {
    -- Statusline {{{1
    'famiu/feline.nvim',
 
+   -- Cursorline {{{1
+   'yamatsum/nvim-cursorline',
+
    -- Git {{{1
    'lewis6991/gitsigns.nvim',
 
