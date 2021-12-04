@@ -25,8 +25,7 @@ most plugins listed here are employed.
 
 - [x] [nvim-treesitter/nvim-treesitter][8]
 - [x] [nvim-treesitter/nvim-treesitter-textobjects][9]
-- [x] [machakann/vim-sandwich][10]
-    + TODO: Replace it with neovim counterpart.
+- [x] [blackCauldron7/surround.nvim][10]
 
 ## Terminal integration
 
@@ -146,7 +145,7 @@ most plugins listed here are employed.
 [7]: https://github.com/folke/lsp-colors.nvim
 [8]: https://github.com/nvim-treesitter/nvim-treesitter
 [9]: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-[10]: https://github.com/machakann/vim-sandwich
+[10]: https://github.com/blackCauldron7/surround.nvim
 [11]: https://github.com/mnacamura/iron.nvim
 [12]: https://github.com/hkupty/iron.nvim
 [13]: https://github.com/chentau/marks.nvim

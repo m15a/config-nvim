@@ -18,7 +18,7 @@ M.specs = {
    -- Syntax {{{1
    'nvim-treesitter/nvim-treesitter',
    'nvim-treesitter/nvim-treesitter-textobjects',
-   'machakann/vim-sandwich',
+   'blackCauldron7/surround.nvim',
 
    -- Terminal integration {{{1
    'mnacamura/iron.nvim',
