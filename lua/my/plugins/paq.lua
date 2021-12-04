@@ -23,6 +23,9 @@ M.specs = {
    -- Terminal integration {{{1
    'mnacamura/iron.nvim',
 
+   -- Marks {{{1
+   'chentau/marks.nvim',
+
    -- Fuzzy finder {{{1
    'nvim-telescope/telescope.nvim',
    'nvim-telescope/telescope-symbols.nvim',

@@ -36,7 +36,7 @@ most plugins listed here are employed.
 
 ## Marks
 
-- [ ] [chentau/marks.nvim][13]
+- [x] [chentau/marks.nvim][13]
 
 ## Fuzzy finder
 
