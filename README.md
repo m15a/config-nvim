@@ -96,7 +96,7 @@ most plugins listed here are employed.
 ## Editing support
 
 - [ ] [windwp/nvim-autopairs][32] or [steelsojka/pears.nvim][33]
-- [ ] [monaqa/dial.nvim][34]
+- [x] [monaqa/dial.nvim][34]
 - [ ] [mizlan/iswap.nvim][35]
 - [x] [nacro90/numb.nvim][36]
 - [x] [ethanholz/nvim-lastplace][37]

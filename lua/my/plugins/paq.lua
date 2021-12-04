@@ -63,6 +63,7 @@ M.specs = {
    'tpope/vim-unimpaired',
    'ethanholz/nvim-lastplace',
    'nacro90/numb.nvim',
+   'monaqa/dial.nvim',
 
    -- Command line {{{1
    'tpope/vim-rsi',
