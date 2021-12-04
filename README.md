@@ -35,15 +35,6 @@ from which most plugins listed here are employed.
 - [x] [mnacamura/iron.nvim](https://github.com/mnacamura/iron.nvim)
     + An experimental fork of [hkupty/iron.nvim](https://github.com/hkupty/iron.nvim)
 
-## Snippet
-
-- TODO: Use some snippet plugin?
-
-## Register
-
-- [ ] ~~[tversteeg/registers.nvim](https://github.com/tversteeg/registers.nvim)~~
-    + conflicts with telescope's builtin registers.
-
 ## Marks
 
 - [ ] [chentau/marks.nvim](https://github.com/chentau/marks.nvim)
@@ -52,10 +43,6 @@ from which most plugins listed here are employed.
 
 - [x] [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [x] [nvim-telescope/telescope-symbols.nvim](https://github.com/nvim-telescope/telescope-symbols.nvim)
-
-## Color
-
-- [ ] [folke/twilight.nvim](https://github.com/folke/twilight.nvim)
 
 ## Colorscheme Creation
 
@@ -84,11 +71,6 @@ from which most plugins listed here are employed.
 
 - [ ] [yamatsum/nvim-cursorline](https://github.com/yamatsum/nvim-cursorline)
 
-## Indent
-
-- [ ] [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
-  or [haringsrob/nvim_context_vt](https://github.com/haringsrob/nvim_context_vt)
-
 ## Git
 
 - [x] [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
@@ -107,7 +89,6 @@ from which most plugins listed here are employed.
 
 - [x] [chaoren/vim-wordmotion](https://github.com/chaoren/vim-wordmotion)
 - [x] [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim)
-    + in place of [rhysd/clever-f.vim](https://github.com/rhysd/clever-f.vim): `sr` conflicts with [vim-sandwitch](https://github.com/machakann/vim-sandwich)'s
 
 ## Search
 
@@ -115,19 +96,15 @@ from which most plugins listed here are employed.
 
 ## Editing support
 
-- [ ] ~~[RRethy/nvim-align](https://github.com/RRethy/nvim-align) in place of vim-easy-align~~
-    + Nowadays all things like this are done by formatters.
 - [ ] [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs) or [steelsojka/pears.nvim](https://github.com/steelsojka/pears.nvim)
 - [ ] [monaqa/dial.nvim](https://github.com/monaqa/dial.nvim)
 - [ ] [mizlan/iswap.nvim](https://github.com/mizlan/iswap.nvim)
 - [ ] [nacro90/numb.nvim](https://github.com/nacro90/numb.nvim)
-- [ ] [abecodes/tabout.nvim](https://github.com/abecodes/tabout.nvim)
 - [ ] [ethanholz/nvim-lastplace](https://github.com/ethanholz/nvim-lastplace)
 
 ## Command line
 
 - [x] [tpope/vim-rsi](https://github.com/tpope/vim-rsi)
-- [ ] [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
 
 ## Split and Window
 
