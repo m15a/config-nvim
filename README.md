@@ -43,14 +43,9 @@ most plugins listed here are employed.
 - [x] [nvim-telescope/telescope.nvim][14]
 - [x] [nvim-telescope/telescope-symbols.nvim][15]
 
-## Colorscheme creation
-
-- [ ] [Iron-E/nvim-highlite][16]
-
 ## Colorscheme
 
-- [x] [srcery-colors/srcery-vim][17]
-    + TODO: Replace it with nvim-highlite's.
+- [x] [mnacamura/nvim-srcerite][52]
 
 ## Icon
 
@@ -183,5 +178,6 @@ most plugins listed here are employed.
 [49]: https://github.com/euclidianAce/BetterLua.vim
 [50]: https://github.com/mnacamura/vim-fennel-syntax
 [51]: https://github.com/blackCauldron7/surround.nvim
+[52]: https://github.com/mnacamura/nvim-srcerite
 
 <!-- vim: set ft=markdown.gfm tw=80: -->
