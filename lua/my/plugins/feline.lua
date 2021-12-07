@@ -1,42 +1,167 @@
-local g = vim.g
+local vi_mode = require 'feline.providers.vi_mode'
 
-local srcery = {
-   black = g.srcery_black,
-   red = g.srcery_red,
-   green = g.srcery_red,
-   yellow = g.srcery_yellow,
-   blue = g.srcery_blue,
-   magenta = g.srcery_magenta,
-   cyan = g.srcery_cyan,
-   white = g.srcery_white,
-   brblack = g.srcery_bright_black,
-   brred = g.srcery_bright_red,
-   brgreen = g.srcery_bright_green,
-   bryellow = g.srcery_bright_yellow,
-   brblue = g.srcery_bright_blue,
-   brmagenta = g.srcery_bright_magenta,
-   brcyan = g.srcery_bright_cyan,
-   brwhite = g.srcery_bright_white,
-   orange = g.srcery_orange,
-   brorange = g.srcery_bright_orange,
-   hardblack = g.srcery_hard_black,
-   xgray1 = g.srcery_xgray1,
-   xgray2 = g.srcery_xgray2,
-   xgray3 = g.srcery_xgray3,
-   xgray4 = g.srcery_xgray4,
-   xgray5 = g.srcery_xgray5,
-   xgray6 = g.srcery_xgray6,
+local srcery = {}
+for name, spec in pairs(require 'srcerite.srcery') do
+   srcery[name] = spec[1]
+end
+
+local colors = {
+   fg = srcery.bright_white,
+   bg = srcery.xgray1,
+   sides = srcery.bright_black,
+
+   error = srcery.red,
+   warn = srcery.orange,
+   hint = srcery.magenta,
+   info = srcery.bright_magenta,
+
+   normal = srcery.blue,
+   insert = srcery.green,
+   visual = srcery.magenta,
+   replace = srcery.red,
+   enter = srcery.cyan,
+   select = srcery.orange,
+   command = srcery.cyan,
+   none = srcery.white,
 }
 
-local colors = vim.tbl_extend('error', srcery, {
-   fg = srcery.brwhite,
-   bg = srcery.black,
-   violet = srcery.magenta,
-   skyblue = srcery.brblue,
-   oceanlue = srcery.blue,
-})
+local vi_mode_colors = {
+   ['NORMAL'] = colors.normal,
+   ['OP'] = colors.normal,
+   ['INSERT'] = colors.insert,
+   ['VISUAL'] = colors.visual,
+   ['LINES'] = colors.visual,
+   ['BLOCK'] = colors.visual,
+   ['REPLACE'] = colors.replace,
+   ['V-REPLACE'] = colors.replace,
+   ['ENTER'] = colors.enter,
+   ['MORE'] = colors.enter,
+   ['SELECT'] = colors.select,
+   ['COMMAND'] = colors.command,
+   ['SHELL'] = colors.command,
+   ['TERM'] = colors.command,
+   ['NONE'] = colors.none,
+}
+
+local components = { active = {}, inactive = {} }
+
+components.active[1] = {
+   {
+      provider = '▊ ',
+      hl = { fg = colors.sides, bg = colors.bg },
+   },
+   {
+      provider = 'vi_mode',
+      icon = '',
+      hl = function()
+         return {
+            name = vi_mode.get_mode_highlight_name(),
+            fg = vi_mode.get_mode_color(),
+            bg = colors.bg,
+            style = 'bold',
+         }
+      end,
+      left_sep = '',
+      right_sep = { str = ' ', hl = { bg = colors.bg } },
+   },
+   {
+      provider = {
+         name = 'file_info',
+         opts = {
+            type = 'relative',
+         },
+      },
+      short_provider = {
+         name = 'file_info',
+         opts = {
+            type = 'relative-short',
+         },
+      },
+      hl = { fg = colors.fg, bg = colors.bg },
+      left_sep = '',
+      right_sep = '',
+   },
+   { hl = { bg = colors.bg } },
+}
+components.active[2] = {
+   {
+      provider = 'diagnostic_errors',
+      icon = ' ',
+      hl = { fg = colors.error, bg = colors.bg },
+      left_sep = '',
+      right_sep = { str = ' ', hl = { bg = colors.bg } },
+   },
+   {
+      provider = 'diagnostic_warnings',
+      icon = ' ',
+      hl = { fg = colors.warn, bg = colors.bg },
+      left_sep = '',
+      right_sep = { str = ' ', hl = { bg = colors.bg } },
+   },
+   {
+      provider = 'diagnostic_hints',
+      icon = ' ',
+      hl = { fg = colors.hint, bg = colors.bg },
+      left_sep = '',
+      right_sep = { str = ' ', hl = { bg = colors.bg } },
+   },
+   {
+      provider = 'diagnostic_info',
+      icon = ' ',
+      hl = { fg = colors.info, bg = colors.bg },
+      left_sep = '',
+   },
+   { hl = { bg = colors.bg } },
+}
+components.active[3] = {
+   {
+      provider = 'file_format',
+      hl = { fg = colors.fg, bg = colors.bg },
+      left_sep = '',
+      right_sep = { str = ' ', hl = { bg = colors.bg } },
+   },
+   {
+      provider = 'file_encoding',
+      hl = { fg = colors.fg, bg = colors.bg },
+      left_sep = '',
+      right_sep = { str = ' ', hl = { bg = colors.bg } },
+   },
+   {
+      provider = 'file_type',
+      hl = { fg = colors.fg, bg = colors.bg },
+      left_sep = '',
+      right_sep = { str = ' ', hl = { bg = colors.bg } },
+   },
+   {
+      provider = 'position',
+      hl = { fg = colors.fg, bg = colors.bg },
+      left_sep = '',
+      right_sep = { str = ' ', hl = { bg = colors.bg } },
+   },
+   {
+      provider = 'scroll_bar',
+      hl = { fg = colors.sides, bg = colors.bg },
+      left_sep = '',
+      right_sep = '',
+   },
+   { hl = { bg = colors.bg } },
+}
+
+components.inactive[1] = {
+   components.active[1][3], -- file_info
+   { hl = { bg = colors.bg } },
+}
+components.inactive[2] = {
+   -- pass
+   { hl = { bg = colors.bg } },
+}
+components.inactive[3] = {
+   components.active[3][4], -- position
+   { hl = { bg = colors.bg } },
+}
 
 require('feline').setup {
-   preset = 'noicon',
+   components = components,
+   vi_mode_colors = vi_mode_colors,
    colors = colors,
 }
