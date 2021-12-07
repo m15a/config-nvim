@@ -13,7 +13,6 @@ M.specs = {
    'RishabhRD/lspactions',
    'onsails/lspkind-nvim',
    'jose-elias-alvarez/null-ls.nvim',
-   'folke/lsp-colors.nvim',
 
    -- Syntax {{{1
    'nvim-treesitter/nvim-treesitter',

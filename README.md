@@ -19,7 +19,6 @@ most plugins listed here are employed.
 - [x] [RishabhRD/lspactions][4]
 - [x] [onsails/lspkind-nvim][5]
 - [x] [jose-elias-alvarez/null-ls][6]
-- [x] [folke/lsp-colors.nvim][7]
 
 ## Syntax
 
@@ -136,7 +135,6 @@ most plugins listed here are employed.
 [4]: https://github.com/RishabhRD/lspactions
 [5]: https://github.com/onsails/lspkind-nvim
 [6]: https://github.com/jose-elias-alvarez/null-ls.nvim
-[7]: https://github.com/folke/lsp-colors.nvim
 [8]: https://github.com/nvim-treesitter/nvim-treesitter
 [9]: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 [10]: https://github.com/machakann/vim-sandwich
