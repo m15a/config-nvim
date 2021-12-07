@@ -88,9 +88,6 @@ M.specs = {
    -- Bash {{{2
    'aliou/bats.vim',
 
-   -- Fish {{{2
-   'NovaDev94/vim-fish',
-
    -- Lua {{{2
    'euclidianAce/BetterLua.vim',
 

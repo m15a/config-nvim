@@ -116,10 +116,6 @@ most plugins listed here are employed.
 
 - [x] [aliou/bats.vim][47]
 
-### Fish
-
-- [x] [NovaDev94/vim-fish][48]
-
 ### Lua
 
 - [x] [euclidianAce/BetterLua.vim][49]
@@ -172,7 +168,6 @@ most plugins listed here are employed.
 [45]: https://github.com/nvim-telescope/telescope-bibtex.nvim
 [46]: https://github.com/LnL7/vim-nix
 [47]: https://github.com/aliou/bats.vim
-[48]: https://github.com/NovaDev94/vim-fish
 [49]: https://github.com/euclidianAce/BetterLua.vim
 [50]: https://github.com/mnacamura/vim-fennel-syntax
 [51]: https://github.com/blackCauldron7/surround.nvim
