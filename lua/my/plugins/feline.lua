@@ -21,7 +21,7 @@ local colors = {
    replace = srcery.red,
    enter = srcery.cyan,
    select = srcery.orange,
-   command = srcery.cyan,
+   command = srcery.bright_blue,
    none = srcery.white,
 }
 
