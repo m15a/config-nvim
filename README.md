@@ -124,6 +124,10 @@ most plugins listed here are employed.
 
 - [x] [mnacamura/vim-fennel-syntax][50]
 
+### Python
+
+- [x] [raimon49/requirements.txt.vim][53]
+
 
 [1]: https://github.com/rockerBOO/awesome-neovim
 [2]: https://github.com/savq/paq-nvim
@@ -172,5 +176,6 @@ most plugins listed here are employed.
 [50]: https://github.com/mnacamura/vim-fennel-syntax
 [51]: https://github.com/blackCauldron7/surround.nvim
 [52]: https://github.com/mnacamura/nvim-srcerite
+[53]: https://github.com/raimon49/requirements.txt.vim
 
 <!-- vim: set ft=markdown.gfm tw=80: -->
