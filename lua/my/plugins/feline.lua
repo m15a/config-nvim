@@ -69,12 +69,14 @@ components.active[1] = {
          name = 'file_info',
          opts = {
             type = 'relative',
+            file_readonly_icon = ' ',
          },
       },
       short_provider = {
          name = 'file_info',
          opts = {
             type = 'relative-short',
+            file_readonly_icon = ' ',
          },
       },
       hl = { fg = colors.fg, bg = colors.bg },
