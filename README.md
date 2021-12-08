@@ -41,6 +41,7 @@ most plugins listed here are employed.
 
 - [x] [nvim-telescope/telescope.nvim][14]
 - [x] [nvim-telescope/telescope-symbols.nvim][15]
+- [x] [crispgm/telescope-heading.nvim][44]
 
 ## Colorscheme
 
@@ -98,14 +99,13 @@ most plugins listed here are employed.
 
 ## Language specific
 
-### Markdown
+### Markdown / LaTeX
 
 - [x] [mnacamura/glow.nvim:preview-buffer-filetype][39]
     + A fork of [ellisonleao/glow.nvim][40]
 - [x] [rhysd/vim-gfm-syntax][41]
 - [x] [vim-pandoc/vim-pandoc-syntax][42]
 - [x] [dhruvasagar/vim-table-mode][43]
-- [x] [crispgm/telescope-heading.nvim][44]
 - [x] [nvim-telescope/telescope-bibtex.nvim][45]
 
 ### Nix
