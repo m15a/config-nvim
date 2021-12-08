@@ -25,13 +25,11 @@ most plugins listed here are employed.
 - [x] [nvim-treesitter/nvim-treesitter][8]
 - [x] [nvim-treesitter/nvim-treesitter-textobjects][9]
 - [x] [machakann/vim-sandwich][10]
-    + TODO: Replace it with [blackCauldron7/surround.nvim][51]
-    + NOTE: surround.nvim still does not support dot repeat.
+    + [ ] Replace it with [blackCauldron7/surround.nvim][51] after it supports dot repeat.
 
 ## Terminal integration
 
-- [x] [mnacamura/iron.nvim][11]
-    + An experimental fork of [hkupty/iron.nvim][12]
+- [x] [mnacamura/iron.nvim][11]: an experimental fork of [hkupty/iron.nvim][12].
 
 ## Marks
 
@@ -102,7 +100,7 @@ most plugins listed here are employed.
 ### Markdown / LaTeX
 
 - [x] [mnacamura/glow.nvim:preview-buffer-filetype][39]
-    + A fork of [ellisonleao/glow.nvim][40]
+    - Use this branch until the PR is merged in upstream [ellisonleao/glow.nvim][40].
 - [x] [rhysd/vim-gfm-syntax][41]
 - [x] [vim-pandoc/vim-pandoc-syntax][42]
 - [x] [dhruvasagar/vim-table-mode][43]
