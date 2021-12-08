@@ -32,6 +32,7 @@ o.smartcase = true
 o.wildignorecase = true
 o.path = '.,,'
 o.termguicolors = env.COLORTERM == 'truecolor'
+o.showmode = false
 
 wo.number = true
 wo.list = true
