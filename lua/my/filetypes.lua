@@ -11,3 +11,7 @@ end)
 v.augroup('filetype_make', function(au)
    au [[FileType make setlocal tabstop=4]]
 end)
+
+v.augroup('filetype_json', function(au)
+   au [[BufNewFile,BufRead flake.lock setlocal filetype=json]]
+end)
