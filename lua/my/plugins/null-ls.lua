@@ -51,8 +51,8 @@ null_ls.config {
       formatting.fish_indent.with { condition = has_executable 'fish_indent' },
 
       -- Python
-      diagnostics.flake8.with { condition = has_file 'pyproject.toml' },
+      diagnostics.flake8.with { condition = has_file '.flake8' },
       formatting.black.with { condition = has_file 'pyproject.toml' },
-      formatting.isort.with { condition = has_file 'pyproject.toml' },
+      formatting.isort.with { condition = has_any_file {'.isort.cfg', 'pyproject.toml'} },
    },
 }
