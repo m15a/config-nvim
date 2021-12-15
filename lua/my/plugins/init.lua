@@ -5,7 +5,9 @@ local function require_(basename)
    utils.require(namespace .. '.' .. basename)
 end
 
-require_ 'paq'
+if not vim.g.disable_paq then
+   require_ 'paq'
+end
 
 require_ 'astronauta'
 require_ 'lightspeed'

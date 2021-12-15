@@ -8,20 +8,32 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vim-plugins = {
+      url = "github:m15a/nixpkgs-vim-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils, neovim-nightly-overlay, ... }: {
-    overlay = import ./overlay.nix;
+  outputs = { self, nixpkgs, flake-utils, neovim-nightly-overlay, vim-plugins, ... }: {
+    overlay = import ./nix/overlay.nix;
   } // (flake-utils.lib.eachDefaultSystem (system:
   let
     pkgs = import nixpkgs {
       inherit system;
       overlays = [
         neovim-nightly-overlay.overlay
+        vim-plugins.overlay
         self.overlay
       ];
     };
-  in {
+  in rec {
+    packages = {
+      inherit (pkgs)
+      my-neovim;
+    };
+
+    defaultPackage = packages.my-neovim;
+
     devShell = pkgs.mkShell {
       buildInputs = [
         pkgs.selene
