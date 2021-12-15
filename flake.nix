@@ -4,7 +4,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, flake-utils, neovim-nightly-overlay, ... }: {
@@ -13,7 +16,10 @@
   let
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [ self.overlay ];
+      overlays = [
+        neovim-nightly-overlay.overlay
+        self.overlay
+      ];
     };
   in {
     devShell = pkgs.mkShell {
