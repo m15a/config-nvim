@@ -99,8 +99,7 @@ most plugins listed here are employed.
 
 ### Markdown / LaTeX
 
-- [x] [mnacamura/glow.nvim:preview-buffer-filetype][39]
-    - Use this branch until the PR is merged in upstream [ellisonleao/glow.nvim][40].
+- [x] [ellisonleao/glow.nvim][40].
 - [x] [rhysd/vim-gfm-syntax][41]
 - [x] [vim-pandoc/vim-pandoc-syntax][42]
 - [x] [dhruvasagar/vim-table-mode][43]
@@ -161,7 +160,6 @@ most plugins listed here are employed.
 [36]: https://github.com/nacro90/numb.nvim
 [37]: https://github.com/ethanholz/nvim-lastplace
 [38]: https://github.com/tpope/vim-rsi
-[39]: https://github.com/mnacamura/glow.nvim/tree/preview-buffer-filetype
 [40]: https://github.com/ellisonleao/glow.nvim
 [41]: https://github.com/rhysd/vim-gfm-syntax
 [42]: https://github.com/vim-pandoc/vim-pandoc-syntax

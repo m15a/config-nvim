@@ -75,7 +75,7 @@ M.specs = {
 
    -- Language specific {{{1
    -- Markdown {{{2
-   { 'mnacamura/glow.nvim', branch = 'preview-buffer-filetype' },
+   'ellisonleao/glow.nvim',
    'rhysd/vim-gfm-syntax',
    'vim-pandoc/vim-pandoc-syntax',
    'dhruvasagar/vim-table-mode',
