@@ -104,7 +104,7 @@ local lsp_keymaps = {
    { 'f', '<Cmd>lua vim.lsp.buf.formatting()<CR>' },
 }
 
-local function on_attach(client, buf)
+function M.on_attach(client, buf)
    vim.api.nvim_buf_set_option(buf, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
    vim.api.nvim_buf_set_option(buf, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
 
@@ -135,7 +135,6 @@ local function on_attach(client, buf)
 end
 
 local servers = {
-   ['null-ls'] = false,
    bashls = 'bash-language-server',
    vimls = 'vim-language-server',
    pyright = 'pyright',
@@ -156,8 +155,8 @@ function M.setup()
    )
 
    for server, cmd in pairs(servers) do
-      if server == 'null-ls' or vim.fn.executable(cmd) > 0 then
-         lspconfig[server].setup { on_attach = on_attach }
+      if vim.fn.executable(cmd) > 0 then
+         lspconfig[server].setup { on_attach = M.on_attach }
       end
    end
 end

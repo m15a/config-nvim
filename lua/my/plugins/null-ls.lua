@@ -27,7 +27,7 @@ local code_actions = null_ls.builtins.code_actions
 local diagnostics = null_ls.builtins.diagnostics
 local formatting = null_ls.builtins.formatting
 
-null_ls.config {
+null_ls.setup {
    sources = {
       -- General
       code_actions.gitsigns,
@@ -55,4 +55,6 @@ null_ls.config {
       formatting.black.with { condition = has_file 'pyproject.toml' },
       formatting.isort.with { condition = has_any_file {'.isort.cfg', 'pyproject.toml'} },
    },
+
+   on_attach = require('my.plugins.lspconfig').on_attach,
 }
