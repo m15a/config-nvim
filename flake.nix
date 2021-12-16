@@ -34,6 +34,15 @@
 
     defaultPackage = packages.my-neovim;
 
+    apps = {
+      my-neovim = flake-utils.lib.mkApp {
+        drv = packages.my-neovim;
+        name = "nvim";
+      };
+    };
+
+    defaultApp = apps.my-neovim;
+
     devShell = pkgs.mkShell {
       buildInputs = [
         pkgs.selene
