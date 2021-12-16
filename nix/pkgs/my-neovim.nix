@@ -26,7 +26,7 @@ wrapNeovim neovim {
         vimPlugins.lightspeed-nvim
         vimPlugins.lspkind-nvim
         vimPlugins.marks-nvim
-        vimPlugins.null-ls-nvim
+        vimExtraPlugins.null-ls-nvim
         vimPlugins.numb-nvim
         vimPlugins.nvim-cursorline
         vimPlugins.nvim-lspconfig
