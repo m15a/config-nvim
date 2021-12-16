@@ -99,7 +99,7 @@ most plugins listed here are employed.
 
 ### Markdown / LaTeX
 
-- [x] [ellisonleao/glow.nvim][40].
+- [x] [ellisonleao/glow.nvim][40]
 - [x] [rhysd/vim-gfm-syntax][41]
 - [x] [vim-pandoc/vim-pandoc-syntax][42]
 - [x] [dhruvasagar/vim-table-mode][43]
