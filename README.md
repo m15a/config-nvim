@@ -57,7 +57,7 @@ most plugins listed here are employed.
 
 ## Statusline
 
-- [x] [famiu/feline.nvim][22]
+- [x] [famiu/feline.nvim][22] [branch: `develop`]
 
 ## Cursorline
 
