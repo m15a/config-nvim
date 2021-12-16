@@ -4,6 +4,34 @@ An example Neovim configuration, being developed by the policy:
 
     Keep staying vanilla+, but telescope is unavoidable!
 
+# Usage
+
+This repo is intended to be used either as normal Neovim configuration
+(`~/.config/nvim`) or Nix Flake.
+
+## As normal Neovim configuration
+
+```sh
+mv ~/.config/nvim ~/.config/nvim.bk  # Don't forget to back up your config.
+git clone https://github.com/mnacamura/config-nvim ~/.config/nvim
+```
+
+After launching Neovim, execute `:PaqSync`.
+
+## Nix Flake
+
+To install it to your system:
+
+```sh
+nix profile install github:mnacamura/config-nvim
+```
+
+Or you can just try it:
+
+```sh
+nix run github:mnacamura/config-nvim -- somefile.txt
+```
+
 # Plugins
 
 Subsections below are adopted from [rockerBOO/awesome-neovim][1], from which
