@@ -53,7 +53,7 @@ null_ls.setup {
       -- Python
       diagnostics.flake8.with { condition = has_file '.flake8' },
       formatting.black.with { condition = has_file 'pyproject.toml' },
-      formatting.isort.with { condition = has_any_file {'.isort.cfg', 'pyproject.toml'} },
+      formatting.isort.with { condition = has_any_file { '.isort.cfg', 'pyproject.toml' } },
    },
 
    on_attach = require('my.plugins.lspconfig').on_attach,
