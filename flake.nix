@@ -47,6 +47,7 @@
       buildInputs = [
         pkgs.selene
         pkgs.stylua
+        pkgs.pre-commit
       ];
     };
   }));
