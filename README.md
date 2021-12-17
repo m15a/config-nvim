@@ -4,38 +4,43 @@ An example Neovim configuration, being developed by the policy:
 
     Keep staying vanilla+, but telescope is unavoidable!
 
-# Usage
+# Installation
 
 This repo is intended to be used either as normal Neovim configuration
-(`~/.config/nvim`) or Nix Flake.
+(`~/.config/nvim`) or as [Nix flake][0].
 
-## As normal Neovim configuration
+## Use as normal Neovim configuration
+
+Back up your config and plugin packs:
 
 ```sh
-mv ~/.config/nvim ~/.config/nvim.bk  # Don't forget to back up your config.
+mv ~/.config/nvim ${SOMEWHERE}/
+mv ~/.local/share/nvim/site/pack ${SOMEWHERE}/
 git clone https://github.com/mnacamura/config-nvim ~/.config/nvim
 ```
 
-After launching Neovim, execute `:PaqSync`.
+After launching Neovim, execute `:PaqInstall`.
+You'll see some error messages but no problem. Relaunch neovim!
 
-## Nix Flake
+## Use as Nix flake
 
-To install it to your system:
+You can just try it:
+
+```sh
+nix run github:mnacamura/config-nvim -- blabla.txt
+```
+
+If you happened to really like it, install it to your system:
 
 ```sh
 nix profile install github:mnacamura/config-nvim
 ```
 
-Or you can just try it:
-
-```sh
-nix run github:mnacamura/config-nvim -- somefile.txt
-```
 
 # Plugins
 
-Subsections below are adopted from [rockerBOO/awesome-neovim][1], from which
-most plugins listed here are employed.
+Subsections below are adopted from [rockerBOO/awesome-neovim][1].
+Most plugins listed here are picked up from that awesome list, thanks!
 
 ## Plugin manager
 
@@ -53,11 +58,12 @@ most plugins listed here are employed.
 - [x] [nvim-treesitter/nvim-treesitter][8]
 - [x] [nvim-treesitter/nvim-treesitter-textobjects][9]
 - [x] [machakann/vim-sandwich][10]
-    + [ ] Replace it with [blackCauldron7/surround.nvim][51] after it supports dot repeat.
+    + [ ] Replace it with [blackCauldron7/surround.nvim][51]
+          after it supports dot repeat.
 
 ## Terminal integration
 
-- [x] [mnacamura/iron.nvim][11]: an experimental fork of [hkupty/iron.nvim][12].
+- [x] [mnacamura/iron.nvim][11]: my own fork of [hkupty/iron.nvim][12].
 
 ## Marks
 
@@ -154,6 +160,7 @@ most plugins listed here are employed.
 - [x] [raimon49/requirements.txt.vim][53]
 
 
+[0]: https://nixos.wiki/wiki/Flakes
 [1]: https://github.com/rockerBOO/awesome-neovim
 [2]: https://github.com/savq/paq-nvim
 [3]: https://github.com/neovim/nvim-lspconfig
