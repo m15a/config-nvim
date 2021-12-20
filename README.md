@@ -91,7 +91,7 @@ Most plugins listed here are picked up from that awesome list, thanks!
 
 ## Statusline
 
-- [x] [famiu/feline.nvim][22] [branch: `develop`]
+- [x] [feline-nvim/feline.nvim][22] [branch: `develop`]
 
 ## Cursorline
 
@@ -181,7 +181,7 @@ Most plugins listed here are picked up from that awesome list, thanks!
 [19]: https://github.com/nvim-lua/plenary.nvim
 [20]: https://github.com/nvim-lua/popup.nvim
 [21]: https://github.com/tjdevries/astronauta.nvim
-[22]: https://github.com/famiu/feline.nvim
+[22]: https://github.com/feline-nvim/feline.nvim
 [23]: https://github.com/yamatsum/nvim-cursorline
 [24]: https://github.com/lewis6991/gitsigns.nvim
 [27]: https://github.com/b3nj5m1n/kommentary
