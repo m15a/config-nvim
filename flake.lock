@@ -156,11 +156,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1639910640,
-        "narHash": "sha256-0GirdWidM5yPJ+rkHwLruAPMv9I6YovToxWOkeAVY4Q=",
+        "lastModified": 1640060079,
+        "narHash": "sha256-sNxr+M5hBsNa4jlIar0h8VKpa0s5quq4NPBZFiN0jJU=",
         "owner": "m15a",
         "repo": "nixpkgs-vim-plugins",
-        "rev": "64293023a51182bae1829acfd63fbe4383598a19",
+        "rev": "93c1a4879a9022de43e3d8f281b87a57beba92eb",
         "type": "github"
       },
       "original": {
