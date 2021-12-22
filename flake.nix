@@ -8,13 +8,13 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    vim-plugins = {
-      url = "github:m15a/nixpkgs-vim-plugins";
+    vim-extra-plugins = {
+      url = "github:m15a/nixpkgs-vim-extra-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, neovim-nightly-overlay, vim-plugins, ... }: {
+  outputs = { self, nixpkgs, flake-utils, neovim-nightly-overlay, vim-extra-plugins, ... }: {
     overlay = import ./nix/overlay.nix;
   } // (flake-utils.lib.eachDefaultSystem (system:
   let
@@ -22,7 +22,7 @@
       inherit system;
       overlays = [
         neovim-nightly-overlay.overlay
-        vim-plugins.overlay
+        vim-extra-plugins.overlay
         self.overlay
       ];
     };

@@ -144,10 +144,10 @@
         "flake-utils": "flake-utils",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs",
-        "vim-plugins": "vim-plugins"
+        "vim-extra-plugins": "vim-extra-plugins"
       }
     },
-    "vim-plugins": {
+    "vim-extra-plugins": {
       "inputs": {
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils_3",
@@ -156,16 +156,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1640060079,
-        "narHash": "sha256-sNxr+M5hBsNa4jlIar0h8VKpa0s5quq4NPBZFiN0jJU=",
+        "lastModified": 1640171233,
+        "narHash": "sha256-6MGRTfd5Fdp8Ga88U3o4DXSuw/H/6sRnK92ShsA0Qec=",
         "owner": "m15a",
-        "repo": "nixpkgs-vim-plugins",
-        "rev": "93c1a4879a9022de43e3d8f281b87a57beba92eb",
+        "repo": "nixpkgs-vim-extra-plugins",
+        "rev": "d9816eefea4c021ea7939a86a8e5ba44c3446c5d",
         "type": "github"
       },
       "original": {
         "owner": "m15a",
-        "repo": "nixpkgs-vim-plugins",
+        "repo": "nixpkgs-vim-extra-plugins",
         "type": "github"
       }
     }
