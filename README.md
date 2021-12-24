@@ -77,7 +77,7 @@ Most plugins listed here are picked up from that awesome list, thanks!
 
 ## Colorscheme
 
-- [x] [mnacamura/nvim-srcerite][52]
+- [x] [rebelot/kanagawa.nvim][54]
 
 ## Icon
 
@@ -206,7 +206,7 @@ Most plugins listed here are picked up from that awesome list, thanks!
 [49]: https://github.com/euclidianAce/BetterLua.vim
 [50]: https://github.com/mnacamura/vim-fennel-syntax
 [51]: https://github.com/blackCauldron7/surround.nvim
-[52]: https://github.com/mnacamura/nvim-srcerite
 [53]: https://github.com/raimon49/requirements.txt.vim
+[54]: https://github.com/rebelot/kanagawa.nvim
 
 <!-- vim: set ft=markdown.gfm tw=80: -->

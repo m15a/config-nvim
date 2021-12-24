@@ -49,10 +49,10 @@ wrapNeovim neovim {
         vimExtraPlugins.dial-nvim
         vimExtraPlugins.feline-nvim
         vimExtraPlugins.iron-nvim-mnacamura
+        vimExtraPlugins.kanagawa-nvim
         vimExtraPlugins.lspactions
         vimExtraPlugins.nvim-lastplace
         vimExtraPlugins.nvim-pqf
-        vimExtraPlugins.nvim-srcerite
         vimExtraPlugins.requirements-txt-vim
         vimExtraPlugins.telescope-bibtex-nvim
         vimExtraPlugins.telescope-heading-nvim

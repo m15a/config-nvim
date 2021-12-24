@@ -30,7 +30,7 @@ M.specs = {
    'nvim-telescope/telescope-symbols.nvim',
 
    -- Colorscheme {{{1
-   'mnacamura/nvim-srcerite',
+   'rebelot/kanagawa.nvim',
 
    -- Icon {{{1
    'kyazdani42/nvim-web-devicons',
