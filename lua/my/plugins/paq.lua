@@ -41,7 +41,7 @@ M.specs = {
    'tjdevries/astronauta.nvim',
 
    -- Statusline {{{1
-   { 'feline-nvim/feline.nvim', branch = 'develop' },
+   'feline-nvim/feline.nvim',
 
    -- Cursorline {{{1
    'yamatsum/nvim-cursorline',

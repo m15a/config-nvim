@@ -91,7 +91,7 @@ Most plugins listed here are picked up from that awesome list, thanks!
 
 ## Statusline
 
-- [x] [feline-nvim/feline.nvim][22] [branch: `develop`]
+- [x] [feline-nvim/feline.nvim][22]
 
 ## Cursorline
 
