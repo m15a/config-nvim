@@ -1,28 +1,25 @@
 local vi_mode = require 'feline.providers.vi_mode'
 
-local srcery = {}
-for name, spec in pairs(require 'srcerite.srcery') do
-   srcery[name] = spec[1]
-end
+local kanagawa = require 'kanagawa.colors'
 
 local colors = {
-   fg = srcery.bright_white,
-   bg = srcery.xgray1,
-   sides = srcery.bright_black,
+   fg = kanagawa.fg,
+   bg = kanagawa.bg,
+   sides = kanagawa.sumiInk4,
 
-   error = srcery.red,
-   warn = srcery.orange,
-   hint = srcery.magenta,
-   info = srcery.bright_magenta,
+   error = kanagawa.diag.error,
+   warn = kanagawa.diag.warning,
+   hint = kanagawa.diag.hint,
+   info = kanagawa.diag.info,
 
-   normal = srcery.blue,
-   insert = srcery.green,
-   visual = srcery.magenta,
-   replace = srcery.red,
-   enter = srcery.cyan,
-   select = srcery.orange,
-   command = srcery.bright_blue,
-   none = srcery.white,
+   normal = kanagawa.blue,
+   insert = kanagawa.green,
+   visual = kanagawa.magenta,
+   replace = kanagawa.red,
+   enter = kanagawa.cyan,
+   select = kanagawa.surimiOrange,
+   command = kanagawa.lightBlue,
+   none = kanagawa.white,
 }
 
 local vi_mode_colors = {
