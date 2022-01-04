@@ -2,8 +2,10 @@ local env = vim.env
 local o = vim.opt
 
 -- Hack for vim + fish problem.
-env.SHELL = '/run/current-system/sw/bin/bash'
-o.shell = env.SHELL
+if os.getenv('SHELL'):match '/fish$' then
+   env.SHELL = vim.fn.system { 'which', 'bash' }
+   o.shell = env.SHELL
+end
 
 -- Practical Vim, Tip 42: '%%' expands to '%:h'
 vim.api.nvim_set_keymap(
