@@ -38,7 +38,6 @@ M.specs = {
    -- Neovim Lua development {{{1
    'nvim-lua/plenary.nvim',
    'nvim-lua/popup.nvim',
-   'tjdevries/astronauta.nvim',
 
    -- Statusline {{{1
    'feline-nvim/feline.nvim',

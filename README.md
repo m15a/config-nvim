@@ -87,7 +87,6 @@ Most plugins listed here are picked up from that awesome list, thanks!
 
 - [x] [nvim-lua/plenary.nvim][19]
 - [x] [nvim-lua/popup.nvim][20]
-- [x] [tjdevries/astronauta.nvim][21]
 
 ## Statusline
 
@@ -180,7 +179,6 @@ Most plugins listed here are picked up from that awesome list, thanks!
 [18]: https://github.com/kyazdani42/nvim-web-devicons
 [19]: https://github.com/nvim-lua/plenary.nvim
 [20]: https://github.com/nvim-lua/popup.nvim
-[21]: https://github.com/tjdevries/astronauta.nvim
 [22]: https://github.com/feline-nvim/feline.nvim
 [23]: https://github.com/yamatsum/nvim-cursorline
 [24]: https://github.com/lewis6991/gitsigns.nvim
