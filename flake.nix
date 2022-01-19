@@ -22,7 +22,7 @@
       inherit system;
       overlays = [
         neovim-nightly-overlay.overlay
-        vim-extra-plugins.overlay
+        vim-extra-plugins.overlays.default
         self.overlay
       ];
     };
