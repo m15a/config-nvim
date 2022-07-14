@@ -67,7 +67,7 @@ Most plugins listed here are picked up from that awesome list, thanks!
 
 ## Marks
 
-- [x] [chentau/marks.nvim][13]
+- [x] [chentoast/marks.nvim][13]
 
 ## Fuzzy finder
 
@@ -171,7 +171,7 @@ Most plugins listed here are picked up from that awesome list, thanks!
 [10]: https://github.com/machakann/vim-sandwich
 [11]: https://github.com/mnacamura/iron.nvim
 [12]: https://github.com/hkupty/iron.nvim
-[13]: https://github.com/chentau/marks.nvim
+[13]: https://github.com/chentoast/marks.nvim
 [14]: https://github.com/nvim-telescope/telescope.nvim
 [15]: https://github.com/nvim-telescope/telescope-symbols.nvim
 [16]: https://github.com/Iron-E/nvim-highlite

@@ -23,7 +23,7 @@ M.specs = {
    'mnacamura/iron.nvim',
 
    -- Marks {{{1
-   'chentau/marks.nvim',
+   'chentoast/marks.nvim',
 
    -- Fuzzy finder {{{1
    'nvim-telescope/telescope.nvim',
