@@ -124,7 +124,7 @@ function M.on_attach(client, buf)
 
    -- NOTE: Highlight document only if available
    -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/355#discussioncomment-1651619
-   if client.resolved_capabilities.document_highlight then
+   if client.server_capabilities.document_highlight then
       v.augroup('lsp_document_highlight', function(au)
          au [[CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
          au [[CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
@@ -149,10 +149,8 @@ function M.setup()
 
    local handlers = vim.lsp.handlers
    handlers['textDocument/hover'] = vim.lsp.with(handlers.hover, { border = float_border })
-   handlers['textDocument/signatureHelp'] = vim.lsp.with(
-      handlers.signature_help,
-      { border = float_border }
-   )
+   handlers['textDocument/signatureHelp'] =
+      vim.lsp.with(handlers.signature_help, { border = float_border })
 
    for server, cmd in pairs(servers) do
       if vim.fn.executable(cmd) > 0 then
