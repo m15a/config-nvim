@@ -15,7 +15,7 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, neovim-nightly-overlay, vim-extra-plugins, ... }: {
-    overlay = import ./nix/overlay.nix;
+    overlays.default = import ./nix/overlay.nix;
   } // (flake-utils.lib.eachDefaultSystem (system:
   let
     pkgs = import nixpkgs {
@@ -23,7 +23,7 @@
       overlays = [
         neovim-nightly-overlay.overlay
         vim-extra-plugins.overlays.default
-        self.overlay
+        self.overlays.default
       ];
     };
   in rec {
@@ -32,7 +32,7 @@
       my-neovim;
     };
 
-    defaultPackage = packages.my-neovim;
+    packages.default = packages.my-neovim;
 
     apps = {
       my-neovim = flake-utils.lib.mkApp {
@@ -41,9 +41,9 @@
       };
     };
 
-    defaultApp = apps.my-neovim;
+    apps.default = apps.my-neovim;
 
-    devShell = pkgs.mkShell {
+    devShells.default = pkgs.mkShell {
       buildInputs = [
         pkgs.selene
         pkgs.stylua
