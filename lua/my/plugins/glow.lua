@@ -1,7 +1,8 @@
 local v = require 'my.utils.vimsl'
-local g = vim.g
 
-g.glow_border = 'rounded'
+require('glow').setup {
+   border = 'rounded',
+}
 
 local toggle_map = '<Space>'
 local filetypes = {
@@ -10,7 +11,6 @@ local filetypes = {
    'markdown.pandoc',
    'glowpreview',
 }
-
 v.augroup('glow', function(au)
    au {
       'FileType',
@@ -19,6 +19,6 @@ v.augroup('glow', function(au)
       '<buffer>',
       '<silent>',
       toggle_map,
-      '<Cmd>Glow<CR>',
+      '<Cmd>Glow!<CR>',
    }
 end)
