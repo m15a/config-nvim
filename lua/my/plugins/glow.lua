@@ -19,6 +19,6 @@ v.augroup('glow', function(au)
       '<buffer>',
       '<silent>',
       toggle_map,
-      '<Cmd>Glow<CR>',
+      '<Cmd>Glow!<CR>',
    }
 end)
