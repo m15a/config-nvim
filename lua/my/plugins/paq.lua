@@ -20,6 +20,7 @@ M.specs = {
    'machakann/vim-sandwich',
 
    -- Terminal integration {{{1
+   'sychen52/smart-term-esc.nvim',
    'mnacamura/iron.nvim',
 
    -- Marks {{{1

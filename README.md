@@ -63,6 +63,7 @@ Most plugins listed here are picked up from that awesome list, thanks!
 
 ## Terminal integration
 
+- [x] [sychen52/smart-term-esc.nvim][54]
 - [x] [mnacamura/iron.nvim][11]: my own fork of [hkupty/iron.nvim][12].
 
 ## Marks
@@ -206,5 +207,6 @@ Most plugins listed here are picked up from that awesome list, thanks!
 [51]: https://github.com/blackCauldron7/surround.nvim
 [52]: https://github.com/mnacamura/nvim-srcerite
 [53]: https://github.com/raimon49/requirements.txt.vim
+[54]: https://github.com/sychen52/smart-term-esc.nvim
 
 <!-- vim: set ft=markdown.gfm tw=80: -->
