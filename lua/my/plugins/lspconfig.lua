@@ -139,6 +139,40 @@ function M.setup()
          lspconfig[server].setup { on_attach = M.on_attach }
       end
    end
+
+   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
+   if vim.fn.executable 'lua-language-server' > 0 then
+      lspconfig.lua_ls.setup {
+         on_attach = M.on_attach,
+         on_init = function(client)
+            local path = client.workspace_folders[1].name
+            if
+               not vim.loop.fs_stat(path .. '/.luarc.json')
+               and not vim.loop.fs_stat(path .. '/.luarc.jsonc')
+            then
+               client.config.settings =
+                  vim.tbl_deep_extend('force', client.config.settings, {
+                     Lua = {
+                        runtime = {
+                           version = 'LuaJIT',
+                        },
+                        workspace = {
+                           checkThirdParty = false,
+                           library = {
+                              vim.env.VIMRUNTIME,
+                           },
+                        },
+                     },
+                  })
+               client.notify(
+                  'workspace/didChangeConfiguration',
+                  { settings = client.config.settings }
+               )
+            end
+            return true
+         end,
+      }
+   end
 end
 
 return M

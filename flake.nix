@@ -52,6 +52,7 @@
         selene
         stylua
         pre-commit
+        lua-language-server
       ];
     };
   }));
