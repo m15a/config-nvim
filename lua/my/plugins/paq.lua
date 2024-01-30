@@ -12,7 +12,7 @@ M.specs = {
    'neovim/nvim-lspconfig',
    'RishabhRD/lspactions',
    'onsails/lspkind-nvim',
-   'jose-elias-alvarez/null-ls.nvim',
+   'nvimtools/none-ls.nvim',
 
    -- Syntax {{{1
    'nvim-treesitter/nvim-treesitter',

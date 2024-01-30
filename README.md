@@ -51,7 +51,7 @@ Most plugins listed here are picked up from that awesome list, thanks!
 - [x] [neovim/nvim-lspconfig][3]
 - [x] [RishabhRD/lspactions][4]
 - [x] [onsails/lspkind-nvim][5]
-- [x] [jose-elias-alvarez/null-ls][6]
+- [x] [nvimtools/none-ls][6]
 
 ## Syntax
 
@@ -161,7 +161,7 @@ Most plugins listed here are picked up from that awesome list, thanks!
 [3]: https://github.com/neovim/nvim-lspconfig
 [4]: https://github.com/RishabhRD/lspactions
 [5]: https://github.com/onsails/lspkind-nvim
-[6]: https://github.com/jose-elias-alvarez/null-ls.nvim
+[6]: https://github.com/nvimtools/none-ls.nvim
 [8]: https://github.com/nvim-treesitter/nvim-treesitter
 [9]: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 [10]: https://github.com/machakann/vim-sandwich
