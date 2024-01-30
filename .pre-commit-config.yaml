@@ -5,11 +5,13 @@ repos:
     hooks:
       - id: stylua
         name: Format Lua files
-        language: system
-        files: '\.lua$'
         entry: stylua
+        language: system
+        types:
+          - lua
       - id: selene
         name: Lint Lua files
-        language: system
-        files: '\.lua$'
         entry: selene
+        language: system
+        types:
+          - lua
