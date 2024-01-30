@@ -14,40 +14,44 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, neovim-nightly-overlay, vim-extra-plugins, ... }: {
-    overlay = import ./nix/overlay.nix;
+  outputs = { self, nixpkgs, flake-utils, neovim-nightly-overlay, vim-extra-plugins, ... }:
+  let
+    my-neovim-overlay = import ./nix/overlay.nix;
+  in {
+    overlays = rec {
+        my-neovim = my-neovim-overlay;
+        default = my-neovim;
+    };
   } // (flake-utils.lib.eachDefaultSystem (system:
   let
     pkgs = import nixpkgs {
       inherit system;
       overlays = [
-        neovim-nightly-overlay.overlay
-        vim-extra-plugins.overlay
-        self.overlay
+        neovim-nightly-overlay.overlays.default
+        vim-extra-plugins.overlays.default
+        my-neovim-overlay
       ];
     };
-  in rec {
-    packages = {
-      inherit (pkgs)
-      my-neovim;
+  in
+  {
+    packages = rec {
+      inherit (pkgs) my-neovim;
+      default = my-neovim;
     };
 
-    defaultPackage = packages.my-neovim;
-
-    apps = {
+    apps = rec {
       my-neovim = flake-utils.lib.mkApp {
-        drv = packages.my-neovim;
+        drv = self.packages.${system}.my-neovim;
         name = "nvim";
       };
+      default = my-neovim;
     };
 
-    defaultApp = apps.my-neovim;
-
-    devShell = pkgs.mkShell {
-      buildInputs = [
-        pkgs.selene
-        pkgs.stylua
-        pkgs.pre-commit
+    devShells.default = pkgs.mkShell {
+      buildInputs = with pkgs; [
+        selene
+        stylua
+        pre-commit
       ];
     };
   }));
