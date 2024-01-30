@@ -1,9 +1,6 @@
 local v = require 'my.utils.vimsl'
 local lspconfig = require 'lspconfig'
 
--- Use RishabhRD/lspactions if available
-local lspactions_is_ok, lspactions = pcall(require, 'lspactions')
-
 -- Change diagnostic symbols in the gutter.
 -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#change-diagnostic-symbols-in-the-sign-column-gutter
 local diagnostic_signs = {
@@ -29,53 +26,29 @@ local float_border = {
 local M = {}
 
 function M.rename()
-   if lspactions_is_ok then
-      lspactions.rename()
-   else
-      vim.lsp.buf.rename()
-   end
+   vim.lsp.buf.rename()
 end
 
 function M.code_action()
-   if lspactions_is_ok then
-      lspactions.code_action()
-   else
-      vim.lsp.buf.code_action()
-   end
+   vim.lsp.buf.code_action()
 end
 
 function M.range_code_action()
-   if lspactions_is_ok then
-      lspactions.range_code_action()
-   else
-      vim.lsp.buf.range_code_action()
-   end
+   vim.lsp.buf.range_code_action()
 end
 
 M.diagnostic = {}
 
 function M.diagnostic.show_line_diagnostics()
-   if lspactions_is_ok then
-      lspactions.diagnostic.show_line_diagnostics { border = float_border }
-   else
-      vim.diagnostic.open_float(0, { scope = 'line', border = float_border })
-   end
+   vim.diagnostic.open_float(0, { scope = 'line', border = float_border })
 end
 
 function M.diagnostic.goto_prev()
-   if lspactions_is_ok then
-      lspactions.diagnostic.goto_prev { float = { border = float_border } }
-   else
-      vim.diagnostic.goto_prev { float = { border = float_border } }
-   end
+   vim.diagnostic.goto_prev { float = { border = float_border } }
 end
 
 function M.diagnostic.goto_next()
-   if lspactions_is_ok then
-      lspactions.diagnostic.goto_next { float = { border = float_border } }
-   else
-      vim.diagnostic.goto_next { float = { border = float_border } }
-   end
+   vim.diagnostic.goto_next { float = { border = float_border } }
 end
 
 local bare_keymaps = {
@@ -83,12 +56,19 @@ local bare_keymaps = {
    { 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>' },
    -- { "gt", "<Cmd>lua vim.lsp.buf.type_definition()<CR>" }, -- I don't use tabs
    { 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>' },
-   { 'D', "<Cmd>lua require'my.plugins.lspconfig'.diagnostic.show_line_diagnostics()<CR>" },
+   {
+      'D',
+      "<Cmd>lua require'my.plugins.lspconfig'.diagnostic.show_line_diagnostics()<CR>",
+   },
 
    { '<C-k>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>' },
    { 'gr', "<Cmd>lua require'my.plugins.lspconfig'.rename()<CR>" },
    { 'ga', "<Cmd>lua require'my.plugins.lspconfig'.code_action()<CR>" },
-   { 'ga', ":<C-u>lua require'my.plugins.lspconfig'.range_code_action()<CR>", { mode = 'x' } },
+   {
+      'ga',
+      ":<C-u>lua require'my.plugins.lspconfig'.range_code_action()<CR>",
+      { mode = 'x' },
+   },
 
    { '[d', "<Cmd>lua require'my.plugins.lspconfig'.diagnostic.goto_prev()<CR>" },
    { ']d', "<Cmd>lua require'my.plugins.lspconfig'.diagnostic.goto_next()<CR>" },
@@ -148,11 +128,10 @@ function M.setup()
    end
 
    local handlers = vim.lsp.handlers
-   handlers['textDocument/hover'] = vim.lsp.with(handlers.hover, { border = float_border })
-   handlers['textDocument/signatureHelp'] = vim.lsp.with(
-      handlers.signature_help,
-      { border = float_border }
-   )
+   handlers['textDocument/hover'] =
+      vim.lsp.with(handlers.hover, { border = float_border })
+   handlers['textDocument/signatureHelp'] =
+      vim.lsp.with(handlers.signature_help, { border = float_border })
 
    for server, cmd in pairs(servers) do
       if vim.fn.executable(cmd) > 0 then

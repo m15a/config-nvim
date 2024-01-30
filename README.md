@@ -49,7 +49,6 @@ Most plugins listed here are picked up from that awesome list, thanks!
 ## LSP
 
 - [x] [neovim/nvim-lspconfig][3]
-- [x] [RishabhRD/lspactions][4]
 - [x] [onsails/lspkind-nvim][5]
 - [x] [nvimtools/none-ls][6]
 
@@ -159,7 +158,6 @@ Most plugins listed here are picked up from that awesome list, thanks!
 [1]: https://github.com/rockerBOO/awesome-neovim
 [2]: https://github.com/savq/paq-nvim
 [3]: https://github.com/neovim/nvim-lspconfig
-[4]: https://github.com/RishabhRD/lspactions
 [5]: https://github.com/onsails/lspkind-nvim
 [6]: https://github.com/nvimtools/none-ls.nvim
 [8]: https://github.com/nvim-treesitter/nvim-treesitter

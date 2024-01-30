@@ -10,7 +10,6 @@ M.specs = {
 
    -- LSP {{{1
    'neovim/nvim-lspconfig',
-   'RishabhRD/lspactions',
    'onsails/lspkind-nvim',
    'nvimtools/none-ls.nvim',
 

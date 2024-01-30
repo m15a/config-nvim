@@ -10,7 +10,6 @@ if not vim.g.disable_paq then
 end
 
 require_ 'lightspeed'
-require_ 'lspactions'
 require_ 'lspkind'
 require_ 'null-ls'
 require_ 'lspconfig'
