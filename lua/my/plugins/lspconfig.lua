@@ -104,7 +104,8 @@ function M.on_attach(client, buf)
 
    -- NOTE: Highlight document only if available
    -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/355#discussioncomment-1651619
-   if client.resolved_capabilities.document_highlight then
+   -- Also note that `resolved_capabilities` has been renamed to `server_capabilities`.
+   if client.server_capabilities.document_highlight then
       v.augroup('lsp_document_highlight', function(au)
          au [[CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
          au [[CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
