@@ -19,9 +19,6 @@ M.specs = {
    'nvim-treesitter/nvim-treesitter-textobjects',
    'machakann/vim-sandwich',
 
-   -- Terminal integration {{{1
-   'mnacamura/iron.nvim',
-
    -- Marks {{{1
    'chentoast/marks.nvim',
 

@@ -48,7 +48,6 @@ wrapNeovim neovim {
         vimExtraPlugins.bullets-vim
         vimExtraPlugins.dial-nvim
         vimExtraPlugins.feline-nvim
-        vimExtraPlugins.iron-nvim-mnacamura
         vimExtraPlugins.lspactions
         vimExtraPlugins.nvim-lastplace
         vimExtraPlugins.nvim-pqf

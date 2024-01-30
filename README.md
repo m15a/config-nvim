@@ -61,10 +61,6 @@ Most plugins listed here are picked up from that awesome list, thanks!
     + [ ] Replace it with [blackCauldron7/surround.nvim][51]
           after it supports dot repeat.
 
-## Terminal integration
-
-- [x] [mnacamura/iron.nvim][11]: my own fork of [hkupty/iron.nvim][12].
-
 ## Marks
 
 - [x] [chentoast/marks.nvim][13]
@@ -169,8 +165,6 @@ Most plugins listed here are picked up from that awesome list, thanks!
 [8]: https://github.com/nvim-treesitter/nvim-treesitter
 [9]: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 [10]: https://github.com/machakann/vim-sandwich
-[11]: https://github.com/mnacamura/iron.nvim
-[12]: https://github.com/hkupty/iron.nvim
 [13]: https://github.com/chentoast/marks.nvim
 [14]: https://github.com/nvim-telescope/telescope.nvim
 [15]: https://github.com/nvim-telescope/telescope-symbols.nvim
