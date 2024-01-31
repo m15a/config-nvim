@@ -1,177 +1,160 @@
-local v = require 'my.utils.vimsl'
 local lspconfig = require 'lspconfig'
-
--- Change diagnostic symbols in the gutter.
--- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#change-diagnostic-symbols-in-the-sign-column-gutter
-local diagnostic_signs = {
-   Error = ' ',
-   Warn = ' ',
-   Hint = ' ',
-   Info = ' ',
-}
-
--- Set floating window borders.
--- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#borders
-local float_border = {
-   { '╭', 'FloatBorder' },
-   { '─', 'FloatBorder' },
-   { '╮', 'FloatBorder' },
-   { '│', 'FloatBorder' },
-   { '╯', 'FloatBorder' },
-   { '─', 'FloatBorder' },
-   { '╰', 'FloatBorder' },
-   { '│', 'FloatBorder' },
-}
+local diagnostic_symbols = require('my.assets').diagnostic_symbols
 
 local M = {}
 
-function M.rename()
-   vim.lsp.buf.rename()
-end
-
-function M.code_action()
-   vim.lsp.buf.code_action()
-end
-
-function M.range_code_action()
-   vim.lsp.buf.range_code_action()
-end
-
-M.diagnostic = {}
-
-function M.diagnostic.show_line_diagnostics()
-   vim.diagnostic.open_float(0, { scope = 'line', border = float_border })
-end
-
-function M.diagnostic.goto_prev()
-   vim.diagnostic.goto_prev { float = { border = float_border } }
-end
-
-function M.diagnostic.goto_next()
-   vim.diagnostic.goto_next { float = { border = float_border } }
-end
-
-local bare_keymaps = {
-   { 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>' },
-   { 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>' },
-   -- { "gt", "<Cmd>lua vim.lsp.buf.type_definition()<CR>" }, -- I don't use tabs
-   { 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>' },
-   {
-      'D',
-      "<Cmd>lua require'my.plugins.lspconfig'.diagnostic.show_line_diagnostics()<CR>",
-   },
-
-   { '<C-k>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>' },
-   { 'gr', "<Cmd>lua require'my.plugins.lspconfig'.rename()<CR>" },
-   { 'ga', "<Cmd>lua require'my.plugins.lspconfig'.code_action()<CR>" },
-   {
-      'ga',
-      ":<C-u>lua require'my.plugins.lspconfig'.range_code_action()<CR>",
-      { mode = 'x' },
-   },
-
-   { '[d', "<Cmd>lua require'my.plugins.lspconfig'.diagnostic.goto_prev()<CR>" },
-   { ']d', "<Cmd>lua require'my.plugins.lspconfig'.diagnostic.goto_next()<CR>" },
+-- Set floating window borders:
+-- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#borders
+local border = {
+   { '┌', 'FloatBorder' },
+   { '─', 'FloatBorder' },
+   { '┐', 'FloatBorder' },
+   { '│', 'FloatBorder' },
+   { '┘', 'FloatBorder' },
+   { '─', 'FloatBorder' },
+   { '└', 'FloatBorder' },
+   { '│', 'FloatBorder' },
 }
 
-local workspace_keymaps = {
-   { 'a', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>' },
-   { 'r', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>' },
-   { 'w', '<Cmd>lua vim.lsp.buf.list_workspace_folders()<CR>' },
-}
+vim.api.nvim_create_autocmd('LspAttach', {
+   callback = function(args)
+      local buf = args.buf
 
-local lsp_keymaps = {
-   { 'f', '<Cmd>lua vim.lsp.buf.formatting()<CR>' },
-}
-
-function M.on_attach(client, buf)
-   vim.api.nvim_buf_set_option(buf, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-   vim.api.nvim_buf_set_option(buf, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
-
-   local keymaps = require 'my.keymaps'
-
-   for _, keymap in ipairs(bare_keymaps) do
-      keymaps.buf_set_keymap(buf, unpack(keymap))
-   end
-
-   for _, keymap in ipairs(workspace_keymaps) do
-      keymaps.buf_set_workspace_keymap(buf, unpack(keymap))
-   end
-
-   for _, keymap in ipairs(lsp_keymaps) do
-      keymaps.buf_set_lsp_keymap(buf, unpack(keymap))
-   end
-
-   -- NOTE: Highlight document only if available
-   -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/355#discussioncomment-1651619
-   -- Also note that `resolved_capabilities` has been renamed to `server_capabilities`.
-   if client.server_capabilities.document_highlight then
-      v.augroup('lsp_document_highlight', function(au)
-         au [[CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
-         au [[CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
-      end)
-   else
-      v.augroup('lsp_document_highlight', function(_) end)
-   end
-end
+      local keymap_opts = { buffer = buf }
+      local function diagnostic_goto_prev()
+         vim.diagnostic.goto_prev { float = { border = border } }
+      end
+      local function diagnostic_goto_next()
+         vim.diagnostic.goto_next { float = { border = border } }
+      end
+      local function diagnostic_show_all_in_buffer()
+         vim.diagnostic.open_float { scope = 'buffer', border = border }
+      end
+      local function list_workspace_folders()
+         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+      end
+      local function format()
+         vim.lsp.buf.format { async = true }
+      end
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, keymap_opts)
+      vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, keymap_opts)
+      vim.keymap.set('n', 'g<C-i>', vim.lsp.buf.implementation, keymap_opts)
+      vim.keymap.set('n', 'gr', vim.lsp.buf.rename, keymap_opts)
+      vim.keymap.set({ 'n', 'v' }, 'ga', vim.lsp.buf.code_action, keymap_opts)
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, keymap_opts)
+      vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, keymap_opts)
+      vim.keymap.set('n', '[d', diagnostic_goto_prev, keymap_opts)
+      vim.keymap.set('n', ']d', diagnostic_goto_next, keymap_opts)
+      vim.keymap.set('n', '[lsp]d', diagnostic_show_all_in_buffer, keymap_opts)
+      vim.keymap.set('n', '[lsp]r', vim.lsp.buf.references, keymap_opts)
+      vim.keymap.set('n', '[lsp]i', vim.lsp.buf.incoming_calls, keymap_opts)
+      vim.keymap.set('n', '[lsp]o', vim.lsp.buf.outgoing_calls, keymap_opts)
+      vim.keymap.set('n', '[lsp]s', vim.lsp.buf.document_symbol, keymap_opts)
+      vim.keymap.set('n', '[workspace]s', vim.lsp.buf.workspace_symbol, keymap_opts)
+      vim.keymap.set('n', '[workspace]a', vim.lsp.buf.add_workspace_folder, keymap_opts)
+      vim.keymap.set(
+         'n',
+         '[workspace]d',
+         vim.lsp.buf.remove_workspace_folder,
+         keymap_opts
+      )
+      vim.keymap.set('n', '[workspace]w', list_workspace_folders, keymap_opts)
+      vim.keymap.set({ 'n', 'v' }, '[lsp]=', format, keymap_opts)
+   end,
+})
 
 local servers = {
    bashls = 'bash-language-server',
    vimls = 'vim-language-server',
-   pyright = 'pyright',
-   dockerls = 'docker-langserver',
+   lua_ls = 'lua-language-server',
 }
 
-function M.setup()
-   for type, sign in pairs(diagnostic_signs) do
-      local hl = 'DiagnosticSign' .. type
-      vim.fn.sign_define(hl, { text = sign, texthl = hl, numhl = hl })
+local handlers = {}
+setmetatable(handlers, {
+   __index = function()
+      local h = vim.lsp.handlers
+      local opts = { border = border }
+      return {
+         ['textDocument/hover'] = vim.lsp.with(h.hover, opts),
+         ['textDocument/signatureHelp'] = vim.lsp.with(h.signature_help, opts),
+      }
+   end,
+})
+
+local on_attach = {}
+setmetatable(on_attach, {
+   __index = function()
+      return function(client, bufnr)
+         -- NOTE: Highlight document only if available
+         -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/355#discussioncomment-1651619
+         -- Also note that `resolved_capabilities` has been renamed to `server_capabilities`.
+         if client.server_capabilities.document_highlight then
+            local group =
+               vim.api.nvim_create_augroup('lsp_doc_highlight', { clear = true })
+            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+               group = group,
+               buffer = bufnr,
+               callback = function()
+                  vim.lsp.buf.document_highlight()
+               end,
+            })
+            vim.api.nvim_create_autocmd('CursorMoved', {
+               group = group,
+               buffer = bufnr,
+               callback = function()
+                  vim.lsp.buf.clear_references()
+               end,
+            })
+         end
+      end
+   end,
+})
+
+local on_init = {}
+
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
+function on_init.lua_ls(client)
+   local path = client.workspace_folders[1].name
+   if
+      not vim.loop.fs_stat(path .. '/.luarc.json')
+      and not vim.loop.fs_stat(path .. '/.luarc.jsonc')
+   then
+      client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+         Lua = {
+            runtime = {
+               version = 'LuaJIT',
+            },
+            workspace = {
+               checkThirdParty = false,
+               library = {
+                  vim.env.VIMRUNTIME,
+               },
+            },
+         },
+      })
+      client.notify(
+         'workspace/didChangeConfiguration',
+         { settings = client.config.settings }
+      )
    end
+   return true
+end
 
-   local handlers = vim.lsp.handlers
-   handlers['textDocument/hover'] =
-      vim.lsp.with(handlers.hover, { border = float_border })
-   handlers['textDocument/signatureHelp'] =
-      vim.lsp.with(handlers.signature_help, { border = float_border })
-
+function M.setup()
+   -- Change diagnostic symbols in the gutter:
+   -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#change-diagnostic-symbols-in-the-sign-column-gutter
+   for type, text in pairs(diagnostic_symbols) do
+      local hl = 'DiagnosticSign' .. type
+      vim.fn.sign_define(hl, { text = text, texthl = hl, numhl = hl })
+   end
    for server, cmd in pairs(servers) do
       if vim.fn.executable(cmd) > 0 then
-         lspconfig[server].setup { on_attach = M.on_attach }
+         lspconfig[server].setup {
+            handlers = handlers[server],
+            on_attach = on_attach[server],
+            on_init = on_init[server],
+         }
       end
-   end
-
-   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
-   if vim.fn.executable 'lua-language-server' > 0 then
-      lspconfig.lua_ls.setup {
-         on_attach = M.on_attach,
-         on_init = function(client)
-            local path = client.workspace_folders[1].name
-            if
-               not vim.loop.fs_stat(path .. '/.luarc.json')
-               and not vim.loop.fs_stat(path .. '/.luarc.jsonc')
-            then
-               client.config.settings =
-                  vim.tbl_deep_extend('force', client.config.settings, {
-                     Lua = {
-                        runtime = {
-                           version = 'LuaJIT',
-                        },
-                        workspace = {
-                           checkThirdParty = false,
-                           library = {
-                              vim.env.VIMRUNTIME,
-                           },
-                        },
-                     },
-                  })
-               client.notify(
-                  'workspace/didChangeConfiguration',
-                  { settings = client.config.settings }
-               )
-            end
-            return true
-         end,
-      }
    end
 end
 
