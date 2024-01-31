@@ -53,7 +53,11 @@
         stylua
         pre-commit
         lua-language-server
+        vale
       ];
+      shellHook = ''
+      test -d _vale/Microsoft || vale sync
+      '';
     };
   }));
 }

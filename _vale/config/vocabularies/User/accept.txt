@@ -1,0 +1,11 @@
+(?i)Colorscheme
+(?i)Cursorline
+(?i)LaTeX
+(?i)Lua
+(?i)Neovim
+(?i)Nix
+(?i)Quickfix
+(?i)Statusline
+LSP
+UI
+config-nvim

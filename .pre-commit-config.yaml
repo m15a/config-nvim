@@ -15,3 +15,9 @@ repos:
         language: system
         types:
           - lua
+      - id: vale
+        name: Lint Markdown files
+        entry: vale
+        language: system
+        types:
+          - markdown
