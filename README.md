@@ -1,159 +1,167 @@
-# Synopsis
+# config-nvim
 
-An example Neovim configuration, being developed by the policy:
+An example Neovim configuration.
 
     Keep staying vanilla+, but telescope is unavoidable!
 
-# Installation
+## Installation
 
-This repo is intended to be used either as normal Neovim configuration
+You can use this repository either as usual Neovim configuration
 (`~/.config/nvim`) or as [Nix flake][0].
 
-## Use as normal Neovim configuration
+### Usual Neovim configuration
 
-Back up your config and plugin packs:
+> [!CAUTION]
+> Back up your configuration (`~/.config/nvim`) and
+> plugin packs (`~/.local/share/nvim/site/pack`) beforehand!
 
-```sh
-mv ~/.config/nvim ${SOMEWHERE}/
-mv ~/.local/share/nvim/site/pack ${SOMEWHERE}/
-git clone https://github.com/mnacamura/config-nvim ~/.config/nvim
+```console
+$ git clone https://github.com/mnacamura/config-nvim ~/.config/nvim
 ```
 
 After launching Neovim, execute `:PaqInstall`.
 You'll see some error messages but no problem. Relaunch neovim!
 
-## Use as Nix flake
+### Nix flake
 
 You can just try it:
 
-```sh
-nix run github:mnacamura/config-nvim -- blabla.txt
+```console
+$ nix run github:mnacamura/config-nvim -- blabla.txt
 ```
 
-If you happened to really like it, install it to your system:
+If you happened to like it, install it to your system:
 
-```sh
-nix profile install github:mnacamura/config-nvim
+```console
+$ nix profile install github:mnacamura/config-nvim
 ```
 
+## Plugins
 
-# Plugins
+This repository ships with plugins listed here,
+mostly coming from [rockerBOO/awesome-neovim][1].
 
-Subsections below are adopted from [rockerBOO/awesome-neovim][1].
-Most plugins listed here are picked up from that awesome list, thanks!
-
-## Plugin manager
+### Plugin manager
 
 - [x] [savq/paq-nvim][2]
 
-## LSP
-
-- [x] [neovim/nvim-lspconfig][3]
-- [x] [onsails/lspkind-nvim][5]
-- [x] [nvimtools/none-ls][6]
-
-## Syntax
-
-- [x] [nvim-treesitter/nvim-treesitter][8]
-- [x] [nvim-treesitter/nvim-treesitter-textobjects][9]
-- [x] [machakann/vim-sandwich][10]
-    + [ ] Replace it with [blackCauldron7/surround.nvim][51]
-          after it supports dot repeat.
-
-## Marks
-
-- [x] [chentoast/marks.nvim][13]
-
-## Fuzzy finder
-
-- [x] [nvim-telescope/telescope.nvim][14]
-- [x] [nvim-telescope/telescope-symbols.nvim][15]
-- [x] [crispgm/telescope-heading.nvim][44]
-
-## Colorscheme
-
-- [x] [mnacamura/nvim-srcerite][52]
-
-## Icon
-
-- [x] [kyazdani42/nvim-web-devicons][18]
-
-## Utility
-
-- [x] [stevearc/dressing.nvim][54]
-
-## Neovim Lua development
+### Neovim Lua development
 
 - [x] [nvim-lua/plenary.nvim][19]
 - [x] [nvim-lua/popup.nvim][20]
 
-## Statusline
+### Vanilla+ enhancement
 
-- [x] [feline-nvim/feline.nvim][22]
+#### Command line
 
-## Cursorline
+- [x] [tpope/vim-rsi][38]
 
-- [x] [yamatsum/nvim-cursorline][23]
-
-## Git
-
-- [x] [lewis6991/gitsigns.nvim][24]
-
-## Comment
+#### Comment
 
 - [x] [b3nj5m1n/kommentary][27]
 
-## Quickfix
-
-- [x] [gitlab:yorickpeterse/nvim-pqf][28]
-
-## Motion
-
-- [x] [chaoren/vim-wordmotion][29]
-- [x] [ggandor/lightspeed.nvim][30]
-
-## Search
-
-- [x] [thinca/vim-visualstar][31]
-
-## Editing support
+#### Editing support
 
 - [ ] [windwp/nvim-autopairs][32] or [steelsojka/pears.nvim][33]
 - [x] [monaqa/dial.nvim][34]
 - [x] [nacro90/numb.nvim][36]
 - [x] [ethanholz/nvim-lastplace][37]
 
-## Command line
+#### Marks
 
-- [x] [tpope/vim-rsi][38]
+- [x] [chentoast/marks.nvim][13]
 
-## Language specific
+#### Motion
 
-### Markdown / LaTeX
+- [x] [chaoren/vim-wordmotion][29]
+- [x] [ggandor/lightspeed.nvim][30]
+
+#### Quickfix
+
+- [x] [gitlab:yorickpeterse/nvim-pqf][28]
+
+#### Search
+
+- [x] [thinca/vim-visualstar][31]
+
+### Neovim UI enhancement
+
+- [x] [stevearc/dressing.nvim][54]
+
+### LSP enhancement
+
+- [x] [neovim/nvim-lspconfig][3]
+- [x] [nvimtools/none-ls][6]
+- [x] [onsails/lspkind-nvim][5]
+
+### Telescope and its extensions
+
+- [x] [nvim-telescope/telescope.nvim][14]
+- [x] [nvim-telescope/telescope-symbols.nvim][15]
+- [x] [nvim-telescope/telescope-bibtex.nvim][45]
+- [x] [crispgm/telescope-heading.nvim][44]
+
+### Tree-sitter
+
+- [x] [nvim-treesitter/nvim-treesitter][8]
+- [x] [nvim-treesitter/nvim-treesitter-textobjects][9]
+
+### Other syntax extensions
+
+- [x] [machakann/vim-sandwich][10]
+    + [ ] Replace it with [blackCauldron7/surround.nvim][51]
+          after it supports dot repeat.
+
+### Look and feel
+
+#### Colorscheme
+
+- [x] [mnacamura/nvim-srcerite][52]
+
+#### Icon fonts
+
+- [x] [kyazdani42/nvim-web-devicons][18]
+
+#### Statusline
+
+- [x] [feline-nvim/feline.nvim][22]
+
+#### Cursorline
+
+- [x] [yamatsum/nvim-cursorline][23]
+
+### Tool integration
+
+#### Git
+
+- [x] [lewis6991/gitsigns.nvim][24]
+
+### Language-specific plugins
+
+#### Markdown / LaTeX
 
 - [x] [ellisonleao/glow.nvim][40]
 - [x] [rhysd/vim-gfm-syntax][41]
 - [x] [vim-pandoc/vim-pandoc-syntax][42]
 - [x] [dhruvasagar/vim-table-mode][43]
-- [x] [nvim-telescope/telescope-bibtex.nvim][45]
 
-### Nix
+#### Nix
 
 - [x] [LnL7/vim-nix][46]
 
-### Bash
+#### Bash
 
 - [x] [aliou/bats.vim][47]
 
-### Lua
+#### Lua
 
 - [x] [euclidianAce/BetterLua.vim][49]
 
-### Fennel
+#### Fennel
 
 - [x] [mnacamura/vim-fennel-syntax][50]
 
-### Python
+#### Python
 
 - [x] [raimon49/requirements.txt.vim][53]
 
