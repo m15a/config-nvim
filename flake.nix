@@ -15,49 +15,53 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, neovim-nightly-overlay, vim-extra-plugins, ... }:
-  let
-    my-neovim-overlay = import ./nix/overlay.nix;
-  in {
-    overlays = rec {
+    let
+      my-neovim-overlay = import ./nix/overlay.nix;
+    in
+    {
+      overlays = rec {
         my-neovim = my-neovim-overlay;
         default = my-neovim;
-    };
-  } // (flake-utils.lib.eachDefaultSystem (system:
-  let
-    pkgs = import nixpkgs {
-      inherit system;
-      overlays = [
-        neovim-nightly-overlay.overlays.default
-        vim-extra-plugins.overlays.default
-        my-neovim-overlay
-      ];
-    };
-  in
-  {
-    packages = rec {
-      inherit (pkgs) my-neovim;
-      default = my-neovim;
-    };
-
-    apps = rec {
-      my-neovim = flake-utils.lib.mkApp {
-        drv = self.packages.${system}.my-neovim;
-        name = "nvim";
       };
-      default = my-neovim;
-    };
+    } // (flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            neovim-nightly-overlay.overlays.default
+            vim-extra-plugins.overlays.default
+            my-neovim-overlay
+          ];
+        };
+      in
+      {
+        packages = rec {
+          inherit (pkgs) my-neovim;
+          default = my-neovim;
+        };
 
-    devShells.default = pkgs.mkShell {
-      buildInputs = with pkgs; [
-        selene
-        stylua
-        pre-commit
-        lua-language-server
-        vale
-      ];
-      shellHook = ''
-      test -d _vale/Microsoft || vale sync
-      '';
-    };
-  }));
+        apps = rec {
+          my-neovim = flake-utils.lib.mkApp {
+            drv = self.packages.${system}.my-neovim;
+            name = "nvim";
+          };
+          default = my-neovim;
+        };
+
+        devShells.default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            selene
+            stylua
+            statix
+            deadnix
+            nixpkgs-fmt
+            pre-commit
+            lua-language-server
+            vale
+          ];
+          shellHook = ''
+            test -d _vale/Microsoft || vale sync
+          '';
+        };
+      }));
 }
