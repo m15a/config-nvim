@@ -2,5 +2,3 @@
 .direnv/
 .netrwhist
 spell/
-_vale/*
-!_vale/config/

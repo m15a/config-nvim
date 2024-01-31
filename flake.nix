@@ -60,7 +60,7 @@
             vale
           ];
           shellHook = ''
-            test -d _vale/Microsoft || vale sync
+            test -d .vale/styles/Microsoft || vale sync
           '';
         };
       }));
