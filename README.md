@@ -4,6 +4,8 @@ An example Neovim configuration.
 
     Keep staying vanilla+, but telescope is unavoidable!
 
+[![Nix flake][nix badge]][nix status]
+
 ## Installation
 
 You can use this repository either as usual Neovim configuration
@@ -211,5 +213,8 @@ mostly coming from [rockerBOO/awesome-neovim][1].
 [52]: https://github.com/mnacamura/nvim-srcerite
 [53]: https://github.com/raimon49/requirements.txt.vim
 [54]: https://github.com/stevearc/dressing.nvim
+
+[nix badge]: https://github.com/mnacamura/config-nvim/actions/workflows/nix.yml/badge.svg
+[nix status]: https://github.com/mnacamura/config-nvim/actions/workflows/nix.yml
 
 <!-- vim: set ft=markdown.gfm tw=80: -->
