@@ -130,6 +130,10 @@ function on_init.lua_ls(client)
                   vim.env.VIMRUNTIME,
                },
             },
+            format = {
+               -- Use stylua instead of the built-in formatter.
+               enable = false,
+            },
          },
       })
       client.notify(
