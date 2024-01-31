@@ -39,7 +39,13 @@ local function set_keymap_by(mapper, key, cmd, opts, default_opts)
 end
 
 function M.set_keymap(key, cmd, opts)
-   set_keymap_by(vim.api.nvim_set_keymap, key, cmd, opts, { noremap = true, silent = true })
+   set_keymap_by(
+      vim.api.nvim_set_keymap,
+      key,
+      cmd,
+      opts,
+      { noremap = true, silent = true }
+   )
 end
 
 function M.buf_set_keymap(buf, key, cmd, opts)
