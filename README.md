@@ -1,5 +1,7 @@
 # config-nvim
 
+![~/.config/nvim](_assets/sagrada_falimia.jpg)
+
 An example Neovim configuration.
 
     Keep staying vanilla+, but telescope is unavoidable!
@@ -167,6 +169,13 @@ mostly coming from [rockerBOO/awesome-neovim][1].
 #### Python
 
 - [x] [raimon49/requirements.txt.vim][53]
+
+## Licenses
+
+See [`_assets/README`](_assets/README) for the licenses of the cover image.
+
+See [`LICENSE`](LICENSE) for the license of the other materials in this
+repository.
 
 
 [0]: https://nixos.wiki/wiki/Flakes
