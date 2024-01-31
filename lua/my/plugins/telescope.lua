@@ -1,11 +1,22 @@
 local builtin = require 'telescope.builtin'
 local keymaps = require 'my.keymaps'
+local assets = require 'my.assets'
 
 local M = {}
 
 function M.setup()
    require('telescope').setup {
       defaults = {
+         borderchars = {
+            assets.border_chars.north,
+            assets.border_chars.east,
+            assets.border_chars.south,
+            assets.border_chars.west,
+            assets.border_chars.northwest,
+            assets.border_chars.northeast,
+            assets.border_chars.southeast,
+            assets.border_chars.southwest,
+         },
          mappings = {
             i = {
                -- ['<C-a>'] = '',

@@ -1,19 +1,19 @@
 local lspconfig = require 'lspconfig'
-local diagnostic_symbols = require('my.assets').diagnostic_symbols
+local assets = require 'my.assets'
 
 local M = {}
 
 -- Set floating window borders:
 -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#borders
 local border = {
-   { '┌', 'FloatBorder' },
-   { '─', 'FloatBorder' },
-   { '┐', 'FloatBorder' },
-   { '│', 'FloatBorder' },
-   { '┘', 'FloatBorder' },
-   { '─', 'FloatBorder' },
-   { '└', 'FloatBorder' },
-   { '│', 'FloatBorder' },
+   { assets.border_chars.northwest, 'FloatBorder' },
+   { assets.border_chars.north, 'FloatBorder' },
+   { assets.border_chars.northeast, 'FloatBorder' },
+   { assets.border_chars.east, 'FloatBorder' },
+   { assets.border_chars.southeast, 'FloatBorder' },
+   { assets.border_chars.south, 'FloatBorder' },
+   { assets.border_chars.southwest, 'FloatBorder' },
+   { assets.border_chars.west, 'FloatBorder' },
 }
 
 local servers = {
@@ -102,7 +102,7 @@ M.on_exit = {}
 local function setup_diagnostic_symbols()
    -- Change diagnostic symbols in the gutter:
    -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#change-diagnostic-symbols-in-the-sign-column-gutter
-   for type, text in pairs(diagnostic_symbols) do
+   for type, text in pairs(assets.diagnostic_symbols) do
       local hl = 'DiagnosticSign' .. type
       vim.fn.sign_define(hl, { text = text, texthl = hl, numhl = hl })
    end

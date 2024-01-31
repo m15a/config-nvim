@@ -78,6 +78,10 @@ Most plugins listed here are picked up from that awesome list, thanks!
 
 - [x] [kyazdani42/nvim-web-devicons][18]
 
+## Utility
+
+- [x] [stevearc/dressing.nvim][54]
+
 ## Neovim Lua development
 
 - [x] [nvim-lua/plenary.nvim][19]
@@ -198,5 +202,6 @@ Most plugins listed here are picked up from that awesome list, thanks!
 [51]: https://github.com/blackCauldron7/surround.nvim
 [52]: https://github.com/mnacamura/nvim-srcerite
 [53]: https://github.com/raimon49/requirements.txt.vim
+[54]: https://github.com/stevearc/dressing.nvim
 
 <!-- vim: set ft=markdown.gfm tw=80: -->

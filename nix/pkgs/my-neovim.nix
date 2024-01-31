@@ -47,6 +47,7 @@ wrapNeovim neovim {
         vimExtraPlugins.bats-vim
         vimExtraPlugins.bullets-vim
         vimExtraPlugins.dial-nvim
+        vimExtraPlugins.dressing-nvim
         vimExtraPlugins.feline-nvim
         vimExtraPlugins.nvim-lastplace
         vimExtraPlugins.nvim-pqf

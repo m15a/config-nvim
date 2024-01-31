@@ -31,6 +31,9 @@ M.specs = {
    -- Icon {{{1
    'kyazdani42/nvim-web-devicons',
 
+   -- Utility {{{1
+   'stevearc/dressing.nvim',
+
    -- Neovim Lua development {{{1
    'nvim-lua/plenary.nvim',
    'nvim-lua/popup.nvim',
