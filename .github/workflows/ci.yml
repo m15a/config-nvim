@@ -10,8 +10,8 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ ubuntu-latest macos-latest ]
-        version: [ stable nightly ]
+        os: [ ubuntu-latest, macos-latest ]
+        version: [ stable, nightly ]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
