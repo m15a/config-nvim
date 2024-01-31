@@ -4,6 +4,7 @@ An example Neovim configuration.
 
     Keep staying vanilla+, but telescope is unavoidable!
 
+[![CI][ci badge]][ci status]
 [![Nix flake][nix badge]][nix status]
 
 ## Installation
@@ -214,6 +215,8 @@ mostly coming from [rockerBOO/awesome-neovim][1].
 [53]: https://github.com/raimon49/requirements.txt.vim
 [54]: https://github.com/stevearc/dressing.nvim
 
+[ci badge]: https://github.com/mnacamura/config-nvim/actions/workflows/ci.yml/badge.svg
+[ci status]: https://github.com/mnacamura/config-nvim/actions/workflows/ci.yml
 [nix badge]: https://github.com/mnacamura/config-nvim/actions/workflows/nix.yml/badge.svg
 [nix status]: https://github.com/mnacamura/config-nvim/actions/workflows/nix.yml
 

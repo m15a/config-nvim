@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest macos-latest ]
+        version: [ stable nightly ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: ${{ matrix.version }}
+
+      - name: Symlink config directory
+        run: |
+          mkdir -p ~/.config
+          ln -s "$GITHUB_WORKSPACE" ~/.config/nvim
+
+      - name: Install Paqs
+        run: |
+          nvim --headless \
+              --cmd ":lua require'my.plugins.paq'.setup()" \
+              --cmd :PaqInstall \
+              --cmd :q
+
+      - name: Run Neovim
+        run: |
+          nvim --headless +:q
