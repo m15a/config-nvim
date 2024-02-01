@@ -161,6 +161,10 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 - [x] [vim-pandoc/vim-pandoc-syntax][38]
 - [x] [dhruvasagar/vim-table-mode][39]
 
+#### PureScript
+
+- [x] [purescript-contrib/purescript-vim][42]
+
 ### Tool integration
 
 #### Git
@@ -220,6 +224,7 @@ repository.
 [37]: https://github.com/rhysd/vim-gfm-syntax
 [38]: https://github.com/vim-pandoc/vim-pandoc-syntax
 [39]: https://github.com/dhruvasagar/vim-table-mode
+[42]: https://github.com/purescript-contrib/purescript-vim
 [40]: https://github.com/lewis6991/gitsigns.nvim
 [41]: https://github.com/ellisonleao/glow.nvim
 

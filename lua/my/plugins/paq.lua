@@ -31,6 +31,7 @@ M.specs = {
    'nvim-treesitter/nvim-treesitter-textobjects',
    'nvimtools/none-ls.nvim',
    'onsails/lspkind-nvim',
+   'purescript-contrib/purescript-vim',
    'rhysd/vim-gfm-syntax',
    'savq/paq-nvim',
    'stevearc/dressing.nvim',

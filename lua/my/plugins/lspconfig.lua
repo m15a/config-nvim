@@ -20,6 +20,7 @@ local servers = {
    bashls = 'bash-language-server',
    vimls = 'vim-language-server',
    lua_ls = 'lua-language-server',
+   purescriptls = 'purescript-language-server',
 }
 
 local handlers = {}
@@ -33,6 +34,16 @@ setmetatable(handlers, {
       }
    end,
 })
+
+M.settings = {}
+
+-- https://github.com/nwolverson/purescript-language-server?tab=readme-ov-file#neovims-built-in-language-server--nvim-lspconfig
+M.settings.purescriptls = {
+   purescript = {
+      addSpagoSources = true,
+      formatter = 'purs-tidy',
+   },
+}
 
 M.on_attach = {}
 setmetatable(M.on_attach, {
@@ -113,6 +124,7 @@ local function setup_servers()
       if vim.fn.executable(cmd) > 0 then
          lspconfig[server].setup {
             handlers = handlers[server],
+            settings = M.settings[server],
             on_attach = M.on_attach[server],
             on_init = M.on_init[server],
          }

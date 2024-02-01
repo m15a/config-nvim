@@ -4,6 +4,7 @@
 (?i)Lua
 (?i)Neovim
 (?i)Nix
+(?i)PureScript
 (?i)Quickfix
 (?i)Statusline
 LSP
