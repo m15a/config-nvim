@@ -8,22 +8,28 @@ A vanilla+ Neovim configuration.
 ## Installation
 
 You can use this repository either as usual Neovim configuration
-(`~/.config/nvim`) or as [Nix flake][0].
+([`:h XDG_CONFIG_HOME`][55]) or as [Nix flake][0].
 
-### Usual Neovim configuration
+### As usual Neovim configuration
 
 > [!CAUTION]
-> Back up your configuration (`~/.config/nvim`) and
-> plugin packs (`~/.local/share/nvim/site/pack`) beforehand!
+> Make sure to back up your configuration (`${XDG_CONFIG_HOME:-~/.config}/nvim`)
+> and plugins (`${XDG_DATA_HOME:-~/.local/share}/nvim/site/pack`) before trying it!
 
 ```console
-$ git clone https://github.com/mnacamura/config-nvim ~/.config/nvim
+$ git clone https://github.com/mnacamura/config-nvim \
+    "${XDG_CONFIG_HOME:-~/.config}/nvim"
+$ nvim -es -V1 --headless \
+    --cmd ":lua require'my.plugins.paq'.setup()" \
+    --cmd :PaqInstall \
+    --cmd :5sleep
+$ nvim -es -V1 --headless +":TSInstall all"  # Optional
 ```
 
-After launching Neovim, execute `:PaqInstall`.
-You'll see some error messages but no problem. Relaunch neovim!
+You may want to customize the `:5sleep` command depending on your environment
+such as internet connection speed.
 
-### Nix flake
+### As Nix flake
 
 You can just try it:
 
@@ -174,7 +180,8 @@ See [`LICENSE`](LICENSE) for the license of the other materials in this
 repository.
 
 
-[0]: https://nixos.wiki/wiki/Flakes
+[0]: https://nix.dev/concepts/flakes
+[55]: https://neovim.io/doc/user/starting.html#%24XDG_CONFIG_HOME
 [1]: https://github.com/rockerBOO/awesome-neovim
 [2]: https://github.com/savq/paq-nvim
 [3]: https://github.com/neovim/nvim-lspconfig
