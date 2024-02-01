@@ -2,9 +2,7 @@
 
 ![~/.config/nvim](_assets/sagrada_falimia.jpg)
 
-An example Neovim configuration.
-
-    Keep staying vanilla+, but telescope is unavoidable!
+A vanilla+ Neovim configuration.
 
 [![CI][ci badge]][ci status]
 [![Nix flake][nix badge]][nix status]
