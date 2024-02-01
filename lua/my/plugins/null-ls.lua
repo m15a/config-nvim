@@ -68,9 +68,7 @@ local sources = {
    formatting.isort.with { condition = has_file { '.isort.cfg', 'pyproject.toml' } },
 }
 
-null_ls.setup {
+local config = {
    sources = sources,
-   on_attach = lspconfig.on_attach['default'],
-   on_init = lspconfig.on_init['default'],
-   on_exit = lspconfig.on_exit['default'],
 }
+null_ls.setup(vim.tbl_extend('force', config, lspconfig.default_server_config))
