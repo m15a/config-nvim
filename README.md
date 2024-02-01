@@ -1,5 +1,3 @@
-# config-nvim
-
 ![~/.config/nvim](_assets/sagrada_falimia.jpg)
 
 A vanilla+ Neovim configuration.
