@@ -79,7 +79,7 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 
 #### Cursorline
 
-- [x] [yamatsum/nvim-cursorline][10]
+- [x] [sontungexpt/stcursorword][10]
 
 #### Icon fonts
 
@@ -192,7 +192,7 @@ repository.
 [7]: https://github.com/stevearc/dressing.nvim
 [8]: https://github.com/mnacamura/nvim-srcerite
 [9]: https://github.com/freddiehaddad/feline.nvim
-[10]: https://github.com/yamatsum/nvim-cursorline
+[10]: https://github.com/sontungexpt/stcursorword
 [11]: https://github.com/kyazdani42/nvim-web-devicons
 [12]: https://github.com/chaoren/vim-wordmotion
 [13]: https://github.com/ggandor/lightspeed.nvim

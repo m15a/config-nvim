@@ -28,7 +28,7 @@ wrapNeovim neovim {
         vimPlugins.marks-nvim
         vimExtraPlugins.none-ls-nvim
         vimPlugins.numb-nvim
-        vimPlugins.nvim-cursorline
+        vimExtraPlugins.stcursorword
         vimPlugins.nvim-lspconfig
         (vimPlugins.nvim-treesitter.withPlugins (_: tree-sitter.allGrammars))
         vimPlugins.nvim-treesitter-textobjects

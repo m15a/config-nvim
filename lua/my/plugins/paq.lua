@@ -34,13 +34,13 @@ M.specs = {
    'purescript-contrib/purescript-vim',
    'rhysd/vim-gfm-syntax',
    'savq/paq-nvim',
+   'sontungexpt/stcursorword',
    'stevearc/dressing.nvim',
    'thinca/vim-visualstar',
    'tpope/vim-repeat',
    'tpope/vim-rsi',
    'tpope/vim-unimpaired',
    'vim-pandoc/vim-pandoc-syntax',
-   'yamatsum/nvim-cursorline',
    { url = 'https://gitlab.com/yorickpeterse/nvim-pqf.git' },
 }
 
