@@ -224,9 +224,9 @@ repository.
 [53]: https://github.com/raimon49/requirements.txt.vim
 [54]: https://github.com/stevearc/dressing.nvim
 
-[ci badge]: https://github.com/mnacamura/config-nvim/actions/workflows/ci.yml/badge.svg
+[ci badge]: https://img.shields.io/github/actions/workflow/status/mnacamura/config-nvim/ci.yml?style=flat-square&logo=github&label=CI
 [ci status]: https://github.com/mnacamura/config-nvim/actions/workflows/ci.yml
-[nix badge]: https://github.com/mnacamura/config-nvim/actions/workflows/nix.yml/badge.svg
+[nix badge]: https://img.shields.io/github/actions/workflow/status/mnacamura/config-nvim/nix.yml?style=flat-square&logo=nixos&logoColor=7ebae4&label=Nix%20flake
 [nix status]: https://github.com/mnacamura/config-nvim/actions/workflows/nix.yml
 
 <!-- vim: set ft=markdown.gfm tw=80: -->
