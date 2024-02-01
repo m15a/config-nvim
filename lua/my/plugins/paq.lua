@@ -91,9 +91,6 @@ M.specs = {
 
    -- Fennel {{{2
    'mnacamura/vim-fennel-syntax',
-
-   -- Python {{{2
-   'raimon49/requirements.txt.vim',
    -- }}}1
 }
 

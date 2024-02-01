@@ -52,7 +52,6 @@ wrapNeovim neovim {
         vimExtraPlugins.nvim-lastplace
         vimExtraPlugins.nvim-pqf
         vimExtraPlugins.nvim-srcerite
-        vimExtraPlugins.requirements-txt-vim
         vimExtraPlugins.telescope-bibtex-nvim
         vimExtraPlugins.telescope-heading-nvim
         vimExtraPlugins.vim-fennel-syntax
