@@ -3,7 +3,6 @@ local M = {}
 M.specs = {
    'LnL7/vim-nix',
    'aliou/bats.vim',
-   'b3nj5m1n/kommentary',
    'chaoren/vim-wordmotion',
    'chentoast/marks.nvim',
    'crispgm/telescope-heading.nvim',
@@ -22,6 +21,7 @@ M.specs = {
    'monaqa/dial.nvim',
    'nacro90/numb.nvim',
    'neovim/nvim-lspconfig',
+   'numToStr/Comment.nvim',
    'nvim-lua/plenary.nvim',
    'nvim-lua/popup.nvim',
    'nvim-telescope/telescope-bibtex.nvim',

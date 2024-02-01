@@ -9,6 +9,7 @@ if not vim.g.disable_paq then
    require_ 'paq'
 end
 
+require_ 'comment'
 require_ 'lightspeed'
 require_ 'lspkind'
 require_ 'null-ls'

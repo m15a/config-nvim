@@ -99,7 +99,7 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 
 #### Comment
 
-- [x] [b3nj5m1n/kommentary][16]
+- [x] [numToStr/Comment.nvim][16]
 
 #### Marks
 
@@ -194,7 +194,7 @@ repository.
 [13]: https://github.com/ggandor/lightspeed.nvim
 [14]: https://github.com/thinca/vim-visualstar
 [15]: https://github.com/tpope/vim-rsi
-[16]: https://github.com/b3nj5m1n/kommentary
+[16]: https://github.com/numToStr/Comment.nvim
 [17]: https://github.com/chentoast/marks.nvim
 [18]: https://gitlab.com/yorickpeterse/nvim-pqf
 [19a]: https://github.com/windwp/nvim-autopairs

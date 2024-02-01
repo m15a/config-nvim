@@ -22,7 +22,7 @@ wrapNeovim neovim {
         vimPlugins.BetterLua-vim
         vimPlugins.gitsigns-nvim
         vimExtraPlugins.glow-nvim
-        vimPlugins.kommentary
+        vimExtraPlugins.Comment-nvim
         vimPlugins.lightspeed-nvim
         vimPlugins.lspkind-nvim
         vimPlugins.marks-nvim
