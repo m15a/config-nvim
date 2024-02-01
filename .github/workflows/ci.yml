@@ -30,9 +30,8 @@ jobs:
           nvim -es -V4 --headless \
               --cmd ":lua require'my.plugins.paq'.setup()" \
               --cmd :PaqInstall \
-              --cmd :3sleep \
-              --cmd :q
+              --cmd :5sleep
 
       - name: Run Neovim
         run: |
-          nvim -es -V4 --headless +:3sleep +:q
+          nvim -es -V4 --headless +:3sleep
