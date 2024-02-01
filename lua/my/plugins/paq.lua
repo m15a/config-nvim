@@ -11,7 +11,7 @@ M.specs = {
    'ellisonleao/glow.nvim',
    'ethanholz/nvim-lastplace',
    'euclidianAce/BetterLua.vim',
-   'feline-nvim/feline.nvim',
+   'freddiehaddad/feline.nvim',
    'ggandor/lightspeed.nvim',
    'kyazdani42/nvim-web-devicons',
    'lewis6991/gitsigns.nvim',

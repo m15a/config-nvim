@@ -75,7 +75,7 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 
 #### Statusline
 
-- [x] [feline-nvim/feline.nvim][9]
+- [x] [freddiehaddad/feline.nvim][9]
 
 #### Cursorline
 
@@ -187,7 +187,7 @@ repository.
 [6]: https://github.com/nvim-lua/popup.nvim
 [7]: https://github.com/stevearc/dressing.nvim
 [8]: https://github.com/mnacamura/nvim-srcerite
-[9]: https://github.com/feline-nvim/feline.nvim
+[9]: https://github.com/freddiehaddad/feline.nvim
 [10]: https://github.com/yamatsum/nvim-cursorline
 [11]: https://github.com/kyazdani42/nvim-web-devicons
 [12]: https://github.com/chaoren/vim-wordmotion
