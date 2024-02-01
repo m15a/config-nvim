@@ -1,97 +1,46 @@
 local M = {}
 
 M.specs = {
-   --[[
-   Sections below are mostly based on
-   [rockerBOO/awesome-neovim](https://github.com/rockerBOO/awesome-neovim).
-   ]]
-   -- Plugin manager {{{1
-   'savq/paq-nvim',
-
-   -- LSP {{{1
-   'neovim/nvim-lspconfig',
-   'onsails/lspkind-nvim',
-   'nvimtools/none-ls.nvim',
-
-   -- Syntax {{{1
-   'nvim-treesitter/nvim-treesitter',
-   'nvim-treesitter/nvim-treesitter-textobjects',
-   'machakann/vim-sandwich',
-
-   -- Marks {{{1
+   'LnL7/vim-nix',
+   'aliou/bats.vim',
+   'b3nj5m1n/kommentary',
+   'chaoren/vim-wordmotion',
    'chentoast/marks.nvim',
-
-   -- Fuzzy finder {{{1
-   'nvim-telescope/telescope.nvim',
-   'nvim-telescope/telescope-symbols.nvim',
-
-   -- Colorscheme {{{1
-   'mnacamura/nvim-srcerite',
-
-   -- Icon {{{1
+   'crispgm/telescope-heading.nvim',
+   'dhruvasagar/vim-table-mode',
+   'dkarter/bullets.vim',
+   'ellisonleao/glow.nvim',
+   'ethanholz/nvim-lastplace',
+   'euclidianAce/BetterLua.vim',
+   'feline-nvim/feline.nvim',
+   'ggandor/lightspeed.nvim',
    'kyazdani42/nvim-web-devicons',
-
-   -- Utility {{{1
-   'stevearc/dressing.nvim',
-
-   -- Neovim Lua development {{{1
+   'lewis6991/gitsigns.nvim',
+   'machakann/vim-sandwich',
+   'mnacamura/nvim-srcerite',
+   'mnacamura/vim-fennel-syntax',
+   'monaqa/dial.nvim',
+   'nacro90/numb.nvim',
+   'neovim/nvim-lspconfig',
    'nvim-lua/plenary.nvim',
    'nvim-lua/popup.nvim',
-
-   -- Statusline {{{1
-   'feline-nvim/feline.nvim',
-
-   -- Cursorline {{{1
-   'yamatsum/nvim-cursorline',
-
-   -- Git {{{1
-   'lewis6991/gitsigns.nvim',
-
-   -- Comment {{{1
-   'b3nj5m1n/kommentary',
-
-   -- Quickfix {{{1
-   { url = 'https://gitlab.com/yorickpeterse/nvim-pqf.git' },
-
-   -- Motion {{{1
-   'chaoren/vim-wordmotion',
-   'ggandor/lightspeed.nvim',
-
-   -- Search {{{1
-   'thinca/vim-visualstar',
-
-   -- Editing support {{{1
-   'dkarter/bullets.vim',
-   'tpope/vim-repeat',
-   'tpope/vim-unimpaired',
-   'ethanholz/nvim-lastplace',
-   'nacro90/numb.nvim',
-   'monaqa/dial.nvim',
-
-   -- Command line {{{1
-   'tpope/vim-rsi',
-
-   -- Language specific {{{1
-   -- Markdown {{{2
-   'ellisonleao/glow.nvim',
-   'rhysd/vim-gfm-syntax',
-   'vim-pandoc/vim-pandoc-syntax',
-   'dhruvasagar/vim-table-mode',
-   'crispgm/telescope-heading.nvim',
    'nvim-telescope/telescope-bibtex.nvim',
-
-   -- Nix {{{2
-   'LnL7/vim-nix',
-
-   -- Bash {{{2
-   'aliou/bats.vim',
-
-   -- Lua {{{2
-   'euclidianAce/BetterLua.vim',
-
-   -- Fennel {{{2
-   'mnacamura/vim-fennel-syntax',
-   -- }}}1
+   'nvim-telescope/telescope-symbols.nvim',
+   'nvim-telescope/telescope.nvim',
+   'nvim-treesitter/nvim-treesitter',
+   'nvim-treesitter/nvim-treesitter-textobjects',
+   'nvimtools/none-ls.nvim',
+   'onsails/lspkind-nvim',
+   'rhysd/vim-gfm-syntax',
+   'savq/paq-nvim',
+   'stevearc/dressing.nvim',
+   'thinca/vim-visualstar',
+   'tpope/vim-repeat',
+   'tpope/vim-rsi',
+   'tpope/vim-unimpaired',
+   'vim-pandoc/vim-pandoc-syntax',
+   'yamatsum/nvim-cursorline',
+   { url = 'https://gitlab.com/yorickpeterse/nvim-pqf.git' },
 }
 
 function M.bootstrap()
