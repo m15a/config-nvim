@@ -1,4 +1,4 @@
-![~/.config/nvim](_assets/sagrada_falimia.jpg)
+# ![~/.config/nvim](_assets/sagrada_falimia.jpg)
 
 A vanilla+ Neovim configuration.
 
@@ -23,13 +23,13 @@ Install this repository either as usual Neovim configuration
 > (`${XDG_DATA_HOME:-~/.local/share}/nvim/site/pack`) before trying it!
 
 ```console
-$ git clone https://github.com/mnacamura/config-nvim \
+git clone https://github.com/mnacamura/config-nvim \
     "${XDG_CONFIG_HOME:-~/.config}/nvim"
-$ nvim -es -V1 --headless \
+nvim -es -V1 --headless \
     --cmd ":lua require'my.plugins.paq'.setup()" \
     --cmd :PaqInstall \
     --cmd :5sleep
-$ nvim -es -V1 --headless +":TSInstall all"  # Optional
+nvim -es -V1 --headless +":TSInstall all"  # Optional
 ```
 
 You may want to customize the `:5sleep` command depending on your environment
@@ -40,13 +40,13 @@ such as internet connection speed.
 Just try it:
 
 ```console
-$ nix run github:mnacamura/config-nvim -- blabla.txt
+nix run github:mnacamura/config-nvim -- blabla.txt
 ```
 
 If you happened to like it, install it to your system:
 
 ```console
-$ nix profile install github:mnacamura/config-nvim
+nix profile install github:mnacamura/config-nvim
 ```
 
 ## Plugins
@@ -116,8 +116,8 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 - [x] [nacro90/numb.nvim][21]
 - [x] [ethanholz/nvim-lastplace][22]
 - [x] [machakann/vim-sandwich][23a]
-    + [ ] Replace it with [blackCauldron7/surround.nvim][23b]
-          after it supports dot repeat.
+  - [ ] Replace it with [blackCauldron7/surround.nvim][23b] after it supports
+        dot repeat.
 
 ### LSP enhancement
 
@@ -181,7 +181,6 @@ See [`_assets/README`](_assets/README) for the licenses of the cover image.
 
 See [`LICENSE`](LICENSE) for the license of the other materials in this
 repository.
-
 
 [1]: https://neovim.io/doc/user/starting.html#%24XDG_CONFIG_HOME
 [2]: https://nix.dev/concepts/flakes

@@ -39,6 +39,10 @@ local sources = {
    diagnostics.vale.with { condition = has_file '.vale.ini' },
    hover.dictionary.with { condition = has_executable 'curl' },
 
+   -- Markdown
+   diagnostics.markdownlint.with { condition = has_executable 'markdownlint' },
+   formatting.markdownlint.with { condition = has_executable 'markdownlint' },
+
    -- Vim
    diagnostics.vint.with { condition = has_file { '.vintrc.yml', '.vintrc' } },
 

@@ -58,6 +58,7 @@
             pre-commit
             lua-language-server
             vale
+            markdownlint-cli
           ];
           shellHook = ''
             test -d .vale/styles/Microsoft || vale sync

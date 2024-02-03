@@ -31,8 +31,14 @@ repos:
         entry: nixpkgs-fmt
         language: system
         files: ^.*\.nix$
-      - id: vale
+      - id: markdownlint
         name: Lint Markdown files
+        entry: markdownlint
+        language: system
+        types:
+          - markdown
+      - id: vale
+        name: Lint prose writing
         entry: vale
         language: system
         types:
