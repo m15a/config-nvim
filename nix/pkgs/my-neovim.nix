@@ -49,6 +49,7 @@ wrapNeovim neovim {
         vimExtraPlugins.yanky-nvim
         vimExtraPlugins.nvim-various-textobjs
         vimExtraPlugins.todo-comments-nvim
+        vimExtraPlugins.sentiment-nvim
         vimExtraPlugins.dressing-nvim
         vimExtraPlugins.feline-nvim
         vimExtraPlugins.nvim-lastplace

@@ -43,6 +43,7 @@ M.specs = {
    'tpope/vim-repeat',
    'tpope/vim-rsi',
    'tpope/vim-unimpaired',
+   'utilyre/sentiment.nvim',
    'vim-pandoc/vim-pandoc-syntax',
    'yorickpeterse/nvim-pqf',
 }

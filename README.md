@@ -99,6 +99,7 @@ Only for usual Neovim installation.
 #### Parentheses completion
 
 - [x] [m4xshen/autoclose.nvim][19]
+- [x] [utilyre/sentiment.nvim][108]
 
 #### Extra operators
 
@@ -240,5 +241,6 @@ repository.
 [105]: https://github.com/chrisgrieser/nvim-various-textobjs
 [106]: https://github.com/gbprod/yanky.nvim
 [107]: https://github.com/folke/todo-comments.nvim
+[108]: https://github.com/utilyre/sentiment.nvim
 
 <!-- vim: set ft=markdown.gfm tw=80 nowrap: -->
