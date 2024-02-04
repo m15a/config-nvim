@@ -10,6 +10,7 @@ M.specs = {
    'ellisonleao/glow.nvim',
    'ethanholz/nvim-lastplace',
    'freddiehaddad/feline.nvim',
+   'gbprod/substitute.nvim',
    'haya14busa/vim-asterisk',
    'kyazdani42/nvim-web-devicons',
    'kylechui/nvim-surround',

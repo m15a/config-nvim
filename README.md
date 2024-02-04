@@ -94,9 +94,10 @@ Only for usual Neovim installation.
 
 - [x] [m4xshen/autoclose.nvim][19]
 
-#### Surrounding operators
+#### Extra operators
 
 - [x] [kylechui/nvim-surround][23]
+- [x] [gbprod/substitute.nvim][103]
 
 #### Quickfix
 
@@ -227,5 +228,6 @@ repository.
 [41]: https://github.com/ellisonleao/glow.nvim
 [101]: https://github.com/tpope/vim-repeat
 [102]: https://github.com/tpope/vim-unimpaired
+[103]: https://github.com/gbprod/substitute.nvim
 
 <!-- vim: set ft=markdown.gfm tw=80 nowrap: -->
