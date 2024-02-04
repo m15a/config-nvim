@@ -4,6 +4,7 @@ M.specs = {
    'LnL7/vim-nix',
    'chentoast/marks.nvim',
    'chrisgrieser/nvim-spider',
+   'chrisgrieser/nvim-various-textobjs',
    'crispgm/telescope-heading.nvim',
    'dhruvasagar/vim-table-mode',
    'bullets-vim/bullets.vim',

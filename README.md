@@ -73,6 +73,7 @@ Only for usual Neovim installation.
 - [x] [chrisgrieser/nvim-spider][12]
 - [x] [rhysd/clever-f.vim][13]
 - [x] [haya14busa/vim-asterisk][14]
+- [x] [chrisgrieser/nvim-various-textobjs][105]
 
 #### Useful mappings
 
@@ -231,5 +232,6 @@ repository.
 [102]: https://github.com/tpope/vim-unimpaired
 [103]: https://github.com/gbprod/substitute.nvim
 [104]: https://github.com/bullets-vim/bullets.vim
+[105]: https://github.com/chrisgrieser/nvim-various-textobjs
 
 <!-- vim: set ft=markdown.gfm tw=80 nowrap: -->
