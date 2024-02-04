@@ -69,6 +69,7 @@ Only for usual Neovim installation.
 
 #### Motion improvements
 
+- [x] [tpope/vim-repeat][101]
 - [x] [chrisgrieser/nvim-spider][12]
 - [x] [rhysd/clever-f.vim][13]
 - [x] [haya14busa/vim-asterisk][14]
@@ -220,5 +221,6 @@ repository.
 [42]: https://github.com/purescript-contrib/purescript-vim
 [40]: https://github.com/lewis6991/gitsigns.nvim
 [41]: https://github.com/ellisonleao/glow.nvim
+[101]: https://github.com/tpope/vim-repeat
 
 <!-- vim: set ft=markdown.gfm tw=80 nowrap: -->
