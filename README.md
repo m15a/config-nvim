@@ -90,7 +90,7 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 #### Motion
 
 - [x] [chaoren/vim-wordmotion][12]
-- [x] [ggandor/lightspeed.nvim][13]
+- [x] [rhysd/clever-f.vim][13]
 - [x] [thinca/vim-visualstar][14]
 
 #### Command line
@@ -192,7 +192,7 @@ repository.
 [10]: https://github.com/sontungexpt/stcursorword
 [11]: https://github.com/kyazdani42/nvim-web-devicons
 [12]: https://github.com/chaoren/vim-wordmotion
-[13]: https://github.com/ggandor/lightspeed.nvim
+[13]: https://github.com/rhysd/clever-f.vim
 [14]: https://github.com/thinca/vim-visualstar
 [15]: https://github.com/tpope/vim-rsi
 [16]: https://github.com/numToStr/Comment.nvim

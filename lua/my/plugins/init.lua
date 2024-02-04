@@ -10,8 +10,8 @@ if not vim.g.disable_paq then
 end
 
 require_ 'autoclose'
+require_ 'clever-f'
 require_ 'comment'
-require_ 'lightspeed'
 require_ 'lspkind'
 require_ 'null-ls'
 require_ 'lspconfig'
