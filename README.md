@@ -141,10 +141,6 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 
 - [x] [LnL7/vim-nix][33]
 
-#### Bash
-
-- [x] [aliou/bats.vim][34]
-
 #### Fennel
 
 - [x] [mnacamura/vim-fennel-syntax][36]
@@ -209,7 +205,6 @@ repository.
 [31]: https://github.com/nvim-treesitter/nvim-treesitter
 [32]: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 [33]: https://github.com/LnL7/vim-nix
-[34]: https://github.com/aliou/bats.vim
 [36]: https://github.com/mnacamura/vim-fennel-syntax
 [37]: https://github.com/rhysd/vim-gfm-syntax
 [38]: https://github.com/vim-pandoc/vim-pandoc-syntax

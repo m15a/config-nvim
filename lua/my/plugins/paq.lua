@@ -2,7 +2,6 @@ local M = {}
 
 M.specs = {
    'LnL7/vim-nix',
-   'aliou/bats.vim',
    'chentoast/marks.nvim',
    'chrisgrieser/nvim-spider',
    'crispgm/telescope-heading.nvim',
