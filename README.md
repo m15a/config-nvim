@@ -115,9 +115,7 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 - [x] [monaqa/dial.nvim][20]
 - [x] [nacro90/numb.nvim][21]
 - [x] [ethanholz/nvim-lastplace][22]
-- [x] [machakann/vim-sandwich][23a]
-  - [ ] Replace it with [blackCauldron7/surround.nvim][23b] after it supports
-        dot repeat.
+- [x] [kylechui/nvim-surround][23]
 
 ### LSP enhancement
 
@@ -204,8 +202,7 @@ repository.
 [20]: https://github.com/monaqa/dial.nvim
 [21]: https://github.com/nacro90/numb.nvim
 [22]: https://github.com/ethanholz/nvim-lastplace
-[23a]: https://github.com/machakann/vim-sandwich
-[23b]: https://github.com/blackCauldron7/surround.nvim
+[23]: https://github.com/kylechui/nvim-surround
 [24]: https://github.com/neovim/nvim-lspconfig
 [25]: https://github.com/nvimtools/none-ls.nvim
 [26]: https://github.com/onsails/lspkind-nvim

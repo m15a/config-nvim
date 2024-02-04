@@ -40,7 +40,7 @@ wrapNeovim neovim {
         vimPlugins.vim-pandoc-syntax
         vimPlugins.vim-repeat
         vimPlugins.vim-rsi
-        vimPlugins.vim-sandwich
+        vimExtraPlugins.surround-nvim
         vimPlugins.vim-table-mode
         vimPlugins.vim-unimpaired
         vimPlugins.vim-visualstar
