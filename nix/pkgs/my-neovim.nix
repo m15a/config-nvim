@@ -19,46 +19,46 @@ wrapNeovim neovim {
     packages.default = {
       start = [
         config-nvim
-        vimExtraPlugins.autoclose-nvim
-        vimPlugins.gitsigns-nvim
-        vimExtraPlugins.glow-nvim
-        vimExtraPlugins.Comment-nvim
         vimPlugins.clever-f
+        vimPlugins.gitsigns-nvim
         vimPlugins.lspkind-nvim
         vimPlugins.marks-nvim
-        vimExtraPlugins.none-ls-nvim
         vimPlugins.numb-nvim
-        vimExtraPlugins.stcursorword
         vimPlugins.nvim-lspconfig
-        (vimPlugins.nvim-treesitter.withPlugins (_: tree-sitter.allGrammars))
         vimPlugins.nvim-treesitter-textobjects
         vimPlugins.nvim-web-devicons
         vimPlugins.telescope-nvim
         vimPlugins.telescope-symbols-nvim
+        vimPlugins.vim-asterisk
         vimPlugins.vim-nix
         vimPlugins.vim-pandoc-syntax
         vimPlugins.vim-repeat
         vimPlugins.vim-rsi
-        vimExtraPlugins.surround-nvim
         vimPlugins.vim-table-mode
         vimPlugins.vim-unimpaired
-        vimPlugins.vim-asterisk
-        vimExtraPlugins.nvim-spider
+        (vimPlugins.nvim-treesitter.withPlugins (_: tree-sitter.allGrammars))
+        vimExtraPlugins.Comment-nvim
+        vimExtraPlugins.autoclose-nvim
         vimExtraPlugins.bullets-vim
         vimExtraPlugins.dial-nvim
-        vimExtraPlugins.yanky-nvim
-        vimExtraPlugins.nvim-various-textobjs
-        vimExtraPlugins.todo-comments-nvim
-        vimExtraPlugins.sentiment-nvim
         vimExtraPlugins.dressing-nvim
         vimExtraPlugins.feline-nvim
+        vimExtraPlugins.glow-nvim
+        vimExtraPlugins.none-ls-nvim
         vimExtraPlugins.nvim-lastplace
         vimExtraPlugins.nvim-pqf
+        vimExtraPlugins.nvim-spider
         vimExtraPlugins.nvim-srcerite
+        vimExtraPlugins.nvim-various-textobjs
+        vimExtraPlugins.sentiment-nvim
+        vimExtraPlugins.stcursorword
+        vimExtraPlugins.surround-nvim
         vimExtraPlugins.telescope-bibtex-nvim
         vimExtraPlugins.telescope-heading-nvim
+        vimExtraPlugins.todo-comments-nvim
         vimExtraPlugins.vim-fennel-syntax
         vimExtraPlugins.vim-gfm-syntax
+        vimExtraPlugins.yanky-nvim
       ];
     };
   };

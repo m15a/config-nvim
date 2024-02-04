@@ -2,12 +2,12 @@ local M = {}
 
 M.specs = {
    'LnL7/vim-nix',
+   'bullets-vim/bullets.vim',
    'chentoast/marks.nvim',
    'chrisgrieser/nvim-spider',
    'chrisgrieser/nvim-various-textobjs',
    'crispgm/telescope-heading.nvim',
    'dhruvasagar/vim-table-mode',
-   'bullets-vim/bullets.vim',
    'ellisonleao/glow.nvim',
    'ethanholz/nvim-lastplace',
    'folke/todo-comments.nvim',
