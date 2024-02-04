@@ -10,7 +10,6 @@ M.specs = {
    'dkarter/bullets.vim',
    'ellisonleao/glow.nvim',
    'ethanholz/nvim-lastplace',
-   'euclidianAce/BetterLua.vim',
    'freddiehaddad/feline.nvim',
    'haya14busa/vim-asterisk',
    'kyazdani42/nvim-web-devicons',

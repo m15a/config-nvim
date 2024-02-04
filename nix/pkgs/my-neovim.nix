@@ -20,7 +20,6 @@ wrapNeovim neovim {
       start = [
         config-nvim
         vimExtraPlugins.autoclose-nvim
-        vimPlugins.BetterLua-vim
         vimPlugins.gitsigns-nvim
         vimExtraPlugins.glow-nvim
         vimExtraPlugins.Comment-nvim
