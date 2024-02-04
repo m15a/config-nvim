@@ -1,7 +1,14 @@
+local s = require 'substitute'
+local yanky_ok, y = pcall(require 'yanky.integration')
 local map = vim.keymap.set
 
-local s = require 'substitute'
-s.setup {}
+local config = {}
+if yanky_ok then
+   config = vim.tbl_deep_extend('force', config, {
+      on_substitute = y.substitute(),
+   })
+end
+s.setup(config)
 
 -- Substitute operator
 map('n', 's', s.operator, { desc = 'Substitute text of a motion with a register' })

@@ -83,6 +83,10 @@ Only for usual Neovim installation.
 
 - [x] [tpope/vim-rsi][15]
 
+#### Register
+
+- [x] [gbprod/yanky.nvim][106]
+
 #### Marks
 
 - [x] [chentoast/marks.nvim][17]
@@ -233,5 +237,6 @@ repository.
 [103]: https://github.com/gbprod/substitute.nvim
 [104]: https://github.com/bullets-vim/bullets.vim
 [105]: https://github.com/chrisgrieser/nvim-various-textobjs
+[106]: https://github.com/gbprod/yanky.nvim
 
 <!-- vim: set ft=markdown.gfm tw=80 nowrap: -->

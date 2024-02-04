@@ -12,6 +12,7 @@ M.specs = {
    'ethanholz/nvim-lastplace',
    'freddiehaddad/feline.nvim',
    'gbprod/substitute.nvim',
+   'gbprod/yanky.nvim',
    'haya14busa/vim-asterisk',
    'kyazdani42/nvim-web-devicons',
    'kylechui/nvim-surround',

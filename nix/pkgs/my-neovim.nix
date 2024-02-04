@@ -46,6 +46,7 @@ wrapNeovim neovim {
         vimExtraPlugins.nvim-spider
         vimExtraPlugins.bullets-vim
         vimExtraPlugins.dial-nvim
+        vimExtraPlugins.yanky-nvim
         vimExtraPlugins.nvim-various-textobjs
         vimExtraPlugins.dressing-nvim
         vimExtraPlugins.feline-nvim
