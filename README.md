@@ -74,6 +74,10 @@ Only for usual Neovim installation.
 - [x] [rhysd/clever-f.vim][13]
 - [x] [haya14busa/vim-asterisk][14]
 
+#### Useful mappings
+
+- [x] [tpope/vim-unimpaired][102]
+
 #### Insert / command-line mode fixes
 
 - [x] [tpope/vim-rsi][15]
@@ -222,5 +226,6 @@ repository.
 [40]: https://github.com/lewis6991/gitsigns.nvim
 [41]: https://github.com/ellisonleao/glow.nvim
 [101]: https://github.com/tpope/vim-repeat
+[102]: https://github.com/tpope/vim-unimpaired
 
 <!-- vim: set ft=markdown.gfm tw=80 nowrap: -->
