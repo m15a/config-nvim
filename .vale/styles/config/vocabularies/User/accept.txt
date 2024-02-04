@@ -10,3 +10,4 @@
 LSP
 UI
 config-nvim
+textobject

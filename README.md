@@ -56,6 +56,8 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 
 ### Plugin manager
 
+Only for usual Neovim installation.
+
 - [x] [savq/paq-nvim][4]
 
 ### Neovim Lua batteries
@@ -63,7 +65,45 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 - [x] [nvim-lua/plenary.nvim][5]
 - [x] [nvim-lua/popup.nvim][6]
 
-### Neovim UI improvement
+### Vanilla+ experience
+
+#### Motion improvements
+
+- [x] [chrisgrieser/nvim-spider][12]
+- [x] [rhysd/clever-f.vim][13]
+- [x] [haya14busa/vim-asterisk][14]
+
+#### Insert / command-line mode fixes
+
+- [x] [tpope/vim-rsi][15]
+
+#### Marks
+
+- [x] [chentoast/marks.nvim][17]
+
+#### Comment
+
+- [x] [numToStr/Comment.nvim][16]
+
+#### Parentheses completion
+
+- [x] [m4xshen/autoclose.nvim][19]
+
+#### Surrounding operators
+
+- [x] [kylechui/nvim-surround][23]
+
+#### Quickfix
+
+- [x] [gitlab:yorickpeterse/nvim-pqf][18]
+
+#### Editing support
+
+- [x] [monaqa/dial.nvim][20]
+- [x] [nacro90/numb.nvim][21]
+- [x] [ethanholz/nvim-lastplace][22]
+
+#### Neovim UI improvement
 
 - [x] [stevearc/dressing.nvim][7]
 
@@ -84,38 +124,6 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 #### Icon fonts
 
 - [x] [kyazdani42/nvim-web-devicons][11]
-
-### Vanilla+ experience
-
-#### Motion
-
-- [x] [chrisgrieser/nvim-spider][12]
-- [x] [rhysd/clever-f.vim][13]
-- [x] [haya14busa/vim-asterisk][14]
-
-#### Command line
-
-- [x] [tpope/vim-rsi][15]
-
-#### Comment
-
-- [x] [numToStr/Comment.nvim][16]
-
-#### Marks
-
-- [x] [chentoast/marks.nvim][17]
-
-#### Quickfix
-
-- [x] [gitlab:yorickpeterse/nvim-pqf][18]
-
-#### Editing support
-
-- [x] [m4xshen/autoclose.nvim][19]
-- [x] [monaqa/dial.nvim][20]
-- [x] [nacro90/numb.nvim][21]
-- [x] [ethanholz/nvim-lastplace][22]
-- [x] [kylechui/nvim-surround][23]
 
 ### LSP enhancement
 
