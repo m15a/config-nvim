@@ -15,6 +15,7 @@ M.specs = {
    'ggandor/lightspeed.nvim',
    'kyazdani42/nvim-web-devicons',
    'lewis6991/gitsigns.nvim',
+   'm4xshen/autoclose.nvim',
    'machakann/vim-sandwich',
    'mnacamura/nvim-srcerite',
    'mnacamura/vim-fennel-syntax',

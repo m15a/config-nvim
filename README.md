@@ -111,7 +111,7 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 
 #### Editing support
 
-- [ ] [windwp/nvim-autopairs][19a] or [steelsojka/pears.nvim][19b]
+- [x] [m4xshen/autoclose.nvim][19]
 - [x] [monaqa/dial.nvim][20]
 - [x] [nacro90/numb.nvim][21]
 - [x] [ethanholz/nvim-lastplace][22]
@@ -200,8 +200,7 @@ repository.
 [16]: https://github.com/numToStr/Comment.nvim
 [17]: https://github.com/chentoast/marks.nvim
 [18]: https://gitlab.com/yorickpeterse/nvim-pqf
-[19a]: https://github.com/windwp/nvim-autopairs
-[19b]: https://github.com/steelsojka/pears.nvim
+[19]: https://github.com/m4xshen/autoclose.nvim
 [20]: https://github.com/monaqa/dial.nvim
 [21]: https://github.com/nacro90/numb.nvim
 [22]: https://github.com/ethanholz/nvim-lastplace
