@@ -3,8 +3,8 @@ local M = {}
 M.specs = {
    'LnL7/vim-nix',
    'aliou/bats.vim',
-   'chaoren/vim-wordmotion',
    'chentoast/marks.nvim',
+   'chrisgrieser/nvim-spider',
    'crispgm/telescope-heading.nvim',
    'dhruvasagar/vim-table-mode',
    'dkarter/bullets.vim',

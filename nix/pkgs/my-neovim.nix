@@ -44,7 +44,7 @@ wrapNeovim neovim {
         vimPlugins.vim-table-mode
         vimPlugins.vim-unimpaired
         vimPlugins.vim-asterisk
-        vimPlugins.vim-wordmotion
+        vimExtraPlugins.nvim-spider
         vimExtraPlugins.bats-vim
         vimExtraPlugins.bullets-vim
         vimExtraPlugins.dial-nvim

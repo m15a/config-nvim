@@ -89,7 +89,7 @@ mostly coming from [rockerBOO/awesome-neovim][3].
 
 #### Motion
 
-- [x] [chaoren/vim-wordmotion][12]
+- [x] [chrisgrieser/nvim-spider][12]
 - [x] [rhysd/clever-f.vim][13]
 - [x] [haya14busa/vim-asterisk][14]
 
@@ -191,7 +191,7 @@ repository.
 [9]: https://github.com/freddiehaddad/feline.nvim
 [10]: https://github.com/sontungexpt/stcursorword
 [11]: https://github.com/kyazdani42/nvim-web-devicons
-[12]: https://github.com/chaoren/vim-wordmotion
+[12]: https://github.com/chrisgrieser/nvim-spider
 [13]: https://github.com/rhysd/clever-f.vim
 [14]: https://github.com/haya14busa/vim-asterisk
 [15]: https://github.com/tpope/vim-rsi
