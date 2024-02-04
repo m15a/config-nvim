@@ -10,6 +10,7 @@ M.specs = {
    'bullets-vim/bullets.vim',
    'ellisonleao/glow.nvim',
    'ethanholz/nvim-lastplace',
+   'folke/todo-comments.nvim',
    'freddiehaddad/feline.nvim',
    'gbprod/substitute.nvim',
    'gbprod/yanky.nvim',

@@ -94,6 +94,7 @@ Only for usual Neovim installation.
 #### Comment
 
 - [x] [numToStr/Comment.nvim][16]
+- [x] [folke/todo-comments.nvim][107]
 
 #### Parentheses completion
 
@@ -238,5 +239,6 @@ repository.
 [104]: https://github.com/bullets-vim/bullets.vim
 [105]: https://github.com/chrisgrieser/nvim-various-textobjs
 [106]: https://github.com/gbprod/yanky.nvim
+[107]: https://github.com/folke/todo-comments.nvim
 
 <!-- vim: set ft=markdown.gfm tw=80 nowrap: -->
