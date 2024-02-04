@@ -1,5 +1,4 @@
 local g = vim.g
-local v = require 'my.utils.vimsl'
 
 g.bullets_enabled_file_types = {
    'markdown',
@@ -8,50 +7,33 @@ g.bullets_enabled_file_types = {
    'gitcommit',
    'text',
 }
-g.bullets_set_mappings = false
-g.bullets_outline_levels = {
-   'ROM',
-   'ABC',
-   'num',
-   'abc',
-   'rom',
-   'std-',
-   'std+',
-   'std*',
-}
 g.bullets_checkbox_markers = ' x'
 
--- See `s:add_local_mapping()` in
--- https://github.com/dkarter/bullets.vim/blob/master/plugin/bullets.vim
--- TODO: lazy evaluation of this function with g:bullets_*
-local function set_keymap(mapping_type, mapping, action)
-   return {
-      'FileType',
-      table.concat(g.bullets_enabled_file_types, ','),
-      mapping_type,
-      '<silent>',
-      '<buffer>',
-      mapping,
-      action,
-   }
-end
-
+g.bullets_set_mappings = false
 -- See `augroup TextBulletsMappings` in
 -- https://github.com/dkarter/bullets.vim/blob/master/plugin/bullets.vim
-v.augroup('bullets', function(au)
-   au(set_keymap('inoremap', '<CR>', '<Cmd>InsertNewBullet<CR>'))
-   au(set_keymap('nnoremap', 'o', '<Cmd>InsertNewBullet<CR>'))
-   -- au(set_keymap('inoremap', '<C-CR>', '<CR>'))  -- FIXME: it does not work. <C-j> works though.
+vim.api.nvim_create_autocmd('FileType', {
+   pattern = g.bullets_enabled_file_types,
+   group = vim.api.nvim_create_augroup('bullets', { clear = true }),
+   callback = function()
+      local map = vim.keymap.set
+      local opts_noremap = { silent = true, buffer = true }
+      local opts = vim.tbl_extend('force', opts_noremap, { remap = true })
 
-   au(set_keymap('vnoremap', 'gN', '<Cmd>RenumberSelection<CR>'))
-   au(set_keymap('nnoremap', 'gN', '<Cmd>RenumberList<CR>'))
+      map('i', '<CR>', '<Plug>(bullets-newline)', opts)
+      map('i', '<C-CR>', '<CR>', opts_noremap)
+      map('n', 'o', '<Plug>(bullets-newline)', opts)
 
-   au(set_keymap('nnoremap', '<LocalLeader>x', '<Cmd>ToggleCheckbox<CR>'))
+      map({ 'n', 'v' }, '<LocalLeader>n', '<Plug>(bullets-renumber)', opts)
 
-   au(set_keymap('inoremap', '<Tab>', '<Cmd>BulletDemote<CR><C-o>A'))
-   au(set_keymap('inoremap', '<S-Tab>', '<Cmd>BulletPromote<CR><C-o>A'))
-   au(set_keymap('nnoremap', '>>', '<Cmd>BulletDemote<CR>'))
-   au(set_keymap('nnoremap', '<<', '<Cmd>BulletPromote<CR>'))
-   au(set_keymap('vnoremap', '>', '<Cmd>BulletDemoteVisual<CR>'))
-   au(set_keymap('vnoremap', '<', '<Cmd>BulletPromoteVisual<CR>'))
-end)
+      map('n', '<LocalLeader>x', '<Plug>(bullets-toggle-checkbox)', opts)
+
+      map('i', '<C-t>', '<Plug>(bullets-demote)', opts)
+      map('n', '>>', '<Plug>(bullets-demote)', opts)
+      map('v', '>', '<Plug>(bullets-demote)', opts)
+
+      map('i', '<C-d>', '<Plug>(bullets-promote)', opts)
+      map('n', '<<', '<Plug>(bullets-promote)', opts)
+      map('v', '<', '<Plug>(bullets-promote)', opts)
+   end,
+})

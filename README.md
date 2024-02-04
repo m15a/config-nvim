@@ -161,6 +161,7 @@ Only for usual Neovim installation.
 
 #### Markdown / LaTeX
 
+- [x] [bullets-vim/bullets.vim][104]
 - [x] [rhysd/vim-gfm-syntax][37]
 - [x] [vim-pandoc/vim-pandoc-syntax][38]
 - [x] [dhruvasagar/vim-table-mode][39]
@@ -229,5 +230,6 @@ repository.
 [101]: https://github.com/tpope/vim-repeat
 [102]: https://github.com/tpope/vim-unimpaired
 [103]: https://github.com/gbprod/substitute.nvim
+[104]: https://github.com/bullets-vim/bullets.vim
 
 <!-- vim: set ft=markdown.gfm tw=80 nowrap: -->

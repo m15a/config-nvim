@@ -6,7 +6,7 @@ M.specs = {
    'chrisgrieser/nvim-spider',
    'crispgm/telescope-heading.nvim',
    'dhruvasagar/vim-table-mode',
-   'dkarter/bullets.vim',
+   'bullets-vim/bullets.vim',
    'ellisonleao/glow.nvim',
    'ethanholz/nvim-lastplace',
    'freddiehaddad/feline.nvim',
