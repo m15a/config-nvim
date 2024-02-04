@@ -44,7 +44,7 @@ M.specs = {
    'tpope/vim-rsi',
    'tpope/vim-unimpaired',
    'vim-pandoc/vim-pandoc-syntax',
-   { url = 'https://gitlab.com/yorickpeterse/nvim-pqf.git' },
+   'yorickpeterse/nvim-pqf',
 }
 
 function M.bootstrap()

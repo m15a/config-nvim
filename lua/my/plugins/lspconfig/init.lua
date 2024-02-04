@@ -128,10 +128,10 @@ local function setup_keymaps()
    })
 end
 
-local function setup_diagnostic_symbols()
-   -- Change diagnostic symbols in the gutter:
+local function setup_diagnostic_signs()
+   -- Change diagnostic signs in the gutter:
    -- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#change-diagnostic-symbols-in-the-sign-column-gutter
-   for type, text in pairs(assets.diagnostic_symbols) do
+   for type, text in pairs(assets.diagnostic_signs) do
       local hl = 'DiagnosticSign' .. type
       vim.fn.sign_define(hl, { text = text, texthl = hl, numhl = hl })
    end
@@ -140,7 +140,7 @@ end
 function M.setup()
    setup_servers()
    setup_keymaps()
-   setup_diagnostic_symbols()
+   setup_diagnostic_signs()
 end
 
 return M

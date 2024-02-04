@@ -1,10 +1,10 @@
 local M = {}
 
-M.diagnostic_symbols = {
-   Error = ' ',
-   Warn = ' ',
-   Hint = ' ',
-   Info = ' ',
+M.diagnostic_signs = {
+   Error = '',
+   Warn = '',
+   Hint = '',
+   Info = '',
 }
 
 M.border_chars = {

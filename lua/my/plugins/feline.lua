@@ -1,5 +1,5 @@
 local vi_mode = require 'feline.providers.vi_mode'
-local diagnostic_symbols = require('my.assets').diagnostic_symbols
+local ds = require('my.assets').diagnostic_signs
 
 local srcery = {}
 for name, spec in pairs(require 'srcerite.srcery') do
@@ -89,28 +89,28 @@ components.active[1] = {
 components.active[2] = {
    {
       provider = 'diagnostic_errors',
-      icon = diagnostic_symbols.Error,
+      icon = ds.Error .. ' ',
       hl = { fg = colors.error, bg = colors.bg },
       left_sep = '',
       right_sep = { str = ' ', hl = { bg = colors.bg } },
    },
    {
       provider = 'diagnostic_warnings',
-      icon = diagnostic_symbols.Warn,
+      icon = ds.Warn .. ' ',
       hl = { fg = colors.warn, bg = colors.bg },
       left_sep = '',
       right_sep = { str = ' ', hl = { bg = colors.bg } },
    },
    {
       provider = 'diagnostic_hints',
-      icon = diagnostic_symbols.Hint,
+      icon = ds.Hint .. ' ',
       hl = { fg = colors.hint, bg = colors.bg },
       left_sep = '',
       right_sep = { str = ' ', hl = { bg = colors.bg } },
    },
    {
       provider = 'diagnostic_info',
-      icon = diagnostic_symbols.Info,
+      icon = ds.Info .. ' ',
       hl = { fg = colors.info, bg = colors.bg },
       left_sep = '',
    },

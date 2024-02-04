@@ -107,7 +107,7 @@ Only for usual Neovim installation.
 
 #### Quickfix
 
-- [x] [gitlab:yorickpeterse/nvim-pqf][18]
+- [x] [yorickpeterse/nvim-pqf][18]
 
 #### Editing support
 
@@ -210,7 +210,7 @@ repository.
 [15]: https://github.com/tpope/vim-rsi
 [16]: https://github.com/numToStr/Comment.nvim
 [17]: https://github.com/chentoast/marks.nvim
-[18]: https://gitlab.com/yorickpeterse/nvim-pqf
+[18]: https://github.com/yorickpeterse/nvim-pqf
 [19]: https://github.com/m4xshen/autoclose.nvim
 [20]: https://github.com/monaqa/dial.nvim
 [21]: https://github.com/nacro90/numb.nvim
