@@ -1,6 +1,7 @@
 local env = vim.env
 local o = vim.opt
 local wo = vim.wo
+local g = vim.g
 
 o.clipboard = 'unnamedplus'
 o.undofile = true
@@ -44,3 +45,6 @@ wo.colorcolumn = (function()
    end
    return table.concat(colorcolumn, ',')
 end)()
+
+-- Mouse click can do the same.
+g.netrw_nogx = true

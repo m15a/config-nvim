@@ -79,51 +79,33 @@ local function setup_keymaps()
       callback = function(args)
          local buf = args.buf
 
-         local keymap_opts = { buffer = buf }
+         local opts = { buffer = buf }
          local function diagnostic_goto_prev()
             vim.diagnostic.goto_prev { float = { border = border } }
          end
          local function diagnostic_goto_next()
             vim.diagnostic.goto_next { float = { border = border } }
          end
-         local function diagnostic_show_all_in_buffer()
-            vim.diagnostic.open_float { scope = 'buffer', border = border }
-         end
-         local function list_workspace_folders()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-         end
          local function format()
             vim.lsp.buf.format { async = true }
          end
-         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, keymap_opts)
-         vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, keymap_opts)
-         vim.keymap.set('n', 'g<C-i>', vim.lsp.buf.implementation, keymap_opts)
-         vim.keymap.set('n', 'gr', vim.lsp.buf.rename, keymap_opts)
-         vim.keymap.set({ 'n', 'v' }, 'ga', vim.lsp.buf.code_action, keymap_opts)
-         vim.keymap.set('n', 'K', vim.lsp.buf.hover, keymap_opts)
-         vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, keymap_opts)
-         vim.keymap.set('n', '[d', diagnostic_goto_prev, keymap_opts)
-         vim.keymap.set('n', ']d', diagnostic_goto_next, keymap_opts)
-         vim.keymap.set('n', '[lsp]d', diagnostic_show_all_in_buffer, keymap_opts)
-         vim.keymap.set('n', '[lsp]r', vim.lsp.buf.references, keymap_opts)
-         vim.keymap.set('n', '[lsp]i', vim.lsp.buf.incoming_calls, keymap_opts)
-         vim.keymap.set('n', '[lsp]o', vim.lsp.buf.outgoing_calls, keymap_opts)
-         vim.keymap.set('n', '[lsp]s', vim.lsp.buf.document_symbol, keymap_opts)
-         vim.keymap.set('n', '[workspace]s', vim.lsp.buf.workspace_symbol, keymap_opts)
-         vim.keymap.set(
-            'n',
-            '[workspace]a',
-            vim.lsp.buf.add_workspace_folder,
-            keymap_opts
-         )
-         vim.keymap.set(
-            'n',
-            '[workspace]d',
-            vim.lsp.buf.remove_workspace_folder,
-            keymap_opts
-         )
-         vim.keymap.set('n', '[workspace]w', list_workspace_folders, keymap_opts)
-         vim.keymap.set({ 'n', 'v' }, '[lsp]=', format, keymap_opts)
+         local map = vim.keymap.set
+         map('n', 'gd', '<Cmd>Telescope lsp_definitions<CR>', opts)
+         map('n', 'gD', '<Cmd>Telescope lsp_type_definitions<CR>', opts)
+         map('n', 'gx', '<Cmd>Telescope lsp_implementations<CR>', opts)
+         map('n', 'gr', vim.lsp.buf.rename, opts)
+         map({ 'n', 'v' }, 'ga', vim.lsp.buf.code_action, opts)
+         map('n', 'K', vim.lsp.buf.hover, opts)
+         map('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+         map('n', '[d', diagnostic_goto_prev, opts)
+         map('n', ']d', diagnostic_goto_next, opts)
+         map('n', '[lsp]d', '<Cmd>Telescope diagnostics<CR>', opts)
+         map('n', '[lsp]r', '<Cmd>Telescope lsp_references<CR>', opts)
+         map('n', '[lsp]i', '<Cmd>Telescope lsp_incoming_calls<CR>', opts)
+         map('n', '[lsp]o', '<Cmd>Telescope lsp_outgoing_calls<CR>', opts)
+         map('n', '[lsp]s', '<Cmd>Telescope lsp_document_symbols<CR>', opts)
+         map('n', '[lsp]S', '<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opts)
+         map({ 'n', 'v' }, '[lsp]=', format, opts)
       end,
    })
 end
