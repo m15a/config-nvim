@@ -1,5 +1,5 @@
 require('telescope').load_extension 'heading'
 
-local map = require('my.keymaps').set_telescope_keymap
+local tmap = require('my.keymap').set_telescope
 
-map('H', '<Cmd>Telescope heading sorting_strategy=ascending<CR>')
+tmap('#', '<Cmd>Telescope heading sorting_strategy=ascending<CR>')

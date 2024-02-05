@@ -1,5 +1,5 @@
 require('telescope').load_extension 'bibtex'
 
-local map = require('my.keymaps').set_telescope_keymap
+local tmap = require('my.keymap').set_telescope
 
-map('R', '<Cmd>Telescope bibtex<CR>')
+tmap('r', '<Cmd>Telescope bibtex<CR>')
