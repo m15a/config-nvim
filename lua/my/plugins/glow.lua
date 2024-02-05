@@ -1,9 +1,7 @@
-local v = require 'my.utils.vimsl'
-local g = vim.g
+require('glow').setup {
+   border = 'rounded',
+}
 
-g.glow_border = 'rounded'
-
-local toggle_map = '<Space>'
 local filetypes = {
    'markdown',
    'markdown.gfm',
@@ -11,14 +9,11 @@ local filetypes = {
    'glowpreview',
 }
 
-v.augroup('glow', function(au)
-   au {
-      'FileType',
-      table.concat(filetypes, ','),
-      'nnoremap',
-      '<buffer>',
-      '<silent>',
-      toggle_map,
-      '<Cmd>Glow<CR>',
-   }
-end)
+local group = vim.api.nvim_create_augroup('glow', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+   group = group,
+   pattern = filetypes,
+   callback = function()
+      vim.keymap.set('n', '<LocalLeader>g', '<Cmd>Glow<CR>', { buffer = true })
+   end,
+})
