@@ -1,10 +1,15 @@
 local g = vim.g
-local v = require 'my.utils.vimsl'
 
 g.gfm_syntax_enable_always = false
 g.gfm_syntax_enable_filetypes = {
    'markdown.gfm',
 }
-v.augroup('gfm_syntax', function(au)
-   au [[BufNewFile,BufRead README.md setl filetype=markdown.gfm]]
-end)
+
+local group = vim.api.nvim_create_augroup('gfm_syntax', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+   group = group,
+   pattern = { 'README.md' },
+   callback = function()
+      vim.bo.filetype = 'markdown.gfm'
+   end,
+})
