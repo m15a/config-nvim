@@ -1,3 +1,1 @@
-local v = require 'my.utils.vimsl'
-
-v.colorscheme 'srcerite'
+vim.cmd.colorscheme 'srcerite'

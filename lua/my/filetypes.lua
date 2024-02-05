@@ -1,17 +1,23 @@
-local v = require 'my.utils.vimsl'
+vim.api.nvim_create_autocmd('FileType', {
+   pattern = { 'lua' },
+   group = vim.api.nvim_create_augroup('filetype_lua', { clear = true }),
+   callback = function()
+      vim.bo.shiftwidth = 3
+   end,
+})
 
-v.augroup('filetype_lua', function(au)
-   au [[FileType lua setlocal shiftwidth=3]]
-end)
+vim.api.nvim_create_autocmd('FileType', {
+   pattern = { 'vim' },
+   group = vim.api.nvim_create_augroup('filetype_vim', { clear = true }),
+   callback = function()
+      vim.bo.shiftwidth = 2
+   end,
+})
 
-v.augroup('filetype_vim', function(au)
-   au [[FileType vim setlocal shiftwidth=2]]
-end)
-
-v.augroup('filetype_make', function(au)
-   au [[FileType make setlocal tabstop=4]]
-end)
-
-v.augroup('filetype_json', function(au)
-   au [[BufNewFile,BufRead flake.lock setlocal filetype=json]]
-end)
+vim.api.nvim_create_autocmd('FileType', {
+   pattern = { 'make' },
+   group = vim.api.nvim_create_augroup('filetype_make', { clear = true }),
+   callback = function()
+      vim.bo.tabstop = 4
+   end,
+})
