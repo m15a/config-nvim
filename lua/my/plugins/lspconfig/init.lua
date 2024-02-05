@@ -1,63 +1,14 @@
 local namespace = ...
+
 local lspconfig = require 'lspconfig'
 local assets = require 'my.assets'
+local common = require 'my.plugins.lspconfig.common'
 
 local M = {}
 
--- Set floating window borders:
--- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#borders
-local border = (function()
-   local bchar = assets.border_chars
-   local hl = 'FloatBorder'
-   return {
-      { bchar.northwest, hl },
-      { bchar.north, hl },
-      { bchar.northeast, hl },
-      { bchar.east, hl },
-      { bchar.southeast, hl },
-      { bchar.south, hl },
-      { bchar.southwest, hl },
-      { bchar.west, hl },
-   }
-end)()
-
-M.default_server_config = {}
-
-M.default_server_config.handlers = (function()
-   local h = vim.lsp.handlers
-   local opts = { border = border }
-   return {
-      ['textDocument/hover'] = vim.lsp.with(h.hover, opts),
-      ['textDocument/signatureHelp'] = vim.lsp.with(h.signature_help, opts),
-   }
-end)()
-
-function M.default_server_config.on_attach(client, bufnr)
-   -- NOTE: Highlight document only if available
-   -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/355#discussioncomment-1651619
-   -- Also note that `resolved_capabilities` has been renamed to `server_capabilities`.
-   if client.server_capabilities.document_highlight then
-      local group = vim.api.nvim_create_augroup('lsp_doc_highlight', { clear = true })
-      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-         group = group,
-         buffer = bufnr,
-         callback = function()
-            vim.lsp.buf.document_highlight()
-         end,
-      })
-      vim.api.nvim_create_autocmd('CursorMoved', {
-         group = group,
-         buffer = bufnr,
-         callback = function()
-            vim.lsp.buf.clear_references()
-         end,
-      })
-   end
-end
-
 local function require_server_config(server)
    local server_config = require(namespace .. '.' .. server)
-   return vim.tbl_deep_extend('force', M.default_server_config, server_config)
+   return vim.tbl_deep_extend('force', common.config, server_config)
 end
 
 local function setup_servers()
@@ -81,10 +32,10 @@ local function setup_keymaps()
 
          local opts = { buffer = buf }
          local function diagnostic_goto_prev()
-            vim.diagnostic.goto_prev { float = { border = border } }
+            vim.diagnostic.goto_prev { float = { border = common.border } }
          end
          local function diagnostic_goto_next()
-            vim.diagnostic.goto_next { float = { border = border } }
+            vim.diagnostic.goto_next { float = { border = common.border } }
          end
          local function format()
             vim.lsp.buf.format { async = true }
