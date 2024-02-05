@@ -1,18 +1,6 @@
-require('nvim-treesitter.configs').setup {
-   highlight = {
-      enable = true,
-      disable = {
-         'markdown',
-         'nix',
-         'fennel',
-      },
-   },
-   incremental_selection = {
-      enable = false, -- too much for me!
-   },
-   indent = {
-      enable = true,
-   },
+local M = {}
+
+M.config = {
    textobjects = {
       select = {
          enable = true,
@@ -77,3 +65,5 @@ require('nvim-treesitter.configs').setup {
       },
    },
 }
+
+return M
