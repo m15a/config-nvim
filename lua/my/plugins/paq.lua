@@ -37,6 +37,7 @@ M.specs = {
    'purescript-contrib/purescript-vim',
    'rhysd/clever-f.vim',
    'rhysd/vim-gfm-syntax',
+   'sQVe/sort.nvim',
    'savq/paq-nvim',
    'sontungexpt/stcursorword',
    'stevearc/dressing.nvim',

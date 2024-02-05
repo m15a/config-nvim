@@ -42,6 +42,7 @@ wrapNeovim neovim {
         vimPlugins.plenary-nvim
         vimPlugins.popup-nvim
         vimPlugins.purescript-vim
+        vimPlugins.sort-nvim
         vimPlugins.substitute-nvim
         vimPlugins.telescope-nvim
         vimPlugins.telescope-symbols-nvim

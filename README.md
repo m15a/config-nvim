@@ -112,78 +112,79 @@ Only for usual Neovim installation.
 - [x] [monaqa/dial.nvim][p19]
 - [x] [nacro90/numb.nvim][p20]
 - [x] [ethanholz/nvim-lastplace][p21]
+- [x] [sQVe/sort.nvim][p22]
 
 ### Look and feel
 
 #### Colorscheme
 
-- [x] [mnacamura/nvim-srcerite][p22]
+- [x] [mnacamura/nvim-srcerite][p23]
 
 #### Statusline
 
-- [x] [freddiehaddad/feline.nvim][p23]
+- [x] [freddiehaddad/feline.nvim][p24]
 
 #### Cursorline
 
-- [x] [sontungexpt/stcursorword][p24]
+- [x] [sontungexpt/stcursorword][p25]
 
 #### Quickfix
 
-- [x] [yorickpeterse/nvim-pqf][p25]
+- [x] [yorickpeterse/nvim-pqf][p26]
 
 #### Icon fonts
 
-- [x] [kyazdani42/nvim-web-devicons][p26]
+- [x] [kyazdani42/nvim-web-devicons][p27]
 
 ### Telescopic finders
 
-- [x] [nvim-telescope/telescope.nvim][p27]
-- [x] [nvim-telescope/telescope-symbols.nvim][p28]
-- [x] [crispgm/telescope-heading.nvim][p29]
-- [x] [nvim-telescope/telescope-bibtex.nvim][p30]
-- [x] [folke/todo-comments.nvim][p31]
+- [x] [nvim-telescope/telescope.nvim][p28]
+- [x] [nvim-telescope/telescope-symbols.nvim][p29]
+- [x] [crispgm/telescope-heading.nvim][p30]
+- [x] [nvim-telescope/telescope-bibtex.nvim][p31]
+- [x] [folke/todo-comments.nvim][p32]
 
 ### LSP enhancement
 
-- [x] [neovim/nvim-lspconfig][p32]
-- [x] [nvimtools/none-ls][p33]
-- [x] [onsails/lspkind-nvim][p34]
+- [x] [neovim/nvim-lspconfig][p33]
+- [x] [nvimtools/none-ls][p34]
+- [x] [onsails/lspkind-nvim][p35]
 
 ### Tree-sitter
 
-- [x] [nvim-treesitter/nvim-treesitter][p35]
-- [x] [nvim-treesitter/nvim-treesitter-textobjects][p36]
+- [x] [nvim-treesitter/nvim-treesitter][p36]
+- [x] [nvim-treesitter/nvim-treesitter-textobjects][p37]
 
 ### Language-specific plugins
 
 #### Nix
 
-- [x] [LnL7/vim-nix][p37]
+- [x] [LnL7/vim-nix][p38]
 
 #### Fennel
 
-- [x] [mnacamura/vim-fennel-syntax][p38]
+- [x] [mnacamura/vim-fennel-syntax][p39]
 
 #### Markdown
 
-- [x] [bullets-vim/bullets.vim][p39]
-- [x] [rhysd/vim-gfm-syntax][p40]
-- [x] [vim-pandoc/vim-pandoc-syntax][p41]
-- [x] [dhruvasagar/vim-table-mode][p42]
+- [x] [bullets-vim/bullets.vim][p40]
+- [x] [rhysd/vim-gfm-syntax][p41]
+- [x] [vim-pandoc/vim-pandoc-syntax][p42]
+- [x] [dhruvasagar/vim-table-mode][p43]
 
 #### PureScript
 
-- [x] [purescript-contrib/purescript-vim][p43]
+- [x] [purescript-contrib/purescript-vim][p44]
 
 ### Tool integration
 
 #### Git
 
-- [x] [lewis6991/gitsigns.nvim][p44]
+- [x] [lewis6991/gitsigns.nvim][p45]
 
 #### Glow
 
-- [x] [ellisonleao/glow.nvim][p45]
+- [x] [ellisonleao/glow.nvim][p46]
 
 ## Licenses
 
@@ -220,29 +221,30 @@ repository.
 [p19]: https://github.com/monaqa/dial.nvim
 [p20]: https://github.com/nacro90/numb.nvim
 [p21]: https://github.com/ethanholz/nvim-lastplace
-[p22]: https://github.com/mnacamura/nvim-srcerite
-[p23]: https://github.com/freddiehaddad/feline.nvim
-[p24]: https://github.com/sontungexpt/stcursorword
-[p25]: https://github.com/yorickpeterse/nvim-pqf
-[p26]: https://github.com/kyazdani42/nvim-web-devicons
-[p27]: https://github.com/nvim-telescope/telescope.nvim
-[p28]: https://github.com/nvim-telescope/telescope-symbols.nvim
-[p29]: https://github.com/crispgm/telescope-heading.nvim
-[p30]: https://github.com/nvim-telescope/telescope-bibtex.nvim
-[p31]: https://github.com/folke/todo-comments.nvim
-[p32]: https://github.com/neovim/nvim-lspconfig
-[p33]: https://github.com/nvimtools/none-ls.nvim
-[p34]: https://github.com/onsails/lspkind-nvim
-[p35]: https://github.com/nvim-treesitter/nvim-treesitter
-[p36]: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-[p37]: https://github.com/LnL7/vim-nix
-[p38]: https://github.com/mnacamura/vim-fennel-syntax
-[p39]: https://github.com/bullets-vim/bullets.vim
-[p40]: https://github.com/rhysd/vim-gfm-syntax
-[p41]: https://github.com/vim-pandoc/vim-pandoc-syntax
-[p42]: https://github.com/dhruvasagar/vim-table-mode
-[p43]: https://github.com/purescript-contrib/purescript-vim
-[p44]: https://github.com/lewis6991/gitsigns.nvim
-[p45]: https://github.com/ellisonleao/glow.nvim
+[p22]: https://github.com/sQVe/sort.nvim
+[p23]: https://github.com/mnacamura/nvim-srcerite
+[p24]: https://github.com/freddiehaddad/feline.nvim
+[p25]: https://github.com/sontungexpt/stcursorword
+[p26]: https://github.com/yorickpeterse/nvim-pqf
+[p27]: https://github.com/kyazdani42/nvim-web-devicons
+[p28]: https://github.com/nvim-telescope/telescope.nvim
+[p29]: https://github.com/nvim-telescope/telescope-symbols.nvim
+[p30]: https://github.com/crispgm/telescope-heading.nvim
+[p31]: https://github.com/nvim-telescope/telescope-bibtex.nvim
+[p32]: https://github.com/folke/todo-comments.nvim
+[p33]: https://github.com/neovim/nvim-lspconfig
+[p34]: https://github.com/nvimtools/none-ls.nvim
+[p35]: https://github.com/onsails/lspkind-nvim
+[p36]: https://github.com/nvim-treesitter/nvim-treesitter
+[p37]: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+[p38]: https://github.com/LnL7/vim-nix
+[p39]: https://github.com/mnacamura/vim-fennel-syntax
+[p40]: https://github.com/bullets-vim/bullets.vim
+[p41]: https://github.com/rhysd/vim-gfm-syntax
+[p42]: https://github.com/vim-pandoc/vim-pandoc-syntax
+[p43]: https://github.com/dhruvasagar/vim-table-mode
+[p44]: https://github.com/purescript-contrib/purescript-vim
+[p45]: https://github.com/lewis6991/gitsigns.nvim
+[p46]: https://github.com/ellisonleao/glow.nvim
 
 <!-- vim: set ft=markdown.gfm tw=80 nowrap: -->
