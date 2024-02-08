@@ -1,7 +1,4 @@
-local srcery = {}
-for name, spec in pairs(require 'srcerite.srcery') do
-   srcery[name] = spec[1]
-end
+local srcery = require 'srcerite.srcery'
 
 return {
    fg = srcery.bright_white,

@@ -1,6 +1,7 @@
 local M = {}
 
 M.specs = {
+   'Iron-E/nvim-highlite',
    'LnL7/vim-nix',
    'bullets-vim/bullets.vim',
    'chentoast/marks.nvim',
@@ -20,7 +21,7 @@ M.specs = {
    'kylechui/nvim-surround',
    'lewis6991/gitsigns.nvim',
    'm4xshen/autoclose.nvim',
-   'mnacamura/nvim-srcerite',
+   'm15a/nvim-srcerite',
    'mnacamura/vim-fennel-syntax',
    'monaqa/dial.nvim',
    'nacro90/numb.nvim',

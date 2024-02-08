@@ -122,7 +122,8 @@ Only for usual Neovim installation.
 
 #### Colorscheme
 
-- [x] [mnacamura/nvim-srcerite][p23]
+- [x] [Iron-E/nvim-highlite][p48]
+- [x] [m15a/nvim-srcerite][p23]
 
 #### Statusline
 
@@ -226,7 +227,7 @@ repository.
 [p20]: https://github.com/nacro90/numb.nvim
 [p21]: https://github.com/ethanholz/nvim-lastplace
 [p22]: https://github.com/sQVe/sort.nvim
-[p23]: https://github.com/mnacamura/nvim-srcerite
+[p23]: https://github.com/m15a/nvim-srcerite
 [p24]: https://github.com/freddiehaddad/feline.nvim
 [p25]: https://github.com/sontungexpt/stcursorword
 [p26]: https://github.com/yorickpeterse/nvim-pqf
@@ -251,5 +252,6 @@ repository.
 [p45]: https://github.com/lewis6991/gitsigns.nvim
 [p46]: https://github.com/ellisonleao/glow.nvim
 [p47]: https://github.com/klen/nvim-config-local
+[p48]: https://github.com/Iron-E/nvim-highlite
 
 <!-- vim: set ft=markdown.gfm tw=80 nowrap: -->

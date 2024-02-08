@@ -33,6 +33,7 @@ wrapNeovim neovim {
         vimPlugins.marks-nvim
         vimPlugins.none-ls-nvim
         vimPlugins.numb-nvim
+        vimPlugins.nvim-highlite
         vimPlugins.nvim-lastplace
         vimPlugins.nvim-lspconfig
         vimPlugins.nvim-pqf
