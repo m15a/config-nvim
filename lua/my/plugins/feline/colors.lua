@@ -2,20 +2,20 @@ local srcery = require 'srcerite.srcery'
 
 return {
    fg = srcery.bright_white,
-   bg = srcery.xgray1,
-   sides = srcery.bright_black,
+   bg = srcery.hard_black,
+   sides = srcery.orange,
 
-   error = srcery.red,
-   warn = srcery.orange,
-   hint = srcery.magenta,
-   info = srcery.bright_magenta,
+   error = srcery.bright_red,
+   warn = srcery.bright_yellow,
+   hint = srcery.bright_cyan,
+   info = srcery.bright_green,
 
-   normal = srcery.blue,
-   insert = srcery.green,
-   visual = srcery.magenta,
+   normal = srcery.bright_green,
+   insert = srcery.bright_yellow,
+   visual = srcery.bright_orange,
    replace = srcery.red,
    enter = srcery.cyan,
-   select = srcery.orange,
-   command = srcery.bright_blue,
+   select = srcery.bright_orange,
+   command = srcery.magenta,
    none = srcery.white,
 }
