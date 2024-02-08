@@ -15,6 +15,7 @@ M.specs = {
    'gbprod/substitute.nvim',
    'gbprod/yanky.nvim',
    'haya14busa/vim-asterisk',
+   'klen/nvim-config-local',
    'kyazdani42/nvim-web-devicons',
    'kylechui/nvim-surround',
    'lewis6991/gitsigns.nvim',

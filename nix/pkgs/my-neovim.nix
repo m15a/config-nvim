@@ -23,6 +23,7 @@ wrapNeovim neovim {
         vimPlugins.autoclose-nvim
         vimPlugins.clever-f-vim
         vimPlugins.comment-nvim
+        vimPlugins.nvim-config-local
         vimPlugins.dial-nvim
         vimPlugins.dressing-nvim
         vimPlugins.feline-nvim

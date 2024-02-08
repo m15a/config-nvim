@@ -114,6 +114,10 @@ Only for usual Neovim installation.
 - [x] [ethanholz/nvim-lastplace][p21]
 - [x] [sQVe/sort.nvim][p22]
 
+#### Project local settings
+
+- [x] [klen/nvim-config-local][p47]
+
 ### Look and feel
 
 #### Colorscheme
@@ -246,5 +250,6 @@ repository.
 [p44]: https://github.com/purescript-contrib/purescript-vim
 [p45]: https://github.com/lewis6991/gitsigns.nvim
 [p46]: https://github.com/ellisonleao/glow.nvim
+[p47]: https://github.com/klen/nvim-config-local
 
 <!-- vim: set ft=markdown.gfm tw=80 nowrap: -->
