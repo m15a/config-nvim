@@ -18,7 +18,7 @@ Install this repository either as usual Neovim configuration
 > (`${XDG_DATA_HOME:-~/.local/share}/nvim/site/pack`) before trying it!
 
 ```console
-git clone https://github.com/mnacamura/config-nvim \
+git clone https://github.com/m15a/config-nvim \
     "${XDG_CONFIG_HOME:-~/.config}/nvim"
 nvim -es -V1 --headless \
     --cmd ":lua require'my.plugins.paq'.setup()" \
@@ -35,13 +35,13 @@ such as internet connection speed.
 Just try it:
 
 ```console
-nix run github:mnacamura/config-nvim -- blabla.txt
+nix run github:m15a/config-nvim -- blabla.txt
 ```
 
 If you happened to like it, install it to your system:
 
 ```console
-nix profile install github:mnacamura/config-nvim
+nix profile install github:m15a/config-nvim
 ```
 
 ## Plugins
@@ -168,7 +168,7 @@ Only for usual Neovim installation.
 
 #### Fennel
 
-- [x] [mnacamura/vim-fennel-syntax][p39]
+- [x] [m15a/vim-fennel-syntax][p39]
 
 #### Markdown
 
@@ -198,10 +198,10 @@ See [`_assets/README`](_assets/README) for the licenses of the cover image.
 See [`LICENSE`](LICENSE) for the license of the other materials in this
 repository.
 
-[1]: https://img.shields.io/github/actions/workflow/status/mnacamura/config-nvim/ci.yml?style=flat-square&logo=github&label=CI
-[2]: https://github.com/mnacamura/config-nvim/actions/workflows/ci.yml
-[3]: https://img.shields.io/github/actions/workflow/status/mnacamura/config-nvim/nix.yml?style=flat-square&logo=nixos&logoColor=7ebae4&label=Nix%20flake
-[4]: https://github.com/mnacamura/config-nvim/actions/workflows/nix.yml
+[1]: https://img.shields.io/github/actions/workflow/status/m15a/config-nvim/ci.yml?style=flat-square&logo=github&label=CI
+[2]: https://github.com/m15a/config-nvim/actions/workflows/ci.yml
+[3]: https://img.shields.io/github/actions/workflow/status/m15a/config-nvim/nix.yml?style=flat-square&logo=nixos&logoColor=7ebae4&label=Nix%20flake
+[4]: https://github.com/m15a/config-nvim/actions/workflows/nix.yml
 [5]: https://neovim.io/doc/user/starting.html#%24XDG_CONFIG_HOME
 [6]: https://nix.dev/concepts/flakes
 [7]: https://github.com/rockerBOO/awesome-neovim
@@ -243,7 +243,7 @@ repository.
 [p36]: https://github.com/nvim-treesitter/nvim-treesitter
 [p37]: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 [p38]: https://github.com/LnL7/vim-nix
-[p39]: https://github.com/mnacamura/vim-fennel-syntax
+[p39]: https://github.com/m15a/vim-fennel-syntax
 [p40]: https://github.com/bullets-vim/bullets.vim
 [p41]: https://github.com/rhysd/vim-gfm-syntax
 [p42]: https://github.com/vim-pandoc/vim-pandoc-syntax

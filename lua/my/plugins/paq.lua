@@ -22,7 +22,7 @@ M.specs = {
    'lewis6991/gitsigns.nvim',
    'm4xshen/autoclose.nvim',
    'm15a/nvim-srcerite',
-   'mnacamura/vim-fennel-syntax',
+   'm15a/vim-fennel-syntax',
    'monaqa/dial.nvim',
    'nacro90/numb.nvim',
    'neovim/nvim-lspconfig',
