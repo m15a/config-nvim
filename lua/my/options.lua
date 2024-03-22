@@ -5,7 +5,7 @@ local g = vim.g
 
 o.clipboard = 'unnamedplus'
 o.undofile = true
-o.textwidth = 88
+o.textwidth = 80
 o.shiftwidth = 4
 o.softtabstop = -1
 o.expandtab = true

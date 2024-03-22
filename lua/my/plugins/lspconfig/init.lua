@@ -16,6 +16,7 @@ local function setup_servers()
       bashls = 'bash-language-server',
       vimls = 'vim-language-server',
       lua_ls = 'lua-language-server',
+      fennel_ls = 'fennel-ls',
       purescriptls = 'purescript-language-server',
    }
    for server, cmd in pairs(servers) do
