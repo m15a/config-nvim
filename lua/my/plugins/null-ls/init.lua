@@ -23,7 +23,9 @@ local sources = {
 
    -- Lua
    diagnostics.selene.with { condition = u.has_file 'selene.toml' },
-   formatting.stylua.with { condition = u.has_file { 'stylua.toml', '.stylua.toml' } },
+   formatting.stylua.with {
+      condition = u.has_file { 'stylua.toml', '.stylua.toml' },
+   },
 
    -- Nix
    code_actions.statix.with { condition = u.has_file 'statix.toml' },
@@ -33,8 +35,12 @@ local sources = {
    formatting.nixpkgs_fmt.with { condition = u.has_exec 'nixpkgs-fmt' },
 
    -- Bash
-   code_actions.shellcheck.with { condition = u.has_file '.shellcheckrc' },
-   diagnostics.shellcheck.with { condition = u.has_file '.shellcheckrc' },
+   require('none-ls-shellcheck.code_actions').with {
+      condition = u.has_file '.shellcheckrc',
+   },
+   require('none-ls-shellcheck.diagnostics').with {
+      condition = u.has_file '.shellcheckrc',
+   },
    formatting.shfmt.with { condition = u.has_file '.editorconfig' },
 
    -- Fish
@@ -42,9 +48,13 @@ local sources = {
    formatting.fish_indent.with { condition = u.has_exec 'fish_indent' },
 
    -- Python
-   diagnostics.flake8.with { condition = u.has_file '.flake8' },
+   require('none-ls.diagnostics.flake8').with {
+      condition = u.has_file '.flake8',
+   },
    formatting.black.with { condition = u.has_file 'pyproject.toml' },
-   formatting.isort.with { condition = u.has_file { '.isort.cfg', 'pyproject.toml' } },
+   formatting.isort.with {
+      condition = u.has_file { '.isort.cfg', 'pyproject.toml' },
+   },
 }
 
 local common_lsp = require 'my.plugins.lspconfig.common'

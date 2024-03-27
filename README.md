@@ -152,7 +152,9 @@ Only for usual Neovim installation.
 ### LSP enhancement
 
 - [x] [neovim/nvim-lspconfig][p33]
-- [x] [nvimtools/none-ls][p34]
+- [x] [nvimtools/none-ls.nvim][p34]
+- [x] [nvimtools/none-ls-extras.nvim][p34a]
+- [x] [gbprod/none-ls-shellcheck.nvim][p34b]
 - [x] [onsails/lspkind-nvim][p35]
 
 ### Tree-sitter
@@ -239,6 +241,8 @@ repository.
 [p32]: https://github.com/folke/todo-comments.nvim
 [p33]: https://github.com/neovim/nvim-lspconfig
 [p34]: https://github.com/nvimtools/none-ls.nvim
+[p34a]: https://github.com/nvimtools/none-ls-extras.nvim
+[p34b]: https://github.com/gbprod/none-ls-shellcheck.nvim
 [p35]: https://github.com/onsails/lspkind-nvim
 [p36]: https://github.com/nvim-treesitter/nvim-treesitter
 [p37]: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
