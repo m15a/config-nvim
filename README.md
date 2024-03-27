@@ -71,7 +71,7 @@ Only for usual Neovim installation.
 
 #### Extra textobjects
 
-- [x] [chrisgrieser/nvim-various-textobjs][p08]
+- [ ] [chrisgrieser/nvim-various-textobjs][p08]
 
 #### Useful mappings
 

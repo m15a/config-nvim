@@ -59,7 +59,6 @@ wrapNeovim neovim {
         vimPlugins.yanky-nvim
         vimExtraPlugins.bullets-vim
         vimExtraPlugins.nvim-srcerite
-        vimExtraPlugins.nvim-various-textobjs
         vimExtraPlugins.sentiment-nvim
         vimExtraPlugins.stcursorword
         vimExtraPlugins.telescope-bibtex-nvim
